@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Nodlings</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0f1114; color:#cfd3da; font:13px/1.4 ui-monospace,monospace;
+         display:flex; height:100vh; overflow:hidden; }
+  #stage { position:relative; flex:1; display:flex; flex-direction:column; }
+  #topbar { padding:6px 10px; display:flex; gap:8px; align-items:center; background:#171a1f;
+            border-bottom:1px solid #2a2f38; flex-wrap:wrap; }
+  button, select { background:#232833; color:#cfd3da; border:1px solid #3a4150; padding:3px 8px;
+                   font:inherit; border-radius:4px; cursor:pointer; }
+  button:hover, select:hover { border-color:#5a6577; }
+  #reset { border-color:#5a3a3a; }
+  #c { flex:1; width:100%; display:block; background:#111; cursor:grab; }
+  #c:active { cursor:grabbing; }
+  #tip { position:absolute; pointer-events:none; display:none; background:rgba(12,15,20,0.94);
+         border:1px solid #3a4150; border-radius:4px; padding:5px 8px; font-size:12px;
+         white-space:nowrap; z-index:10; box-shadow:0 2px 8px rgba(0,0,0,0.5); }
+  #side { width:252px; background:#141821; border-left:1px solid #2a2f38; padding:12px;
+          display:flex; flex-direction:column; gap:11px; overflow-y:auto; }
+  #side h1 { font-size:16px; margin:0; letter-spacing:1px; }
+  #side .sub { opacity:.55; font-size:11px; margin-top:-6px; }
+  #mini { width:228px; height:170px; background:#0c0e12; border:1px solid #2a2f38;
+          image-rendering:pixelated; cursor:crosshair; }
+  #spark { width:228px; height:38px; background:#0c0e12; border:1px solid #2a2f38; }
+  .grid { display:grid; grid-template-columns:auto 1fr; gap:3px 10px; align-items:center; }
+  .grid .k { opacity:.65; display:flex; align-items:center; }
+  .grid .v { text-align:right; font-variant-numeric:tabular-nums; }
+  .sec { border-top:1px solid #2a2f38; padding-top:8px; }
+  .sec-title { font-size:11px; text-transform:uppercase; letter-spacing:1px; opacity:.45; margin-bottom:5px; }
+  .hint { font-size:11px; opacity:.5; line-height:1.5; }
+  #saveline { font-size:11px; opacity:.6; display:flex; justify-content:space-between; }
+  #s-saved { color:#6fcf7f; }
+  .help { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px;
+          margin-left:5px; border:1px solid #4a5160; border-radius:50%; font-size:9px; opacity:.55;
+          cursor:help; flex:none; }
+  .help:hover { opacity:1; border-color:#7a8090; }
+  /* tooltip lives on <body>, so the sidebar's scroll box can't clip it */
+  #helptip { position:fixed; display:none; width:210px; background:#0b0d11; border:1px solid #3a4150;
+             padding:7px 9px; border-radius:5px; font-size:11px; line-height:1.45; color:#cfd3da;
+             z-index:1000; box-shadow:0 3px 14px rgba(0,0,0,0.7); pointer-events:none; }
+  #obs-panel { position:fixed; inset:0; background:rgba(6,8,11,0.72); z-index:900; display:none;
+               align-items:center; justify-content:center; }
+  #obs-card { width:min(760px,92vw); max-height:82vh; background:#12151b; border:1px solid #333a47;
+              border-radius:8px; display:flex; flex-direction:column; box-shadow:0 8px 40px rgba(0,0,0,0.6); }
+  #obs-head { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:12px 14px;
+              border-bottom:1px solid #2a2f38; font-size:13px; }
+  #obs-body { padding:8px 14px 14px; overflow-y:auto; }
+  .obs-row { padding:7px 9px; margin:6px 0; border-left:3px solid #4a5160; background:#171b22;
+             border-radius:0 4px 4px 0; font-size:12px; line-height:1.5; }
+  .obs-row .obs-day { opacity:.5; margin-right:6px; font-variant-numeric:tabular-nums; }
+  .obs-milestone { border-left-color:#5fbf6a; }
+  .obs-issue { border-left-color:#d98a3a; }
+  .obs-trend { border-left-color:#5a8fd0; }
+  .obs-idea { border-left-color:#c07fd0; }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <div id="topbar">
+      <button id="pause">Pause</button>
+      <label>speed
+        <select id="speed"><option value="1">1x</option><option value="4">4x</option>
+          <option value="16" selected>16x</option><option value="40">40x</option></select>
+      </label>
+      <label>drop
+        <select id="drop"><option>flora</option><option>wood</option>
+          <option>stone</option><option>data</option><option>seed</option><option>plank</option>
+          <option>clay</option><option>fiber</option></select>
+      </label>
+      <button id="reset">↻ New world</button>
+      <button id="save">💾 Save</button>
+      <button id="export">⭳ Export</button>
+      <button id="import">⭱ Import</button>
+      <input id="importfile" type="file" accept="application/json" style="display:none">
+      <button id="obs-btn">📋 Observations</button>
+      <span class="hint">drag pan · scroll zoom · click a Nodling to follow · click ground to drop</span>
+    </div>
+    <canvas id="c"></canvas>
+    <div id="tip"></div>
+  </div>
+
+  <div id="side">
+    <div>
+      <h1>NODLINGS</h1>
+      <div class="sub">an evolving terrarium</div>
+    </div>
+    <canvas id="mini"></canvas>
+
+    <div class="sec">
+      <div class="sec-title">Climate</div>
+      <div class="grid">
+        <span class="k">Day <span class="help" data-tip="Elapsed in-world days. A year is 32 days = 4 seasons of 8 days.">?</span></span>
+          <span class="v" id="s-day">0</span>
+        <span class="k">Time <span class="help" data-tip="In-world clock. Nights are colder; ☀️/🌙 shows day or night.">?</span></span>
+          <span class="v" id="s-clock">—</span>
+        <span class="k">Season <span class="help" data-tip="Winter drops below freezing and starves the map; summer peaks near 28°. Seasons drive the whole boom/crash cycle.">?</span></span>
+          <span class="v" id="s-season">—</span>
+        <span class="k">Temp <span class="help" data-tip="Current ambient air temperature. A Nodling's body drifts toward its local cell temp, which shelter can warm.">?</span></span>
+          <span class="v" id="s-temp">—</span>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Nodlings</div>
+      <div class="grid">
+        <span class="k">Alive <span class="help" data-tip="Living Nodlings now (j = juveniles, which can't breed yet). Fresh seeds are only added below 8 (near-extinction), drawn from the saved hall of fame.">?</span></span>
+          <span class="v" id="s-pop">0</span>
+        <span class="k">Max gen <span class="help" data-tip="Highest generation number alive — how many times the longest surviving lineage has reproduced.">?</span></span>
+          <span class="v" id="s-gen">0</span>
+        <span class="k">Avg brain <span class="help" data-tip="Average connections in the evolving neural networks (NEAT). Grows as mutation adds structure the world rewards, shrinks when simple wiring suffices.">?</span></span>
+          <span class="v" id="s-brain">0</span>
+        <span class="k">Best fitness <span class="help" data-tip="Top hall-of-fame score: age + 250×offspring of the best Nodling ever. In a stable population this saturates — watch Max gen for real progress instead.">?</span></span>
+          <span class="v" id="s-fit">0</span>
+        <span class="k">Diversity <span class="help" data-tip="Distinct lineage colour-groups alive. Speciation (you compete mainly with your own kind) keeps this from collapsing to a monoculture. More = healthier evolution.">?</span></span>
+          <span class="v" id="s-div">0</span>
+        <span class="k">Diet <span class="help" data-tip="Herbivore/carnivore split. An evolved gene: herbivores get more from plants, carnivores from meat. A persistent split means a real food web has formed.">?</span></span>
+          <span class="v" id="s-diet">—</span>
+        <span class="k">Births <span class="help" data-tip="Total Nodlings born this world (reproduction events, not reseeds).">?</span></span>
+          <span class="v" id="s-births">0</span>
+        <span class="k">Deaths <span class="help" data-tip="Total Nodlings that have died this world — starvation, dehydration, lethal temperature, fire, or predation.">?</span></span>
+          <span class="v" id="s-deaths">0</span>
+      </div>
+      <canvas id="spark" title="population over time"></canvas>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Fauna</div>
+      <div class="grid">
+        <span class="k">Critters <span class="help" data-tip="Neutral wildlife. They graze flora and flee Nodlings; struck by a facing Nodling they die and drop meat.">?</span></span>
+          <span class="v" id="s-crit">0</span>
+        <span class="k">Predators <span class="help" data-tip="They hunt Nodlings with their own evolving brains. Grouping/fleeing is the Nodlings' defence — a driver of flocking/tribes. They can't cross water.">?</span></span>
+          <span class="v" id="s-pred">0</span>
+        <span class="k">Pred. kills <span class="help" data-tip="Total kills by living predators. Rising over time = predators are learning to hunt (the arms race working).">?</span></span>
+          <span class="v" id="s-kills">0</span>
+        <span class="k">Pred. fitness <span class="help" data-tip="Best predator hall-of-fame score (age + 400×kills). Its own ratchet — persists across predator die-offs and is saved.">?</span></span>
+          <span class="v" id="s-pfit">0</span>
+        <span class="k">Pred. brain <span class="help" data-tip="Average connections in predator brains. They evolve topology just like Nodlings, on a smaller sensory schema.">?</span></span>
+          <span class="v" id="s-pbrain">0</span>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">World</div>
+      <div class="grid">
+        <span class="k">Structures <span class="help" data-tip="Cells stacked 2+ high. They insulate neighbours toward 18° — the emergent 'shelter' Nodlings may learn to build and huddle in.">?</span></span>
+          <span class="v" id="s-struct">0</span>
+        <span class="k">Building <span class="help" data-tip="Planks (p) and bricks (b) on the map — worked materials. Planks come from striking wood; bricks from firing clay. Both make far warmer shelter and bridges.">?</span></span>
+          <span class="v" id="s-build">0</span>
+        <span class="k">Bridges <span class="help" data-tip="Water cells that have had buoyant material dropped on them, making them walkable. Nodlings can't swim, so bridges are how they cross water and expand.">?</span></span>
+          <span class="v" id="s-bridge">0</span>
+        <span class="k">Fires <span class="help" data-tip="Cells currently burning. Fire spreads through flammable materials, cooks meat, fires clay to brick, and warms — water and stone are firebreaks.">?</span></span>
+          <span class="v" id="s-fire">0</span>
+        <span class="k">Food cells <span class="help" data-tip="Cells topped with flora or seeds. Eating flora can drop a seed; seeds germinate into new flora — the loop that lets farming emerge.">?</span></span>
+          <span class="v" id="s-flora">0</span>
+      </div>
+    </div>
+
+    <div id="saveline"><span>autosaves every 8s + on close</span><span id="s-saved"></span></div>
+
+    <div class="sec hint">
+      <b>Brains</b> — each Nodling runs an evolving neural net (topology + weights
+      mutate and cross over) with reward-modulated plasticity, so it inherits
+      instincts <i>and</i> learns within its own life. <b>Threats</b> — predators
+      hunt them; grouping is safer. <b>Crafting</b> — striking wood can work it
+      into a plank (better insulation) for warmer shelter. <b>Vitals</b> — ideal
+      body temp 18°; below 0° or above 38° risks death; energy/hydration at 0 is fatal.
+    </div>
+  </div>
+
+  <div id="obs-panel">
+    <div id="obs-card">
+      <div id="obs-head">
+        <span>📋 Observer — observations &amp; improvement ideas</span>
+        <span>
+          <button id="obs-download">⭳ Download .md</button>
+          <button id="obs-close">✕ Close</button>
+        </span>
+      </div>
+      <div id="obs-body"></div>
+    </div>
+  </div>
+
+  <script src="brain.js"></script>
+  <script src="world.js"></script>
+  <script src="sprites.js"></script>
+  <script src="nodling.js"></script>
+  <script src="critters.js"></script>
+  <script src="predators.js"></script>
+  <script src="render.js"></script>
+  <script src="observer.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

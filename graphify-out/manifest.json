@@ -1,0 +1,117 @@
+{
+  ".claude/settings.json": {
+    "mtime": 1783856286.4935772,
+    "ast_hash": "2ce1689a30efa984b52043f775e00d76",
+    "semantic_hash": "2ce1689a30efa984b52043f775e00d76"
+  },
+  "brain.js": {
+    "mtime": 1783856068.0073633,
+    "ast_hash": "61767df26b7daf8ea94bf5f7b5c8ec52",
+    "semantic_hash": "61767df26b7daf8ea94bf5f7b5c8ec52"
+  },
+  "critters.js": {
+    "mtime": 1783856184.4723177,
+    "ast_hash": "33bc55e80d4f8c64516b344adc94726c",
+    "semantic_hash": "33bc55e80d4f8c64516b344adc94726c"
+  },
+  "main.js": {
+    "mtime": 1783856246.881228,
+    "ast_hash": "7bb8285e8c7f1cfa2d2f7f6befa10a49",
+    "semantic_hash": "7bb8285e8c7f1cfa2d2f7f6befa10a49"
+  },
+  "nodling.js": {
+    "mtime": 1783856110.0739143,
+    "ast_hash": "6e88a43ebc772071c363e96e663db790",
+    "semantic_hash": "6e88a43ebc772071c363e96e663db790"
+  },
+  "observer.js": {
+    "mtime": 1783853509.0413268,
+    "ast_hash": "23ffd501f99c5398583169a4bdd99d9a",
+    "semantic_hash": "23ffd501f99c5398583169a4bdd99d9a"
+  },
+  "predators.js": {
+    "mtime": 1783856179.3872697,
+    "ast_hash": "f0c2a344b261044365067200c6a4f27b",
+    "semantic_hash": "f0c2a344b261044365067200c6a4f27b"
+  },
+  "render.js": {
+    "mtime": 1783856216.5322652,
+    "ast_hash": "811a0809de1db49e6eb31755c6de8e6d",
+    "semantic_hash": "811a0809de1db49e6eb31755c6de8e6d"
+  },
+  "sprites.js": {
+    "mtime": 1783839182.0196733,
+    "ast_hash": "38667547e7416a78e4e8606f3722c5e1",
+    "semantic_hash": "38667547e7416a78e4e8606f3722c5e1"
+  },
+  "world.js": {
+    "mtime": 1783856859.5602703,
+    "ast_hash": "3ea487d137ccb3cd3255666d9f76d87a",
+    "semantic_hash": "3ea487d137ccb3cd3255666d9f76d87a"
+  },
+  "CLAUDE.md": {
+    "mtime": 1783856286.487837,
+    "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
+    "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
+  },
+  "README.md": {
+    "mtime": 1783853556.6741993,
+    "ast_hash": "8ee8fdb3fa726c6c466daf53cecf52da",
+    "semantic_hash": "8ee8fdb3fa726c6c466daf53cecf52da"
+  },
+  "index.html": {
+    "mtime": 1783856268.1643608,
+    "ast_hash": "45258efe1b910954821136044e8a7824",
+    "semantic_hash": "45258efe1b910954821136044e8a7824"
+  },
+  ".obsidian/app.json": {
+    "mtime": 1783858754.3292062,
+    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "semantic_hash": "99914b932bd37a50b983c5e7c90ae93b"
+  },
+  ".obsidian/appearance.json": {
+    "mtime": 1783858754.3302133,
+    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "semantic_hash": "99914b932bd37a50b983c5e7c90ae93b"
+  },
+  ".obsidian/core-plugins.json": {
+    "mtime": 1783858753.8682964,
+    "ast_hash": "7c877bea49eaeabb100563bd157b9051",
+    "semantic_hash": "7c877bea49eaeabb100563bd157b9051"
+  },
+  ".obsidian/graph.json": {
+    "mtime": 1783858755.624,
+    "ast_hash": "da0efe3df3594d4c3a95e40c4565aa18",
+    "semantic_hash": "da0efe3df3594d4c3a95e40c4565aa18"
+  },
+  ".obsidian/workspace.json": {
+    "mtime": 1783858881.192378,
+    "ast_hash": "d5ed307d8f7e2bea53ee0fd301ff2c49",
+    "semantic_hash": "d5ed307d8f7e2bea53ee0fd301ff2c49"
+  },
+  "Nodlings/.obsidian/app.json": {
+    "mtime": 1783858881.2373145,
+    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "semantic_hash": "99914b932bd37a50b983c5e7c90ae93b"
+  },
+  "Nodlings/.obsidian/appearance.json": {
+    "mtime": 1783858881.2393765,
+    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "semantic_hash": "99914b932bd37a50b983c5e7c90ae93b"
+  },
+  "Nodlings/.obsidian/core-plugins.json": {
+    "mtime": 1783858880.7551415,
+    "ast_hash": "7c877bea49eaeabb100563bd157b9051",
+    "semantic_hash": "7c877bea49eaeabb100563bd157b9051"
+  },
+  "Nodlings/.obsidian/graph.json": {
+    "mtime": 1783858882.453,
+    "ast_hash": "41ffa915f9d880d061cd7db53a247fe1",
+    "semantic_hash": "41ffa915f9d880d061cd7db53a247fe1"
+  },
+  "Nodlings/.obsidian/workspace.json": {
+    "mtime": 1783858881.303725,
+    "ast_hash": "0c1d119de598c6b1942ebb854932e378",
+    "semantic_hash": "0c1d119de598c6b1942ebb854932e378"
+  }
+}

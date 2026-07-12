@@ -1,0 +1,329 @@
+{
+  "communities": {
+    "0": [
+      "main",
+      "main_applysave",
+      "main_archivebehavior",
+      "main_behaviorarchive",
+      "main_behaviornovelty",
+      "main_clockstr",
+      "main_critters",
+      "main_drawsparkline",
+      "main_fameentry",
+      "main_flashsaved",
+      "main_frame",
+      "main_halloffame",
+      "main_importinput",
+      "main_inithelptips",
+      "main_loadprogress",
+      "main_nodlings",
+      "main_obspanel",
+      "main_pophist",
+      "main_predators",
+      "main_renderobs",
+      "main_resetfromimport",
+      "main_resetworld",
+      "main_saveprogress",
+      "main_seed",
+      "main_serialize",
+      "main_simtick",
+      "main_speedsel",
+      "main_stat",
+      "main_updatestats",
+      "main_world"
+    ],
+    "1": [
+      "brain",
+      "brain_addconn",
+      "brain_biasid",
+      "brain_brain",
+      "brain_brain_constructor",
+      "brain_brain_step",
+      "brain_clampw",
+      "brain_crossbody",
+      "brain_crossovergenome",
+      "brain_genomesize",
+      "brain_hasconn",
+      "brain_hiddenids",
+      "brain_innovmap",
+      "brain_innovof",
+      "brain_ishidden",
+      "brain_mutatebody",
+      "brain_mutategenome",
+      "brain_nodling_schema",
+      "brain_outputs",
+      "brain_outstart",
+      "brain_pred_schema",
+      "brain_prune",
+      "brain_randbody",
+      "brain_randomgenome",
+      "brain_randpl",
+      "brain_randw",
+      "brain_reindexfromgenomes",
+      "brain_splitmap",
+      "brain_splitnodeid"
+    ],
+    "2": [
+      "world_world",
+      "world_world_adjacentwater",
+      "world_world_ambient",
+      "world_world_at",
+      "world_world_buildindex",
+      "world_world_celltemp",
+      "world_world_constructor",
+      "world_world_dayfrac",
+      "world_world_depositclay",
+      "world_world_floracangrow",
+      "world_world_gencontinent",
+      "world_world_genlakes",
+      "world_world_ignite",
+      "world_world_isnight",
+      "world_world_key",
+      "world_world_marksand",
+      "world_world_near",
+      "world_world_scatter",
+      "world_world_scatteritem",
+      "world_world_season",
+      "world_world_sensescan",
+      "world_world_step",
+      "world_world_stepfire",
+      "world_world_yearfrac"
+    ],
+    "3": [
+      "sprites",
+      "sprites_buildcreature",
+      "sprites_buildcritter",
+      "sprites_buildpredator",
+      "sprites_buildtiles",
+      "sprites_creaturecache",
+      "sprites_creaturesig",
+      "sprites_creaturesprite",
+      "sprites_crittersprite",
+      "sprites_crittersprites",
+      "sprites_mkcanvas",
+      "sprites_noise2",
+      "sprites_predatorsprite",
+      "sprites_px",
+      "sprites_sym",
+      "sprites_tiles"
+    ],
+    "4": [
+      "observer",
+      "observer_loadobserver",
+      "observer_observer",
+      "observer_observerissue",
+      "observer_observermarkdown",
+      "observer_observermetrics",
+      "observer_observernote",
+      "observer_observeronce",
+      "observer_observerthrottled",
+      "observer_observertick",
+      "observer_observertrend",
+      "observer_resetobserver",
+      "observer_runobserver",
+      "observer_saveobserver"
+    ],
+    "5": [
+      "render",
+      "render_bindinput",
+      "render_camera",
+      "render_clampcam",
+      "render_clearselection",
+      "render_draw",
+      "render_drawmini",
+      "render_hover",
+      "render_initrender",
+      "render_updatehover",
+      "render_viewport",
+      "render_worldtoscreen"
+    ],
+    "6": [
+      "nodling",
+      "nodling_nodling",
+      "nodling_nodling_constructor",
+      "nodling_nodling_die",
+      "nodling_nodling_eat",
+      "nodling_nodling_sense",
+      "nodling_nodling_signature",
+      "nodling_nodling_tick",
+      "nodling_nodling_wellbeing"
+    ],
+    "7": [
+      "claude_md",
+      "graphify_explain",
+      "graphify_out_graph_json",
+      "graphify_out_graph_report",
+      "graphify_out_wiki_index",
+      "graphify_path",
+      "graphify_query",
+      "graphify_update"
+    ],
+    "8": [
+      "predators",
+      "predators_predator",
+      "predators_predator_constructor",
+      "predators_predator_tick",
+      "predators_predfame",
+      "predators_predfamegenome",
+      "predators_spawnpredators",
+      "predators_updatepredators"
+    ],
+    "9": [
+      "world",
+      "world_makerng",
+      "world_materials",
+      "world_perishable",
+      "world_scanbest",
+      "world_scandist",
+      "world_seasons"
+    ],
+    "10": [
+      "critters",
+      "critters_critter",
+      "critters_critter_constructor",
+      "critters_critter_tick",
+      "critters_spawncritters",
+      "critters_updatecritters"
+    ],
+    "11": [
+      "concept_arms_race"
+    ],
+    "12": [
+      "concept_diet_niches"
+    ],
+    "13": [
+      "concept_emergence"
+    ],
+    "14": [
+      "concept_hall_of_fame"
+    ],
+    "15": [
+      "concept_hebbian_plasticity"
+    ],
+    "16": [
+      "concept_k_selection"
+    ],
+    "17": [
+      "concept_neat_evolution"
+    ],
+    "18": [
+      "concept_self_rewrite"
+    ],
+    "19": [
+      "index_html"
+    ],
+    "20": [
+      "nodlings_obsidian_app"
+    ],
+    "21": [
+      "nodlings_welcome"
+    ],
+    "22": [
+      "obsidian_app"
+    ],
+    "23": [
+      "readme_md"
+    ]
+  },
+  "cohesion": {
+    "0": 0.09885057471264368,
+    "1": 0.1330049261083744,
+    "2": 0.17753623188405798,
+    "3": 0.25833333333333336,
+    "4": 0.27472527472527475,
+    "5": 0.3333333333333333,
+    "6": 0.3888888888888889,
+    "7": 0.35714285714285715,
+    "8": 0.35714285714285715,
+    "9": 0.2857142857142857,
+    "10": 0.4666666666666667,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0
+  },
+  "gods": [
+    {
+      "id": "world_world",
+      "label": "World",
+      "degree": 24
+    },
+    {
+      "id": "brain_mutategenome",
+      "label": "mutateGenome()",
+      "degree": 11
+    },
+    {
+      "id": "nodling_nodling",
+      "label": "Nodling",
+      "degree": 8
+    },
+    {
+      "id": "brain_randomgenome",
+      "label": "randomGenome()",
+      "degree": 7
+    },
+    {
+      "id": "observer_runobserver",
+      "label": "runObserver()",
+      "degree": 7
+    },
+    {
+      "id": "brain_addconn",
+      "label": "addConn()",
+      "degree": 6
+    },
+    {
+      "id": "render_bindinput",
+      "label": "bindInput()",
+      "degree": 6
+    },
+    {
+      "id": "main_saveprogress",
+      "label": "saveProgress()",
+      "degree": 5
+    },
+    {
+      "id": "main_seed",
+      "label": "seed()",
+      "degree": 5
+    },
+    {
+      "id": "main_updatestats",
+      "label": "updateStats()",
+      "degree": 5
+    }
+  ],
+  "surprises": [],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `World` connect `World Generation & Environment` to `world.js`?",
+      "why": "High betweenness centrality (0.023) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `OUTPUTS`, `NODLING_SCHEMA`, `PRED_SCHEMA` to the rest of the system?",
+      "why": "39 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Simulation Save & Stats` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09885057471264368 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Neural Brain Evolution` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1330049261083744 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
