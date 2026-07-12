@@ -487,11 +487,22 @@ context.loadProgress();
 context.loadObserver();
 
 const state = readJSON(path.join(LOOP, 'state.json'), { cycle: 0, lastRun: null, tick: 0 });
-context.world.tick = state.tick;
 
-context.seed(context.START_POP);
-context.spawnCritters(context.world, context.critters, context.START_CRITTERS);
-context.spawnPredators(context.world, context.predators, context.START_PREDATORS);
+// NOTE: world/nodlings/critters/predators/START_* are declared with let/const
+// in sim.js, so — unlike function declarations — they do NOT become
+// properties of `context` and can't be touched via `context.world` etc. from
+// host code. Anything that reads/writes them has to run *inside* the
+// context, hence this one bootstrap snippet instead of separate host-side
+// calls. context.simTick()/observerMetrics()/observerMarkdown()/etc. below
+// are fine as direct calls — those are `function` declarations, which DO
+// attach to `context`, and their bodies already run inside the sandbox
+// where world/nodlings/etc. are directly visible.
+vm.runInContext(`
+  world.tick = ${state.tick};
+  seed(START_POP);
+  spawnCritters(world, critters, START_CRITTERS);
+  spawnPredators(world, predators, START_PREDATORS);
+`, context, { filename: 'bootstrap' });
 
 for (let i = 0; i < ticks; i++) context.simTick();
 
