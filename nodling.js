@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.lastThreat = 0;                          // predator proximity at last decision → alarm-call shaping
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -160,10 +161,16 @@ class Nodling {
         this.senseEMA[i] = this.senseEMA[i]*0.98 + s[i]*0.02;
       }
       const wb = this.wellbeing();
+      // alarm shaping: the sound channel is otherwise free (no cost, no direct
+      // benefit), so nothing pushes emission to mean anything. Reward the last
+      // decision a little if it called out while a predator was actually
+      // close — a minimal gradient toward threat→sound (alarm-call) meaning.
+      const alarmBonus = (this.lastThreat > 0.3 && this.lastOut && Math.abs(this.lastOut.sound) > 0.15) ? 0.1 : 0;
       const reward = Math.max(-1, Math.min(1,
-        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
+        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3 + alarmBonus));
       this.lastWellbeing = wb; this.bonus = 0;
       out = this.brain.step(s, reward);
+      this.lastThreat = s[40];
       this.lastOut = out;
       this.mem = [out.mem0, out.mem1];
       // accumulate behaviour signature (what this individual actually does)
