@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardSound = null;    // nearest audible sound this think-cycle (for listener reward)
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardSound = bs || null;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -256,6 +258,22 @@ class Nodling {
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
       if (topNut || predNear) this.bonus += 0.25;
+    }
+
+    // -- listening: reward moving toward a heard sound whose source turns out
+    //    to be informative (food there, or fleeing one near a predator there).
+    //    Only the emitter's call gets rewarded above; without this, a listener
+    //    has no incentive to ever act on the heard-frequency sense, so no
+    //    frequency can acquire meaning from the listening side. --
+    if (this.heardSound){
+      const hs = this.heardSound;
+      const hCell = w.at(hs.x|0, hs.y|0);
+      const hFood = hCell && hCell.stack.length && MATERIALS[hCell.stack[hCell.stack.length-1]].nutrition;
+      let hPred = false;
+      for (const p of w.predators) if (!p.dead && (p.x-hs.x)**2+(p.y-hs.y)**2 < 9){ hPred = true; break; }
+      const toward = out.moveX*(hs.x-this.x) + out.moveY*(hs.y-this.y);
+      if (hFood && toward > 0) this.bonus += 0.15;
+      if (hPred && toward < 0) this.bonus += 0.15;
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
