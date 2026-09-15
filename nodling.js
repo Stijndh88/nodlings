@@ -5,6 +5,9 @@
 
 const VISION = 6;      // vision disc radius — the per-tick sensing cost driver
 const EARSHOT = 12;
+const SOUND_LIFETIME = 4; // ticks a call stays audible — must outlast the ~2-tick
+                           // think cadence or a listener whose think-phase misses
+                           // the emission tick never hears it at all
 const POP_CAP = 250;   // bigger world supports a larger, more diverse gene pool
 const MATURITY = 160;  // age below which a Nodling is a juvenile (can't breed, sees less)
 const SENESCENCE = 900;// age past which upkeep rises (aging)
@@ -250,7 +253,7 @@ class Nodling {
     //    *while something matters nearby* (food underfoot, or a predator close)
     //    earns a small reward, so informative signalling can bootstrap. --
     if (Math.abs(out.sound) > 0.15){
-      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
+      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2, t:w.tick});
       this.energy -= 0.1;
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;

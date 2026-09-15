@@ -123,7 +123,10 @@ function simTick(){
       hallOfFame.length = Math.min(hallOfFame.length, 40);
     }
   }
-  world.sounds = world.nextSounds;
+  // keep recent calls audible for a few ticks (not just the one they were
+  // emitted on) so listeners whose think-phase doesn't land on the exact
+  // emission tick still get a chance to hear them
+  world.sounds = world.sounds.filter(s => world.tick - s.t < SOUND_LIFETIME).concat(world.nextSounds);
   observerTick();
 
   if (world.tick % 150 === 0){
