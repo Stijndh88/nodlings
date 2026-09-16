@@ -160,8 +160,13 @@ class Nodling {
         this.senseEMA[i] = this.senseEMA[i]*0.98 + s[i]*0.02;
       }
       const wb = this.wellbeing();
+      // alarm-call seed: reward the *previous* sound emission if a predator
+      // turns out to be nearby now — a proxy for "called near danger", which
+      // gives calling near threats a fitness edge to select for even though
+      // callers get no direct benefit from listeners' reactions.
+      const alarmBonus = (out && Math.abs(out.sound) > 0.15) ? s[40]*0.3 : 0;
       const reward = Math.max(-1, Math.min(1,
-        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
+        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3 + alarmBonus));
       this.lastWellbeing = wb; this.bonus = 0;
       out = this.brain.step(s, reward);
       this.lastOut = out;
