@@ -160,8 +160,20 @@ class Nodling {
         this.senseEMA[i] = this.senseEMA[i]*0.98 + s[i]*0.02;
       }
       const wb = this.wellbeing();
+      // listener-side communication shaping: reward the previous move (`out`,
+      // not yet overwritten) if it was a sensible response to what's audible
+      // *now* — fleeing a heard sound while a predator is also near, or
+      // approaching one while hungry and safe. Doesn't presuppose what the
+      // sound *means*; only rewards acting on it when that would help,
+      // giving the emitter's evolved frequency a reason to become informative.
+      let commReward = 0;
+      if (out && s[22] > 0){
+        const moveDot = out.moveX*s[23] + out.moveY*s[24];
+        if (s[40] > 0.3 && moveDot < -0.1) commReward = 0.15;
+        else if (s[1] < 0.4 && s[40] <= 0.3 && moveDot > 0.1) commReward = 0.15;
+      }
       const reward = Math.max(-1, Math.min(1,
-        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
+        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3 + commReward));
       this.lastWellbeing = wb; this.bonus = 0;
       out = this.brain.step(s, reward);
       this.lastOut = out;
