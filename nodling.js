@@ -35,6 +35,7 @@ class Nodling {
     this.foodMem = null;                         // remembered [x,y] of food/water/shelter
     this.waterMem = null;
     this.shelterMem = null;
+    this.lastHeard = null;                       // nearest sound heard this think-tick
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.lastHeard = bs; // tagged with .alarm/.food at emission — read after brain.step() for reaction reward
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -166,6 +168,19 @@ class Nodling {
       out = this.brain.step(s, reward);
       this.lastOut = out;
       this.mem = [out.mem0, out.mem1];
+
+      // -- reaction to heard sound: reward reacting the "right" way to a
+      //    tagged call (fleeing an alarm, approaching a food call) so the
+      //    emitter's info and the listener's response can co-evolve into a
+      //    real signal, not just a free-floating tone. --
+      if (this.lastHeard){
+        const bs = this.lastHeard;
+        const dx = bs.x - this.x, dy = bs.y - this.y;
+        const dist = Math.hypot(dx, dy) || 1;
+        const toward = (out.moveX*dx + out.moveY*dy)/dist;
+        if (bs.alarm && toward < -0.3) this.bonus += 0.15;
+        else if (bs.food && toward > 0.3) this.bonus += 0.15;
+      }
       // accumulate behaviour signature (what this individual actually does)
       const b = this.behav;
       b[0] += Math.hypot(out.moveX, out.moveY);
@@ -248,13 +263,15 @@ class Nodling {
 
     // -- sound: a frequency in [0,1]; meaning, if any, must be evolved. Calling
     //    *while something matters nearby* (food underfoot, or a predator close)
-    //    earns a small reward, so informative signalling can bootstrap. --
+    //    earns a small reward, so informative signalling can bootstrap. The
+    //    same food/predator context is tagged onto the sound itself so a
+    //    listener can be rewarded for reacting to it appropriately. --
     if (Math.abs(out.sound) > 0.15){
-      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
-      this.energy -= 0.1;
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
+      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2, food: !!topNut, alarm: predNear});
+      this.energy -= 0.1;
       if (topNut || predNear) this.bonus += 0.25;
     }
 
