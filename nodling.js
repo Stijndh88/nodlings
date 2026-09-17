@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardDir = null;                         // direction to nearest heard sound, if any
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardDir = bs ? [s[23], s[24]] : null;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -175,6 +177,20 @@ class Nodling {
       b[4] += Math.abs(out.sound) > 0.15 ? 1 : 0;
       b[5] += w.at(this.x|0, this.y|0)?.water ? 1 : 0;
       this.behavN++;
+    }
+
+    // -- hearing: a small reward for orienting toward a heard sound (whatever it
+    //    means) — the emitter already earns a bonus for calling near something
+    //    that matters; this gives the listener a matching, direct incentive to
+    //    act on what it hears at all, so a call/response coupling has something
+    //    to evolve on top of instead of relying purely on incidental outcomes. --
+    if (this.heardDir && (this.heardDir[0] || this.heardDir[1])){
+      const mag = Math.hypot(out.moveX, out.moveY);
+      if (mag > 0.1){
+        const hmag = Math.hypot(this.heardDir[0], this.heardDir[1]);
+        const dot = (out.moveX*this.heardDir[0] + out.moveY*this.heardDir[1]) / (mag*hmag);
+        if (dot > 0.5) this.bonus += 0.05;
+      }
     }
 
     // -- move: water is a hard barrier (no swimming) unless it's been bridged
