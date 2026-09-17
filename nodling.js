@@ -35,6 +35,7 @@ class Nodling {
     this.foodMem = null;                         // remembered [x,y] of food/water/shelter
     this.waterMem = null;
     this.shelterMem = null;
+    this.heardSound = null;                      // nearest heard sound this life, for listener reward
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardSound = bs || null;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -256,6 +258,22 @@ class Nodling {
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
       if (topNut || predNear) this.bonus += 0.25;
+    }
+
+    // -- listening: mirror the caller-side bonus above. Reward the listener for
+    //    reacting the "right" way to a heard sound relative to what's actually
+    //    at its source (approach if there's food there, retreat if a predator
+    //    is there) — this closes the loop so alarm/food meaning can be learned
+    //    from both ends, not just rewarded for the sender. --
+    if (this.heardSound){
+      const hs = this.heardSound;
+      const toward = (hs.x-this.x)*out.moveX + (hs.y-this.y)*out.moveY;
+      const hc = w.at(hs.x|0, hs.y|0);
+      const nutAtSound = hc && hc.stack.length && MATERIALS[hc.stack[hc.stack.length-1]].nutrition;
+      let predAtSound = false;
+      for (const p of w.predators) if (!p.dead && (p.x-hs.x)**2+(p.y-hs.y)**2 < 9){ predAtSound = true; break; }
+      if (nutAtSound && toward > 0) this.bonus += 0.15;
+      if (predAtSound && toward < 0) this.bonus += 0.15;
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
