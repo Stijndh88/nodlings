@@ -123,7 +123,14 @@ function simTick(){
       hallOfFame.length = Math.min(hallOfFame.length, 40);
     }
   }
-  world.sounds = world.nextSounds;
+  // Audible for 2 ticks (this tick's + last tick's), not just 1 — a listener
+  // only senses on its own think tick (every other tick, phase-staggered), so
+  // a single-tick window made it a coin flip whether a call was ever heard at
+  // all, independent of any evolved meaning. Widening the window gives
+  // sound-behavior correlation (alarm->flee, food-found->approach) more
+  // chances to be learned.
+  world.sounds = world.nextSounds.concat(world.prevSounds || []);
+  world.prevSounds = world.nextSounds;
   observerTick();
 
   if (world.tick % 150 === 0){
