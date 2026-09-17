@@ -2,3 +2,18 @@
 
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
+
+## Cycle 1 — day 51.7→61.7 — `kept`
+
+**Hypothesis** (priority #1, brick/kiln chains): only 1 brick had ever been
+fired by day 51.7 despite 8312 durable structures, because the clay→brick
+conversion only happens on tiles adjacent to an *active* fire, and fire
+spread was hardcoded to a flat 0.04 per-neighbour chance per tick (not yet
+wired up as the `FIRE_SPREAD_RATE` tunable RULES.md already declares).
+Extracted that magic number into a named `FIRE_SPREAD_RATE` constant in
+`world.js` and raised it from 0.04 → 0.06 (within the declared [0.01, 0.2]
+range) so fires burn wider/longer, giving clay tiles more chances to sit
+next to flame and get fired into brick — a precondition for kiln chains.
+
+- Before: population 247, fitness 4904, built 739 (cumulative), day 51.7
+- After (16k-tick validation): population 251, fitness 5203, day 61.7 — guardrails passed, no population/fitness drop.
