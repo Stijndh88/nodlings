@@ -166,6 +166,14 @@ class Nodling {
       out = this.brain.step(s, reward);
       this.lastOut = out;
       this.mem = [out.mem0, out.mem1];
+      // communication bootstrap: a caller near danger already earns a bonus
+      // for sounding off (see below); this is the other half of that loop —
+      // reward a *listener* for fleeing a nearby predator while a sound is
+      // audible, so the alarm-call/flee correlation has something to learn.
+      if (s[22] > 0 && s[40] > 0.3){
+        const away = -(out.moveX*s[38] + out.moveY*s[39]);
+        if (away > 0.3) this.bonus += 0.2;
+      }
       // accumulate behaviour signature (what this individual actually does)
       const b = this.behav;
       b[0] += Math.hypot(out.moveX, out.moveY);
