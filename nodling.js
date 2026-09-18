@@ -160,8 +160,12 @@ class Nodling {
         this.senseEMA[i] = this.senseEMA[i]*0.98 + s[i]*0.02;
       }
       const wb = this.wellbeing();
+      // alarm-call shaping: reinforce emitting sound while a predator is still
+      // in range — nudges the emit half of an alarm signal toward being
+      // learnable (the flee half is already covered by predator-threat sense).
+      const alarmBonus = (this.lastOut && Math.abs(this.lastOut.sound) > 0.15 && s[40] > 0.3) ? 0.15 : 0;
       const reward = Math.max(-1, Math.min(1,
-        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
+        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3 + alarmBonus));
       this.lastWellbeing = wb; this.bonus = 0;
       out = this.brain.step(s, reward);
       this.lastOut = out;
