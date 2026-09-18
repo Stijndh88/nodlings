@@ -166,6 +166,20 @@ class Nodling {
       out = this.brain.step(s, reward);
       this.lastOut = out;
       this.mem = [out.mem0, out.mem1];
+
+      // -- listener-side reward for sound: react to a heard call in a way that
+      //    matches real nearby ground truth (flee an actual threat, approach
+      //    real food) so the freq→meaning mapping has something to learn from
+      //    on the receiving end too, not just the caller-side bonus below. --
+      if (s[22] !== 0){
+        if (s[40] > 0){
+          const away = -(out.moveX*s[38] + out.moveY*s[39]);
+          if (away > 0.15) this.bonus += 0.15;
+        } else if (s[4] || s[5]){
+          const toward = out.moveX*s[4] + out.moveY*s[5];
+          if (toward > 0.15) this.bonus += 0.1;
+        }
+      }
       // accumulate behaviour signature (what this individual actually does)
       const b = this.behav;
       b[0] += Math.hypot(out.moveX, out.moveY);
