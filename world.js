@@ -9,6 +9,7 @@ const DAYS_PER_YEAR = 32;                       // 8 days per season
 const SEASONS = ['Spring','Summer','Autumn','Winter'];
 const COMFORT = 18;                             // body temp Nodlings do best at
 const HASH_B = 12;                              // spatial-index bucket size (>= EARSHOT)
+const FIRE_SPREAD_RATE = 0.07;                  // chance/tick a burning cell ignites a flammable neighbour
 
 // Vital limits (also surfaced in the sidebar '?' help). Body temp drifts toward
 // the local cell temperature; discomfort drains energy, extremes can kill.
@@ -313,7 +314,7 @@ class World {
         const nt = nc.stack[nc.stack.length-1];
         if (nt === 'meat' && this.rng() < 0.25) nc.stack[nc.stack.length-1] = 'cooked';
         else if (nt === 'clay' && this.rng() < 0.2) nc.stack[nc.stack.length-1] = 'brick'; // kiln heat
-        if (nt && MATERIALS[nt].flammable && !nc.fire && this.rng() < 0.04)
+        if (nt && MATERIALS[nt].flammable && !nc.fire && this.rng() < FIRE_SPREAD_RATE)
           this.ignite((y+dy)*GRID_W + (x+dx));
       }
       if (--c.fire <= 0){
