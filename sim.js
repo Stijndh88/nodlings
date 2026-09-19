@@ -123,7 +123,13 @@ function simTick(){
       hallOfFame.length = Math.min(hallOfFame.length, 40);
     }
   }
-  world.sounds = world.nextSounds;
+  // Sounds stay audible for 2 ticks (this one plus the next), not just 1: a
+  // Nodling only re-evaluates its brain every other tick (staggered by
+  // `phase`), so a 1-tick sound was structurally inaudible to whichever half
+  // of the population didn't happen to evaluate on that exact tick. Any 2
+  // consecutive ticks are guaranteed to include one evaluation per Nodling.
+  world.sounds = world.nextSounds.concat(world.prevSounds || []);
+  world.prevSounds = world.nextSounds;
   observerTick();
 
   if (world.tick % 150 === 0){
