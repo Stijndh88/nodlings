@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardSound = null;                       // nearest heard sound's offset, this think-tick
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardSound = bs ? {dx: bs.x-this.x, dy: bs.y-this.y} : null;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -189,6 +191,17 @@ class Nodling {
     const fx = out.moveX > 0.3 ? 1 : out.moveX < -0.3 ? -1 : 0;
     const fy = out.moveY > 0.3 ? 1 : out.moveY < -0.3 ? -1 : 0;
     if (fx || fy) this.facing = [fx, fy];
+
+    // -- listener side of communication: a hungry Nodling that moves toward a
+    //    heard sound's source earns a small reward, mirroring the caller's
+    //    bonus for calling near food — this gives the population something to
+    //    evolve *frequency-specific* responses against, not just a one-sided
+    //    speaker incentive. --
+    if (this.heardSound && this.energy < MAX_ENERGY*0.4){
+      const dist = Math.hypot(this.heardSound.dx, this.heardSound.dy) || 1;
+      const dot = (out.moveX*this.heardSound.dx + out.moveY*this.heardSound.dy)/dist;
+      if (dot > 0.5) this.bonus += 0.05;
+    }
 
     const cx = this.x|0, cy = this.y|0;
     const cell = w.at(cx, cy);
