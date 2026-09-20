@@ -107,6 +107,9 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    // remembered for the reward shaping in tick() below — did this tick's
+    // heard sound, if any, carry a ground-truth meaning at its source?
+    this.heardKind = bs ? bs.kind : null;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -166,6 +169,15 @@ class Nodling {
       out = this.brain.step(s, reward);
       this.lastOut = out;
       this.mem = [out.mem0, out.mem1];
+      // listening reward: acting on a heard sound's ground-truth meaning
+      // (fleeing an alarm, approaching a food-call) earns/loses a small
+      // bonus next tick — makes the food/alarm correlation learnable even
+      // though the frequency itself carries no built-in meaning.
+      if (this.heardKind && (s[23] || s[24])){
+        const toward = out.moveX*s[23] + out.moveY*s[24];
+        if (this.heardKind === 'danger') this.bonus += toward < -0.15 ? 0.15 : toward > 0.15 ? -0.1 : 0;
+        else this.bonus += toward > 0.15 ? 0.15 : 0;
+      }
       // accumulate behaviour signature (what this individual actually does)
       const b = this.behav;
       b[0] += Math.hypot(out.moveX, out.moveY);
@@ -248,13 +260,16 @@ class Nodling {
 
     // -- sound: a frequency in [0,1]; meaning, if any, must be evolved. Calling
     //    *while something matters nearby* (food underfoot, or a predator close)
-    //    earns a small reward, so informative signalling can bootstrap. --
+    //    earns a small reward, so informative signalling can bootstrap. The
+    //    emission is tagged with that same ground truth (not exposed as a
+    //    sense) so a listener's *reaction* to it can be rewarded too. --
     if (Math.abs(out.sound) > 0.15){
-      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
-      this.energy -= 0.1;
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
+      const kind = predNear ? 'danger' : (topNut ? 'food' : null);
+      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2, kind});
+      this.energy -= 0.1;
       if (topNut || predNear) this.bonus += 0.25;
     }
 
