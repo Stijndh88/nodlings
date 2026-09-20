@@ -32,6 +32,7 @@ class Nodling {
     this.senseBuf = new Array(N_SENSES).fill(0); // reused each eval (no per-tick alloc)
     this.lastWellbeing = this.wellbeing();
     this.bonus = 0;                              // one-shot reward (e.g. reproduction)
+    this.heardSound = null;                      // most recently heard sound (for listener-side reward)
     this.foodMem = null;                         // remembered [x,y] of food/water/shelter
     this.waterMem = null;
     this.shelterMem = null;
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardSound = bs || null;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -256,6 +258,21 @@ class Nodling {
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
       if (topNut || predNear) this.bonus += 0.25;
+    }
+
+    // -- communication (listener side): reward reacting to a call when you
+    //    couldn't otherwise know why it was made. Fleeing a call whose origin
+    //    genuinely had a nearby predator, while this Nodling's own direct
+    //    threat sense (s[40]) saw nothing, means the signal itself carried
+    //    the warning — that's the correlation alarm-calling needs to bootstrap.
+    if (this.heardSound && this.senseBuf[40] < 0.1){
+      const hs = this.heardSound;
+      let predNearSrc = false;
+      for (const p of w.predators) if (!p.dead && (p.x-hs.x)**2+(p.y-hs.y)**2 < 16){ predNearSrc = true; break; }
+      if (predNearSrc){
+        const toward = (hs.x-this.x)*out.moveX + (hs.y-this.y)*out.moveY;
+        if (toward < -0.1) this.bonus += 0.2;
+      }
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
