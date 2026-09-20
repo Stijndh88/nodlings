@@ -258,6 +258,16 @@ class Nodling {
       if (topNut || predNear) this.bonus += 0.25;
     }
 
+    // -- hearing: mirror the emitter-side incentive above on the listener's
+    //    side. Nothing rewarded *reacting* to a heard sound before, so any
+    //    meaning it carried had nothing to reinforce it. Reward moving toward
+    //    a heard sound while hungry — the listener half of "food-found→
+    //    approach"; which frequencies actually mean that is left to evolve. --
+    if (this.senseBuf[22] > 0 && this.energy < MAX_ENERGY*0.4){
+      const toward = out.moveX*this.senseBuf[23] + out.moveY*this.senseBuf[24];
+      if (toward > 0.05) this.bonus += 0.1;
+    }
+
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
     const moving = Math.hypot(out.moveX, out.moveY);
     this.energy -= 0.035 + this.brainSize*0.0001 + moving*0.04
