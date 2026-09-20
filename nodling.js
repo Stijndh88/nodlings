@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.lastHeard = null;     // nearest sound heard on the last think-tick, for receiver-side reward
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.lastHeard = bs;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -192,6 +194,20 @@ class Nodling {
 
     const cx = this.x|0, cy = this.y|0;
     const cell = w.at(cx, cy);
+
+    // -- receiver-side alarm response: fleeing (moving away from) a heard
+    //    sound while a predator is actually within earshot earns a small
+    //    reward — bootstraps interpreting sound direction as danger,
+    //    symmetric to the sender-side call-near-predator bonus below.
+    if (this.lastHeard){
+      let predNear = false;
+      for (const p of w.predators)
+        if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < EARSHOT*EARSHOT){ predNear = true; break; }
+      if (predNear){
+        const toward = out.moveX*(this.lastHeard.x-this.x) + out.moveY*(this.lastHeard.y-this.y);
+        if (toward < -0.05) this.bonus += 0.15;
+      }
+    }
 
     // -- grab / drop --
     if (out.grab > 0.5 && !this.carrying && cell.stack.length)
