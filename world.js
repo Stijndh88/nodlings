@@ -15,6 +15,10 @@ const HASH_B = 12;                              // spatial-index bucket size (>=
 const TEMP_COMFORT_LO = 10, TEMP_COMFORT_HI = 26; // outside this: energy drain
 const TEMP_LETHAL_LO  = 0,  TEMP_LETHAL_HI  = 38; // past this: rising death chance
 
+// Chance per tick a burning cell ignites a flammable neighbour. Also gates how
+// often fire reaches clay to fire it into brick (kiln chains) — see stepFire().
+const FIRE_SPREAD_RATE = 0.06;
+
 // Materials are property bags. `drops` is an optional loot table rolled when the
 // material is consumed — that's what turns eating flora into a seed you can plant.
 const MATERIALS = {
@@ -313,7 +317,7 @@ class World {
         const nt = nc.stack[nc.stack.length-1];
         if (nt === 'meat' && this.rng() < 0.25) nc.stack[nc.stack.length-1] = 'cooked';
         else if (nt === 'clay' && this.rng() < 0.2) nc.stack[nc.stack.length-1] = 'brick'; // kiln heat
-        if (nt && MATERIALS[nt].flammable && !nc.fire && this.rng() < 0.04)
+        if (nt && MATERIALS[nt].flammable && !nc.fire && this.rng() < FIRE_SPREAD_RATE)
           this.ignite((y+dy)*GRID_W + (x+dx));
       }
       if (--c.fire <= 0){
