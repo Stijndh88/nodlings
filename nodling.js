@@ -190,6 +190,15 @@ class Nodling {
     const fy = out.moveY > 0.3 ? 1 : out.moveY < -0.3 ? -1 : 0;
     if (fx || fy) this.facing = [fx, fy];
 
+    // -- communication (listener side): the caller already earns a bonus for
+    //    signalling near food/danger (below); here the *listener* earns one
+    //    for moving toward a heard sound while hungry, so approach-on-call
+    //    has a reward gradient to climb, not just the emitter's half. --
+    if (this.senseBuf[22] > 0 && this.energy < MAX_ENERGY*0.4){
+      const dot = out.moveX*this.senseBuf[23] + out.moveY*this.senseBuf[24];
+      if (dot > 0.3) this.bonus += 0.15;
+    }
+
     const cx = this.x|0, cy = this.y|0;
     const cell = w.at(cx, cy);
 
