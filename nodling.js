@@ -25,6 +25,7 @@ class Nodling {
     this.carrying = null;      // material name or null
     this.mem = [0, 0];         // recurrent memory, written by the brain itself
     this.facing = [1, 0];
+    this.heard = null;         // {dx,dy,food,danger} of the loudest sound heard last sense()
     this.brain = new Brain(this.genome);         // owns per-life plastic weights
     this.brainSize = genomeSize(this.genome);
     this.phase = (world.rng()*2)|0;  // staggers brain re-evaluation across ticks
@@ -107,6 +108,10 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    // ground-truth tag of the loudest heard sound, kept for reward shaping only
+    // (never fed to the brain) — lets the listener be rewarded for reacting
+    // to a call, not just the caller for making one.
+    this.heard = bs ? {dx: bs.x-this.x, dy: bs.y-this.y, food: !!bs.food, danger: !!bs.danger} : null;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -151,6 +156,9 @@ class Nodling {
     // plastic synapses learn within this lifetime.
     let out = this.lastOut;
     if (!out || !((w.tick + this.phase) & 1)){
+      // capture what was heard when `out` (the action about to be replaced) was
+      // decided, before sense() below overwrites it with this tick's hearing
+      const prevHeard = this.heard;
       const s = this.sense();
       // curiosity: reward for how novel the current situation is vs. its running
       // average — an intrinsic drive to explore, which speeds up discovery
@@ -160,8 +168,17 @@ class Nodling {
         this.senseEMA[i] = this.senseEMA[i]*0.98 + s[i]*0.02;
       }
       const wb = this.wellbeing();
-      const reward = Math.max(-1, Math.min(1,
+      let reward = Math.max(-1, Math.min(1,
         (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
+      // listener half of the sound channel: reward moving toward a heard
+      // food-call or away from a heard danger-call — the counterpart to the
+      // caller's own informative-call bonus below, so reacting to a sound is
+      // ever worth learning.
+      if (prevHeard && out){
+        const dot = out.moveX*prevHeard.dx + out.moveY*prevHeard.dy;
+        if ((prevHeard.food && dot > 0) || (prevHeard.danger && dot < 0))
+          reward = Math.max(-1, Math.min(1, reward + 0.15));
+      }
       this.lastWellbeing = wb; this.bonus = 0;
       out = this.brain.step(s, reward);
       this.lastOut = out;
@@ -250,11 +267,11 @@ class Nodling {
     //    *while something matters nearby* (food underfoot, or a predator close)
     //    earns a small reward, so informative signalling can bootstrap. --
     if (Math.abs(out.sound) > 0.15){
-      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
-      this.energy -= 0.1;
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
+      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2, food: !!topNut, danger: predNear});
+      this.energy -= 0.1;
       if (topNut || predNear) this.bonus += 0.25;
     }
 
