@@ -123,7 +123,12 @@ function simTick(){
       hallOfFame.length = Math.min(hallOfFame.length, 40);
     }
   }
-  world.sounds = world.nextSounds;
+  // Sounds stay audible for 2 ticks (not 1) so a Nodling on either think-phase
+  // has a chance to hear a call before it fades — widening the window a
+  // caller/listener correlation has to be learned in.
+  world.soundHistory.push(world.nextSounds);
+  if (world.soundHistory.length > 2) world.soundHistory.shift();
+  world.sounds = world.soundHistory.flat();
   observerTick();
 
   if (world.tick % 150 === 0){
