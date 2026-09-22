@@ -249,13 +249,32 @@ class Nodling {
     // -- sound: a frequency in [0,1]; meaning, if any, must be evolved. Calling
     //    *while something matters nearby* (food underfoot, or a predator close)
     //    earns a small reward, so informative signalling can bootstrap. --
+    let predNear = null, predNearD = 36;
+    for (const p of w.predators)
+      if (!p.dead){ const d = (p.x-this.x)**2+(p.y-this.y)**2; if (d < predNearD){ predNearD = d; predNear = p; } }
     if (Math.abs(out.sound) > 0.15){
       w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
       this.energy -= 0.1;
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
-      let predNear = false;
-      for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
       if (topNut || predNear) this.bonus += 0.25;
+    }
+
+    // -- listening: the *caller* is rewarded for calling near danger (above),
+    //    but nothing yet rewards a *listener* for reacting to what it hears —
+    //    so the sound channel stays free-floating instead of gaining meaning.
+    //    Give a small bonus for fleeing a nearby predator while a sound is
+    //    audible, so an alarm-call→flee correlation has a gradient to climb. --
+    if (predNear){
+      let heard = false;
+      for (const snd of w.near(w.sIndex, this.x, this.y)){
+        if ((snd.x-this.x)**2 + (snd.y-this.y)**2 < EARSHOT*EARSHOT){ heard = true; break; }
+      }
+      if (heard){
+        const ax = this.x - predNear.x, ay = this.y - predNear.y;
+        const mag = Math.hypot(ax, ay) || 1;
+        const fleeing = (out.moveX*ax + out.moveY*ay)/mag;
+        if (fleeing > 0.3) this.bonus += 0.15;
+      }
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
