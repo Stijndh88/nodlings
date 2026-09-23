@@ -123,7 +123,13 @@ function simTick(){
       hallOfFame.length = Math.min(hallOfFame.length, 40);
     }
   }
-  world.sounds = world.nextSounds;
+  // A call is audible for two ticks (this tick's + last tick's emissions), not
+  // one — Nodlings only re-sense every other tick (staggered by phase), and a
+  // single-tick lifetime meant same-phase pairs could never hear each other's
+  // calls at all, which left the sound channel's emit/react correlation
+  // structurally unlearnable for half of all listener/caller pairs.
+  world.sounds = world.nextSounds.concat(world.prevSounds);
+  world.prevSounds = world.nextSounds;
   observerTick();
 
   if (world.tick % 150 === 0){
