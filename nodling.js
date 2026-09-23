@@ -107,6 +107,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardSound = bs;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -175,6 +176,20 @@ class Nodling {
       b[4] += Math.abs(out.sound) > 0.15 ? 1 : 0;
       b[5] += w.at(this.x|0, this.y|0)?.water ? 1 : 0;
       this.behavN++;
+
+      // -- listening: reacting to a heard call in a way that fits the
+      //    situation (approach while hungry, flee while a predator is near)
+      //    earns a small reward — the mirror of the caller-side bonus below,
+      //    so meaning can be learned on both ends of the channel. --
+      if (this.heardSound){
+        const toward = out.moveX*s[23] + out.moveY*s[24];
+        if (this.energy < MAX_ENERGY*0.4 && toward > 0.05) this.bonus += 0.15;
+        else {
+          let predNear = false;
+          for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
+          if (predNear && toward < -0.05) this.bonus += 0.15;
+        }
+      }
     }
 
     // -- move: water is a hard barrier (no swimming) unless it's been bridged
