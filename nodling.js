@@ -175,6 +175,16 @@ class Nodling {
       b[4] += Math.abs(out.sound) > 0.15 ? 1 : 0;
       b[5] += w.at(this.x|0, this.y|0)?.water ? 1 : 0;
       this.behavN++;
+
+      // -- communication bootstrap: a call source heard while a predator is
+      //    close is exactly the situation an alarm call would be about, so
+      //    reward moving away from that call — this biases the alarm→flee
+      //    correlation to be learnable without hardcoding it (RULES.md
+      //    priority signal 2: sound carries no evolved meaning yet). --
+      if (s[40] > 0.3 && (Math.abs(s[23]) > 0.02 || Math.abs(s[24]) > 0.02)){
+        const towardSound = out.moveX*s[23] + out.moveY*s[24];
+        if (towardSound < -0.05) this.bonus += 0.15;
+      }
     }
 
     // -- move: water is a hard barrier (no swimming) unless it's been bridged
