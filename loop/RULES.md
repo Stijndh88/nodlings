@@ -12,7 +12,8 @@
   "tunable_params": [
     {"file": "nodling.js", "const": "REPRO_THRESHOLD", "range": [0.4, 0.9]},
     {"file": "world.js", "const": "FIRE_SPREAD_RATE", "range": [0.01, 0.2]},
-    {"file": "brain.js", "const": "LEARN_RATE", "range": [0.005, 0.05]}
+    {"file": "brain.js", "const": "LEARN_RATE", "range": [0.005, 0.05]},
+    {"file": "nodling.js", "const": "SOUND_CALL_BONUS", "range": [0.1, 0.6]}
   ]
 }
 ```

@@ -9,6 +9,9 @@ const POP_CAP = 250;   // bigger world supports a larger, more diverse gene pool
 const MATURITY = 160;  // age below which a Nodling is a juvenile (can't breed, sees less)
 const SENESCENCE = 900;// age past which upkeep rises (aging)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
+// reward bonus for calling while food/predator is nearby — the only pressure
+// currently pushing sound toward *informative* signalling (see nodling.js tick())
+const SOUND_CALL_BONUS = 0.4;
 
 class Nodling {
   constructor(world, x, y, genome, gen = 0){
@@ -255,7 +258,7 @@ class Nodling {
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
-      if (topNut || predNear) this.bonus += 0.25;
+      if (topNut || predNear) this.bonus += SOUND_CALL_BONUS;
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
