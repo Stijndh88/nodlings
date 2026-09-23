@@ -159,6 +159,18 @@ class Nodling {
         nov += Math.abs(s[i] - this.senseEMA[i]);
         this.senseEMA[i] = this.senseEMA[i]*0.98 + s[i]*0.02;
       }
+      // listener bonus: hearing a call while something salient (food or a
+      // predator) is actually near *this* Nodling reinforces the co-occurrence
+      // of heard-sound senses (22-24) with reality, so a sound→meaning
+      // correlation has a gradient to climb even before any reaction is learned
+      if (s[22] > 0){
+        const hereCell = w.at(this.x|0, this.y|0);
+        const topNut = hereCell && hereCell.stack.length && MATERIALS[hereCell.stack[hereCell.stack.length-1]].nutrition;
+        let predNear = false;
+        for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
+        if (topNut || predNear) this.bonus += 0.15;
+      }
+
       const wb = this.wellbeing();
       const reward = Math.max(-1, Math.min(1,
         (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
