@@ -248,14 +248,19 @@ class Nodling {
 
     // -- sound: a frequency in [0,1]; meaning, if any, must be evolved. Calling
     //    *while something matters nearby* (food underfoot, or a predator close)
-    //    earns a small reward, so informative signalling can bootstrap. --
+    //    earns a small reward, so informative signalling can bootstrap. The
+    //    bonus is bigger when the frequency also distinguishes the two cases
+    //    (high = danger, low = food) — selecting for a *consistent* call
+    //    convention, not just calling near something that matters. --
     if (Math.abs(out.sound) > 0.15){
-      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
+      const freq = (out.sound+1)/2;
+      w.nextSounds.push({x:this.x, y:this.y, f:freq});
       this.energy -= 0.1;
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
-      if (topNut || predNear) this.bonus += 0.25;
+      if (predNear) this.bonus += freq > 0.5 ? 0.35 : 0.1;
+      else if (topNut) this.bonus += freq < 0.5 ? 0.35 : 0.1;
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
