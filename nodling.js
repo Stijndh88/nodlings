@@ -160,6 +160,20 @@ class Nodling {
         this.senseEMA[i] = this.senseEMA[i]*0.98 + s[i]*0.02;
       }
       const wb = this.wellbeing();
+      // receiver-side: hearing a sound while something salient is genuinely
+      // happening *to this Nodling* nudges plasticity to associate "heard
+      // sound" with the right reaction — the missing half of the sender-side
+      // call-near-something-that-matters bonus further down (alarm→flee,
+      // food-found→approach). Gated on the receiver's own situation, not the
+      // caller's frequency, so meaning still has to be evolved, not assumed.
+      if (s[22] > 0){
+        if (s[40] > 0.5) this.bonus += 0.1;
+        else {
+          const hc = w.at(this.x|0, this.y|0);
+          const top = hc && hc.stack[hc.stack.length-1];
+          if (top && MATERIALS[top].nutrition) this.bonus += 0.1;
+        }
+      }
       const reward = Math.max(-1, Math.min(1,
         (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
       this.lastWellbeing = wb; this.bonus = 0;
