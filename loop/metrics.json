@@ -1,8 +1,8 @@
 {
-  "population": 249,
-  "fitness": 5686,
-  "maxGen": 140,
-  "avgBrain": 105.88353413654619,
-  "built": 576,
-  "day": 51.6875
+  "population": 250,
+  "fitness": 6199,
+  "maxGen": 33,
+  "avgBrain": 59.704,
+  "built": 352,
+  "day": 61.6875
 }

@@ -166,6 +166,19 @@ class Nodling {
       out = this.brain.step(s, reward);
       this.lastOut = out;
       this.mem = [out.mem0, out.mem1];
+      // -- communication bootstrap: a heard sound only carries a spatial
+      //    direction (s[23-24]); reward steering toward it while needy, so
+      //    "a call may mark a resource" becomes learnable without hardcoding
+      //    what any given frequency means. Paired with the caller-side bonus
+      //    below, this closes the emit→respond loop from both ends.
+      if (s[22] > 0 && (this.energy < 100 || this.hydration < 50)){
+        const mag = Math.hypot(out.moveX, out.moveY);
+        const smag = Math.hypot(s[23], s[24]);
+        if (mag > 0.1 && smag > 0.01){
+          const align = (out.moveX*s[23] + out.moveY*s[24]) / (mag*smag);
+          if (align > 0.5) this.bonus += 0.15;
+        }
+      }
       // accumulate behaviour signature (what this individual actually does)
       const b = this.behav;
       b[0] += Math.hypot(out.moveX, out.moveY);
