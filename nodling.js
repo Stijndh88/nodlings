@@ -248,15 +248,20 @@ class Nodling {
 
     // -- sound: a frequency in [0,1]; meaning, if any, must be evolved. Calling
     //    *while something matters nearby* (food underfoot, or a predator close)
-    //    earns a small reward, so informative signalling can bootstrap. --
+    //    earns a small reward, so informative signalling can bootstrap. The
+    //    same salience check also rewards a listener who currently hears a
+    //    call while it's true for THEM — bootstrapping the sound↔situation
+    //    correlation from the receiving end of the channel too, whether or
+    //    not this Nodling is the one calling. --
+    const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
+    let predNear = false;
+    for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
     if (Math.abs(out.sound) > 0.15){
       w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
       this.energy -= 0.1;
-      const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
-      let predNear = false;
-      for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
       if (topNut || predNear) this.bonus += 0.25;
     }
+    if (this.senseBuf[22] > 0 && (topNut || predNear)) this.bonus += 0.25;
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
     const moving = Math.hypot(out.moveX, out.moveY);
