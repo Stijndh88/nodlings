@@ -16,7 +16,7 @@ const NODLING_SCHEMA = { nIn:N_SENSES, outputs:OUTPUTS, cosmetic:true };
 const PRED_SCHEMA    = { nIn:11, outputs:['moveX','moveY'], cosmetic:false };
 
 const HIDDEN_BASE = 100; // hidden node ids start here (above every schema's fixed ids)
-const MAX_CONNS = 300, MAX_HIDDEN = 60, W_CLAMP = 4, LEARN_RATE = 0.02;
+const MAX_CONNS = 300, MAX_HIDDEN = 60, W_CLAMP = 4, LEARN_RATE = 0.035;
 
 const biasId   = sc => sc.nIn;
 const outStart = sc => sc.nIn + 1;
