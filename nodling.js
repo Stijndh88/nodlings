@@ -80,6 +80,7 @@ class Nodling {
     s[3] = (this.bodyTemp - 15)/20;
     put(4, scan.flora); put(6, scan.water); put(8, scan.wood);
     put(10, scan.stone); put(12, scan.data);
+    this._nearFlora = !!scan.flora;
 
     // update spatial memory from anything currently in view (remember where it was)
     if (scan.flora)     this.foodMem    = [cx + scan.flora[0],     cy + scan.flora[1]];
@@ -175,6 +176,16 @@ class Nodling {
       b[4] += Math.abs(out.sound) > 0.15 ? 1 : 0;
       b[5] += w.at(this.x|0, this.y|0)?.water ? 1 : 0;
       this.behavN++;
+
+      // -- listener reward: reinforce reacting appropriately to a heard sound —
+      //    fleeing it while a predator is sensed, or approaching it while food
+      //    is in view — so the alarm/food-call correlation becomes learnable
+      //    from the receiving side too, not just the caller's. --
+      if (s[22] > 0){
+        const dot = out.moveX*s[23] + out.moveY*s[24];
+        if (s[40] > 0 && dot < -0.1) this.bonus += 0.15;
+        else if (this._nearFlora && dot > 0.1) this.bonus += 0.15;
+      }
     }
 
     // -- move: water is a hard barrier (no swimming) unless it's been bridged
