@@ -9,6 +9,7 @@ let critters = [];
 let predators = [];
 const START_POP = 70, START_CRITTERS = 60, START_PREDATORS = 4;
 const LIFE_SUPPORT = 60;  // gently top up toward this from the diverse gene bank
+const SOUND_TTL = 2;      // extra ticks a sound lingers past emission (see simTick)
 const hallOfFame = []; // best genomes ever, by lifetime fitness — the "progress"
 let births = 0, deaths = 0;
 const popHist = [];
@@ -122,6 +123,12 @@ function simTick(){
       hallOfFame.sort((a,b)=>b.score-a.score);
       hallOfFame.length = Math.min(hallOfFame.length, 40);
     }
+  }
+  // sounds persist a few ticks past emission (not just one) so a nearby
+  // Nodling has a real chance to hear it despite thinking only every other
+  // tick — without this, half of all emissions were structurally unhearable.
+  for (const s of world.sounds){
+    if ((s.age|0) < SOUND_TTL){ s.age = (s.age|0) + 1; world.nextSounds.push(s); }
   }
   world.sounds = world.nextSounds;
   observerTick();
