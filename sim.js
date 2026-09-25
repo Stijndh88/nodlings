@@ -123,7 +123,13 @@ function simTick(){
       hallOfFame.length = Math.min(hallOfFame.length, 40);
     }
   }
-  world.sounds = world.nextSounds;
+  // Sounds stay audible for ~2 ticks (this tick's + last tick's emissions) so
+  // every Nodling gets a thinking tick inside the window regardless of its
+  // think-phase — otherwise a sound emitted on an "off" tick for a listener
+  // is gone before that listener ever senses it, starving the correlation
+  // signal→behavior needs to learn meaning.
+  world.sounds = world.prevSounds.concat(world.nextSounds);
+  world.prevSounds = world.nextSounds;
   observerTick();
 
   if (world.tick % 150 === 0){

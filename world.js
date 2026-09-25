@@ -56,8 +56,9 @@ class World {
     this.seed = seed >>> 0;
     this.rng = makeRng(seed);
     this.tick = 0;
-    this.sounds = [];        // sounds emitted last tick (what Nodlings hear now)
+    this.sounds = [];        // sounds audible this tick (last ~2 ticks of emissions)
     this.nextSounds = [];    // sounds being emitted this tick
+    this.prevSounds = [];    // sounds emitted last tick, still audible for one more
     this.nIndex = new Map(); // spatial hash of living Nodlings, rebuilt each tick
     this.sIndex = new Map(); // spatial hash of audible sounds
     this.cIndex = new Map(); // spatial hash of critters (for hunting lookups)
