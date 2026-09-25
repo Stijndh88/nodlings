@@ -257,6 +257,17 @@ class Nodling {
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
       if (topNut || predNear) this.bonus += 0.25;
     }
+    // -- listening: the missing other half of the communication loop above.
+    //    Frequency keeps no fixed meaning (left free to evolve) — only the
+    //    ground-truth context *at the heard sound's source* is used to teach
+    //    fleeing-on-hearing when that source turned out to be a threat. --
+    const heardDx = this.senseBuf[23], heardDy = this.senseBuf[24];
+    if (heardDx || heardDy){
+      const sx = this.x + heardDx*EARSHOT, sy = this.y + heardDy*EARSHOT;
+      let predAtSource = false;
+      for (const p of w.predators) if (!p.dead && (p.x-sx)**2+(p.y-sy)**2 < 36){ predAtSource = true; break; }
+      if (predAtSource && (this.x-sx)*out.moveX + (this.y-sy)*out.moveY > 0.1) this.bonus += 0.2;
+    }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
     const moving = Math.hypot(out.moveX, out.moveY);
