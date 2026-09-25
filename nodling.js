@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardSignal = null;                      // ground-truth context of last heard sound
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -106,7 +107,18 @@ class Nodling {
       const d = (snd.x-this.x)**2 + (snd.y-this.y)**2;
       if (d < bsd){ bsd = d; bs = snd; }
     }
-    if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    // does the world near the sound's origin actually justify a response right
+    // now? (ground truth, not a hardcoded meaning for the frequency itself —
+    // the receiver still has to learn which reaction fits which frequency.)
+    this.heardSignal = null;
+    if (bs){
+      s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT;
+      let danger = false;
+      for (const p of w.predators) if (!p.dead && (p.x-bs.x)**2+(p.y-bs.y)**2 < 36){ danger = true; break; }
+      const bc = w.at(bs.x|0, bs.y|0);
+      const food = !!(bc && bc.stack.length && MATERIALS[bc.stack[bc.stack.length-1]].nutrition);
+      if (danger || food) this.heardSignal = {danger, food, dx: s[23], dy: s[24]};
+    }
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -166,6 +178,15 @@ class Nodling {
       out = this.brain.step(s, reward);
       this.lastOut = out;
       this.mem = [out.mem0, out.mem1];
+      // reward reacting appropriately to a heard sound whose origin currently
+      // matters (danger or food there) — lets alarm/food-found meaning bootstrap
+      // on the *listener* side, without hardcoding what a frequency means.
+      if (this.heardSignal){
+        const hs = this.heardSignal;
+        const moveDot = out.moveX*hs.dx + out.moveY*hs.dy; // >0 = toward the source
+        if (hs.danger && moveDot < -0.1) this.bonus += 0.15;
+        if (hs.food && moveDot > 0.1) this.bonus += 0.15;
+      }
       // accumulate behaviour signature (what this individual actually does)
       const b = this.behav;
       b[0] += Math.hypot(out.moveX, out.moveY);
