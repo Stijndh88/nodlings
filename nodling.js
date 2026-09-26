@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardSound = null;                       // nearest sound heard this think, for reaction reward
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardSound = bs || null; // remembered for the listener-reaction reward below
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -180,6 +182,7 @@ class Nodling {
     // -- move: water is a hard barrier (no swimming) unless it's been bridged
     //    (a water cell carrying dropped material is walkable). Stacks of 3+ are
     //    solid walls. --
+    const ox = this.x, oy = this.y;
     const nx = Math.max(0, Math.min(GRID_W - 0.01, this.x + out.moveX*0.25));
     const ny = Math.max(0, Math.min(GRID_H - 0.01, this.y + out.moveY*0.25));
     const dest = w.at(nx|0, ny|0);
@@ -189,6 +192,18 @@ class Nodling {
     const fx = out.moveX > 0.3 ? 1 : out.moveX < -0.3 ? -1 : 0;
     const fy = out.moveY > 0.3 ? 1 : out.moveY < -0.3 ? -1 : 0;
     if (fx || fy) this.facing = [fx, fy];
+
+    // -- listener-side reward: react appropriately to what you *hear* (not what
+    //    you said) — flee a call tagged danger, approach one tagged food. This
+    //    is the receiver half of communication; without it only the caller had
+    //    a reason to signal, and meaning had nothing to select for on the
+    //    listening end. --
+    if (this.heardSound){
+      const hs = this.heardSound;
+      const toward = (hs.x-ox)*out.moveX + (hs.y-oy)*out.moveY;
+      if (hs.danger && toward < -0.05) this.bonus += 0.15;
+      else if (hs.food && toward > 0.05) this.bonus += 0.15;
+    }
 
     const cx = this.x|0, cy = this.y|0;
     const cell = w.at(cx, cy);
@@ -250,11 +265,14 @@ class Nodling {
     //    *while something matters nearby* (food underfoot, or a predator close)
     //    earns a small reward, so informative signalling can bootstrap. --
     if (Math.abs(out.sound) > 0.15){
-      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
-      this.energy -= 0.1;
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
+      // tag the emitted sound with what prompted it, so listeners can be
+      // rewarded for reacting to the right meaning (see the listener-side
+      // reward above), not just for reacting to noise in general.
+      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2, danger: predNear, food: !!topNut});
+      this.energy -= 0.1;
       if (topNut || predNear) this.bonus += 0.25;
     }
 
