@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardSound = null;                       // nearest sound heard last sense() — for the listener-side reward
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardSound = bs;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -180,6 +182,7 @@ class Nodling {
     // -- move: water is a hard barrier (no swimming) unless it's been bridged
     //    (a water cell carrying dropped material is walkable). Stacks of 3+ are
     //    solid walls. --
+    const ox = this.x, oy = this.y; // pre-move position, for the heard-sound reward below
     const nx = Math.max(0, Math.min(GRID_W - 0.01, this.x + out.moveX*0.25));
     const ny = Math.max(0, Math.min(GRID_H - 0.01, this.y + out.moveY*0.25));
     const dest = w.at(nx|0, ny|0);
@@ -256,6 +259,24 @@ class Nodling {
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
       if (topNut || predNear) this.bonus += 0.25;
+    }
+
+    // -- hearing: the listener side of the loop above. A caller earns a bonus
+    //    for calling near something that matters; here, moving toward a
+    //    food-associated sound or away from a danger-associated one earns the
+    //    listener one too — so acting on a heard sound (whatever its pitch
+    //    ends up meaning) becomes something worth learning, not just emitting
+    //    it. --
+    if (this.heardSound){
+      const hs = this.heardSound;
+      const toward = (hs.x - ox)*out.moveX + (hs.y - oy)*out.moveY;
+      const hsCell = w.at(hs.x|0, hs.y|0);
+      const hsTop = hsCell && hsCell.stack[hsCell.stack.length-1];
+      const hsNut = hsTop && MATERIALS[hsTop].nutrition;
+      let hsPred = false;
+      for (const p of w.predators) if (!p.dead && (p.x-hs.x)**2+(p.y-hs.y)**2 < 16){ hsPred = true; break; }
+      if (hsNut && toward > 0) this.bonus += 0.15;
+      if (hsPred && toward < 0) this.bonus += 0.15;
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
