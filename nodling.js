@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardSound = null;                        // most recent heard sound (for reward shaping)
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardSound = bs || null; // kept for the listener-side reward shaping in tick()
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -175,6 +177,22 @@ class Nodling {
       b[4] += Math.abs(out.sound) > 0.15 ? 1 : 0;
       b[5] += w.at(this.x|0, this.y|0)?.water ? 1 : 0;
       this.behavN++;
+
+      // -- communication reward-shaping: reward the *listener* for reacting
+      //    to a heard sound in a way that matches what's actually around it —
+      //    fleeing the source when a predator is genuinely near, or
+      //    approaching it when flora is genuinely visible. The sender is
+      //    already rewarded for calling near something that matters (above);
+      //    this gives evolution a gradient on the receiving end too, so a
+      //    stable alarm/food meaning has something to bootstrap from instead
+      //    of relying on multi-generation selection alone. --
+      if (this.heardSound){
+        const dx = this.heardSound.x - this.x, dy = this.heardSound.y - this.y;
+        const dm = Math.hypot(dx, dy) || 1;
+        const toward = (out.moveX*dx + out.moveY*dy) / dm; // >0 approaching, <0 fleeing
+        if (s[40] > 0.3 && toward < -0.1) this.bonus += 0.15;
+        else if ((s[4] || s[5]) && toward > 0.1) this.bonus += 0.15;
+      }
     }
 
     // -- move: water is a hard barrier (no swimming) unless it's been bridged
