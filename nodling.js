@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardSound = null;                       // nearest heard sound (with hidden danger/food tag)
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -107,6 +108,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardSound = bs || null;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -248,14 +250,29 @@ class Nodling {
 
     // -- sound: a frequency in [0,1]; meaning, if any, must be evolved. Calling
     //    *while something matters nearby* (food underfoot, or a predator close)
-    //    earns a small reward, so informative signalling can bootstrap. --
+    //    earns a small reward, so informative signalling can bootstrap. The
+    //    call is tagged (danger/food) purely for the *listener's* reward below
+    //    — the tag is never exposed as a sense, so the frequency's meaning to
+    //    a listener still has to be evolved, not read off the tag. --
     if (Math.abs(out.sound) > 0.15){
-      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
-      this.energy -= 0.1;
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
+      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2, danger:predNear, food:!!topNut});
+      this.energy -= 0.1;
       if (topNut || predNear) this.bonus += 0.25;
+    }
+
+    // -- communication (listener side): reward actually reacting to a heard
+    //    alarm/food call — flee a danger call, approach a food call — so the
+    //    sound channel has something to select for beyond the caller's own
+    //    bonus above. --
+    const hs = this.heardSound;
+    if (hs && (hs.danger || hs.food)){
+      const dx = hs.x - this.x, dy = hs.y - this.y, dist = Math.hypot(dx, dy) || 1;
+      const toward = (out.moveX*dx + out.moveY*dy) / dist;
+      if (hs.danger && toward < -0.1) this.bonus += 0.15;
+      else if (hs.food && !hs.danger && toward > 0.1) this.bonus += 0.15;
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
