@@ -175,6 +175,17 @@ class Nodling {
       b[4] += Math.abs(out.sound) > 0.15 ? 1 : 0;
       b[5] += w.at(this.x|0, this.y|0)?.water ? 1 : 0;
       this.behavN++;
+
+      // communication: only the caller was ever rewarded for a useful call
+      // (see the sound-emission bonus below) — nothing reinforced *listening*.
+      // Give a small bonus for moving away from a heard sound's source while a
+      // predator is genuinely nearby, so an alarm→flee correlation has a
+      // reward gradient to climb instead of relying on the far noisier,
+      // delayed survival signal alone.
+      if (s[40] > 0.3 && (s[23] || s[24])){
+        const away = -(out.moveX*s[23] + out.moveY*s[24]);
+        if (away > 0.2) this.bonus += 0.15;
+      }
     }
 
     // -- move: water is a hard barrier (no swimming) unless it's been bridged
