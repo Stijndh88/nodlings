@@ -175,6 +175,21 @@ class Nodling {
       b[4] += Math.abs(out.sound) > 0.15 ? 1 : 0;
       b[5] += w.at(this.x|0, this.y|0)?.water ? 1 : 0;
       this.behavN++;
+
+      // -- listener side of communication: reward reacting to a heard sound the
+      //    way it should be read against what's actually sensed right now (a
+      //    predator threat → flee the source; visible food + no threat → approach
+      //    it). The caller already earns a bonus for calling near something that
+      //    matters (above); this gives the receiving half of that loop something
+      //    to learn from too, instead of only the slow, indirect route through
+      //    eventual energy/hydration change. --
+      if (Math.abs(s[22]) > 0.001){
+        const toward = out.moveX*s[23] + out.moveY*s[24]; // >0 approaching source
+        const predatorNear = s[40] > 0.3;
+        const foodVisible = s[4] !== 0 || s[5] !== 0;
+        if (predatorNear && toward < -0.1) this.bonus += 0.15;
+        else if (!predatorNear && foodVisible && toward > 0.1) this.bonus += 0.1;
+      }
     }
 
     // -- move: water is a hard barrier (no swimming) unless it's been bridged
