@@ -258,6 +258,20 @@ class Nodling {
       if (topNut || predNear) this.bonus += 0.25;
     }
 
+    // -- listener half of the alarm signal: the caller above is rewarded for
+    //    calling near a real predator, but nothing rewarded a *listener* for
+    //    reacting — so the emitter/listener correlation had only a weak,
+    //    delayed path to reinforce. Reward moving away from a close predator
+    //    while a sound was just heard, so fleeing-on-alarm becomes directly
+    //    learnable. --
+    {
+      const hs = this.senseBuf;
+      if (hs[40] > 0.3 && hs[22] !== 0){
+        const flee = -(hs[38]*out.moveX + hs[39]*out.moveY);
+        if (flee > 0.3) this.bonus += 0.15;
+      }
+    }
+
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
     const moving = Math.hypot(out.moveX, out.moveY);
     this.energy -= 0.035 + this.brainSize*0.0001 + moving*0.04
