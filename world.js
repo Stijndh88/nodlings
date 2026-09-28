@@ -57,6 +57,7 @@ class World {
     this.rng = makeRng(seed);
     this.tick = 0;
     this.sounds = [];        // sounds emitted last tick (what Nodlings hear now)
+    this.prevSounds = [];    // sounds from one tick further back (kept audible too)
     this.nextSounds = [];    // sounds being emitted this tick
     this.nIndex = new Map(); // spatial hash of living Nodlings, rebuilt each tick
     this.sIndex = new Map(); // spatial hash of audible sounds
@@ -226,7 +227,13 @@ class World {
       (this.nIndex.get(k) || this.nIndex.set(k, []).get(k)).push(n);
     }
     this.sIndex.clear();
+    // Sounds stay audible for 2 ticks — matching Nodlings' every-other-tick
+    // think cadence, so no listener's brain-eval misses an emission outright.
     for (const s of this.sounds){
+      const k = this.key(s.x, s.y);
+      (this.sIndex.get(k) || this.sIndex.set(k, []).get(k)).push(s);
+    }
+    for (const s of this.prevSounds){
       const k = this.key(s.x, s.y);
       (this.sIndex.get(k) || this.sIndex.set(k, []).get(k)).push(s);
     }

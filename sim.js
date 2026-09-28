@@ -123,6 +123,7 @@ function simTick(){
       hallOfFame.length = Math.min(hallOfFame.length, 40);
     }
   }
+  world.prevSounds = world.sounds;
   world.sounds = world.nextSounds;
   observerTick();
 
