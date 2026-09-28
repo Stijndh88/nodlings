@@ -258,6 +258,20 @@ class Nodling {
       if (topNut || predNear) this.bonus += 0.25;
     }
 
+    // -- hearing: bootstrap the *listener* side of the channel, mirroring the
+    //    caller-side bonus above. Whatever a frequency ends up meaning is still
+    //    left to evolve — this only rewards reacting to a heard sound's direction
+    //    when the listener's own state suggests it should (hungry→approach,
+    //    threatened→retreat), so there's a gradient toward using the channel at all. --
+    {
+      const hdx = this.senseBuf[23], hdy = this.senseBuf[24];
+      if (hdx || hdy){
+        const toward = out.moveX*hdx + out.moveY*hdy;
+        if (this.energy < MAX_ENERGY*0.5 && toward > 0.3) this.bonus += 0.1;
+        if (this.senseBuf[40] > 0.3 && toward < -0.3) this.bonus += 0.1;
+      }
+    }
+
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
     const moving = Math.hypot(out.moveX, out.moveY);
     this.energy -= 0.035 + this.brainSize*0.0001 + moving*0.04
