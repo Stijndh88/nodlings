@@ -165,6 +165,17 @@ class Nodling {
       this.lastWellbeing = wb; this.bonus = 0;
       out = this.brain.step(s, reward);
       this.lastOut = out;
+      // -- communication feedback (listener side): the caller already earns a
+      //    bonus for calling near a real threat/food (see the `sound` block
+      //    below); the receiver had no matching signal, so alarm→flee and
+      //    food→approach had nothing to select for on the listening end. This
+      //    rewards reacting appropriately whenever *any* sound was just heard,
+      //    without asserting what the frequency itself means — that's still
+      //    left to evolve. --
+      if (s[22] !== 0){
+        if (s[40] > 0.3 && (s[38]*out.moveX + s[39]*out.moveY) < -0.1) this.bonus += 0.15;
+        if (s[4] !== 0 && (s[4]*out.moveX + s[5]*out.moveY) > 0.1) this.bonus += 0.15;
+      }
       this.mem = [out.mem0, out.mem1];
       // accumulate behaviour signature (what this individual actually does)
       const b = this.behav;
