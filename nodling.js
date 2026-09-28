@@ -175,6 +175,14 @@ class Nodling {
       b[4] += Math.abs(out.sound) > 0.15 ? 1 : 0;
       b[5] += w.at(this.x|0, this.y|0)?.water ? 1 : 0;
       this.behavN++;
+
+      // communication (listener side): a heard sound co-occurring with a sensed
+      // predator threat is a learnable "alarm" cue — reward fleeing the threat
+      // when that cue is present, so the sound↔danger association can bootstrap.
+      if (s[22] > 0 && s[40] > 0.3){
+        const away = -(s[38]*out.moveX + s[39]*out.moveY);
+        if (away > 0.1) this.bonus += 0.15;
+      }
     }
 
     // -- move: water is a hard barrier (no swimming) unless it's been bridged
