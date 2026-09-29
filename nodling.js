@@ -255,7 +255,12 @@ class Nodling {
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
-      if (topNut || predNear) this.bonus += 0.25;
+      // Predator alarms are rare and high-value; food calls are common and low-value.
+      // A flat bonus makes both worth calling about equally, which blurs any frequency
+      // distinction a listener could learn. Weight alarm calls higher so the two cases
+      // are more worth telling apart.
+      if (predNear) this.bonus += 0.4;
+      else if (topNut) this.bonus += 0.15;
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
