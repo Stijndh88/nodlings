@@ -312,11 +312,13 @@ class Nodling {
       const g = mutateGenome(
         mate ? crossoverGenome(this.genome, mate.genome, w.rng) : this.genome, w.rng);
       const child = new Nodling(w, this.x, this.y, g, this.gen + 1);
-      // nest bonus: breeding inside a cluster of structures gives the newborn a
-      // head start, so settling and building together pays off (drives villages)
+      // nest bonus: breeding inside a cluster of DURABLE structures (not just
+      // any stack — a food pile shouldn't count) gives the newborn a head
+      // start, so settling and building together pays off (drives villages)
       let nest = 0;
       for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++){
-        const nc = w.at(cx+dx, cy+dy); if (nc && nc.stack.length >= 2) nest++;
+        const nc = w.at(cx+dx, cy+dy);
+        if (nc && nc.stack.some(m => m==='wood'||m==='plank'||m==='stone'||m==='brick')) nest++;
       }
       if (nest >= 4) child.energy += 45;
       archiveBehavior(this.signature()); // record what a *successful* breeder did
