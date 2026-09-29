@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardDir = null;                          // last-heard sound offset, for listener reward
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -107,6 +108,9 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    // remembered across the tick so tick() can reward *reacting* to it (see below) —
+    // closes the caller/listener loop instead of only rewarding the caller.
+    this.heardDir = bs ? [bs.x-this.x, bs.y-this.y] : null;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -256,6 +260,19 @@ class Nodling {
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
       if (topNut || predNear) this.bonus += 0.25;
+    }
+
+    // -- listening payoff: reacting to a heard sound by moving away from it
+    //    while a predator is near (alarm->flee), or toward it while hungry
+    //    (food-found->approach), is rewarded — closes the caller/listener
+    //    loop so that correlation has something to evolve toward. --
+    if (this.heardDir){
+      const [hx, hy] = this.heardDir;
+      const toward = out.moveX*hx + out.moveY*hy > 0;
+      let predNear2 = false;
+      for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear2 = true; break; }
+      if (predNear2 && !toward) this.bonus += 0.15;
+      else if (!predNear2 && this.energy < MAX_ENERGY*0.5 && toward) this.bonus += 0.15;
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
