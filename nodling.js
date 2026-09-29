@@ -160,8 +160,16 @@ class Nodling {
         this.senseEMA[i] = this.senseEMA[i]*0.98 + s[i]*0.02;
       }
       const wb = this.wellbeing();
+      // communication: nudge the alarm->flee correlation (RULES.md priority signal 2)
+      // — reward the previous action if it moved away from a recently heard sound
+      // while a predator loomed, so that correlation becomes learnable via plasticity
+      let commBonus = 0;
+      if (out && s[40] > 0.3 && (s[23] || s[24])){
+        const away = -(out.moveX*s[23] + out.moveY*s[24]);
+        commBonus = Math.max(0, away) * 0.1;
+      }
       const reward = Math.max(-1, Math.min(1,
-        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
+        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3 + commBonus));
       this.lastWellbeing = wb; this.bonus = 0;
       out = this.brain.step(s, reward);
       this.lastOut = out;
