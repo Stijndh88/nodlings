@@ -166,6 +166,13 @@ class Nodling {
       out = this.brain.step(s, reward);
       this.lastOut = out;
       this.mem = [out.mem0, out.mem1];
+      // -- hearing: reward the *listener's* half of a food-call — moving toward
+      //    a heard sound while hungry — so approach-on-call has something to
+      //    select for, symmetric with the caller's near-food call bonus below.
+      if (s[22] > 0 && this.energy < MAX_ENERGY*0.5){
+        const align = out.moveX*s[23] + out.moveY*s[24];
+        if (align > 0) this.bonus += 0.1;
+      }
       // accumulate behaviour signature (what this individual actually does)
       const b = this.behav;
       b[0] += Math.hypot(out.moveX, out.moveY);
