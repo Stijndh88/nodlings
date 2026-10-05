@@ -101,7 +101,7 @@ function simTick(){
   for (const n of nodlings){
     if (!n.dead) continue;
     deaths++;
-    hallOfFame.push({genome:n.genome, score:n.age + 250*n.offspring, gen:n.gen});
+    hallOfFame.push({genome:n.genome, score:n.age + 250*n.offspring + 20*n.built, gen:n.gen});
     hallOfFame.sort((a,b)=>b.score-a.score);
     hallOfFame.length = Math.min(hallOfFame.length, 40); // deeper, more diverse seed bank
   }
@@ -116,7 +116,7 @@ function simTick(){
   // the elite may never die, so death-only fame would lag and understate progress.
   if (world.tick % 300 === 0 && nodlings.length){
     let best = null, bs = -1;
-    for (const n of nodlings){ const f = n.age + 250*n.offspring; if (f > bs){ bs = f; best = n; } }
+    for (const n of nodlings){ const f = n.age + 250*n.offspring + 20*n.built; if (f > bs){ bs = f; best = n; } }
     if (best){
       hallOfFame.push({genome:best.genome, score:bs, gen:best.gen});
       hallOfFame.sort((a,b)=>b.score-a.score);

@@ -23,6 +23,8 @@ class Nodling {
     this.offspring = 0;
     this.dead = false;
     this.carrying = null;      // material name or null
+    this.carryFrom = null;     // [cx,cy] where the carried item was picked up
+    this.built = 0;            // durable material transported onto an existing stack (fitness axis)
     this.mem = [0, 0];         // recurrent memory, written by the brain itself
     this.facing = [1, 0];
     this.brain = new Brain(this.genome);         // owns per-life plastic weights
@@ -194,8 +196,10 @@ class Nodling {
     const cell = w.at(cx, cy);
 
     // -- grab / drop --
-    if (out.grab > 0.5 && !this.carrying && cell.stack.length)
+    if (out.grab > 0.5 && !this.carrying && cell.stack.length){
       this.carrying = cell.stack.pop();
+      this.carryFrom = [cx, cy];
+    }
     // -- drop: onto a faced water cell with buoyant cargo, it lays a bridge
     //    tile (walkable); otherwise it drops on the current cell as usual --
     if (out.drop > 0.5 && this.carrying){
@@ -203,9 +207,19 @@ class Nodling {
       if (fc && fc.water && !fc.stack.length && MATERIALS[this.carrying].buoyant){
         fc.stack.push(this.carrying); // bridge
       } else {
+        // genuine construction: durable material actually transported (not just
+        // grabbed and re-dropped in place) onto a cell that already has
+        // something — this is a new, uncapped fitness axis (see sim.js score),
+        // orthogonal to age/offspring, meant to keep selection climbing once
+        // survival+reproduction optimise out and fitness plateaus.
+        const durable = this.carrying === 'wood' || this.carrying === 'plank'
+                      || this.carrying === 'stone' || this.carrying === 'brick';
+        const moved = !this.carryFrom || this.carryFrom[0] !== cx || this.carryFrom[1] !== cy;
+        if (durable && cell.stack.length >= 1 && moved) this.built++;
         cell.stack.push(this.carrying);
       }
       this.carrying = null;
+      this.carryFrom = null;
     }
 
     // -- interact: outcome depends on what's actually here, not on a verb menu --
