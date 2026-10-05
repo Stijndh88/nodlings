@@ -123,7 +123,12 @@ function simTick(){
       hallOfFame.length = Math.min(hallOfFame.length, 40);
     }
   }
-  world.sounds = world.nextSounds;
+  // A call now stays audible for 2 ticks (this one + the next), not 1 — long
+  // enough that a listener evaluating only every other tick is guaranteed a
+  // chance to hear it, which is a precondition for emitter/listener behaviour
+  // to correlate and for evolution to select on that correlation.
+  world.sounds = world.nextSounds.concat(world.prevSounds);
+  world.prevSounds = world.nextSounds;
   observerTick();
 
   if (world.tick % 150 === 0){
