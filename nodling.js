@@ -250,7 +250,7 @@ class Nodling {
     //    *while something matters nearby* (food underfoot, or a predator close)
     //    earns a small reward, so informative signalling can bootstrap. --
     if (Math.abs(out.sound) > 0.15){
-      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
+      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2, age:0});
       this.energy -= 0.1;
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;

@@ -9,6 +9,7 @@ const DAYS_PER_YEAR = 32;                       // 8 days per season
 const SEASONS = ['Spring','Summer','Autumn','Winter'];
 const COMFORT = 18;                             // body temp Nodlings do best at
 const HASH_B = 12;                              // spatial-index bucket size (>= EARSHOT)
+const SOUND_LIFE = 2;                           // ticks a sound stays audible — covers both think-phases (0/1), so phase can't make a listener miss it
 
 // Vital limits (also surfaced in the sidebar '?' help). Body temp drifts toward
 // the local cell temperature; discomfort drains energy, extremes can kill.

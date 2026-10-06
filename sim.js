@@ -123,7 +123,10 @@ function simTick(){
       hallOfFame.length = Math.min(hallOfFame.length, 40);
     }
   }
-  world.sounds = world.nextSounds;
+  // keep still-fresh sounds around for SOUND_LIFE ticks so a listener's
+  // think-phase (0 or 1) can't make it miss a sound outright
+  for (const s of world.sounds) s.age++;
+  world.sounds = world.nextSounds.concat(world.sounds.filter(s => s.age < SOUND_LIFE));
   observerTick();
 
   if (world.tick % 150 === 0){
