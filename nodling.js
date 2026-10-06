@@ -38,6 +38,8 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardKind = null;                        // 'alarm'/'food'/null — what the last heard sound was tagged as
+    this.heardDir = null;                          // [dx,dy] to that sound's source, for reacting-correctly reward
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -106,7 +108,10 @@ class Nodling {
       const d = (snd.x-this.x)**2 + (snd.y-this.y)**2;
       if (d < bsd){ bsd = d; bs = snd; }
     }
-    if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    if (bs){
+      s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT;
+      this.heardKind = bs.kind || null; this.heardDir = [bs.x-this.x, bs.y-this.y];
+    } else { this.heardKind = null; this.heardDir = null; }
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -151,6 +156,10 @@ class Nodling {
     // plastic synapses learn within this lifetime.
     let out = this.lastOut;
     if (!out || !((w.tick + this.phase) & 1)){
+      // snapshot what was heard (and how it was acted on) *before* sense()
+      // overwrites it with this tick's heard sound — lets us reward reacting
+      // correctly to a signal (alarm → flee, food → approach) one think-step late.
+      const prevHeardKind = this.heardKind, prevHeardDir = this.heardDir, prevOut = out;
       const s = this.sense();
       // curiosity: reward for how novel the current situation is vs. its running
       // average — an intrinsic drive to explore, which speeds up discovery
@@ -159,9 +168,19 @@ class Nodling {
         nov += Math.abs(s[i] - this.senseEMA[i]);
         this.senseEMA[i] = this.senseEMA[i]*0.98 + s[i]*0.02;
       }
+      let commReward = 0;
+      if (prevHeardKind && prevOut){
+        const mv = Math.hypot(prevOut.moveX, prevOut.moveY);
+        const hd = Math.hypot(prevHeardDir[0], prevHeardDir[1]);
+        if (mv > 0.1 && hd > 0.01){
+          const dot = (prevOut.moveX*prevHeardDir[0] + prevOut.moveY*prevHeardDir[1]) / (mv*hd);
+          if (prevHeardKind === 'alarm' && dot < -0.3) commReward = 0.15;      // fled the alarm
+          else if (prevHeardKind === 'food' && dot > 0.3) commReward = 0.15;  // approached the food call
+        }
+      }
       const wb = this.wellbeing();
       const reward = Math.max(-1, Math.min(1,
-        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
+        (wb - this.lastWellbeing)*8 + this.bonus + commReward + (nov/N_SENSES)*0.3));
       this.lastWellbeing = wb; this.bonus = 0;
       out = this.brain.step(s, reward);
       this.lastOut = out;
@@ -248,14 +267,18 @@ class Nodling {
 
     // -- sound: a frequency in [0,1]; meaning, if any, must be evolved. Calling
     //    *while something matters nearby* (food underfoot, or a predator close)
-    //    earns a small reward, so informative signalling can bootstrap. --
+    //    earns a small reward, so informative signalling can bootstrap. The
+    //    triggering context is also tagged onto the sound (not exposed as a
+    //    sense — only used to reward listeners who react correctly), so the
+    //    other half of the loop — reacting to a heard call — is learnable too. --
     if (Math.abs(out.sound) > 0.15){
-      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
-      this.energy -= 0.1;
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
-      if (topNut || predNear) this.bonus += 0.25;
+      const kind = predNear ? 'alarm' : (topNut ? 'food' : null);
+      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2, kind});
+      this.energy -= 0.1;
+      if (kind) this.bonus += 0.25;
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
