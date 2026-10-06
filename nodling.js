@@ -38,6 +38,7 @@ class Nodling {
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
+    this.heardSound = null;                       // most recent heard-sound direction (brief TTL)
   }
 
   // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
@@ -106,7 +107,16 @@ class Nodling {
       const d = (snd.x-this.x)**2 + (snd.y-this.y)**2;
       if (d < bsd){ bsd = d; bs = snd; }
     }
-    if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    if (bs){
+      s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT;
+      // remember the heard direction briefly so approaching it can be rewarded
+      // if it pays off (see the eat() call sites below) — this is the only
+      // reward wiring tying listener behaviour to a call's outcome, letting a
+      // food-call→approach correlation become learnable.
+      this.heardSound = { dx: s[23], dy: s[24], ttl: 20 };
+    } else if (this.heardSound && --this.heardSound.ttl <= 0){
+      this.heardSound = null;
+    }
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -211,10 +221,16 @@ class Nodling {
     // -- interact: outcome depends on what's actually here, not on a verb menu --
     if (out.interact > 0.5){
       const top = cell.stack[cell.stack.length-1];
+      // if a call was heard recently and this Nodling was facing toward it,
+      // finding food now rewards the approach — reinforcing "a call meant food"
+      const heededCall = this.heardSound &&
+        (this.facing[0]*Math.sign(this.heardSound.dx) + this.facing[1]*Math.sign(this.heardSound.dy)) > 0;
       if (this.carrying && MATERIALS[this.carrying].nutrition){
         this.eat(this.carrying); this.carrying = null;
+        if (heededCall) this.bonus += 0.3;
       } else if (top && MATERIALS[top].nutrition){
         this.eat(cell.stack.pop());
+        if (heededCall) this.bonus += 0.3;
       } else if (cell.water || w.adjacentWater(cx, cy)){
         this.hydration = 100;
       }

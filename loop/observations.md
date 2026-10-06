@@ -1,25 +1,34 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `259262450` · day 51.7 · Summer
+Seed `259921919` · day 61.7 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 250 (26 juvenile) |
-| max generation | 129 |
-| best fitness | 4952 |
-| avg brain (conns) | 88 |
+| population | 249 (22 juvenile) |
+| max generation | 21 |
+| best fitness | 5829 |
+| avg brain (conns) | 92 |
 | lineage diversity | 6 colour-groups |
-| diet | 87% herbivore / 0% carnivore |
-| predators | 3, 2 kills, best 7900 |
-| structures (durable) | 7156 (591) |
-| planks / bricks / bridges | 51 / 13 / 690 |
-| flora / cooked food | 8828 / 82 |
+| diet | 84% herbivore / 2% carnivore |
+| predators | 2, 1 kills, best 9588 |
+| structures (durable) | 5901 (456) |
+| planks / bricks / bridges | 35 / 0 / 389 |
+| flora / cooked food | 7760 / 4 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 59.7]** _(trend)_ Fitness climbing fast (+877 in ~6 days) — strong selection right now.
+- **[day 57.7]** _(trend)_ Nodlings are grouping more tightly (mean spacing 7.8→2.6) — possible flocking / proto-tribe.
+- **[day 55.7]** _(trend)_ Lineages are deepening — max generation 0→14. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 55.7]** _(trend)_ Fitness climbing fast (+877 in ~6 days) — strong selection right now.
+- **[day 55.7]** _(milestone)_ Best Nodling fitness passed 5000.
+- **[day 52.7]** _(trend)_ Nodlings are grouping more tightly (mean spacing 7.8→2.8) — possible flocking / proto-tribe.
+- **[day 51.7]** _(issue)_ Almost no deliberate construction yet — the shelter/nest payoff may be too weak or too many steps away to be discovered. Consider a stronger cold pressure or a bigger nest bonus.
+- **[day 51.7]** _(issue)_ After 51 days, max generation is only 0 — lineages aren't persisting. The population is crashing to the reseed floor and resetting its gene pool each cycle. Stabilising the population near carrying capacity is the single biggest unlock for evolution here.
+- **[day 51.7]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 49.7]** _(trend)_ Lineages are deepening — max generation 113→127. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 43.7]** _(trend)_ Lineages are deepening — max generation 94→113. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 38.7]** _(milestone)_ Reached generation 100 — a lineage 100 ancestors deep, each one selected.
