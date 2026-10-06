@@ -152,6 +152,17 @@ class Nodling {
     let out = this.lastOut;
     if (!out || !((w.tick + this.phase) & 1)){
       const s = this.sense();
+      // listener-side: hearing a sound while something relevant is actually
+      // happening to *you* (food underfoot or a predator close) rewards
+      // attending to sound at all — bias toward the receiver side of
+      // alarm/food calls becoming useful, mirroring the caller-side bonus
+      // below that already rewards contingent calling.
+      if (s[22] !== 0){
+        const hereCell = w.at(this.x|0, this.y|0);
+        const topNut = hereCell && hereCell.stack.length &&
+                       MATERIALS[hereCell.stack[hereCell.stack.length-1]].nutrition;
+        if (topNut || s[40] > 0) this.bonus += 0.15;
+      }
       // curiosity: reward for how novel the current situation is vs. its running
       // average — an intrinsic drive to explore, which speeds up discovery
       let nov = 0;
