@@ -1,25 +1,31 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `316854478` · day 51.7 · Summer
+Seed `317848487` · day 61.7 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 248 (30 juvenile) |
-| max generation | 138 |
+| population | 249 (19 juvenile) |
+| max generation | 20 |
 | best fitness | 5667 |
-| avg brain (conns) | 78 |
-| lineage diversity | 4 colour-groups |
-| diet | 79% herbivore / 0% carnivore |
-| predators | 6, 9 kills, best 17995 |
-| structures (durable) | 8200 (775) |
-| planks / bricks / bridges | 69 / 7 / 499 |
-| flora / cooked food | 9413 / 39 |
+| avg brain (conns) | 79 |
+| lineage diversity | 7 colour-groups |
+| diet | 79% herbivore / 4% carnivore |
+| predators | 2, 0 kills, best 17995 |
+| structures (durable) | 5891 (437) |
+| planks / bricks / bridges | 46 / 1 / 293 |
+| flora / cooked food | 8563 / 1 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 57.7]** _(trend)_ Nodlings are grouping more tightly (mean spacing 7.2→3.1) — possible flocking / proto-tribe.
+- **[day 55.7]** _(trend)_ Lineages are deepening — max generation 0→12. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 52.7]** _(trend)_ Nodlings are grouping more tightly (mean spacing 7.2→2.5) — possible flocking / proto-tribe.
+- **[day 51.7]** _(issue)_ Almost no deliberate construction yet — the shelter/nest payoff may be too weak or too many steps away to be discovered. Consider a stronger cold pressure or a bigger nest bonus.
+- **[day 51.7]** _(issue)_ After 51 days, max generation is only 0 — lineages aren't persisting. The population is crashing to the reseed floor and resetting its gene pool each cycle. Stabilising the population near carrying capacity is the single biggest unlock for evolution here.
+- **[day 51.7]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 49.7]** _(trend)_ Lineages are deepening — max generation 119→135. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 45.7]** _(milestone)_ Best predator fitness passed 10000 — a very effective hunter lineage.
 - **[day 43.7]** _(trend)_ Lineages are deepening — max generation 104→119. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.

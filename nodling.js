@@ -9,6 +9,8 @@ const POP_CAP = 250;   // bigger world supports a larger, more diverse gene pool
 const MATURITY = 160;  // age below which a Nodling is a juvenile (can't breed, sees less)
 const SENESCENCE = 900;// age past which upkeep rises (aging)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
+// Materials that count as "built" structure (mirrors observer.js's built metric).
+const DURABLE = { wood:1, plank:1, stone:1, brick:1 };
 
 class Nodling {
   constructor(world, x, y, genome, gen = 0){
@@ -203,6 +205,11 @@ class Nodling {
       if (fc && fc.water && !fc.stack.length && MATERIALS[this.carrying].buoyant){
         fc.stack.push(this.carrying); // bridge
       } else {
+        // building reward: stacking a durable material onto an existing stack
+        // (not the first block) is construction, not just hoarding — make the
+        // act itself rewarding so villages can bootstrap instead of relying
+        // only on the indirect nest bonus below.
+        if (cell.stack.length >= 1 && DURABLE[this.carrying]) this.bonus += 0.2;
         cell.stack.push(this.carrying);
       }
       this.carrying = null;
