@@ -7,6 +7,23 @@ Newest entries at the top.
 
 Baseline batch (25k ticks) from day 113.6: median fitness dropped 35.7% (692 vs 1077, max 25%). Other metrics fine: population 251, benchmark gap 1929 (was 1916), maxGen 53, largestCluster 3, brickCells 66. Likely turnover from many new generations (living-median is noisy), but not auto-diagnosed. No code change this cycle; human review needed.
 
+## Cycle 12 (A/B) — population cap — `kept` (POP_CAP 250 -> 400)
+
+**Question** (from Stijn): is the 250 cap limiting progress, or does food already limit the population?
+
+Paired A/B from the same snapshot (day ~140), 10k ticks, only `POP_CAP` changed. New metrics `meanEnergy`, `floraCount`, `deaths` (by cause) were added to read the ecosystem; they don't affect the simulation.
+
+| cap | population | flora cells | mean energy | starved deaths | median fit | cluster | bench gap | runtime/10k ticks |
+|---|---|---|---|---|---|---|---|---|
+| 250 | 249 | 7862 | 173 | 1237 | 1262 | 2 | 2038 | 59 s |
+| 400 | 403 | 6145 | 173 | 2090 | 1256 | 3 | 2129 | ~100 s |
+| 600 | 599 | 6074 | 163 | 3477 | 986 | 3 | 1984 | n/a |
+| 1200 | 1200 | 2229 | 137 | 7938 | 748 | 4 | n/a | 388 s |
+
+**Finding:** the population always fills the cap, so the cap, not food, is what limits it at 250 (flora 7862 cells, energy 173/240). Food becomes limiting somewhere around 800 to 1200 (flora drops to 2229, energy 137, starvation 6x). Beyond ~600 median fitness falls from crowding and runtime explodes (6.6x for 4.8x the population), which would break the 10-minute cycle budget.
+
+**Change:** 400 is the sweet spot: same energy and median fitness as 250, larger clusters and benchmark gap, ~1.7x runtime. `POP_CAP` is now a tunable in [250, 800]; raise it again only if batch time stays under ~6 min.
+
 ## Cycle 11 (A/B) — day 129.2 + 8k ticks — `STRUCTURAL: kept`
 
 **Hypothesis** (priority #1, construction): the nest bonus counts scattered stacks, and largest built cluster is only 3-4 cells, so building is scatter, not villages. Reward placing durable material next to an existing durable structure (`BUILD_ADJACENT_BONUS = 0.3` in `nodling.js`), so extending a structure is reinforced by the Hebbian rule.

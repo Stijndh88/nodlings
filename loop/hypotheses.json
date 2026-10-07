@@ -38,6 +38,14 @@
       "status": "kept",
       "cycle": 11,
       "note": "first paired A/B: cluster 4 -> 5, builtCells 690 -> 539, bench gap 1929 -> 2038; single 8k-tick sample, within noise"
+    },
+    {
+      "id": "pop-cap-400",
+      "signal": 3,
+      "change": "POP_CAP 250 -> 400",
+      "status": "kept",
+      "cycle": 12,
+      "note": "cap was binding while food was abundant; paired A/B at 250/400/600/1200 in CHANGELOG. POP_CAP now a tunable [250, 800]; runtime grows ~linearly"
     }
   ]
 }

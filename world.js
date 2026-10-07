@@ -67,6 +67,7 @@ class World {
     this.sIndex = new Map(); // spatial hash of audible sounds
     this.cIndex = new Map(); // spatial hash of critters (for hunting lookups)
     this.pop = 0;            // set each tick by the driver
+    this.deathCauses = {};   // per-process tally of why Nodlings died (starved/thirst/temp)
     this.critterCount = 0;
     this.predators = [];     // live predator list (for Nodling threat sensing)
     this.predCount = 0;
