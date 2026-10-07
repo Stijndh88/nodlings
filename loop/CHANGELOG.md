@@ -3,6 +3,21 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 13 (A/B) — day 144.8 + 8k ticks — `reverted` (BUILD_ADJACENT_BONUS 0.3 -> 0.9)
+
+**Hypothesis** (priority #1): largestCluster fell to 2 at the baseline, so triple the adjacency bonus to push extension of structures.
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 3 | 3 |
+| builtCells | 535 | 414 |
+| brickCells | 65 | 65 |
+| benchmark gap | 2129 | 1949 |
+| medianFitness | 906 | 1085 |
+| population | 400 | 399 |
+
+Guardrails passed, but the target did not move and builtCells and benchmark gap fell (single sample, partly noise). Reverted. Next: a structural idea, since a stronger bonus alone does not make clusters.
+
 ## INCIDENT: day 129.2 — baseline batch tripped a guardrail
 
 Baseline batch (25k ticks) from day 113.6: median fitness dropped 35.7% (692 vs 1077, max 25%). Other metrics fine: population 251, benchmark gap 1929 (was 1916), maxGen 53, largestCluster 3, brickCells 66. Likely turnover from many new generations (living-median is noisy), but not auto-diagnosed. No code change this cycle; human review needed.

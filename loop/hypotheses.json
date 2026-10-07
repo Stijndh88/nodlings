@@ -46,6 +46,14 @@
       "status": "kept",
       "cycle": 12,
       "note": "cap was binding while food was abundant; paired A/B at 250/400/600/1200 in CHANGELOG. POP_CAP now a tunable [250, 800]; runtime grows ~linearly"
+    },
+    {
+      "id": "build-adjacent-0.9",
+      "signal": 1,
+      "change": "BUILD_ADJACENT_BONUS 0.3 -> 0.9",
+      "status": "reverted",
+      "cycle": 13,
+      "note": "cluster 3->3, builtCells 535->414, bench gap 2129->1949; no gain on target, others worse"
     }
   ]
 }
