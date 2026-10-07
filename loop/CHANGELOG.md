@@ -3,6 +3,21 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 14 (A/B) — day 160.4 + 8k ticks — `reverted` (STRUCTURAL: enclosure insulation)
+
+**Hypothesis** (priority #1, plateau.js demanded a structural change): give a thermal payoff to clustering, x1.5 insulation in `cellTemp` when >=3 neighbouring cells hold durable material, so walls near each other are selected for.
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 4 | 4 |
+| builtCells | 814 | 435 |
+| brickCells | 65 | 64 |
+| benchmark gap | 2129 | 1889 |
+| medianFitness | 933 | 933 |
+| population | 399 | 401 |
+
+Guardrails passed, but the target did not move and builtCells and benchmark gap fell (single sample, partly noise). Reverted. Next: a payoff that does not reduce stacking, e.g. a food or water cache bonus inside clusters.
+
 ## Cycle 13 (A/B) — day 144.8 + 8k ticks — `reverted` (BUILD_ADJACENT_BONUS 0.3 -> 0.9)
 
 **Hypothesis** (priority #1): largestCluster fell to 2 at the baseline, so triple the adjacency bonus to push extension of structures.

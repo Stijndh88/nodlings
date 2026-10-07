@@ -54,6 +54,14 @@
       "status": "reverted",
       "cycle": 13,
       "note": "cluster 3->3, builtCells 535->414, bench gap 2129->1949; no gain on target, others worse"
+    },
+    {
+      "id": "enclosure-insulation",
+      "signal": 1,
+      "change": "world.js cellTemp: x1.5 insulation when >=3 neighbouring cells hold durable material",
+      "status": "reverted",
+      "cycle": 14,
+      "note": "cluster 4->4, builtCells 814->435, bench gap 2129->1889; no gain on target, others worse"
     }
   ]
 }
