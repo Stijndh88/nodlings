@@ -24,7 +24,7 @@ const ARCHIVE_MAX = 200;
 function archiveBehavior(sig){
   behaviorArchive.push(sig);
   if (behaviorArchive.length > ARCHIVE_MAX)
-    behaviorArchive.splice((Math.random()*ARCHIVE_MAX)|0, 1); // random eviction keeps it varied
+    behaviorArchive.splice((world.rng()*ARCHIVE_MAX)|0, 1); // seeded random eviction keeps it varied and reproducible
 }
 function behaviorNovelty(sig){
   const A = behaviorArchive;
@@ -44,7 +44,7 @@ const SAVE_KEY = 'nodlings.save.v6'; // v6: speciation + novelty + bigger world 
 function serialize(){
   return JSON.stringify({
     v:4, tick:world.tick, births, deaths, popHist,
-    fame: hallOfFame.map(h => ({score:h.score, genome:h.genome})),
+    fame: hallOfFame.map(h => ({score:h.score, genome:h.genome, gen:h.gen|0})),
     predFame: predFame.map(h => ({score:h.score, genome:h.genome})),
   });
 }
@@ -124,10 +124,62 @@ function simTick(){
     }
   }
   world.sounds = world.nextSounds;
+  if (typeof commSample === 'function' && world.tick % 20 === 0) commSample();
   observerTick();
 
   if (world.tick % 150 === 0){
     popHist.push(nodlings.length);
     if (popHist.length > 220) popHist.shift();
   }
+}
+
+
+// ---------- whole-world snapshot (the loop's continuous world) ----------
+// The hall of fame alone is a seed bank; this captures the *world itself* —
+// terrain, structures, living creatures, RNG stream — so a headless batch
+// resumes the same world instead of regenerating a new one each process.
+// Per-life plastic weights are kept too (a Nodling mid-life stays mid-life).
+const NODLING_SNAP = ['x','y','gen','energy','hydration','bodyTemp','age','offspring','carrying',
+                      'mem','facing','phase','foodMem','waterMem','shelterMem'];
+function snapNodling(n){
+  const o = { genome:n.genome };
+  for (const k of NODLING_SNAP) o[k] = n[k];
+  o.w = Array.from(n.brain.w);
+  return o;
+}
+function snapshotWorld(){
+  const cells = world.cells.map(c => {
+    const flags = (c.water?1:0) | (c.sand?2:0);
+    return (flags || c.fire || c.stack.length) ? [flags, c.fire|0, c.stack] : 0;
+  });
+  return JSON.stringify({
+    v:1, seed:world.seed, tick:world.tick, rng:world.rng.getState(),
+    cells, fires:world.fires,
+    nodlings: nodlings.map(snapNodling),
+    critters: critters.map(c => ({x:c.x,y:c.y,energy:c.energy,age:c.age,dir:c.dir,kind:c.kind,phase:c.phase})),
+    predators: predators.map(p => ({genome:p.genome,x:p.x,y:p.y,energy:p.energy,age:p.age,kills:p.kills})),
+    archive: behaviorArchive,
+  });
+}
+function restoreWorld(json){
+  const d = typeof json === 'string' ? JSON.parse(json) : json;
+  world = new World(d.seed);
+  world.tick = d.tick;
+  d.cells.forEach((v, i) => {
+    const c = world.cells[i];
+    if (!v){ c.water = false; c.sand = false; c.fire = 0; c.stack = []; return; }
+    c.water = !!(v[0] & 1); c.sand = !!(v[0] & 2); c.fire = v[1]; c.stack = v[2];
+  });
+  world.fires = d.fires;
+  nodlings = d.nodlings.map(o => {
+    const n = new Nodling(world, o.x, o.y, o.genome, o.gen);
+    for (const k of NODLING_SNAP) n[k] = o[k];
+    if (o.w && o.w.length === n.brain.w.length) n.brain.w.set(o.w);
+    n.lastWellbeing = n.wellbeing();
+    return n;
+  });
+  critters = d.critters.map(o => { const c = new Critter(world, o.x, o.y); Object.assign(c, o); return c; });
+  predators = d.predators.map(o => { const p = new Predator(world, o.x, o.y, o.genome); Object.assign(p, o); return p; });
+  behaviorArchive.length = 0; behaviorArchive.push(...(d.archive || []));
+  world.rng.setState(d.rng);
 }

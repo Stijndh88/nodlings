@@ -1,24 +1,30 @@
 #!/usr/bin/env node
 // Headless batch runner for the Nodlings autonomous loop. Loads the DOM-free
-// sim files into a vm context, resumes loop/storage.json + loop/state.json,
-// runs a batch of ticks, writes results, and prints a guardrail verdict.
-// See loop/RULES.md for the guardrail thresholds this checks against.
+// sim files into a vm context, resumes the *continuous world* (world.json) plus
+// the hall of fame (storage.json), runs a batch of ticks, then measures, appends
+// to history.jsonl and prints a guardrail verdict. See loop/RULES.md.
+//
+// Flags:  --ticks=N  --dir=PATH (state dir, default loop/)  --dry (write nothing)
+//         --out=FILE (write metrics JSON)  --compare=FILE (guardrail baseline)
+//         --bench / --no-bench (benchmark; default on unless --dry)
 'use strict';
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const zlib = require('zlib');
+const { execSync } = require('child_process');
+const { renderProgress } = require('./report');
 
 const ROOT = path.join(__dirname, '..');
 const LOOP = __dirname;
+const SIM_FILES = ['brain.js', 'world.js', 'selftest.js', 'nodling.js', 'critters.js', 'predators.js', 'observer.js', 'sim.js', 'metrics.js'];
 
 function arg(name, fallback){
   const m = process.argv.find(a => a.startsWith(`--${name}=`));
   return m ? m.slice(name.length + 3) : fallback;
 }
-
-function readJSON(file, fallback){
-  try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch(e){ return fallback; }
-}
+const flag = name => process.argv.includes(`--${name}`);
+const readJSON = (file, fallback) => { try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch(e){ return fallback; } };
 
 function loadRules(){
   const text = fs.readFileSync(path.join(LOOP, 'RULES.md'), 'utf8');
@@ -27,85 +33,114 @@ function loadRules(){
   return JSON.parse(m[1]);
 }
 
-// ---- localStorage shim, backed by loop/storage.json ----
-const storagePath = path.join(LOOP, 'storage.json');
-const store = readJSON(storagePath, {});
-const localStorage = {
-  getItem: k => (k in store ? store[k] : null),
-  setItem: (k, v) => { store[k] = String(v); },
-};
+// A fresh sandbox with the sim loaded. `store` backs localStorage.
+function makeContext(store){
+  const localStorage = {
+    getItem: k => (k in store ? store[k] : null),
+    setItem: (k, v) => { store[k] = String(v); },
+  };
+  const context = vm.createContext({ console, localStorage, Date, Math, JSON });
+  for (const file of SIM_FILES) vm.runInContext(fs.readFileSync(path.join(ROOT, file), 'utf8'), context, { filename: file });
+  return context;
+}
 
 const rules = loadRules();
+const dir = path.resolve(arg('dir', LOOP));
+fs.mkdirSync(dir, { recursive: true });
+const dry = flag('dry');
 const ticks = +arg('ticks', rules.batch_ticks);
 const comparePath = arg('compare', null);
-// Read the baseline now, before this run overwrites loop/metrics.json below —
-// the CLI contract is --compare=loop/metrics.json (this run's own output
-// file), so the read has to happen before the write or it'd compare a run
-// against itself.
-const baseline = comparePath ? readJSON(comparePath, null) : null;
+const wantBench = flag('bench') || (!dry && !flag('no-bench'));
+const baseline = comparePath ? readJSON(comparePath, null) : null; // read before any write
 
-// ---- build the sandbox and load the DOM-free sim files in dependency order ----
-const context = vm.createContext({ console, localStorage, Date, Math, JSON });
-for (const file of ['brain.js', 'world.js', 'selftest.js', 'nodling.js', 'critters.js', 'predators.js', 'observer.js', 'sim.js']){
-  const src = fs.readFileSync(path.join(ROOT, file), 'utf8');
-  vm.runInContext(src, context, { filename: file });
-}
+const storagePath = path.join(dir, 'storage.json');
+const worldPath = path.join(dir, 'world.json.gz');
+const statePath = path.join(dir, 'state.json');
+// first run in a fresh --dir: seed from the committed loop state
+const seedFrom = f => { const t = path.join(dir, f), s = path.join(LOOP, f); if (dir !== LOOP && !fs.existsSync(t) && fs.existsSync(s)) fs.copyFileSync(s, t); };
+['storage.json', 'world.json.gz', 'state.json'].forEach(seedFrom);
+
+const store = readJSON(storagePath, {});
+const context = makeContext(store);
 
 if (!context.selfTest()){
   console.log(JSON.stringify({ pass: false, reasons: ['self-test failed'] }, null, 2));
   process.exit(1);
 }
-
 context.loadProgress();
 context.loadObserver();
+const state = readJSON(statePath, { cycle: 0, lastRun: null, tick: 0 });
 
-const state = readJSON(path.join(LOOP, 'state.json'), { cycle: 0, lastRun: null, tick: 0 });
-
-// NOTE: world/nodlings/critters/predators/START_* are declared with let/const
-// in sim.js, so — unlike function declarations — they do NOT become
-// properties of `context` and can't be touched via `context.world` etc. from
-// host code. Anything that reads/writes them has to run *inside* the
-// context, hence this one bootstrap snippet instead of separate host-side
-// calls. context.simTick()/observerMetrics()/observerMarkdown()/etc. below
-// are fine as direct calls — those are `function` declarations, which DO
-// attach to `context`, and their bodies already run inside the sandbox
-// where world/nodlings/etc. are directly visible.
-vm.runInContext(`
-  world.tick = ${state.tick};
-  seed(START_POP);
-  spawnCritters(world, critters, START_CRITTERS);
-  spawnPredators(world, predators, START_PREDATORS);
-`, context, { filename: 'bootstrap' });
+// world/nodlings/... are let-declared in sim.js: not properties of `context`, so
+// anything touching them runs inside the context. Function declarations
+// (simTick, snapshotWorld, loopMetrics...) do attach and are called directly.
+if (fs.existsSync(worldPath)){
+  context.restoreWorld(zlib.gunzipSync(fs.readFileSync(worldPath)).toString('utf8'));
+} else {
+  vm.runInContext(`
+    world = new World(${+rules.world_seed});
+    world.tick = ${state.tick};
+    seed(START_POP);
+    spawnCritters(world, critters, START_CRITTERS);
+    spawnPredators(world, predators, START_PREDATORS);
+  `, context, { filename: 'bootstrap' });
+}
 
 for (let i = 0; i < ticks; i++) context.simTick();
 
-context.saveProgress();
-context.saveObserver();
-fs.writeFileSync(storagePath, JSON.stringify(store, null, 2));
+const metrics = context.loopMetrics();
+metrics.worldTick = vm.runInContext('world.tick', context);
 
-// world is `let`-declared in sim.js (see NOTE above) — context.world doesn't
-// exist, so read world.tick via runInContext rather than a direct property.
-const worldTick = vm.runInContext('world.tick', context);
-fs.writeFileSync(path.join(LOOP, 'state.json'), JSON.stringify({
-  cycle: state.cycle + 1, lastRun: new Date().toISOString(), tick: worldTick,
-}, null, 2));
+// ---- benchmark: fixed seeds, fresh sandbox per cohort, evolved vs random genomes ----
+if (wantBench){
+  const b = rules.benchmark;
+  const genomes = JSON.stringify(vm.runInContext('hallOfFame.slice(0, 20).map(h => h.genome)', context) || []);
+  const score = (useGenomes, wseed) => {
+    const c = makeContext({});
+    return vm.runInContext(`(function(){
+      ${useGenomes ? `const G = ${genomes}; reindexFromGenomes(G);` : 'const G = null;'}
+      return benchCohort(G, ${wseed}, ${b.ticks}, ${b.cohort});
+    })()`, c);
+  };
+  let ev = 0, rd = 0;
+  for (const s of b.seeds){ ev += score(true, s); rd += score(false, s); }
+  ev /= b.seeds.length; rd /= b.seeds.length;
+  metrics.benchmark = { evolved: Math.round(ev), random: Math.round(rd), gap: Math.round(ev - rd) };
+}
 
-fs.writeFileSync(path.join(LOOP, 'observations.md'), context.observerMarkdown());
+// ---- guardrails ----
+const g = rules.guardrails, reasons = [];
+const finite = Object.values(metrics).every(v => v === null || typeof v === 'object' || Number.isFinite(v));
+if (!finite) reasons.push('non-finite metric (NaN)');
+if (metrics.population < g.min_population) reasons.push(`population ${metrics.population} < min ${g.min_population}`);
+const dropPct = (before, after) => before > 0 ? 100 * (before - after) / before : 0;
+if (baseline){
+  if (baseline.medianFitness != null && dropPct(baseline.medianFitness, metrics.medianFitness) > g.max_fitness_drop_pct)
+    reasons.push(`median fitness dropped ${dropPct(baseline.medianFitness, metrics.medianFitness).toFixed(1)}% (max ${g.max_fitness_drop_pct}%)`);
+  const bp = baseline.population;
+  if (bp != null && dropPct(bp, metrics.population) > g.max_population_drop_pct)
+    reasons.push(`population dropped ${dropPct(bp, metrics.population).toFixed(1)}% (max ${g.max_population_drop_pct}%)`);
+  if (baseline.benchmark && metrics.benchmark && dropPct(baseline.benchmark.gap, metrics.benchmark.gap) > g.max_benchmark_drop_pct)
+    reasons.push(`benchmark gap dropped ${dropPct(baseline.benchmark.gap, metrics.benchmark.gap).toFixed(1)}% (max ${g.max_benchmark_drop_pct}%)`);
+}
 
-const m = context.observerMetrics();
-const metrics = { population: m.pop, fitness: m.fame, maxGen: m.maxGen, avgBrain: m.avgBrain, built: m.built, day: m.day };
-fs.writeFileSync(path.join(LOOP, 'metrics.json'), JSON.stringify(metrics, null, 2));
+const outFile = arg('out', null);
+if (outFile) fs.writeFileSync(outFile, JSON.stringify(metrics, null, 2));
 
-const reasons = [];
-if (!Number.isFinite(metrics.fitness) || !Number.isFinite(metrics.population)) reasons.push('non-finite metric (NaN)');
-if (metrics.population < rules.guardrails.min_population) reasons.push(`population ${metrics.population} < min ${rules.guardrails.min_population}`);
-if (comparePath){
-  if (baseline){
-    const fitnessDropPct = baseline.fitness > 0 ? 100 * (baseline.fitness - metrics.fitness) / baseline.fitness : 0;
-    const popDropPct = baseline.population > 0 ? 100 * (baseline.population - metrics.population) / baseline.population : 0;
-    if (fitnessDropPct > rules.guardrails.max_fitness_drop_pct) reasons.push(`fitness dropped ${fitnessDropPct.toFixed(1)}% (max ${rules.guardrails.max_fitness_drop_pct}%)`);
-    if (popDropPct > rules.guardrails.max_population_drop_pct) reasons.push(`population dropped ${popDropPct.toFixed(1)}% (max ${rules.guardrails.max_population_drop_pct}%)`);
-  }
+if (!dry){
+  context.saveProgress();
+  context.saveObserver();
+  fs.writeFileSync(storagePath, JSON.stringify(store, null, 2));
+  fs.writeFileSync(worldPath, zlib.gzipSync(context.snapshotWorld(), { level: 9 }));
+  fs.writeFileSync(statePath, JSON.stringify({ cycle: state.cycle + 1, lastRun: new Date().toISOString(), tick: metrics.worldTick }, null, 2));
+  fs.writeFileSync(path.join(dir, 'observations.md'), context.observerMarkdown());
+  fs.writeFileSync(path.join(dir, 'metrics.json'), JSON.stringify(metrics, null, 2));
+  let commit = null;
+  try { commit = execSync('git rev-parse --short HEAD', { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim(); } catch(e){}
+  const histPath = path.join(dir, 'history.jsonl');
+  fs.appendFileSync(histPath, JSON.stringify({ cycle: state.cycle + 1, commit, at: new Date().toISOString(), ticks, ...metrics }) + '\n');
+  const history = fs.readFileSync(histPath, 'utf8').trim().split('\n').map(l => JSON.parse(l));
+  fs.writeFileSync(path.join(dir, 'progress.svg'), renderProgress(history));
 }
 
 const verdict = { pass: reasons.length === 0, reasons, metrics };

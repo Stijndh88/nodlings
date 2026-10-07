@@ -1,0 +1,1 @@
+{"cycle":10,"commit":"9400860","at":"2026-10-07T09:50:54.251Z","ticks":25000,"day":113.56,"population":249,"medianFitness":1077,"meanFitness":1291,"peakFitness":6359,"maxGen":29,"avgBrain":87.2,"largestCluster":3,"builtCells":265,"brickCells":68,"commSeparation":0.0158,"worldTick":181700,"benchmark":{"evolved":2224,"random":308,"gap":1916}}

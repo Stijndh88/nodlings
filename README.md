@@ -52,3 +52,11 @@ Drag to pan, scroll to zoom, click a Nodling to follow it (click again to releas
 ## Known ceiling
 
 Genuine multi-step construction (visible villages) is still a long evolutionary climb — but the pieces that make it *possible* are now in place: the environment rewards shelter, brains can grow arbitrary structure (NEAT) and adapt within life (plasticity), and progress persists so runs can accumulate over days of wall-clock time. Leave it running (or at 40×) and watch `best fitness` and `avg brain` climb. The `simTick()` boundary is clean for moving brains onto a Web Worker if you later want hundreds of Nodlings.
+
+## The autonomous loop
+
+`loop/` holds an unattended improvement loop (rules in `loop/RULES.md`, history in `loop/CHANGELOG.md`). It resumes one continuous world (`loop/world.json.gz`) each cycle and charts progress in `loop/progress.svg`:
+
+![Nodlings progress](loop/progress.svg)
+
+The headline number is `benchmark.gap`: how much better the evolved gene pool does than random genomes on fixed-seed worlds. `node loop/run-headless.js --dry --ticks=2000` runs a throwaway batch; `node loop/ci-check.js` is the CI gate.
