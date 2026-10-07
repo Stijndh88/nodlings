@@ -32,4 +32,19 @@ function renderProgress(history){
   out.push('</svg>');
   return out.join('\n');
 }
-module.exports = { renderProgress };
+
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+// Self-contained loop/dashboard.html: open it straight from the repo or a checkout.
+function renderDashboard(history, svg, changelog, hypotheses){
+  const rows = history.slice(-15).reverse().map(h => `<tr><td>${h.cycle}</td><td>${h.day}</td><td>${h.benchmark ? h.benchmark.gap : ''}</td><td>${h.medianFitness}</td><td>${h.largestCluster}</td><td>${h.brickCells}</td><td>${h.maxGen}</td><td>${h.commSeparation ?? ''}</td></tr>`).join('');
+  const hyp = (hypotheses.hypotheses || []).map(x => `<li><b>${esc(x.status)}</b> ${esc(x.change)} <small>${esc(x.note || '')}</small></li>`).join('');
+  const entries = changelog.split(/^## /m).slice(1, 6).map(e => `<section><h3>${esc(e.split('\n')[0])}</h3><pre>${esc(e.split('\n').slice(1).join('\n').trim())}</pre></section>`).join('');
+  return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nodlings progress</title>
+<style>body{font:14px/1.45 system-ui,sans-serif;max-width:820px;margin:0 auto;padding:16px;background:#fff;color:#222}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #ddd;padding:3px 6px;text-align:right}th{font-weight:600}pre{white-space:pre-wrap;background:#f6f6f6;padding:8px}svg{max-width:100%;height:auto}@media(prefers-color-scheme:dark){body{background:#15171c;color:#dde}td,th{border-color:#333}pre{background:#20232b}svg rect{fill:#15171c}svg text{fill:#ccd}}</style></head><body>
+<h1>Nodlings progress</h1><p>Updated ${new Date().toISOString().slice(0, 16)}Z. Headline: <b>benchmark gap</b> (how far the evolved gene pool beats random genomes).</p>
+${svg}
+<h2>Recent cycles</h2><table><tr><th>cycle</th><th>day</th><th>bench gap</th><th>median fit</th><th>cluster</th><th>bricks</th><th>max gen</th><th>comm</th></tr>${rows}</table>
+<h2>Hypotheses</h2><ul>${hyp}</ul><h2>Latest changelog</h2>${entries}</body></html>`;
+}
+module.exports = { renderProgress, renderDashboard };

@@ -51,6 +51,34 @@ function resetFromImport(){
   saveProgress();
 }
 
+// ---- watch the autonomous loop's world (loop/world.json.gz) ----
+// Served over http (e.g. GitHub Pages) this fetches the file directly; opened
+// from disk it falls back to a file picker. The loop's world is loaded as-is.
+async function openLoopWorld(buf, name){
+  let text;
+  if (/\.gz$/i.test(name) || (buf[0] === 0x1f && buf[1] === 0x8b)){
+    const ds = new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip')));
+    text = await ds.text();
+  } else text = new TextDecoder().decode(buf);
+  restoreWorld(text);
+  resetObserver(); clearSelection();
+  camera.cx = GRID_W/2; camera.cy = GRID_H/2; camera.zoom = 9;
+}
+const loopInput = document.getElementById('loopfile');
+document.getElementById('loopworld').onclick = async () => {
+  try {
+    const r = await fetch('loop/world.json.gz');
+    if (!r.ok) throw new Error('not served');
+    await openLoopWorld(new Uint8Array(await r.arrayBuffer()), 'world.json.gz');
+  } catch (err){ loopInput.click(); }
+};
+loopInput.onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  try { await openLoopWorld(new Uint8Array(await f.arrayBuffer()), f.name); }
+  catch (err){ alert('Could not read the loop world file'); }
+  loopInput.value = '';
+};
+
 // auto-save: periodically + when the tab closes, so progress is never lost
 setInterval(saveProgress, 8000);
 window.addEventListener('beforeunload', () => { saveProgress(); saveObserver(); });

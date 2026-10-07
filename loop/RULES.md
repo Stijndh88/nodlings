@@ -70,6 +70,7 @@ in `loop/progress.svg`):
    re-tuning existing knobs once this pattern recurs.
 
 ## Change policy
+- Run `node loop/plateau.js` at the start of a cycle. If it says a STRUCTURAL cycle is required (3+ metrics flat or falling over the last 4 cycles), the change this cycle must be structural (new affordance, environmental pressure, sense or reward shaping), not another knob tweak. Ideas: harder winters or a scarce material once clusters saturate, a second island, nest/shelter payoffs, a food-found call affordance.
 - Exactly ONE change per cycle, small and falsifiable, tied to one priority
   signal above.
 - Check `loop/CHANGELOG.md` and `loop/hypotheses.json` first — don't retry a
