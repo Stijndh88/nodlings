@@ -1,25 +1,29 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 113.6 · Summer
+Seed `20261007` · day 129.2 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 250 (14 juvenile) |
-| max generation | 28 |
-| best fitness | 6359 |
-| avg brain (conns) | 86 |
-| lineage diversity | 8 colour-groups |
-| diet | 89% herbivore / 0% carnivore |
-| predators | 2, 4 kills, best 18015 |
-| structures (durable) | 1667 (86) |
-| planks / bricks / bridges | 0 / 47 / 413 |
-| flora / cooked food | 8849 / 85 |
+| population | 250 (11 juvenile) |
+| max generation | 54 |
+| best fitness | 6579 |
+| avg brain (conns) | 73 |
+| lineage diversity | 7 colour-groups |
+| diet | 81% herbivore / 0% carnivore |
+| predators | 3, 23 kills, best 27911 |
+| structures (durable) | 1615 (118) |
+| planks / bricks / bridges | 2 / 49 / 624 |
+| flora / cooked food | 5831 / 132 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 124.6]** _(trend)_ Lineages are deepening — max generation 36→45. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 118.6]** _(trend)_ Lineages are deepening — max generation 29→36. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 116.6]** _(trend)_ Nodlings are grouping more tightly (mean spacing 4.1→2.8) — possible flocking / proto-tribe.
+- **[day 114.6]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 111.9]** _(trend)_ Lineages are deepening — max generation 18→28. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 105.9]** _(trend)_ Lineages are deepening — max generation 9→18. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 103.9]** _(trend)_ Nodlings are grouping more tightly (mean spacing 7.0→2.9) — possible flocking / proto-tribe.

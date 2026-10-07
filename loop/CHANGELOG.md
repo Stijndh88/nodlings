@@ -3,6 +3,10 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## INCIDENT: day 129.2 — baseline batch tripped a guardrail
+
+Baseline batch (25k ticks) from day 113.6: median fitness dropped 35.7% (692 vs 1077, max 25%). Other metrics fine: population 251, benchmark gap 1929 (was 1916), maxGen 53, largestCluster 3, brickCells 66. Likely turnover from many new generations (living-median is noisy), but not auto-diagnosed. No code change this cycle; human review needed.
+
 ## Harness overhaul — day ~98 — `STRUCTURAL:`
 
 Not a sim-behavior change; fixes the instrument (see the audit doc). Findings:
