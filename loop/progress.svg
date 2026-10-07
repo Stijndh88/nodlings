@@ -1,24 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 322" font-family="sans-serif" font-size="11">
 <rect width="100%" height="100%" fill="#fff"/>
-<text x="10" y="15" font-size="13" font-weight="bold" fill="#222">Nodlings progress (2 cycles, day 129.19)</text>
+<text x="10" y="15" font-size="13" font-weight="bold" fill="#222">Nodlings progress (3 cycles, day 144.81)</text>
 <text x="28" y="36" fill="#444">Benchmark gap (evolved - random)</text>
 <line x1="28" y1="144" x2="332" y2="144" stroke="#ccc"/>
-<polyline fill="none" stroke="#2a9d8f" stroke-width="2" points="28.0,52.6 332.0,52.0"/>
+<polyline fill="none" stroke="#2a9d8f" stroke-width="2" points="28.0,61.2 180.0,60.6 332.0,52.0"/>
 <circle cx="332.0" cy="52.0" r="3" fill="#2a9d8f"/>
-<text x="28" y="160" fill="#777">0</text><text x="332" y="160" text-anchor="end" fill="#222">now 1929 (peak 1929)</text>
+<text x="28" y="160" fill="#777">0</text><text x="332" y="160" text-anchor="end" fill="#222">now 2129 (peak 2129)</text>
 <text x="388" y="36" fill="#444">Median fitness (living)</text>
 <line x1="388" y1="144" x2="692" y2="144" stroke="#ccc"/>
-<polyline fill="none" stroke="#e9a23b" stroke-width="2" points="388.0,52.0 692.0,84.9"/>
-<circle cx="692.0" cy="84.9" r="3" fill="#e9a23b"/>
-<text x="388" y="160" fill="#777">0</text><text x="692" y="160" text-anchor="end" fill="#222">now 692 (peak 1077)</text>
+<polyline fill="none" stroke="#e9a23b" stroke-width="2" points="388.0,52.0 540.0,84.9 692.0,84.5"/>
+<circle cx="692.0" cy="84.5" r="3" fill="#e9a23b"/>
+<text x="388" y="160" fill="#777">0</text><text x="692" y="160" text-anchor="end" fill="#222">now 697 (peak 1077)</text>
 <text x="28" y="186" fill="#444">Largest built cluster (cells)</text>
 <line x1="28" y1="294" x2="332" y2="294" stroke="#ccc"/>
-<polyline fill="none" stroke="#c8553d" stroke-width="2" points="28.0,202.0 332.0,202.0"/>
-<circle cx="332.0" cy="202.0" r="3" fill="#c8553d"/>
-<text x="28" y="310" fill="#777">0</text><text x="332" y="310" text-anchor="end" fill="#222">now 3 (peak 3)</text>
+<polyline fill="none" stroke="#c8553d" stroke-width="2" points="28.0,202.0 180.0,202.0 332.0,232.7"/>
+<circle cx="332.0" cy="232.7" r="3" fill="#c8553d"/>
+<text x="28" y="310" fill="#777">0</text><text x="332" y="310" text-anchor="end" fill="#222">now 2 (peak 3)</text>
 <text x="388" y="186" fill="#444">Max generation</text>
 <line x1="388" y1="294" x2="692" y2="294" stroke="#ccc"/>
-<polyline fill="none" stroke="#6a7fdb" stroke-width="2" points="388.0,243.7 692.0,202.0"/>
+<polyline fill="none" stroke="#6a7fdb" stroke-width="2" points="388.0,264.0 540.0,239.2 692.0,202.0"/>
 <circle cx="692.0" cy="202.0" r="3" fill="#6a7fdb"/>
-<text x="388" y="310" fill="#777">0</text><text x="692" y="310" text-anchor="end" fill="#222">now 53 (peak 53)</text>
+<text x="388" y="310" fill="#777">0</text><text x="692" y="310" text-anchor="end" fill="#222">now 89 (peak 89)</text>
 </svg>
