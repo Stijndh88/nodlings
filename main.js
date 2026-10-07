@@ -207,7 +207,23 @@ loadProgress();                      // resume evolved genomes if a save exists
 // entries with the new run. Download it before reloading if you want to keep it.
 resetObserver();
 initRender(() => nodlings);
-seed(START_POP);
-spawnCritters(world, critters, START_CRITTERS);
-spawnPredators(world, predators, START_PREDATORS);
-frame();
+// Served over http (GitHub Pages) the page opens the autonomous loop's world, so
+// everyone watches the same evolving world. Add ?fresh to the URL (or press
+// "New world") for a random sandbox. Opened from disk it is always a fresh world.
+(async function start(){
+  const src = document.getElementById('worldsrc');
+  let loaded = false;
+  if (/^https?:/.test(location.protocol) && !/[?&]fresh\b/.test(location.search)){
+    try {
+      const r = await fetch('loop/world.json.gz');
+      if (r.ok){ await openLoopWorld(new Uint8Array(await r.arrayBuffer()), 'world.json.gz'); loaded = true; }
+    } catch (err){}
+  }
+  if (!loaded){
+    seed(START_POP);
+    spawnCritters(world, critters, START_CRITTERS);
+    spawnPredators(world, predators, START_PREDATORS);
+  }
+  if (src) src.textContent = loaded ? `loop world · started at day ${(world.tick/DAY_LEN).toFixed(0)}` : 'fresh sandbox';
+  frame();
+})();

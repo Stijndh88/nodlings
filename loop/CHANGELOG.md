@@ -7,6 +7,10 @@ Newest entries at the top.
 
 Baseline batch (25k ticks) from day 113.6: median fitness dropped 35.7% (692 vs 1077, max 25%). Other metrics fine: population 251, benchmark gap 1929 (was 1916), maxGen 53, largestCluster 3, brickCells 66. Likely turnover from many new generations (living-median is noisy), but not auto-diagnosed. No code change this cycle; human review needed.
 
+## Guardrail fix — day 129.2
+
+The INCIDENT above was a false positive: living-population median fitness is age-driven and dropped as new generations replaced old survivors, while benchmark gap (1916 -> 1929) and every other metric were healthy. Median fitness is now a guardrail only in paired `--dry` A/B runs. Treat the day 129.2 batch as a good baseline; no code change needed.
+
 ## Harness overhaul — day ~98 — `STRUCTURAL:`
 
 Not a sim-behavior change; fixes the instrument (see the audit doc). Findings:

@@ -42,7 +42,7 @@ in `loop/progress.svg`):
 - Population must not crash below `min_population`.
 - No NaN/non-finite metric.
 - `selfTest()` must still pass; CI (`loop/ci-check.js`) must be green.
-- Median fitness must not drop more than `max_fitness_drop_pct` vs the paired control.
+- Median fitness must not drop more than `max_fitness_drop_pct` vs the paired control (A/B `--dry` runs only: living-population median swings with turnover, so it is not compared across batches).
 - Population must not drop more than `max_population_drop_pct` vs the paired control.
 - Benchmark gap must not drop more than `max_benchmark_drop_pct` vs the paired control.
 
