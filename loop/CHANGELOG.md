@@ -7,6 +7,22 @@ Newest entries at the top.
 
 Baseline batch (25k ticks) from day 113.6: median fitness dropped 35.7% (692 vs 1077, max 25%). Other metrics fine: population 251, benchmark gap 1929 (was 1916), maxGen 53, largestCluster 3, brickCells 66. Likely turnover from many new generations (living-median is noisy), but not auto-diagnosed. No code change this cycle; human review needed.
 
+## Cycle 11 (A/B) — day 129.2 + 8k ticks — `STRUCTURAL: kept`
+
+**Hypothesis** (priority #1, construction): the nest bonus counts scattered stacks, and largest built cluster is only 3-4 cells, so building is scatter, not villages. Reward placing durable material next to an existing durable structure (`BUILD_ADJACENT_BONUS = 0.3` in `nodling.js`), so extending a structure is reinforced by the Hebbian rule.
+
+Paired A/B from the same day-129.2 snapshot, 8k ticks:
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 4 | 5 |
+| builtCells | 690 | 539 |
+| benchmark gap | 1929 | 2038 |
+| medianFitness | 1067 | 1006 |
+| population | 251 | 248 |
+
+Guardrails passed. Cluster and benchmark gap moved the right way, but builtCells (690 -> 539) and median fitness fell; one 8k-tick sample is within noise; the next batches (25k ticks) are the real test. Revert if `largestCluster` is still <= 5 after 3 batches.
+
 ## Guardrail fix — day 129.2
 
 The INCIDENT above was a false positive: living-population median fitness is age-driven and dropped as new generations replaced old survivors, while benchmark gap (1916 -> 1929) and every other metric were healthy. Median fitness is now a guardrail only in paired `--dry` A/B runs. Treat the day 129.2 batch as a good baseline; no code change needed.

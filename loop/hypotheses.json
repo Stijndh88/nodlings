@@ -1,9 +1,43 @@
 {
   "_doc": "Ledger of loop hypotheses. Status: open | running | kept | reverted | untested (closed without a result). Check before picking one; set running (commit) when you start; set the final status with the cycle number.",
   "hypotheses": [
-    {"id": "fire-spread-0.06", "signal": 1, "change": "FIRE_SPREAD_RATE 0.04 -> 0.06", "status": "kept", "cycle": 1, "note": "bricks 1 -> 44; old metrics were not paired, effect size unverified"},
-    {"id": "fire-spread-0.09", "signal": 1, "change": "FIRE_SPREAD_RATE 0.06 -> 0.09", "status": "kept", "cycle": 2, "note": "peak fitness unchanged (6163); effect unverified under the old harness"},
-    {"id": "comm-listener-reward", "signal": 2, "change": "reward hearing a sound while something salient is near (PR #4)", "status": "untested", "note": "closed unmerged; never validated on a continuous world"},
-    {"id": "comm-alarm-flee", "signal": 2, "change": "reward fleeing a heard sound when a predator is near (PRs #2, #3)", "status": "untested", "note": "closed unmerged; hardcodes the alarm->flee direction"}
+    {
+      "id": "fire-spread-0.06",
+      "signal": 1,
+      "change": "FIRE_SPREAD_RATE 0.04 -> 0.06",
+      "status": "kept",
+      "cycle": 1,
+      "note": "bricks 1 -> 44; old metrics were not paired, effect size unverified"
+    },
+    {
+      "id": "fire-spread-0.09",
+      "signal": 1,
+      "change": "FIRE_SPREAD_RATE 0.06 -> 0.09",
+      "status": "kept",
+      "cycle": 2,
+      "note": "peak fitness unchanged (6163); effect unverified under the old harness"
+    },
+    {
+      "id": "comm-listener-reward",
+      "signal": 2,
+      "change": "reward hearing a sound while something salient is near (PR #4)",
+      "status": "untested",
+      "note": "closed unmerged; never validated on a continuous world"
+    },
+    {
+      "id": "comm-alarm-flee",
+      "signal": 2,
+      "change": "reward fleeing a heard sound when a predator is near (PRs #2, #3)",
+      "status": "untested",
+      "note": "closed unmerged; hardcodes the alarm->flee direction"
+    },
+    {
+      "id": "build-adjacent-bonus",
+      "signal": 1,
+      "change": "reward +0.3 for placing durable material next to an existing structure (nodling.js BUILD_ADJACENT_BONUS)",
+      "status": "kept",
+      "cycle": 11,
+      "note": "first paired A/B: cluster 4 -> 5, builtCells 690 -> 539, bench gap 1929 -> 2038; single 8k-tick sample, within noise"
+    }
   ]
 }
