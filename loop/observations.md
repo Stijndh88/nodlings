@@ -1,25 +1,33 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `363454120` · day 97.9 · Winter
+Seed `20261007` · day 113.6 · Summer
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 249 (44 juvenile) |
-| max generation | 12 |
-| best fitness | 6163 |
-| avg brain (conns) | 75 |
-| lineage diversity | 7 colour-groups |
+| population | 250 (14 juvenile) |
+| max generation | 28 |
+| best fitness | 6359 |
+| avg brain (conns) | 86 |
+| lineage diversity | 8 colour-groups |
 | diet | 89% herbivore / 0% carnivore |
-| predators | 3, 9 kills, best 18015 |
-| structures (durable) | 1287 (118) |
-| planks / bricks / bridges | 6 / 21 / 160 |
-| flora / cooked food | 2985 / 72 |
-| active fires | 76 |
+| predators | 2, 4 kills, best 18015 |
+| structures (durable) | 1667 (86) |
+| planks / bricks / bridges | 0 / 47 / 413 |
+| flora / cooked food | 8849 / 85 |
+| active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 111.9]** _(trend)_ Lineages are deepening — max generation 18→28. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 105.9]** _(trend)_ Lineages are deepening — max generation 9→18. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 103.9]** _(trend)_ Nodlings are grouping more tightly (mean spacing 7.0→2.9) — possible flocking / proto-tribe.
+- **[day 99.9]** _(trend)_ Lineages are deepening — max generation 0→9. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 98.9]** _(trend)_ Nodlings are grouping more tightly (mean spacing 7.0→3.5) — possible flocking / proto-tribe.
+- **[day 97.9]** _(issue)_ Almost no deliberate construction yet — the shelter/nest payoff may be too weak or too many steps away to be discovered. Consider a stronger cold pressure or a bigger nest bonus.
+- **[day 97.9]** _(issue)_ After 97 days, max generation is only 0 — lineages aren't persisting. The population is crashing to the reseed floor and resetting its gene pool each cycle. Stabilising the population near carrying capacity is the single biggest unlock for evolution here.
+- **[day 97.9]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 93.9]** _(trend)_ Nodlings are grouping more tightly (mean spacing 7.8→2.9) — possible flocking / proto-tribe.
 - **[day 93.9]** _(trend)_ Lineages are deepening — max generation 0→4. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 87.3]** _(trend)_ Lineages are deepening — max generation 14→25. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.

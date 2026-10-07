@@ -1,8 +1,19 @@
 {
-  "population": 248,
-  "fitness": 6163,
-  "maxGen": 14,
-  "avgBrain": 78.19354838709677,
-  "built": 141,
-  "day": 97.9375
+  "day": 113.56,
+  "population": 249,
+  "medianFitness": 1077,
+  "meanFitness": 1291,
+  "peakFitness": 6359,
+  "maxGen": 29,
+  "avgBrain": 87.2,
+  "largestCluster": 3,
+  "builtCells": 265,
+  "brickCells": 68,
+  "commSeparation": 0.0158,
+  "worldTick": 181700,
+  "benchmark": {
+    "evolved": 2224,
+    "random": 308,
+    "gap": 1916
+  }
 }

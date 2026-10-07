@@ -3,6 +3,19 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Harness overhaul — day ~98 — `STRUCTURAL:`
+
+Not a sim-behavior change; fixes the instrument (see the audit doc). Findings:
+peak fitness (6163) could never fall, each process regenerated a new random map
+(`built` 177/131/76 on identical code), `gen` wasn't saved (`maxGen` reset to 0),
+validation was one noisy run, and there was no CI.
+
+- Continuous world: `loop/world.json.gz` snapshot resumed every batch; fixed `world_seed`; `gen` saved; novelty archive uses the seeded RNG. Runs are deterministic.
+- New metrics (`metrics.js`): living median/mean fitness, largest built cluster, brick cells, comm separation, and a benchmark (evolved vs random genomes on fixed seeds). `history.jsonl` + `progress.svg` track every cycle.
+- Guardrails now compare against a paired control from the same snapshot (see RULES.md).
+- `loop/hypotheses.json` ledger; CI workflow (`.github/workflows/ci.yml`).
+- Cycles 1 and 2 above were validated under the old harness: their effect sizes are unverified. Cycle numbers in `state.json` (9) include sessions whose PRs were closed unmerged.
+
 ## Cycle 2 — day 92.9→97.9 — `kept`
 
 **Hypothesis** (priority #1, brick/kiln chains): bricks rose 1→44 after the

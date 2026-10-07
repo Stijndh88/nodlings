@@ -40,13 +40,17 @@ const PERISHABLE = { meat:0.012, cooked:0.02 };  // per-sample rot chance
 // mulberry32 — seedable, so runs are reproducible
 function makeRng(seed){
   let a = seed >>> 0;
-  return function(){
+  const rng = function(){
     a = (a + 0x6D2B79F5) >>> 0;
     let t = a;
     t = Math.imul(t ^ (t >>> 15), t | 1);
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
+  // state accessors so a saved world resumes the exact random stream
+  rng.getState = () => a;
+  rng.setState = s => { a = s >>> 0; };
+  return rng;
 }
 
 // Shared scratch for senseScan — reused every eval to keep the hot path GC-free.
