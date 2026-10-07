@@ -3,6 +3,15 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 2 — day 92.9→97.9 — `kept`
+
+**Hypothesis** (priority #1, brick/kiln chains): bricks rose 1→44 after the
+last bump to FIRE_SPREAD_RATE; raise 0.06 → 0.09 (within [0.01, 0.2]) for more
+clay-adjacent flame and more kiln-style firing.
+
+- Before: population 249, fitness 6163, built 185, day 92.9
+- After (8k-tick validation): population 248, fitness 6163, built 141 (metric snapshot, not clearly comparable), day 97.9 — guardrails passed.
+
 ## Cycle 1 — day 51.7→61.7 — `kept`
 
 **Hypothesis** (priority #1, brick/kiln chains): only 1 brick had ever been

@@ -9,7 +9,7 @@ const DAYS_PER_YEAR = 32;                       // 8 days per season
 const SEASONS = ['Spring','Summer','Autumn','Winter'];
 const COMFORT = 18;                             // body temp Nodlings do best at
 const HASH_B = 12;                              // spatial-index bucket size (>= EARSHOT)
-const FIRE_SPREAD_RATE = 0.06;                  // per-neighbour ignite chance while burning
+const FIRE_SPREAD_RATE = 0.09;                  // per-neighbour ignite chance while burning
 
 // Vital limits (also surfaced in the sidebar '?' help). Body temp drifts toward
 // the local cell temperature; discomfort drains energy, extremes can kill.
