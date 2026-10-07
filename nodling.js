@@ -215,6 +215,10 @@ class Nodling {
         this.eat(this.carrying); this.carrying = null;
       } else if (top && MATERIALS[top].nutrition){
         this.eat(cell.stack.pop());
+      } else if (top === 'clay' && w.adjacentFlammable(cx, cy)){
+        // deliberate kiln: tend a fire into nearby clay, the fuel spends itself
+        cell.stack[cell.stack.length-1] = 'brick';
+        this.energy -= 1.5;
       } else if (cell.water || w.adjacentWater(cx, cy)){
         this.hydration = 100;
       }

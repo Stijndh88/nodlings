@@ -194,6 +194,17 @@ class World {
     return false;
   }
 
+  // Is there fuel (a flammable stack top) in an adjacent cell? Lets a Nodling
+  // deliberately tend a kiln next to clay instead of waiting on stray lightning.
+  adjacentFlammable(x, y){
+    for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
+      const c = this.at(x+dx, y+dy);
+      const top = c && c.stack[c.stack.length-1];
+      if (top && MATERIALS[top].flammable) return true;
+    }
+    return false;
+  }
+
   // One pass over the vision disc: nearest [dx,dy] per target kind, incl. any
   // structure (stack >= 2) so brains can perceive existing shelter.
   // Uses shared scratch objects (consumed synchronously) to avoid per-eval GC.
