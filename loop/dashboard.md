@@ -1,6 +1,6 @@
 # Nodlings progress
 
-Updated 2026-10-07T16:30Z. Now: day 160.44, benchmark gap **2129** (evolved gene pool minus random genomes), largest built cluster 3, 65 brick cells, max generation 112.
+Updated 2026-10-07T20:30Z. Now: day 176.06, benchmark gap **2129** (evolved gene pool minus random genomes), largest built cluster 4, 65 brick cells, max generation 137.
 
 ![progress](progress.svg)
 
@@ -8,6 +8,7 @@ Updated 2026-10-07T16:30Z. Now: day 160.44, benchmark gap **2129** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 14 | 176.06 | 2129 | 961 | 4 | 65 | 137 | 0.0119 |
 | 13 | 160.44 | 2129 | 722 | 3 | 65 | 112 | 0.0226 |
 | 12 | 144.81 | 2129 | 697 | 2 | 65 | 89 | 0.0677 |
 | 11 | 129.19 | 1929 | 692 | 3 | 66 | 53 | 0.0407 |
@@ -22,5 +23,6 @@ Updated 2026-10-07T16:30Z. Now: day 160.44, benchmark gap **2129** (evolved gene
 - **kept**: reward +0.3 for placing durable material next to an existing structure (nodling.js BUILD_ADJACENT_BONUS) (first paired A/B: cluster 4 -> 5, builtCells 690 -> 539, bench gap 1929 -> 2038; single 8k-tick sample, within noise)
 - **kept**: POP_CAP 250 -> 400 (cap was binding while food was abundant; paired A/B at 250/400/600/1200 in CHANGELOG. POP_CAP now a tunable [250, 800]; runtime grows ~linearly)
 - **reverted**: BUILD_ADJACENT_BONUS 0.3 -> 0.9 (cluster 3->3, builtCells 535->414, bench gap 2129->1949; no gain on target, others worse)
+- **reverted**: world.js cellTemp: x1.5 insulation when >=3 neighbouring cells hold durable material (cluster 4->4, builtCells 814->435, bench gap 2129->1889; no gain on target, others worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
