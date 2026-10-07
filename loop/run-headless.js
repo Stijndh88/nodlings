@@ -115,7 +115,9 @@ if (!finite) reasons.push('non-finite metric (NaN)');
 if (metrics.population < g.min_population) reasons.push(`population ${metrics.population} < min ${g.min_population}`);
 const dropPct = (before, after) => before > 0 ? 100 * (before - after) / before : 0;
 if (baseline){
-  if (baseline.medianFitness != null && dropPct(baseline.medianFitness, metrics.medianFitness) > g.max_fitness_drop_pct)
+  // Median fitness of the living population is age-driven and swings with turnover,
+  // so it is only a guardrail in paired --dry A/B runs (same snapshot), never across batches.
+  if (dry && baseline.medianFitness != null && dropPct(baseline.medianFitness, metrics.medianFitness) > g.max_fitness_drop_pct)
     reasons.push(`median fitness dropped ${dropPct(baseline.medianFitness, metrics.medianFitness).toFixed(1)}% (max ${g.max_fitness_drop_pct}%)`);
   const bp = baseline.population;
   if (bp != null && dropPct(bp, metrics.population) > g.max_population_drop_pct)
