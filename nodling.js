@@ -8,6 +8,8 @@ const EARSHOT = 12;
 const POP_CAP = 250;   // bigger world supports a larger, more diverse gene pool
 const MATURITY = 160;  // age below which a Nodling is a juvenile (can't breed, sees less)
 const SENESCENCE = 900;// age past which upkeep rises (aging)
+const DURABLE_BUILD = ['wood','plank','stone','brick'];
+const BUILD_ADJACENT_BONUS = 0.3; // reward for placing durable material next to an existing structure
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
@@ -203,6 +205,13 @@ class Nodling {
       if (fc && fc.water && !fc.stack.length && MATERIALS[this.carrying].buoyant){
         fc.stack.push(this.carrying); // bridge
       } else {
+        // building onto an existing durable structure is rewarded (clusters, not scatter)
+        if (DURABLE_BUILD.includes(this.carrying)){
+          for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+            const nb = w.at(cx+ax, cy+ay);
+            if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += BUILD_ADJACENT_BONUS; break; }
+          }
+        }
         cell.stack.push(this.carrying);
       }
       this.carrying = null;
