@@ -59,6 +59,9 @@ function loopMetrics(){
     maxGen: nodlings.reduce((m,n)=>Math.max(m,n.gen),0),
     avgBrain: +mean(nodlings.map(n=>n.brainSize)).toFixed(1),
     largestCluster: cl.largest, builtCells: cl.builtCells, brickCells: cl.brickCells,
+    meanEnergy: Math.round(mean(nodlings.map(n=>n.energy))),
+    floraCount: world.cells.reduce((s,c)=>s+(c.stack.includes('flora')?1:0),0),
+    deaths: Object.assign({}, world.deathCauses),
     commSeparation: comm.nNear > 20 && comm.nFar > 20 ? +Math.abs(cNear-cFar).toFixed(4) : null,
   };
 }

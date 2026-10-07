@@ -5,7 +5,7 @@
 
 const VISION = 6;      // vision disc radius — the per-tick sensing cost driver
 const EARSHOT = 12;
-const POP_CAP = 250;   // bigger world supports a larger, more diverse gene pool
+const POP_CAP = 400;   // food isn't limiting until ~800+ (see CHANGELOG cycle 12); runtime scales ~linearly with this
 const MATURITY = 160;  // age below which a Nodling is a juvenile (can't breed, sees less)
 const SENESCENCE = 900;// age past which upkeep rises (aging)
 const DURABLE_BUILD = ['wood','plank','stone','brick'];
@@ -288,6 +288,8 @@ class Nodling {
     else if (this.bodyTemp > TEMP_LETHAL_HI) mortal = (this.bodyTemp - TEMP_LETHAL_HI)*0.004;
 
     if (this.energy <= 0 || this.hydration <= 0 || (mortal > 0 && w.rng() < mortal)){
+      const cause = this.energy <= 0 ? 'starved' : this.hydration <= 0 ? 'thirst' : 'temp';
+      w.deathCauses[cause] = (w.deathCauses[cause] || 0) + 1;
       this.die(cell); return null;
     }
 
