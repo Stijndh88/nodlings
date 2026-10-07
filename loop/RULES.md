@@ -2,8 +2,8 @@
 
 ```json
 {
-  "batch_ticks": 80000,
-  "validation_ticks": 16000,
+  "batch_ticks": 25000,
+  "validation_ticks": 8000,
   "guardrails": {
     "min_population": 15,
     "max_fitness_drop_pct": 25,
