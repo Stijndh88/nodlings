@@ -21,7 +21,7 @@ Paired A/B from the same day-129.2 snapshot, 8k ticks:
 | medianFitness | 1067 | 1006 |
 | population | 251 | 248 |
 
-Guardrails passed. Direction is right but one 8k-tick sample is within noise; the next batches (25k ticks) are the real test. Revert if `largestCluster` is still <= 5 after 3 batches.
+Guardrails passed. Cluster and benchmark gap moved the right way, but builtCells (690 -> 539) and median fitness fell; one 8k-tick sample is within noise; the next batches (25k ticks) are the real test. Revert if `largestCluster` is still <= 5 after 3 batches.
 
 ## Guardrail fix — day 129.2
 
