@@ -21,7 +21,7 @@ First read `loop/RULES.md` (metrics, guardrails, paired A/B protocol, priority s
    - `"pass": false` (guardrail tripped on the resumed state): `git add -A && git commit -m "cycle: INCIDENT at day X"`, add a CHANGELOG entry prefixed `INCIDENT:` with the reasons, `git push origin master`, STOP.
    - `"pass": true`: `git add -A && git commit -m "cycle: batch to day X"` and `git push origin master` immediately. This is the control snapshot.
 2. Record the control BEFORE editing code: `node loop/run-headless.js --dry --bench --ticks=<validation_ticks> --out=/tmp/control.json`.
-3. Pick ONE hypothesis from RULES.md's priority signals. Skip anything in hypotheses.json or CHANGELOG marked `reverted` or `running`. Mark it `running` in `loop/hypotheses.json`.
+3. Run `node loop/plateau.js`; if it demands a STRUCTURAL cycle, your change must be structural. Pick ONE hypothesis from RULES.md's priority signals. Skip anything in hypotheses.json or CHANGELOG marked `reverted` or `running`. Mark it `running` in `loop/hypotheses.json`.
 4. Make ONE small code change implementing it (tunables stay in range; structural changes get a `STRUCTURAL:` CHANGELOG prefix).
 5. Treatment from the same snapshot: `node loop/run-headless.js --dry --bench --ticks=<validation_ticks> --compare=/tmp/control.json`. Compare its metrics with `/tmp/control.json`, especially the target signal (`largestCluster`/`brickCells` for construction, `commSeparation` for communication, `benchmark.gap`/`medianFitness` for growth).
 6. If `"pass": false` or the target metric is worse than control: `git checkout -- .` to discard the change, set the hypothesis to `reverted`, append a CHANGELOG entry with control vs treatment numbers, commit and push only the CHANGELOG/hypotheses update.

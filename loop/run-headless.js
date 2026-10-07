@@ -13,7 +13,7 @@ const path = require('path');
 const vm = require('vm');
 const zlib = require('zlib');
 const { execSync } = require('child_process');
-const { renderProgress } = require('./report');
+const { renderProgress, renderDashboard } = require('./report');
 
 const ROOT = path.join(__dirname, '..');
 const LOOP = __dirname;
@@ -140,7 +140,10 @@ if (!dry){
   const histPath = path.join(dir, 'history.jsonl');
   fs.appendFileSync(histPath, JSON.stringify({ cycle: state.cycle + 1, commit, at: new Date().toISOString(), ticks, ...metrics }) + '\n');
   const history = fs.readFileSync(histPath, 'utf8').trim().split('\n').map(l => JSON.parse(l));
-  fs.writeFileSync(path.join(dir, 'progress.svg'), renderProgress(history));
+  const svg = renderProgress(history);
+  fs.writeFileSync(path.join(dir, 'progress.svg'), svg);
+  fs.writeFileSync(path.join(dir, 'dashboard.html'), renderDashboard(history, svg,
+    fs.readFileSync(path.join(LOOP, 'CHANGELOG.md'), 'utf8'), readJSON(path.join(LOOP, 'hypotheses.json'), {})));
 }
 
 const verdict = { pass: reasons.length === 0, reasons, metrics };
