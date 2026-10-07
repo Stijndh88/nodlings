@@ -47,4 +47,29 @@ ${svg}
 <h2>Recent cycles</h2><table><tr><th>cycle</th><th>day</th><th>bench gap</th><th>median fit</th><th>cluster</th><th>bricks</th><th>max gen</th><th>comm</th></tr>${rows}</table>
 <h2>Hypotheses</h2><ul>${hyp}</ul><h2>Latest changelog</h2>${entries}</body></html>`;
 }
-module.exports = { renderProgress, renderDashboard };
+
+// loop/dashboard.md: renders natively in the GitHub app/mobile (no Pages needed).
+function renderMarkdown(history, hypotheses){
+  const last = history[history.length - 1];
+  const fmt = h => `| ${h.cycle} | ${h.day} | ${h.benchmark ? h.benchmark.gap : ''} | ${h.medianFitness} | ${h.largestCluster} | ${h.brickCells} | ${h.maxGen} | ${h.commSeparation ?? ''} |`;
+  const hyp = (hypotheses.hypotheses || []).map(x => `- **${x.status}**: ${x.change}${x.note ? ' (' + x.note + ')' : ''}`).join('\n');
+  return `# Nodlings progress
+
+Updated ${new Date().toISOString().slice(0, 16)}Z. ${last ? `Now: day ${last.day}, benchmark gap **${last.benchmark ? last.benchmark.gap : 'n/a'}** (evolved gene pool minus random genomes), largest built cluster ${last.largestCluster}, ${last.brickCells} brick cells, max generation ${last.maxGen}.` : ''}
+
+![progress](progress.svg)
+
+## Recent cycles (newest first)
+
+| cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
+|---|---|---|---|---|---|---|---|
+${history.slice(-15).reverse().map(fmt).join('\n')}
+
+## Hypotheses
+
+${hyp}
+
+See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
+`;
+}
+module.exports = { renderProgress, renderDashboard, renderMarkdown };

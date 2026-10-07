@@ -62,3 +62,5 @@ Genuine multi-step construction (visible villages) is still a long evolutionary 
 The headline number is `benchmark.gap`: how much better the evolved gene pool does than random genomes on fixed-seed worlds. `node loop/run-headless.js --dry --ticks=2000` runs a throwaway batch; `node loop/ci-check.js` is the CI gate.
 
 **Watching it:** open `index.html` and press **👁 Loop world** to load the loop's saved world (fetches `loop/world.json.gz` when served over http, otherwise asks for the file). `loop/dashboard.html` is a self-contained progress page rebuilt every cycle; `node loop/plateau.js` says when the loop should switch from tuning to structural changes.
+
+**On GitHub / mobile:** [loop/dashboard.md](loop/dashboard.md) renders in the GitHub app. With GitHub Pages on (Settings, Pages, deploy from `master` / root) the live simulation is at https://stijndh88.github.io/nodlings/ (press 👁 Loop world) and the full dashboard at https://stijndh88.github.io/nodlings/loop/dashboard.html.
