@@ -1,25 +1,31 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `345697278` · day 51.7 · Summer
+Seed `346473834` · day 61.7 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 248 (26 juvenile) |
-| max generation | 77 |
-| best fitness | 4473 |
-| avg brain (conns) | 67 |
-| lineage diversity | 4 colour-groups |
-| diet | 53% herbivore / 32% carnivore |
-| predators | 2, 0 kills, best 10124 |
-| structures (durable) | 7016 (661) |
-| planks / bricks / bridges | 13 / 9 / 443 |
-| flora / cooked food | 9024 / 115 |
-| active fires | 9 |
+| population | 250 (16 juvenile) |
+| max generation | 26 |
+| best fitness | 4686 |
+| avg brain (conns) | 59 |
+| lineage diversity | 10 colour-groups |
+| diet | 77% herbivore / 6% carnivore |
+| predators | 2, 3 kills, best 10124 |
+| structures (durable) | 4717 (338) |
+| planks / bricks / bridges | 27 / 0 / 202 |
+| flora / cooked food | 8706 / 6 |
+| active fires | 8 |
 
 ## Log (newest first)
 
+- **[day 60.7]** _(trend)_ Lineages are deepening — max generation 10→26. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 57.7]** _(trend)_ Nodlings are grouping more tightly (mean spacing 6.9→2.4) — possible flocking / proto-tribe.
+- **[day 54.7]** _(trend)_ Lineages are deepening — max generation 0→10. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 52.7]** _(trend)_ Nodlings are grouping more tightly (mean spacing 6.9→3.1) — possible flocking / proto-tribe.
+- **[day 51.7]** _(issue)_ Almost no deliberate construction yet — the shelter/nest payoff may be too weak or too many steps away to be discovered. Consider a stronger cold pressure or a bigger nest bonus.
+- **[day 51.7]** _(issue)_ After 51 days, max generation is only 0 — lineages aren't persisting. The population is crashing to the reseed floor and resetting its gene pool each cycle. Stabilising the population near carrying capacity is the single biggest unlock for evolution here.
 - **[day 48.7]** _(trend)_ Lineages are deepening — max generation 52→71. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 45.7]** _(trend)_ Nodlings are grouping more tightly (mean spacing 2.2→1.3) — possible flocking / proto-tribe.
 - **[day 40.7]** _(milestone)_ First brick fired — clay met fire (a kiln). Brick is the best insulator; shelter built from it would survive winter far better.

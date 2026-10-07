@@ -35,6 +35,8 @@ class Nodling {
     this.foodMem = null;                         // remembered [x,y] of food/water/shelter
     this.waterMem = null;
     this.shelterMem = null;
+    this.heardDir = null;                        // direction to nearest heard sound, if any
+    this.predNear = false;                       // predator within earshot-ish range
     this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
     this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
     this.behavN = 0;
@@ -107,6 +109,7 @@ class Nodling {
       if (d < bsd){ bsd = d; bs = snd; }
     }
     if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
+    this.heardDir = bs ? [s[23], s[24]] : null;
 
     s[25] = this.mem[0]; s[26] = this.mem[1];
     s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
@@ -124,6 +127,7 @@ class Nodling {
       if (d < bpd){ bpd = d; bp = p; }
     }
     if (bp){ s[38] = (bp.x-this.x)/12; s[39] = (bp.y-this.y)/12; s[40] = 1 - Math.sqrt(bpd)/12; }
+    this.predNear = !!bp && bpd < 36;
 
     // social: neighbour's health, kinship (hue ≈ lineage), and its last action
     // (so imitation can be *learned* — the brain may choose to copy it)
@@ -256,6 +260,15 @@ class Nodling {
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
       if (topNut || predNear) this.bonus += 0.25;
+    }
+
+    // -- listening: reward moving away from a heard sound while a predator is
+    //    actually nearby — bootstraps the listener's half of alarm->flee before
+    //    any frequency meaning has evolved (the caller side already gets a bonus
+    //    for calling near danger; this makes reacting to that call learnable too) --
+    if (this.heardDir && this.predNear){
+      const away = -(out.moveX*this.heardDir[0] + out.moveY*this.heardDir[1]);
+      if (away > 0.3) this.bonus += 0.15;
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
