@@ -3,6 +3,21 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 15 (A/B) — day 176.1 + 8k ticks — `kept` (comm: LISTEN_BONUS 0.15)
+
+**Hypothesis** (priority #2, communication): plateau.js said tuning is still productive, so a non-structural change. Reward hearing a call while a predator is near (`LISTEN_BONUS = 0.15` in `nodling.js`), so listening to sound becomes learnable without hardcoding a flee direction.
+
+| | control | treatment |
+|---|---|---|
+| commSeparation | 0.0264 | 0.0589 |
+| benchmark gap | 2129 | 1828 |
+| largestCluster | 3 | 3 |
+| builtCells | 352 | 465 |
+| medianFitness | 1229 | 1133 |
+| population | 402 | 400 |
+
+Guardrails passed (gap -14%, limit 25%). Target moved the right way, but this is one 8k-tick sample and within noise; the benchmark gap drop is a watch item. Revert if commSeparation is not above ~0.03 or the gap keeps falling after the next 2 batches.
+
 ## Cycle 14 (A/B) — day 160.4 + 8k ticks — `reverted` (STRUCTURAL: enclosure insulation)
 
 **Hypothesis** (priority #1, plateau.js demanded a structural change): give a thermal payoff to clustering, x1.5 insulation in `cellTemp` when >=3 neighbouring cells hold durable material, so walls near each other are selected for.

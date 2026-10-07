@@ -62,6 +62,14 @@
       "status": "reverted",
       "cycle": 14,
       "note": "cluster 4->4, builtCells 814->435, bench gap 2129->1889; no gain on target, others worse"
+    },
+    {
+      "id": "comm-listen-bonus",
+      "signal": 2,
+      "change": "nodling.js LISTEN_BONUS 0.15: reward hearing a call while a predator is near",
+      "status": "kept",
+      "cycle": 15,
+      "note": "commSeparation 0.0264 -> 0.0589; bench gap 2129 -> 1828 (-14%, inside guardrail); single 8k sample, within noise"
     }
   ]
 }

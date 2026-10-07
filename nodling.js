@@ -9,6 +9,7 @@ const POP_CAP = 400;   // food isn't limiting until ~800+ (see CHANGELOG cycle 1
 const MATURITY = 160;  // age below which a Nodling is a juvenile (can't breed, sees less)
 const SENESCENCE = 900;// age past which upkeep rises (aging)
 const DURABLE_BUILD = ['wood','plank','stone','brick'];
+const LISTEN_BONUS = 0.15; // reward for hearing a call while a predator is near
 const BUILD_ADJACENT_BONUS = 0.3; // reward for placing durable material next to an existing structure
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
@@ -126,6 +127,8 @@ class Nodling {
       if (d < bpd){ bpd = d; bp = p; }
     }
     if (bp){ s[38] = (bp.x-this.x)/12; s[39] = (bp.y-this.y)/12; s[40] = 1 - Math.sqrt(bpd)/12; }
+    // listening pays when it matters: hearing a call with a predator close makes sound informative to the listener
+    if (bp && bs) this.bonus += LISTEN_BONUS;
 
     // social: neighbour's health, kinship (hue ≈ lineage), and its last action
     // (so imitation can be *learned* — the brain may choose to copy it)
