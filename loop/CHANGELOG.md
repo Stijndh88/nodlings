@@ -3,6 +3,19 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 19 (A/B) — day 238.6 + 8k ticks — `reverted` (STRUCTURAL: night shelter bonus)
+
+**Hypothesis** (priority #1, plateau.js demanded structural; gap, largestCluster, brickCells flat): +0.05 per-tick reward for standing in a cell >=5° warmer than ambient at night (`SHELTER_BONUS`), so building shelter pays off directly. Baseline batch to day 238.6 passed (gap 1711). Run by a thread session after the 12:23 routine run was blocked.
+
+| | control | treatment |
+|---|---|---|
+| medianFitness | 1504 | 903 (-40%, guardrail tripped) |
+| largestCluster | 2 | 2 |
+| builtCells | 390 | 321 |
+| benchmark gap | 2123 | 2200 |
+
+Guardrail failed on median fitness and the target metric did not move: reverted.
+
 ## Cycle 18 (A/B) — day 227.9 + 8k ticks — `kept` (STRUCTURAL: kiln clay bonus)
 
 **Hypothesis** (priority #1, plateau.js demanded structural; gap, largestCluster, brickCells flat): reward dropping clay next to an active fire (`KILN_BONUS = 0.5`) so the clay->fire->brick chain is learnable. Baseline batch to day 222.9 passed (gap 1711).

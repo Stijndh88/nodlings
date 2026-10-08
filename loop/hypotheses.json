@@ -94,6 +94,14 @@
       "status": "kept",
       "cycle": 18,
       "note": "treatment metrics identical to control (bonus never fired in 8k ticks); no evidence of effect"
+    },
+    {
+      "id": "night-shelter-bonus",
+      "signal": 1,
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "status": "reverted",
+      "cycle": 19,
+      "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
     }
   ]
 }
