@@ -3,6 +3,19 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 20 (A/B) — day 254.2 + 8k ticks — `reverted` (comm: LISTEN_BONUS 0.15 -> 0.3)
+
+**Hypothesis** (priority #2): doubling the reward for hearing a call near a predator strengthens alarm-call learning. Baseline batch to day 254.2 passed (gap 2123); plateau.js: tuning still productive.
+
+| | control | treatment |
+|---|---|---|
+| commSeparation | 0.0448 | 0.0124 |
+| benchmark gap | 2123 | 2015 |
+| largestCluster | 6 | 3 |
+| medianFitness | 881 | 957 |
+
+Guardrails passed but target metric worse: reverted.
+
 ## Cycle 19 (A/B) — day 238.6 + 8k ticks — `reverted` (STRUCTURAL: night shelter bonus)
 
 **Hypothesis** (priority #1, plateau.js demanded structural; gap, largestCluster, brickCells flat): +0.05 per-tick reward for standing in a cell >=5° warmer than ambient at night (`SHELTER_BONUS`), so building shelter pays off directly. Baseline batch to day 238.6 passed (gap 1711). Run by a thread session after the 12:23 routine run was blocked.

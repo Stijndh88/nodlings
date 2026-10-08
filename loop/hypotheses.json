@@ -102,6 +102,14 @@
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
+    },
+    {
+      "id": "comm-listen-0.3",
+      "signal": 2,
+      "change": "LISTEN_BONUS 0.15 -> 0.3",
+      "status": "reverted",
+      "cycle": 20,
+      "note": "commSeparation 0.0448->0.0124, bench gap 2123->2015, cluster 6->3; worse on target"
     }
   ]
 }
