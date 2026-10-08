@@ -1,25 +1,29 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 176.1 · Summer
+Seed `20261007` · day 191.7 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 398 (44 juvenile) |
-| max generation | 137 |
-| best fitness | 6579 |
-| avg brain (conns) | 82 |
-| lineage diversity | 6 colour-groups |
-| diet | 72% herbivore / 9% carnivore |
-| predators | 6, 43 kills, best 27911 |
-| structures (durable) | 2940 (188) |
-| planks / bricks / bridges | 5 / 43 / 1200 |
-| flora / cooked food | 7968 / 122 |
+| population | 398 (71 juvenile) |
+| max generation | 165 |
+| best fitness | 7002 |
+| avg brain (conns) | 90 |
+| lineage diversity | 5 colour-groups |
+| diet | 81% herbivore / 1% carnivore |
+| predators | 6, 50 kills, best 45003 |
+| structures (durable) | 3484 (265) |
+| planks / bricks / bridges | 12 / 40 / 1365 |
+| flora / cooked food | 5266 / 124 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 190.1]** _(trend)_ Lineages are deepening — max generation 152→163. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 184.1]** _(trend)_ Lineages are deepening — max generation 142→152. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 183.1]** _(milestone)_ Best predator fitness passed 30000 — a very effective hunter lineage.
+- **[day 178.1]** _(trend)_ Lineages are deepening — max generation 137→142. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 171.4]** _(trend)_ Lineages are deepening — max generation 117→127. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 165.4]** _(trend)_ Lineages are deepening — max generation 112→117. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 162.4]** _(trend)_ Nodlings are grouping more tightly (mean spacing 2.7→1.9) — possible flocking / proto-tribe.
