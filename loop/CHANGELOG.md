@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 21 (A/B) — day 279.2 + 16k ticks — `kept` (STRUCTURAL: weathering mutual support)
+
+**Hypothesis** (priority #1, plateau.js demanded structural): stacks orthogonally adjacent to a durable stack (>=2 high) skip weathering, so clusters persist. Baseline batch (40k ticks; 80k timed out) passed, gap 2246.
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 4 | 4 |
+| brickCells | 65 | 65 |
+| builtCells | 821 | 733 |
+| benchmark gap | 2246 | 2269 |
+| medianFitness | 815 | 827 |
+
+Guardrails passed; target unchanged (within noise). Kept per rule, no evidence of effect.
+
 ## Cycle 20 (A/B) — day 254.2 + 8k ticks — `reverted` (comm: LISTEN_BONUS 0.15 -> 0.3)
 
 **Hypothesis** (priority #2): doubling the reward for hearing a call near a predator strengthens alarm-call learning. Baseline batch to day 254.2 passed (gap 2123); plateau.js: tuning still productive.

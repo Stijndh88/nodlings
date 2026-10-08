@@ -275,10 +275,18 @@ class World {
     // doesn't clog with abandoned structures and shelter stays meaningful.
     // Brick and fiber-bound stacks endure — a real reward for proper building.
     for (let i = 0, n = (40*af)|0; i < n; i++){
-      const c = this.at((this.rng()*GRID_W)|0, (this.rng()*GRID_H)|0);
+      const wx = (this.rng()*GRID_W)|0, wy = (this.rng()*GRID_H)|0;
+      const c = this.at(wx, wy);
       if (!c || c.water || c.stack.length < 2) continue;
       const top = c.stack[c.stack.length-1];
-      if (top !== 'brick' && !c.stack.includes('fiber') && this.rng() < 0.02) c.stack.pop();
+      if (top === 'brick' || c.stack.includes('fiber') || this.rng() >= 0.02) continue;
+      // mutual support: a stack beside another durable structure does not weather
+      let supported = false;
+      for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+        const nb = this.at(wx+ax, wy+ay);
+        if (nb && nb.stack.length >= 2 && nb.stack.some(m => m === 'wood' || m === 'plank' || m === 'stone' || m === 'brick')){ supported = true; break; }
+      }
+      if (!supported) c.stack.pop();
     }
 
     this.stepFire(warmth);

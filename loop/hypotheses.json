@@ -110,6 +110,14 @@
       "status": "reverted",
       "cycle": 20,
       "note": "commSeparation 0.0448->0.0124, bench gap 2123->2015, cluster 6->3; worse on target"
+    },
+    {
+      "id": "weathering-mutual-support",
+      "signal": 1,
+      "change": "world.js weathering: stacks beside a durable stack (>=2 high) no longer shed blocks",
+      "status": "kept",
+      "cycle": 21,
+      "note": "cluster 4->4, brickCells 65->65, builtCells 821->733, gap 2246->2269; no measurable effect on target"
     }
   ]
 }
