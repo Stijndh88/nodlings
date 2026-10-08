@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-08T16:32Z. Now: day 254.19, benchmark gap **2123** (evolved gene pool minus random genomes), largest built cluster 4, 65 brick cells, max generation 279.
+Updated 2026-10-08T20:48Z. Now: day 279.19, benchmark gap **2246** (evolved gene pool minus random genomes), largest built cluster 3, 65 brick cells, max generation 314.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-08T16:32Z. Now: day 254.19, benchmark gap **2123** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 20 | 279.19 | 2246 | 1141 | 3 | 65 | 314 | 0.0062 |
 | 19 | 254.19 | 2123 | 727 | 4 | 65 | 279 | 0.0033 |
 | 18 | 238.56 | 1711 | 1147 | 3 | 65 | 254 | 0.0017 |
 | 17 | 222.94 | 1711 | 1153 | 3 | 65 | 222 | 0.0114 |
@@ -36,6 +37,7 @@ Updated 2026-10-08T16:32Z. Now: day 254.19, benchmark gap **2123** (evolved gene
 - **kept**: nodling.js CACHE_BONUS 0.5: reward eating food from a cell with >=2 durable neighbours (cluster 2->2, builtCells 371->399, bench gap 2010->1882; within noise, no real gain on target)
 - **kept**: nodling.js KILN_BONUS 0.5: reward dropping clay next to an active fire (treatment metrics identical to control (bonus never fired in 8k ticks); no evidence of effect)
 - **reverted**: nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night (medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target)
+- **reverted**: LISTEN_BONUS 0.15 -> 0.3 (commSeparation 0.0448->0.0124, bench gap 2123->2015, cluster 6->3; worse on target)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
