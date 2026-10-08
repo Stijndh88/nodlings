@@ -1,6 +1,6 @@
 # Nodlings progress
 
-Updated 2026-10-08T00:32Z. Now: day 191.69, benchmark gap **2032** (evolved gene pool minus random genomes), largest built cluster 3, 65 brick cells, max generation 167.
+Updated 2026-10-08T04:31Z. Now: day 207.31, benchmark gap **1947** (evolved gene pool minus random genomes), largest built cluster 2, 65 brick cells, max generation 196.
 
 ![progress](progress.svg)
 
@@ -8,6 +8,7 @@ Updated 2026-10-08T00:32Z. Now: day 191.69, benchmark gap **2032** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 16 | 207.31 | 1947 | 964 | 2 | 65 | 196 | 0.0087 |
 | 15 | 191.69 | 2032 | 987 | 3 | 65 | 167 | 0.0041 |
 | 14 | 176.06 | 2129 | 961 | 4 | 65 | 137 | 0.0119 |
 | 13 | 160.44 | 2129 | 722 | 3 | 65 | 112 | 0.0226 |
@@ -26,5 +27,6 @@ Updated 2026-10-08T00:32Z. Now: day 191.69, benchmark gap **2032** (evolved gene
 - **reverted**: BUILD_ADJACENT_BONUS 0.3 -> 0.9 (cluster 3->3, builtCells 535->414, bench gap 2129->1949; no gain on target, others worse)
 - **reverted**: world.js cellTemp: x1.5 insulation when >=3 neighbouring cells hold durable material (cluster 4->4, builtCells 814->435, bench gap 2129->1889; no gain on target, others worse)
 - **kept**: nodling.js LISTEN_BONUS 0.15: reward hearing a call while a predator is near (commSeparation 0.0264 -> 0.0589; bench gap 2129 -> 1828 (-14%, inside guardrail); single 8k sample, within noise)
+- **kept**: nodling.js call bonus 0.25 -> 0.5 when predator near (food-call stays 0.25) (commSeparation 0.0054 -> 0.0158; bench gap 2032 -> 1807 (-11%, inside guardrail); single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
