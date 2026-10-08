@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 18 (A/B) — day 227.9 + 8k ticks — `kept` (STRUCTURAL: kiln clay bonus)
+
+**Hypothesis** (priority #1, plateau.js demanded structural; gap, largestCluster, brickCells flat): reward dropping clay next to an active fire (`KILN_BONUS = 0.5`) so the clay->fire->brick chain is learnable. Baseline batch to day 222.9 passed (gap 1711).
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 4 | 4 |
+| brickCells | 65 | 65 |
+| builtCells | 768 | 768 |
+| benchmark gap | 1711 | 1711 |
+| commSeparation | 0.0286 | 0.0286 |
+
+Metrics are bit-identical: the bonus never triggered in 8k ticks (nobody drops clay beside fire). Guardrails passed; kept per rule (not worse) but no effect. Next: make clay/fire co-occurrence discoverable (e.g. fire-near sense, or seed clay near fire) rather than reward the rare act.
+
 ## Cycle 17 (A/B) — day 207.3 + 8k ticks — `kept` (STRUCTURAL: food cache bonus)
 
 **Hypothesis** (priority #1, plateau.js demanded structural): reward eating food from a cell with >=2 durable neighbours (`CACHE_BONUS = 0.5`), giving enclosed cells a payoff without reducing stacking (cycle 14's lesson).

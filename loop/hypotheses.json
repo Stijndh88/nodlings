@@ -86,6 +86,14 @@
       "status": "kept",
       "cycle": 17,
       "note": "cluster 2->2, builtCells 371->399, bench gap 2010->1882; within noise, no real gain on target"
+    },
+    {
+      "id": "kiln-clay-bonus",
+      "signal": 1,
+      "change": "nodling.js KILN_BONUS 0.5: reward dropping clay next to an active fire",
+      "status": "kept",
+      "cycle": 18,
+      "note": "treatment metrics identical to control (bonus never fired in 8k ticks); no evidence of effect"
     }
   ]
 }
