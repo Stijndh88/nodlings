@@ -78,6 +78,14 @@
       "status": "kept",
       "cycle": 16,
       "note": "commSeparation 0.0054 -> 0.0158; bench gap 2032 -> 1807 (-11%, inside guardrail); single 8k sample, within noise"
+    },
+    {
+      "id": "food-cache-bonus",
+      "signal": 1,
+      "change": "nodling.js CACHE_BONUS 0.5: reward eating food from a cell with >=2 durable neighbours",
+      "status": "kept",
+      "cycle": 17,
+      "note": "cluster 2->2, builtCells 371->399, bench gap 2010->1882; within noise, no real gain on target"
     }
   ]
 }

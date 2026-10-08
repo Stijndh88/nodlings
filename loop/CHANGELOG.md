@@ -3,6 +3,22 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 17 (A/B) — day 207.3 + 8k ticks — `kept` (STRUCTURAL: food cache bonus)
+
+**Hypothesis** (priority #1, plateau.js demanded structural): reward eating food from a cell with >=2 durable neighbours (`CACHE_BONUS = 0.5`), giving enclosed cells a payoff without reducing stacking (cycle 14's lesson).
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 2 | 2 |
+| builtCells | 371 | 399 |
+| brickCells | 65 | 65 |
+| benchmark gap | 2010 | 1882 |
+| commSeparation | 0.0323 | 0.0068 |
+| medianFitness | 1322 | 1331 |
+| population | 400 | 402 |
+
+Guardrails passed (gap -6%). Target (largestCluster) unchanged; differences are within noise. Kept per rule (not worse), but no evidence of effect: revert if clusters stay <=3 after 2 batches. commSeparation is noisy (0.004-0.06 across cycles).
+
 ## Cycle 16 (A/B) — day 191.7 + 8k ticks — `kept` (comm: alarm-call bonus 0.5)
 
 **Hypothesis** (priority #2): cycle 15's LISTEN_BONUS gain did not persist (commSeparation 0.0041 at the baseline). Make calling made with a predator near worth 0.5 (was 0.25, same as a food call) so alarm calls are distinguishable from food calls.

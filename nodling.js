@@ -10,6 +10,7 @@ const MATURITY = 160;  // age below which a Nodling is a juvenile (can't breed, 
 const SENESCENCE = 900;// age past which upkeep rises (aging)
 const DURABLE_BUILD = ['wood','plank','stone','brick'];
 const LISTEN_BONUS = 0.15; // reward for hearing a call while a predator is near
+const CACHE_BONUS = 0.5; // reward for eating food stored in a cell enclosed by >=2 durable neighbours
 const BUILD_ADJACENT_BONUS = 0.3; // reward for placing durable material next to an existing structure
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
@@ -226,6 +227,12 @@ class Nodling {
       if (this.carrying && MATERIALS[this.carrying].nutrition){
         this.eat(this.carrying); this.carrying = null;
       } else if (top && MATERIALS[top].nutrition){
+        let walls = 0;
+        for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+          const nb = w.at(cx+ax, cy+ay);
+          if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))) walls++;
+        }
+        if (walls >= 2) this.bonus += CACHE_BONUS;
         this.eat(cell.stack.pop());
       } else if (cell.water || w.adjacentWater(cx, cy)){
         this.hydration = 100;
