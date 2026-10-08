@@ -70,6 +70,14 @@
       "status": "kept",
       "cycle": 15,
       "note": "commSeparation 0.0264 -> 0.0589; bench gap 2129 -> 1828 (-14%, inside guardrail); single 8k sample, within noise"
+    },
+    {
+      "id": "comm-alarm-call-bonus",
+      "signal": 2,
+      "change": "nodling.js call bonus 0.25 -> 0.5 when predator near (food-call stays 0.25)",
+      "status": "kept",
+      "cycle": 16,
+      "note": "commSeparation 0.0054 -> 0.0158; bench gap 2032 -> 1807 (-11%, inside guardrail); single 8k sample, within noise"
     }
   ]
 }

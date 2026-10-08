@@ -3,6 +3,21 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 16 (A/B) — day 191.7 + 8k ticks — `kept` (comm: alarm-call bonus 0.5)
+
+**Hypothesis** (priority #2): cycle 15's LISTEN_BONUS gain did not persist (commSeparation 0.0041 at the baseline). Make calling made with a predator near worth 0.5 (was 0.25, same as a food call) so alarm calls are distinguishable from food calls.
+
+| | control | treatment |
+|---|---|---|
+| commSeparation | 0.0054 | 0.0158 |
+| benchmark gap | 2032 | 1807 |
+| largestCluster | 4 | 4 |
+| builtCells | 705 | 699 |
+| medianFitness | 1106 | 1026 |
+| population | 399 | 400 |
+
+Guardrails passed (gap -11%). Target up ~3x but absolute values are tiny and this is one 8k sample, within noise. Gap has now dropped in two comm cycles in a row: revert if it stays below ~1900 after the next batches.
+
 ## Cycle 15 (A/B) — day 176.1 + 8k ticks — `kept` (comm: LISTEN_BONUS 0.15)
 
 **Hypothesis** (priority #2, communication): plateau.js said tuning is still productive, so a non-structural change. Reward hearing a call while a predator is near (`LISTEN_BONUS = 0.15` in `nodling.js`), so listening to sound becomes learnable without hardcoding a flee direction.
