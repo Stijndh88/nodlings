@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-08T07:59Z. Now: day 207.31, benchmark gap **1947** (evolved gene pool minus random genomes), largest built cluster 2, 65 brick cells, max generation 196.
+Updated 2026-10-08T08:31Z. Now: day 222.94, benchmark gap **1711** (evolved gene pool minus random genomes), largest built cluster 3, 65 brick cells, max generation 222.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-08T07:59Z. Now: day 207.31, benchmark gap **1947** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 17 | 222.94 | 1711 | 1153 | 3 | 65 | 222 | 0.0114 |
 | 16 | 207.31 | 1947 | 964 | 2 | 65 | 196 | 0.0087 |
 | 15 | 191.69 | 2032 | 987 | 3 | 65 | 167 | 0.0041 |
 | 14 | 176.06 | 2129 | 961 | 4 | 65 | 137 | 0.0119 |
