@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-08T08:31Z. Now: day 222.94, benchmark gap **1711** (evolved gene pool minus random genomes), largest built cluster 3, 65 brick cells, max generation 222.
+Updated 2026-10-08T13:25Z. Now: day 238.56, benchmark gap **1711** (evolved gene pool minus random genomes), largest built cluster 3, 65 brick cells, max generation 254.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-08T08:31Z. Now: day 222.94, benchmark gap **1711** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 18 | 238.56 | 1711 | 1147 | 3 | 65 | 254 | 0.0017 |
 | 17 | 222.94 | 1711 | 1153 | 3 | 65 | 222 | 0.0114 |
 | 16 | 207.31 | 1947 | 964 | 2 | 65 | 196 | 0.0087 |
 | 15 | 191.69 | 2032 | 987 | 3 | 65 | 167 | 0.0041 |
@@ -32,6 +33,7 @@ Updated 2026-10-08T08:31Z. Now: day 222.94, benchmark gap **1711** (evolved gene
 - **kept**: nodling.js LISTEN_BONUS 0.15: reward hearing a call while a predator is near (commSeparation 0.0264 -> 0.0589; bench gap 2129 -> 1828 (-14%, inside guardrail); single 8k sample, within noise)
 - **kept**: nodling.js call bonus 0.25 -> 0.5 when predator near (food-call stays 0.25) (commSeparation 0.0054 -> 0.0158; bench gap 2032 -> 1807 (-11%, inside guardrail); single 8k sample, within noise)
 - **kept**: nodling.js CACHE_BONUS 0.5: reward eating food from a cell with >=2 durable neighbours (cluster 2->2, builtCells 371->399, bench gap 2010->1882; within noise, no real gain on target)
+- **kept**: nodling.js KILN_BONUS 0.5: reward dropping clay next to an active fire (treatment metrics identical to control (bonus never fired in 8k ticks); no evidence of effect)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
