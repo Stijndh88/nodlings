@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 26 (A/B) — day 354.5 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (STRUCTURAL: tidal clay)
+
+**Hypothesis** (priority #1; plateau.js demanded a structural cycle; brickCells stuck at 65): clay is deposited once at world creation and never replenished, so kilns run out of raw material. Shoreline sand now re-deposits clay (4 tries/tick x 0.05, `world.js`). Baseline batch passed (gap 2230).
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 4 | 4 |
+| brickCells | 65 | 82 |
+| builtCells | 613 | 649 |
+| benchmark gap | 2230 | 2313 |
+| medianFitness | 963 | 878 |
+
+Guardrails passed. First movement in brickCells in five brick cycles (+26%); cluster unchanged; single 8k sample, so partly noise. Watch brickCells over the next batches.
+
 ## Cycle 25 (A/B) — day 341.7 + 8k ticks — `kept` (STRUCTURAL: kiln spark lights bare ground)
 
 **Hypothesis** (priority #1; brickCells stuck at 65): cycle 24's kiln-seeded spark picked a cell beside clay, but `ignite()` rejects cells without a flammable top, so the spark almost never fired. A kiln spark now lights bare ground beside clay (`world.js`, `ignite(idx, kiln)`). Baseline batch to day 341.7 passed (gap 2230).
