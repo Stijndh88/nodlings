@@ -126,6 +126,14 @@
       "status": "kept",
       "cycle": 22,
       "note": "cluster 4->5, builtCells 612->667, brickCells 65->65, gap 2269->2223; within noise"
+    },
+    {
+      "id": "sun-baked-brick",
+      "signal": 1,
+      "change": "world.js: clay on top of a stack dries to brick at 0.01 x warmth per sampled visit",
+      "status": "reverted",
+      "cycle": 23,
+      "note": "cluster 4->4, brickCells 65->65, bench gap 2292->2044, medianFitness 1244->995; no gain on target, others worse"
     }
   ]
 }

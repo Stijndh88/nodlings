@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 23 (A/B) — day 310.4 + 8k ticks — `reverted` (STRUCTURAL: sun-baked brick)
+
+**Hypothesis** (priority #1; brickCells stuck at 65): clay left on top of a stack dries into brick at 0.01 x warmth per sampled visit (`world.js`), so bricks no longer need a rare fire beside clay. Baseline batch to day 310.4 passed (gap 2292).
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 4 | 4 |
+| brickCells | 65 | 65 |
+| builtCells | 503 | 561 |
+| benchmark gap | 2292 | 2044 |
+| medianFitness | 1244 | 995 |
+
+Guardrails passed, but no gain on target and gap/median fell (-11%/-20%): reverted. brickCells identical at 65 in both runs suggests new bricks are not accumulating (clay may be consumed/moved before drying, or the metric counts only a fixed set); worth inspecting the metric before another brick hypothesis.
+
 ## Cycle 22 (A/B) — day 294.8 + 8k ticks — `kept` (STRUCTURAL: more lightning ignitions)
 
 **Hypothesis** (priority #1; brickCells stuck at 65): doubling the dry-spark ignition rate (0.002 -> 0.004 x warmth in `world.js`) gives more fires near clay, so more bricks. Baseline batch to day 294.8 passed (gap 2269).
