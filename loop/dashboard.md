@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-09T12:34Z. Now: day 341.69, benchmark gap **2230** (evolved gene pool minus random genomes), largest built cluster 4, 65 brick cells, max generation 394.
+Updated 2026-10-09T16:40Z. Now: day 349.5, benchmark gap **2230** (evolved gene pool minus random genomes), largest built cluster 4, 65 brick cells, max generation 403.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-09T12:34Z. Now: day 341.69, benchmark gap **2230** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 25 | 349.5 | 2230 | 868 | 4 | 65 | 403 | 0.0317 |
 | 24 | 341.69 | 2230 | 1435 | 4 | 65 | 394 | 0.0215 |
 | 23 | 326.06 | 2292 | 1270 | 4 | 65 | 382 | 0.0196 |
 | 22 | 310.44 | 2292 | 1275 | 4 | 65 | 356 | 0.016 |
@@ -24,7 +25,6 @@ Updated 2026-10-09T12:34Z. Now: day 341.69, benchmark gap **2230** (evolved gene
 | 13 | 160.44 | 2129 | 722 | 3 | 65 | 112 | 0.0226 |
 | 12 | 144.81 | 2129 | 697 | 2 | 65 | 89 | 0.0677 |
 | 11 | 129.19 | 1929 | 692 | 3 | 66 | 53 | 0.0407 |
-| 10 | 113.56 | 1916 | 1077 | 3 | 68 | 29 | 0.0158 |
 
 ## Hypotheses
 
@@ -46,6 +46,7 @@ Updated 2026-10-09T12:34Z. Now: day 341.69, benchmark gap **2230** (evolved gene
 - **kept**: world.js dry-spark ignition 0.002 -> 0.004 per tick x warmth (more fires near clay) (cluster 4->5, builtCells 612->667, brickCells 65->65, gap 2269->2223; within noise)
 - **reverted**: world.js: clay on top of a stack dries to brick at 0.01 x warmth per sampled visit (cluster 4->4, brickCells 65->65, bench gap 2292->2044, medianFitness 1244->995; no gain on target, others worse)
 - **kept**: world.js: lightning spark prefers (8 tries) a cell adjacent to clay (cluster 4->4, brickCells 65->65, builtCells ?->536, gap 2292->2242, medianFitness 1293->1229; null result, within noise)
+- **kept**: world.js: ignite(idx, kiln) lets a kiln-seeded spark light bare ground beside clay (all metrics identical to control (cluster 4, bricks 65, gap 2230); never fired in 8k ticks, null result)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
