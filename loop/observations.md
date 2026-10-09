@@ -1,25 +1,28 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 326.1 · Spring
+Seed `20261007` · day 341.7 · Autumn
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 402 (21 juvenile) |
-| max generation | 381 |
+| population | 403 (24 juvenile) |
+| max generation | 394 |
 | best fitness | 7002 |
-| avg brain (conns) | 141 |
-| lineage diversity | 8 colour-groups |
-| diet | 81% herbivore / 3% carnivore |
-| predators | 6, 110 kills, best 102201 |
-| structures (durable) | 3249 (347) |
-| planks / bricks / bridges | 26 / 45 / 2282 |
-| flora / cooked food | 4754 / 317 |
+| avg brain (conns) | 146 |
+| lineage diversity | 6 colour-groups |
+| diet | 77% herbivore / 4% carnivore |
+| predators | 6, 152 kills, best 102201 |
+| structures (durable) | 3344 (333) |
+| planks / bricks / bridges | 24 / 44 / 2340 |
+| flora / cooked food | 5886 / 293 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 341.1]** _(trend)_ Lineages are deepening — max generation 385→394. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 331.1]** _(trend)_ Lineages are deepening — max generation 382→387. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 326.1]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 324.4]** _(trend)_ Lineages are deepening — max generation 367→380. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 318.4]** _(trend)_ Lineages are deepening — max generation 360→367. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 312.4]** _(trend)_ Lineages are deepening — max generation 356→360. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
