@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-09T16:40Z. Now: day 349.5, benchmark gap **2230** (evolved gene pool minus random genomes), largest built cluster 4, 65 brick cells, max generation 403.
+Updated 2026-10-09T20:39Z. Now: day 357.31, benchmark gap **2313** (evolved gene pool minus random genomes), largest built cluster 4, 90 brick cells, max generation 414.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-09T16:40Z. Now: day 349.5, benchmark gap **2230** (evolved gene 
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 26 | 357.31 | 2313 | 1018 | 4 | 90 | 414 | 0.0661 |
 | 25 | 349.5 | 2230 | 868 | 4 | 65 | 403 | 0.0317 |
 | 24 | 341.69 | 2230 | 1435 | 4 | 65 | 394 | 0.0215 |
 | 23 | 326.06 | 2292 | 1270 | 4 | 65 | 382 | 0.0196 |
@@ -24,7 +25,6 @@ Updated 2026-10-09T16:40Z. Now: day 349.5, benchmark gap **2230** (evolved gene 
 | 14 | 176.06 | 2129 | 961 | 4 | 65 | 137 | 0.0119 |
 | 13 | 160.44 | 2129 | 722 | 3 | 65 | 112 | 0.0226 |
 | 12 | 144.81 | 2129 | 697 | 2 | 65 | 89 | 0.0677 |
-| 11 | 129.19 | 1929 | 692 | 3 | 66 | 53 | 0.0407 |
 
 ## Hypotheses
 
@@ -47,6 +47,7 @@ Updated 2026-10-09T16:40Z. Now: day 349.5, benchmark gap **2230** (evolved gene 
 - **reverted**: world.js: clay on top of a stack dries to brick at 0.01 x warmth per sampled visit (cluster 4->4, brickCells 65->65, bench gap 2292->2044, medianFitness 1244->995; no gain on target, others worse)
 - **kept**: world.js: lightning spark prefers (8 tries) a cell adjacent to clay (cluster 4->4, brickCells 65->65, builtCells ?->536, gap 2292->2242, medianFitness 1293->1229; null result, within noise)
 - **kept**: world.js: ignite(idx, kiln) lets a kiln-seeded spark light bare ground beside clay (all metrics identical to control (cluster 4, bricks 65, gap 2230); never fired in 8k ticks, null result)
+- **kept**: world.js: shoreline sand re-deposits clay (4 tries/tick x 0.05) (brickCells 65->82, cluster 4->4, gap 2230->2313, medianFitness 963->878; single 8k sample)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
