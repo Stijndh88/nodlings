@@ -313,7 +313,18 @@ class World {
   // water and stone are natural firebreaks — rather than wiping the map.
   stepFire(warmth){
     if (this.rng() < 0.004*warmth){                       // lightning / dry spark
-      this.ignite((this.rng()*this.cells.length)|0);
+      // kiln seeding: of a few candidate cells, strike the first flammable one beside clay
+      let target = (this.rng()*this.cells.length)|0;
+      for (let t = 0; t < 8; t++){
+        const cand = (this.rng()*this.cells.length)|0, cx = cand % GRID_W, cy = (cand / GRID_W)|0;
+        let nearClay = false;
+        for (let dy = -1; dy <= 1 && !nearClay; dy++) for (let dx = -1; dx <= 1; dx++){
+          const nc = this.at(cx+dx, cy+dy);
+          if (nc && nc.stack[nc.stack.length-1] === 'clay'){ nearClay = true; break; }
+        }
+        if (nearClay){ target = cand; break; }
+      }
+      this.ignite(target);
     }
     if (!this.fires.length) return;
     const next = [];

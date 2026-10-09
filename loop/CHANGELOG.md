@@ -3,6 +3,19 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 24 (A/B) — day 326.1 + 8k ticks — `kept` (STRUCTURAL: kiln-seeded sparks)
+
+**Hypothesis** (priority #1; brickCells stuck at 65): dry sparks try 8 random cells and strike one beside clay (`world.js`), so fires land where they can fire bricks. Baseline batch to day 326.1 passed (gap 2292).
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 4 | 4 |
+| brickCells | 65 | 65 |
+| benchmark gap | 2292 | 2242 |
+| medianFitness | 1293 | 1229 |
+
+Guardrails passed; target unchanged, so a null result within noise. Kept per rule (equal), but brickCells has now not moved across four brick-related cycles: the next cycle should inspect why (ignition needs a flammable top, and clay tiles may rarely sit beside one).
+
 ## Cycle 23 (A/B) — day 310.4 + 8k ticks — `reverted` (STRUCTURAL: sun-baked brick)
 
 **Hypothesis** (priority #1; brickCells stuck at 65): clay left on top of a stack dries into brick at 0.01 x warmth per sampled visit (`world.js`), so bricks no longer need a rare fire beside clay. Baseline batch to day 310.4 passed (gap 2292).

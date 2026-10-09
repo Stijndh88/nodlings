@@ -134,6 +134,14 @@
       "status": "reverted",
       "cycle": 23,
       "note": "cluster 4->4, brickCells 65->65, bench gap 2292->2044, medianFitness 1244->995; no gain on target, others worse"
+    },
+    {
+      "id": "kiln-seeded-sparks",
+      "signal": 1,
+      "change": "world.js: lightning spark prefers (8 tries) a cell adjacent to clay",
+      "status": "kept",
+      "cycle": 24,
+      "note": "cluster 4->4, brickCells 65->65, builtCells ?->536, gap 2292->2242, medianFitness 1293->1229; null result, within noise"
     }
   ]
 }
