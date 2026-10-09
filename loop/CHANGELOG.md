@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 22 (A/B) — day 294.8 + 8k ticks — `kept` (STRUCTURAL: more lightning ignitions)
+
+**Hypothesis** (priority #1; brickCells stuck at 65): doubling the dry-spark ignition rate (0.002 -> 0.004 x warmth in `world.js`) gives more fires near clay, so more bricks. Baseline batch to day 294.8 passed (gap 2269).
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 4 | 5 |
+| brickCells | 65 | 65 |
+| builtCells | 612 | 667 |
+| benchmark gap | 2269 | 2223 |
+| medianFitness | 1018 | 1032 |
+
+Guardrails passed; cluster +1 but bricks unchanged: within noise. Kept per rule.
+
 ## Cycle 21 (A/B) — day 279.2 + 16k ticks — `kept` (STRUCTURAL: weathering mutual support)
 
 **Hypothesis** (priority #1, plateau.js demanded structural): stacks orthogonally adjacent to a durable stack (>=2 high) skip weathering, so clusters persist. Baseline batch (40k ticks; 80k timed out) passed, gap 2246.

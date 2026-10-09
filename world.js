@@ -312,7 +312,7 @@ class World {
   // subcritical (low spread + short life) so it burns a patch and dies out —
   // water and stone are natural firebreaks — rather than wiping the map.
   stepFire(warmth){
-    if (this.rng() < 0.002*warmth){                       // lightning / dry spark
+    if (this.rng() < 0.004*warmth){                       // lightning / dry spark
       this.ignite((this.rng()*this.cells.length)|0);
     }
     if (!this.fires.length) return;

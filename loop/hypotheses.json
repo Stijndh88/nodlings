@@ -118,6 +118,14 @@
       "status": "kept",
       "cycle": 21,
       "note": "cluster 4->4, brickCells 65->65, builtCells 821->733, gap 2246->2269; no measurable effect on target"
+    },
+    {
+      "id": "lightning-spark-0.004",
+      "signal": 1,
+      "change": "world.js dry-spark ignition 0.002 -> 0.004 per tick x warmth (more fires near clay)",
+      "status": "kept",
+      "cycle": 22,
+      "note": "cluster 4->5, builtCells 612->667, brickCells 65->65, gap 2269->2223; within noise"
     }
   ]
 }
