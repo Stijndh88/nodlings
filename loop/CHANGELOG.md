@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 27 (A/B) — day 357.3 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (tidal clay 0.05 -> 0.15)
+
+**Hypothesis** (priority #1; plateau.js: tuning still productive): cycle 26's tidal clay lifted brickCells, so triple the deposit chance (`world.js`). Baseline batch passed (gap 2313).
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 4 | 5 |
+| brickCells | 114 | 157 |
+| builtCells | 657 | 630 |
+| benchmark gap | 2313 | 2120 |
+| medianFitness | 1265 | 1225 |
+
+Guardrails passed. Bricks +38% and cluster +1; gap -8% and builtCells slightly down; single 8k sample, within noise.
+
 ## Cycle 26 (A/B) — day 354.5 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (STRUCTURAL: tidal clay)
 
 **Hypothesis** (priority #1; plateau.js demanded a structural cycle; brickCells stuck at 65): clay is deposited once at world creation and never replenished, so kilns run out of raw material. Shoreline sand now re-deposits clay (4 tries/tick x 0.05, `world.js`). Baseline batch passed (gap 2230).

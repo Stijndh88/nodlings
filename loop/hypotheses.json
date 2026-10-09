@@ -158,6 +158,14 @@
       "status": "kept",
       "cycle": 26,
       "note": "brickCells 65->82, cluster 4->4, gap 2230->2313, medianFitness 963->878; single 8k sample"
+    },
+    {
+      "id": "tidal-clay-0.15",
+      "signal": 1,
+      "change": "world.js tidal clay deposit chance 0.05 -> 0.15",
+      "status": "kept",
+      "cycle": 27,
+      "note": "brickCells 114->157, cluster 4->5, gap 2313->2120, medianFitness 1265->1225; single 8k sample"
     }
   ]
 }
