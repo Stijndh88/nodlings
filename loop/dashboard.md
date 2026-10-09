@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-09T04:33Z. Now: day 310.44, benchmark gap **2292** (evolved gene pool minus random genomes), largest built cluster 4, 65 brick cells, max generation 356.
+Updated 2026-10-09T08:32Z. Now: day 326.06, benchmark gap **2292** (evolved gene pool minus random genomes), largest built cluster 4, 65 brick cells, max generation 382.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-09T04:33Z. Now: day 310.44, benchmark gap **2292** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 23 | 326.06 | 2292 | 1270 | 4 | 65 | 382 | 0.0196 |
 | 22 | 310.44 | 2292 | 1275 | 4 | 65 | 356 | 0.016 |
 | 21 | 294.81 | 2269 | 1133 | 4 | 65 | 331 | 0.0217 |
 | 20 | 279.19 | 2246 | 1141 | 3 | 65 | 314 | 0.0062 |
@@ -42,6 +43,7 @@ Updated 2026-10-09T04:33Z. Now: day 310.44, benchmark gap **2292** (evolved gene
 - **reverted**: LISTEN_BONUS 0.15 -> 0.3 (commSeparation 0.0448->0.0124, bench gap 2123->2015, cluster 6->3; worse on target)
 - **kept**: world.js weathering: stacks beside a durable stack (>=2 high) no longer shed blocks (cluster 4->4, brickCells 65->65, builtCells 821->733, gap 2246->2269; no measurable effect on target)
 - **kept**: world.js dry-spark ignition 0.002 -> 0.004 per tick x warmth (more fires near clay) (cluster 4->5, builtCells 612->667, brickCells 65->65, gap 2269->2223; within noise)
+- **reverted**: world.js: clay on top of a stack dries to brick at 0.01 x warmth per sampled visit (cluster 4->4, brickCells 65->65, bench gap 2292->2044, medianFitness 1244->995; no gain on target, others worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 

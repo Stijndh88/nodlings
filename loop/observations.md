@@ -1,25 +1,28 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 310.4 · Autumn
+Seed `20261007` · day 326.1 · Spring
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 400 (32 juvenile) |
-| max generation | 356 |
+| population | 402 (21 juvenile) |
+| max generation | 381 |
 | best fitness | 7002 |
-| avg brain (conns) | 133 |
-| lineage diversity | 5 colour-groups |
-| diet | 83% herbivore / 7% carnivore |
-| predators | 6, 123 kills, best 102201 |
-| structures (durable) | 3014 (294) |
-| planks / bricks / bridges | 19 / 46 / 2245 |
-| flora / cooked food | 5073 / 320 |
+| avg brain (conns) | 141 |
+| lineage diversity | 8 colour-groups |
+| diet | 81% herbivore / 3% carnivore |
+| predators | 6, 110 kills, best 102201 |
+| structures (durable) | 3249 (347) |
+| planks / bricks / bridges | 26 / 45 / 2282 |
+| flora / cooked food | 4754 / 317 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 324.4]** _(trend)_ Lineages are deepening — max generation 367→380. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 318.4]** _(trend)_ Lineages are deepening — max generation 360→367. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 312.4]** _(trend)_ Lineages are deepening — max generation 356→360. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 304.8]** _(trend)_ Lineages are deepening — max generation 340→347. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 298.8]** _(trend)_ Lineages are deepening — max generation 331→340. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 295.8]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
