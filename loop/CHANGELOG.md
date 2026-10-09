@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 25 (A/B) — day 341.7 + 8k ticks — `kept` (STRUCTURAL: kiln spark lights bare ground)
+
+**Hypothesis** (priority #1; brickCells stuck at 65): cycle 24's kiln-seeded spark picked a cell beside clay, but `ignite()` rejects cells without a flammable top, so the spark almost never fired. A kiln spark now lights bare ground beside clay (`world.js`, `ignite(idx, kiln)`). Baseline batch to day 341.7 passed (gap 2230).
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 4 | 4 |
+| brickCells | 65 | 65 |
+| builtCells | 419 | 419 |
+| benchmark gap | 2230 | 2230 |
+| medianFitness | 954 | 954 |
+
+Treatment identical to control: the new path never changed the outcome in 8k ticks (sparks are rare, 0.004 x warmth per tick, and clay rarely sits beside a spark candidate). Null result; kept per rule (equal). Next: raise clay supply or place fires deliberately rather than waiting on lightning.
+
 ## Cycle 24 (A/B) — day 326.1 + 8k ticks — `kept` (STRUCTURAL: kiln-seeded sparks)
 
 **Hypothesis** (priority #1; brickCells stuck at 65): dry sparks try 8 random cells and strike one beside clay (`world.js`), so fires land where they can fire bricks. Baseline batch to day 326.1 passed (gap 2292).

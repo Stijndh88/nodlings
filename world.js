@@ -298,10 +298,11 @@ class World {
     if (this.rng() < 0.12*af) this.scatter('wood', 1);
   }
 
-  ignite(idx){
+  ignite(idx, kiln){
     const c = this.cells[idx];
     const top = c.stack[c.stack.length-1];
-    if (c.fire || c.water || !top || !MATERIALS[top].flammable) return false;
+    if (c.fire || c.water) return false;
+    if (!kiln && (!top || !MATERIALS[top].flammable)) return false; // a kiln spark may light bare ground
     c.fire = 5 + (this.rng()*4|0);
     this.fires.push(idx);
     return true;
@@ -314,7 +315,7 @@ class World {
   stepFire(warmth){
     if (this.rng() < 0.004*warmth){                       // lightning / dry spark
       // kiln seeding: of a few candidate cells, strike the first flammable one beside clay
-      let target = (this.rng()*this.cells.length)|0;
+      let target = (this.rng()*this.cells.length)|0, kiln = false;
       for (let t = 0; t < 8; t++){
         const cand = (this.rng()*this.cells.length)|0, cx = cand % GRID_W, cy = (cand / GRID_W)|0;
         let nearClay = false;
@@ -322,9 +323,9 @@ class World {
           const nc = this.at(cx+dx, cy+dy);
           if (nc && nc.stack[nc.stack.length-1] === 'clay'){ nearClay = true; break; }
         }
-        if (nearClay){ target = cand; break; }
+        if (nearClay){ target = cand; kiln = true; break; }
       }
-      this.ignite(target);
+      this.ignite(target, kiln);
     }
     if (!this.fires.length) return;
     const next = [];

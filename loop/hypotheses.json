@@ -142,6 +142,14 @@
       "status": "kept",
       "cycle": 24,
       "note": "cluster 4->4, brickCells 65->65, builtCells ?->536, gap 2292->2242, medianFitness 1293->1229; null result, within noise"
+    },
+    {
+      "id": "kiln-spark-bare-ground",
+      "signal": 1,
+      "change": "world.js: ignite(idx, kiln) lets a kiln-seeded spark light bare ground beside clay",
+      "status": "kept",
+      "cycle": 25,
+      "note": "all metrics identical to control (cluster 4, bricks 65, gap 2230); never fired in 8k ticks, null result"
     }
   ]
 }
