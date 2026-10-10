@@ -198,6 +198,14 @@
       "status": "kept",
       "cycle": 31,
       "note": "gap 2110->2318, cluster 9->14, bricks 779->790, medianFitness 1084->1332, comm 0.0098->0.0165; single 8k sample, partly noise"
+    },
+    {
+      "id": "learn-rate-0.04",
+      "signal": 3,
+      "change": "brain.js LEARN_RATE 0.03 -> 0.04",
+      "status": "reverted",
+      "cycle": 32,
+      "note": "gap 2318->2273, cluster 13->10, comm 0.0411->0.0071, median 1047->1175; no gain on target, others worse"
     }
   ]
 }

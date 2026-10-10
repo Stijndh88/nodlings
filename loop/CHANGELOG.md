@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 32 (A/B) — day 412 + 8k ticks (batch ran 12.5k) — `reverted` (LEARN_RATE 0.03 -> 0.04)
+
+**Hypothesis** (priority #3; plateau.js: only medianFitness flat): push the learning rate further after cycle 31. Baseline batch passed (gap 2318).
+
+| | control | treatment |
+|---|---|---|
+| benchmark gap | 2318 | 2273 |
+| medianFitness | 1047 | 1175 |
+| largestCluster | 13 | 10 |
+| brickCells | 847 | 832 |
+| commSeparation | 0.0411 | 0.0071 |
+
+Guardrails passed, but gap and cluster fell and comm dropped; only median rose (within noise). Reverted.
+
 ## Cycle 31 (A/B) — day 404.2 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (LEARN_RATE 0.02 -> 0.03)
 
 **Hypothesis** (priority #3; plateau.js: only benchmark.gap flat): faster Hebbian learning (`brain.js`) to lift the gap. Baseline batch passed (gap 2110).
