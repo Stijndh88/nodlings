@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-10T12:41Z. Now: day 404.19, benchmark gap **2110** (evolved gene pool minus random genomes), largest built cluster 8, 735 brick cells, max generation 489.
+Updated 2026-10-10T16:30Z. Now: day 412, benchmark gap **2318** (evolved gene pool minus random genomes), largest built cluster 15, 797 brick cells, max generation 505.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-10T12:41Z. Now: day 404.19, benchmark gap **2110** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 31 | 412 | 2318 | 1068 | 15 | 797 | 505 | 0.0094 |
 | 30 | 404.19 | 2110 | 1229 | 8 | 735 | 489 | 0.0145 |
 | 29 | 396.38 | 2256 | 1376 | 8 | 633 | 479 | 0.0055 |
 | 28 | 380.75 | 2120 | 1135 | 7 | 456 | 454 | 0.0007 |
@@ -24,7 +25,6 @@ Updated 2026-10-10T12:41Z. Now: day 404.19, benchmark gap **2110** (evolved gene
 | 19 | 254.19 | 2123 | 727 | 4 | 65 | 279 | 0.0033 |
 | 18 | 238.56 | 1711 | 1147 | 3 | 65 | 254 | 0.0017 |
 | 17 | 222.94 | 1711 | 1153 | 3 | 65 | 222 | 0.0114 |
-| 16 | 207.31 | 1947 | 964 | 2 | 65 | 196 | 0.0087 |
 
 ## Hypotheses
 
@@ -52,6 +52,7 @@ Updated 2026-10-10T12:41Z. Now: day 404.19, benchmark gap **2110** (evolved gene
 - **reverted**: nodling.js: BUILD_ADJACENT_BONUS paid per durable neighbour (up to 4x) instead of once (cluster 6->5, builtCells 634->712, brickCells 305->267, gap 2120->2103; worse on target)
 - **kept**: nodling.js alarm call bonus 0.5 -> 0.75 when predator near (commSeparation 0.0194->0.0228, gap 2120->2256, cluster 8->7, bricks 496->488; single 8k sample, within noise)
 - **kept**: nodling.js alarm call bonus 0.75 -> 1.0 when predator near (commSeparation 0.0153->0.0158, gap 2256->2110, cluster 8->8, bricks 685->673; within noise)
+- **kept**: brain.js LEARN_RATE 0.02 -> 0.03 (gap 2110->2318, cluster 9->14, bricks 779->790, medianFitness 1084->1332, comm 0.0098->0.0165; single 8k sample, partly noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
