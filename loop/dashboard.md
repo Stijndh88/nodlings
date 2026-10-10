@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-10T08:32Z. Now: day 396.38, benchmark gap **2256** (evolved gene pool minus random genomes), largest built cluster 8, 633 brick cells, max generation 479.
+Updated 2026-10-10T12:41Z. Now: day 404.19, benchmark gap **2110** (evolved gene pool minus random genomes), largest built cluster 8, 735 brick cells, max generation 489.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-10T08:32Z. Now: day 396.38, benchmark gap **2256** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 30 | 404.19 | 2110 | 1229 | 8 | 735 | 489 | 0.0145 |
 | 29 | 396.38 | 2256 | 1376 | 8 | 633 | 479 | 0.0055 |
 | 28 | 380.75 | 2120 | 1135 | 7 | 456 | 454 | 0.0007 |
 | 27 | 365.13 | 2120 | 1035 | 4 | 191 | 428 | 0.011 |
@@ -24,7 +25,6 @@ Updated 2026-10-10T08:32Z. Now: day 396.38, benchmark gap **2256** (evolved gene
 | 18 | 238.56 | 1711 | 1147 | 3 | 65 | 254 | 0.0017 |
 | 17 | 222.94 | 1711 | 1153 | 3 | 65 | 222 | 0.0114 |
 | 16 | 207.31 | 1947 | 964 | 2 | 65 | 196 | 0.0087 |
-| 15 | 191.69 | 2032 | 987 | 3 | 65 | 167 | 0.0041 |
 
 ## Hypotheses
 
@@ -51,6 +51,7 @@ Updated 2026-10-10T08:32Z. Now: day 396.38, benchmark gap **2256** (evolved gene
 - **kept**: world.js tidal clay deposit chance 0.05 -> 0.15 (brickCells 114->157, cluster 4->5, gap 2313->2120, medianFitness 1265->1225; single 8k sample)
 - **reverted**: nodling.js: BUILD_ADJACENT_BONUS paid per durable neighbour (up to 4x) instead of once (cluster 6->5, builtCells 634->712, brickCells 305->267, gap 2120->2103; worse on target)
 - **kept**: nodling.js alarm call bonus 0.5 -> 0.75 when predator near (commSeparation 0.0194->0.0228, gap 2120->2256, cluster 8->7, bricks 496->488; single 8k sample, within noise)
+- **kept**: nodling.js alarm call bonus 0.75 -> 1.0 when predator near (commSeparation 0.0153->0.0158, gap 2256->2110, cluster 8->8, bricks 685->673; within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
