@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 29 (A/B) — day 380.8 + 8k ticks — `kept` (alarm call bonus 0.5 -> 0.75)
+
+**Hypothesis** (priority #2; plateau.js: tuning still productive; commSeparation ~0.0007 after the batch): raise the alarm-call bonus when a predator is near (`nodling.js`). Baseline batch passed (gap 2120).
+
+| | control | treatment |
+|---|---|---|
+| commSeparation | 0.0194 | 0.0228 |
+| benchmark gap | 2120 | 2256 |
+| largestCluster | 8 | 7 |
+| brickCells | 496 | 488 |
+| medianFitness | 1115 | 1096 |
+
+Guardrails passed. Target and gap up, cluster -1; all within single-sample noise.
+
 ## Cycle 28 (A/B) — day 365.1 + 8k ticks (batch ran 12.5k) — `reverted` (STRUCTURAL: build bonus per neighbour)
 
 **Hypothesis** (priority #1; plateau.js demanded a structural cycle: gap, medianFitness, largestCluster flat): pay `BUILD_ADJACENT_BONUS` once per durable neighbour (up to 4x) instead of once, to reward compact filled-in clusters. Baseline batch passed (gap 2120).
