@@ -182,6 +182,14 @@
       "status": "kept",
       "cycle": 29,
       "note": "commSeparation 0.0194->0.0228, gap 2120->2256, cluster 8->7, bricks 496->488; single 8k sample, within noise"
+    },
+    {
+      "id": "comm-alarm-call-1.0",
+      "signal": 2,
+      "change": "nodling.js alarm call bonus 0.75 -> 1.0 when predator near",
+      "status": "kept",
+      "cycle": 30,
+      "note": "commSeparation 0.0153->0.0158, gap 2256->2110, cluster 8->8, bricks 685->673; within noise"
     }
   ]
 }

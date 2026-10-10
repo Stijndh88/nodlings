@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 30 (A/B) — day 396.4 + 8k ticks — `kept` (alarm call bonus 0.75 -> 1.0)
+
+**Hypothesis** (priority #2; plateau.js: tuning still productive, only benchmark.gap flat): raise the alarm-call bonus when a predator is near (`nodling.js`). Baseline batch passed (gap 2256).
+
+| | control | treatment |
+|---|---|---|
+| commSeparation | 0.0153 | 0.0158 |
+| benchmark gap | 2256 | 2110 |
+| largestCluster | 8 | 8 |
+| brickCells | 685 | 673 |
+| medianFitness | 1418 | 1079 |
+
+Guardrails passed. Target +3% (within noise); gap -6% and median -24% (just inside the 25% guardrail), so do not push this knob further.
+
 ## Cycle 29 (A/B) — day 380.8 + 8k ticks — `kept` (alarm call bonus 0.5 -> 0.75)
 
 **Hypothesis** (priority #2; plateau.js: tuning still productive; commSeparation ~0.0007 after the batch): raise the alarm-call bonus when a predator is near (`nodling.js`). Baseline batch passed (gap 2120).
