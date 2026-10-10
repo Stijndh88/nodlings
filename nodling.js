@@ -12,7 +12,7 @@ const DURABLE_BUILD = ['wood','plank','stone','brick'];
 const LISTEN_BONUS = 0.15; // reward for hearing a call while a predator is near
 const CACHE_BONUS = 0.5; // reward for eating food stored in a cell enclosed by >=2 durable neighbours
 const KILN_BONUS = 0.5; // reward for dropping clay next to an active fire (feeds the kiln)
-const BUILD_ADJACENT_BONUS = 0.3; // reward for placing durable material next to an existing structure
+const BUILD_ADJACENT_BONUS = 0.5; // reward for placing durable material next to an existing structure
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
