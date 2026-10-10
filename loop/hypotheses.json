@@ -166,6 +166,14 @@
       "status": "kept",
       "cycle": 27,
       "note": "brickCells 114->157, cluster 4->5, gap 2313->2120, medianFitness 1265->1225; single 8k sample"
+    },
+    {
+      "id": "build-per-neighbour",
+      "signal": 1,
+      "change": "nodling.js: BUILD_ADJACENT_BONUS paid per durable neighbour (up to 4x) instead of once",
+      "status": "reverted",
+      "cycle": 28,
+      "note": "cluster 6->5, builtCells 634->712, brickCells 305->267, gap 2120->2103; worse on target"
     }
   ]
 }

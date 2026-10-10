@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 28 (A/B) — day 365.1 + 8k ticks (batch ran 12.5k) — `reverted` (STRUCTURAL: build bonus per neighbour)
+
+**Hypothesis** (priority #1; plateau.js demanded a structural cycle: gap, medianFitness, largestCluster flat): pay `BUILD_ADJACENT_BONUS` once per durable neighbour (up to 4x) instead of once, to reward compact filled-in clusters. Baseline batch passed (gap 2120).
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 6 | 5 |
+| brickCells | 305 | 267 |
+| builtCells | 634 | 712 |
+| benchmark gap | 2120 | 2103 |
+| medianFitness | 936 | 1149 |
+
+Guardrails passed but the target (largestCluster) got worse and bricks fell; builtCells/median up, within noise. Reverted.
+
 ## Cycle 27 (A/B) — day 357.3 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (tidal clay 0.05 -> 0.15)
 
 **Hypothesis** (priority #1; plateau.js: tuning still productive): cycle 26's tidal clay lifted brickCells, so triple the deposit chance (`world.js`). Baseline batch passed (gap 2313).
