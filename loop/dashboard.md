@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-10T00:28Z. Now: day 365.13, benchmark gap **2120** (evolved gene pool minus random genomes), largest built cluster 4, 191 brick cells, max generation 428.
+Updated 2026-10-10T04:31Z. Now: day 380.75, benchmark gap **2120** (evolved gene pool minus random genomes), largest built cluster 7, 456 brick cells, max generation 454.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-10T00:28Z. Now: day 365.13, benchmark gap **2120** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 28 | 380.75 | 2120 | 1135 | 7 | 456 | 454 | 0.0007 |
 | 27 | 365.13 | 2120 | 1035 | 4 | 191 | 428 | 0.011 |
 | 26 | 357.31 | 2313 | 1018 | 4 | 90 | 414 | 0.0661 |
 | 25 | 349.5 | 2230 | 868 | 4 | 65 | 403 | 0.0317 |
@@ -24,7 +25,6 @@ Updated 2026-10-10T00:28Z. Now: day 365.13, benchmark gap **2120** (evolved gene
 | 16 | 207.31 | 1947 | 964 | 2 | 65 | 196 | 0.0087 |
 | 15 | 191.69 | 2032 | 987 | 3 | 65 | 167 | 0.0041 |
 | 14 | 176.06 | 2129 | 961 | 4 | 65 | 137 | 0.0119 |
-| 13 | 160.44 | 2129 | 722 | 3 | 65 | 112 | 0.0226 |
 
 ## Hypotheses
 
@@ -49,6 +49,7 @@ Updated 2026-10-10T00:28Z. Now: day 365.13, benchmark gap **2120** (evolved gene
 - **kept**: world.js: ignite(idx, kiln) lets a kiln-seeded spark light bare ground beside clay (all metrics identical to control (cluster 4, bricks 65, gap 2230); never fired in 8k ticks, null result)
 - **kept**: world.js: shoreline sand re-deposits clay (4 tries/tick x 0.05) (brickCells 65->82, cluster 4->4, gap 2230->2313, medianFitness 963->878; single 8k sample)
 - **kept**: world.js tidal clay deposit chance 0.05 -> 0.15 (brickCells 114->157, cluster 4->5, gap 2313->2120, medianFitness 1265->1225; single 8k sample)
+- **reverted**: nodling.js: BUILD_ADJACENT_BONUS paid per durable neighbour (up to 4x) instead of once (cluster 6->5, builtCells 634->712, brickCells 305->267, gap 2120->2103; worse on target)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
