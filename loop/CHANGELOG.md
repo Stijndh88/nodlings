@@ -3,6 +3,20 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 31 (A/B) — day 404.2 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (LEARN_RATE 0.02 -> 0.03)
+
+**Hypothesis** (priority #3; plateau.js: only benchmark.gap flat): faster Hebbian learning (`brain.js`) to lift the gap. Baseline batch passed (gap 2110).
+
+| | control | treatment |
+|---|---|---|
+| benchmark gap | 2110 | 2318 |
+| largestCluster | 9 | 14 |
+| brickCells | 779 | 790 |
+| medianFitness | 1084 | 1332 |
+| commSeparation | 0.0098 | 0.0165 |
+
+Guardrails passed; every metric equal or better. Single 8k sample, so partly noise; watch the next batches.
+
 ## Cycle 30 (A/B) — day 396.4 + 8k ticks — `kept` (alarm call bonus 0.75 -> 1.0)
 
 **Hypothesis** (priority #2; plateau.js: tuning still productive, only benchmark.gap flat): raise the alarm-call bonus when a predator is near (`nodling.js`). Baseline batch passed (gap 2256).

@@ -190,6 +190,14 @@
       "status": "kept",
       "cycle": 30,
       "note": "commSeparation 0.0153->0.0158, gap 2256->2110, cluster 8->8, bricks 685->673; within noise"
+    },
+    {
+      "id": "learn-rate-0.03",
+      "signal": 3,
+      "change": "brain.js LEARN_RATE 0.02 -> 0.03",
+      "status": "kept",
+      "cycle": 31,
+      "note": "gap 2110->2318, cluster 9->14, bricks 779->790, medianFitness 1084->1332, comm 0.0098->0.0165; single 8k sample, partly noise"
     }
   ]
 }
