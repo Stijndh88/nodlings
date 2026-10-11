@@ -3,6 +3,21 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 34 (A/B) — day 432.6 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (BUILD_ADJACENT_BONUS 0.5 -> 0.7)
+
+**Hypothesis** (priority #1; plateau.js: nothing plateaued): 0.9 reverted (cycle 13), 0.5 kept (cycle 33); try 0.7. Baseline batch passed (gap 2257).
+
+| | control | treatment |
+|---|---|---|
+| largestCluster | 8 | 11 |
+| brickCells | 962 | 980 |
+| builtCells | 1405 | 1380 |
+| benchmark gap | 2257 | 2341 |
+| medianFitness | 1177 | 1192 |
+| commSeparation | 0.0081 | 0.0383 |
+
+Guardrails passed; target and others equal or better, but single 8k sample so within noise. Revert if cluster falls back to <= 9 over the next batches.
+
 ## Cycle 33 (A/B) — day 419.8 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (BUILD_ADJACENT_BONUS 0.3 -> 0.5)
 
 **Hypothesis** (priority #1; plateau.js: only medianFitness flat): 0.9 was too much (cycle 13), try the midpoint. Baseline batch passed (gap 2318).
