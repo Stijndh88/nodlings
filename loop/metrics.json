@@ -1,25 +1,25 @@
 {
-  "day": 419.81,
-  "population": 400,
-  "medianFitness": 1084,
-  "meanFitness": 1153,
+  "day": 427.63,
+  "population": 401,
+  "medianFitness": 1280,
+  "meanFitness": 1323,
   "peakFitness": 7002,
-  "maxGen": 518,
-  "avgBrain": 154,
-  "largestCluster": 11,
-  "builtCells": 1608,
-  "brickCells": 845,
-  "meanEnergy": 177,
-  "floraCount": 6107,
+  "maxGen": 538,
+  "avgBrain": 156.7,
+  "largestCluster": 9,
+  "builtCells": 1433,
+  "brickCells": 935,
+  "meanEnergy": 176,
+  "floraCount": 7072,
   "deaths": {
-    "starved": 2597,
-    "thirst": 341
+    "starved": 2039,
+    "thirst": 398
   },
-  "commSeparation": 0.048,
-  "worldTick": 671700,
+  "commSeparation": 0.0306,
+  "worldTick": 684200,
   "benchmark": {
-    "evolved": 2638,
+    "evolved": 2577,
     "random": 320,
-    "gap": 2318
+    "gap": 2257
   }
 }

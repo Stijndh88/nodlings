@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-10T20:39Z. Now: day 419.81, benchmark gap **2318** (evolved gene pool minus random genomes), largest built cluster 11, 845 brick cells, max generation 518.
+Updated 2026-10-11T00:40Z. Now: day 427.63, benchmark gap **2257** (evolved gene pool minus random genomes), largest built cluster 9, 935 brick cells, max generation 538.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-10T20:39Z. Now: day 419.81, benchmark gap **2318** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 33 | 427.63 | 2257 | 1280 | 9 | 935 | 538 | 0.0306 |
 | 32 | 419.81 | 2318 | 1084 | 11 | 845 | 518 | 0.048 |
 | 31 | 412 | 2318 | 1068 | 15 | 797 | 505 | 0.0094 |
 | 30 | 404.19 | 2110 | 1229 | 8 | 735 | 489 | 0.0145 |
@@ -24,7 +25,6 @@ Updated 2026-10-10T20:39Z. Now: day 419.81, benchmark gap **2318** (evolved gene
 | 21 | 294.81 | 2269 | 1133 | 4 | 65 | 331 | 0.0217 |
 | 20 | 279.19 | 2246 | 1141 | 3 | 65 | 314 | 0.0062 |
 | 19 | 254.19 | 2123 | 727 | 4 | 65 | 279 | 0.0033 |
-| 18 | 238.56 | 1711 | 1147 | 3 | 65 | 254 | 0.0017 |
 
 ## Hypotheses
 
@@ -54,6 +54,7 @@ Updated 2026-10-10T20:39Z. Now: day 419.81, benchmark gap **2318** (evolved gene
 - **kept**: nodling.js alarm call bonus 0.75 -> 1.0 when predator near (commSeparation 0.0153->0.0158, gap 2256->2110, cluster 8->8, bricks 685->673; within noise)
 - **kept**: brain.js LEARN_RATE 0.02 -> 0.03 (gap 2110->2318, cluster 9->14, bricks 779->790, medianFitness 1084->1332, comm 0.0098->0.0165; single 8k sample, partly noise)
 - **reverted**: brain.js LEARN_RATE 0.03 -> 0.04 (gap 2318->2273, cluster 13->10, comm 0.0411->0.0071, median 1047->1175; no gain on target, others worse)
+- **kept**: BUILD_ADJACENT_BONUS 0.3 -> 0.5 (cluster 8->9, bricks 897->903, gap 2318->2257, medianFitness 1297->1157, comm 0.045->0.033; single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
