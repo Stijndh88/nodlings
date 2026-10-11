@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 37 (A/B) — day 450.7 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (tidal clay chance 0.15 -> 0.3)
+
+**Hypothesis** (priority #1; plateau.js: only medianFitness flat): more shoreline clay feeds brick chains (0.05 -> 0.15 raised bricks in cycle 27). Baseline batch passed (gap 2332).
+
+Control -> treatment: largestCluster 10 -> 14, brickCells 1147 -> 1167, builtCells 1696 -> 1759, bench gap 2332 -> 2324, medianFitness 1221 -> 1113, commSeparation 0.0076 -> 0.0815, pop 400 -> 402. Guardrails passed. Single 8k sample, differences within noise.
+
 ## Cycle 36 (A/B) — day 442.9 + 8k ticks (batch ran 12.5k: 25k timed out) — `reverted` (BUILD_ADJACENT_BONUS 0.85 -> 1.0)
 
 **Hypothesis** (priority #1; plateau.js: only medianFitness flat): continue the bonus ramp. Baseline batch passed (gap 2332).
