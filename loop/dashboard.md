@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-11T16:31Z. Now: day 458.56, benchmark gap **2324** (evolved gene pool minus random genomes), largest built cluster 16, 1205 brick cells, max generation 592.
+Updated 2026-10-11T20:32Z. Now: day 474.19, benchmark gap **2324** (evolved gene pool minus random genomes), largest built cluster 14, 1400 brick cells, max generation 620.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-11T16:31Z. Now: day 458.56, benchmark gap **2324** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 38 | 474.19 | 2324 | 927 | 14 | 1400 | 620 | 0.0198 |
 | 37 | 458.56 | 2324 | 1358 | 16 | 1205 | 592 | 0.0783 |
 | 36 | 450.75 | 2332 | 1050 | 12 | 1101 | 576 | 0.0166 |
 | 35 | 442.94 | 2332 | 1083 | 14 | 1061 | 560 | 0.0559 |
@@ -24,7 +25,6 @@ Updated 2026-10-11T16:31Z. Now: day 458.56, benchmark gap **2324** (evolved gene
 | 26 | 357.31 | 2313 | 1018 | 4 | 90 | 414 | 0.0661 |
 | 25 | 349.5 | 2230 | 868 | 4 | 65 | 403 | 0.0317 |
 | 24 | 341.69 | 2230 | 1435 | 4 | 65 | 394 | 0.0215 |
-| 23 | 326.06 | 2292 | 1270 | 4 | 65 | 382 | 0.0196 |
 
 ## Hypotheses
 
@@ -59,6 +59,7 @@ Updated 2026-10-11T16:31Z. Now: day 458.56, benchmark gap **2324** (evolved gene
 - **kept**: BUILD_ADJACENT_BONUS 0.7 -> 0.85 (cluster 12->14, bricks 1042->1058, builtCells 1489->1455, gap 2341->2332, median 1038->1028, comm 0.056->0.096; single 8k sample, within noise)
 - **reverted**: BUILD_ADJACENT_BONUS 0.85 -> 1.0 (cluster 12->11, bricks 1097->1079, gap 2332->2283, median 1221->1140; no gain on target, others worse)
 - **kept**: world.js tidal clay deposit chance 0.15 -> 0.3 (cluster 10->14, bricks 1147->1167, builtCells 1696->1759, gap 2332->2324, median 1221->1113, comm 0.0076->0.0815; single 8k sample, within noise)
+- **reverted**: world.js tidal clay deposit chance 0.3 -> 0.5 (cluster 17->15, bricks 1288->1316, builtCells 1658->1719, gap 2324->2190, median 1051->1147, comm 0.026->0.100; target cluster worse, gap lower)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
