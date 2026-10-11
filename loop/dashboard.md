@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-11T04:40Z. Now: day 435.13, benchmark gap **2341** (evolved gene pool minus random genomes), largest built cluster 10, 1017 brick cells, max generation 550.
+Updated 2026-10-11T08:40Z. Now: day 442.94, benchmark gap **2332** (evolved gene pool minus random genomes), largest built cluster 14, 1061 brick cells, max generation 560.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-11T04:40Z. Now: day 435.13, benchmark gap **2341** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 35 | 442.94 | 2332 | 1083 | 14 | 1061 | 560 | 0.0559 |
 | 34 | 435.13 | 2341 | 1186 | 10 | 1017 | 550 | 0.0458 |
 | 33 | 427.63 | 2257 | 1280 | 9 | 935 | 538 | 0.0306 |
 | 32 | 419.81 | 2318 | 1084 | 11 | 845 | 518 | 0.048 |
@@ -24,7 +25,6 @@ Updated 2026-10-11T04:40Z. Now: day 435.13, benchmark gap **2341** (evolved gene
 | 23 | 326.06 | 2292 | 1270 | 4 | 65 | 382 | 0.0196 |
 | 22 | 310.44 | 2292 | 1275 | 4 | 65 | 356 | 0.016 |
 | 21 | 294.81 | 2269 | 1133 | 4 | 65 | 331 | 0.0217 |
-| 20 | 279.19 | 2246 | 1141 | 3 | 65 | 314 | 0.0062 |
 
 ## Hypotheses
 
@@ -56,6 +56,7 @@ Updated 2026-10-11T04:40Z. Now: day 435.13, benchmark gap **2341** (evolved gene
 - **reverted**: brain.js LEARN_RATE 0.03 -> 0.04 (gap 2318->2273, cluster 13->10, comm 0.0411->0.0071, median 1047->1175; no gain on target, others worse)
 - **kept**: BUILD_ADJACENT_BONUS 0.3 -> 0.5 (cluster 8->9, bricks 897->903, gap 2318->2257, medianFitness 1297->1157, comm 0.045->0.033; single 8k sample, within noise)
 - **kept**: BUILD_ADJACENT_BONUS 0.5 -> 0.7 (cluster 8->11, bricks 962->980, gap 2257->2341, median 1177->1192, comm 0.0081->0.0383; single 8k sample, within noise)
+- **kept**: BUILD_ADJACENT_BONUS 0.7 -> 0.85 (cluster 12->14, bricks 1042->1058, builtCells 1489->1455, gap 2341->2332, median 1038->1028, comm 0.056->0.096; single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
