@@ -246,6 +246,14 @@
       "status": "kept",
       "cycle": 37,
       "note": "cluster 10->14, bricks 1147->1167, builtCells 1696->1759, gap 2332->2324, median 1221->1113, comm 0.0076->0.0815; single 8k sample, within noise"
+    },
+    {
+      "id": "tidal-clay-0.5",
+      "signal": 1,
+      "change": "world.js tidal clay deposit chance 0.3 -> 0.5",
+      "status": "reverted",
+      "cycle": 38,
+      "note": "cluster 17->15, bricks 1288->1316, builtCells 1658->1719, gap 2324->2190, median 1051->1147, comm 0.026->0.100; target cluster worse, gap lower"
     }
   ]
 }

@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 38 (A/B) — day 458.6 + 8k ticks (batch ran 12.5k: 25k timed out) — `reverted` (tidal clay chance 0.3 -> 0.5)
+
+**Hypothesis** (priority #1; plateau.js: only benchmark.gap flat): more shoreline clay. Baseline batch passed (gap 2324).
+
+Control -> treatment: largestCluster 17 -> 15, brickCells 1288 -> 1316, builtCells 1658 -> 1719, bench gap 2324 -> 2190, medianFitness 1051 -> 1147, commSeparation 0.026 -> 0.100. Guardrails passed, but cluster and gap fell (within noise); reverted. Clay supply looks saturated near 0.3.
+
 ## Cycle 37 (A/B) — day 450.7 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (tidal clay chance 0.15 -> 0.3)
 
 **Hypothesis** (priority #1; plateau.js: only medianFitness flat): more shoreline clay feeds brick chains (0.05 -> 0.15 raised bricks in cycle 27). Baseline batch passed (gap 2332).
