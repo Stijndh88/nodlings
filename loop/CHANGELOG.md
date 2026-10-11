@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 36 (A/B) — day 442.9 + 8k ticks (batch ran 12.5k: 25k timed out) — `reverted` (BUILD_ADJACENT_BONUS 0.85 -> 1.0)
+
+**Hypothesis** (priority #1; plateau.js: only medianFitness flat): continue the bonus ramp. Baseline batch passed (gap 2332).
+
+Control -> treatment: largestCluster 12 -> 11, brickCells 1097 -> 1079, builtCells 1742 -> 1785, bench gap 2332 -> 2283, medianFitness 1221 -> 1140, commSeparation 0.02 -> 0.079. Guardrails passed, but target slightly worse (within noise); reverted. 0.85 looks like the plateau of this knob.
+
 
 ## Cycle 35 (A/B) — day 435.1 + 8k ticks — `kept`
 

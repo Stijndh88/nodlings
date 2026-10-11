@@ -230,6 +230,14 @@
       "status": "kept",
       "cycle": 35,
       "note": "cluster 12->14, bricks 1042->1058, builtCells 1489->1455, gap 2341->2332, median 1038->1028, comm 0.056->0.096; single 8k sample, within noise"
+    },
+    {
+      "id": "build-adjacent-1.0",
+      "signal": 1,
+      "change": "BUILD_ADJACENT_BONUS 0.85 -> 1.0",
+      "status": "reverted",
+      "cycle": 36,
+      "note": "cluster 12->11, bricks 1097->1079, gap 2332->2283, median 1221->1140; no gain on target, others worse"
     }
   ]
 }
