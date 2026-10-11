@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 39 (A/B) — day 474.2 + 8k ticks — `STRUCTURAL: kept` (predator shelter)
+
+**Hypothesis** (priority #1; plateau.js: gap, medianFitness, largestCluster flat): a payoff for walls — predators cannot catch prey standing in a cell with >=2 durable neighbours. Baseline batch passed (gap 2324).
+
+Control -> treatment: all metrics identical (largestCluster 16, brickCells 1413, builtCells 2136, gap 2275, medianFitness 850, comm 0.0182). Guardrails passed. Null result: the shelter case never changed an outcome in 8k ticks (prey is rarely walled in while a predator is within catch range); kept as harmless.
+
 ## Cycle 38 (A/B) — day 458.6 + 8k ticks (batch ran 12.5k: 25k timed out) — `reverted` (tidal clay chance 0.3 -> 0.5)
 
 **Hypothesis** (priority #1; plateau.js: only benchmark.gap flat): more shoreline clay. Baseline batch passed (gap 2324).

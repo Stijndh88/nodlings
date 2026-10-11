@@ -60,7 +60,17 @@ class Predator {
     if (prey && this.prevPreyD) reward += Math.max(-1, Math.min(1, (this.prevPreyD - preyD)*0.6));
     this.prevPreyD = preyD;
 
-    if (prey && pd < 0.8*0.8){                 // caught it
+    // shelter: prey walled in by >=2 durable neighbours cannot be caught
+    let sheltered = false;
+    if (prey && pd < 0.8*0.8){
+      let walls = 0;
+      for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+        const nb = w.at((prey.x|0)+ax, (prey.y|0)+ay);
+        if (nb && nb.stack.some(m => m === 'wood' || m === 'plank' || m === 'stone' || m === 'brick')) walls++;
+      }
+      sheltered = walls >= 2;
+    }
+    if (prey && pd < 0.8*0.8 && !sheltered){   // caught it
       prey.die(w.at(prey.x|0, prey.y|0));
       this.energy = Math.min(130, this.energy + 45);
       this.kills++;

@@ -254,6 +254,14 @@
       "status": "reverted",
       "cycle": 38,
       "note": "cluster 17->15, bricks 1288->1316, builtCells 1658->1719, gap 2324->2190, median 1051->1147, comm 0.026->0.100; target cluster worse, gap lower"
+    },
+    {
+      "id": "predator-shelter",
+      "signal": 1,
+      "change": "predators.js: prey with >=2 durable neighbours cannot be caught",
+      "status": "kept",
+      "cycle": 39,
+      "note": "all metrics identical to control (cluster 16, bricks 1413, gap 2275); never fired in 8k ticks, null result"
     }
   ]
 }
