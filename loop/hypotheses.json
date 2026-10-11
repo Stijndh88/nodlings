@@ -222,6 +222,14 @@
       "status": "kept",
       "cycle": 34,
       "note": "cluster 8->11, bricks 962->980, gap 2257->2341, median 1177->1192, comm 0.0081->0.0383; single 8k sample, within noise"
+    },
+    {
+      "id": "build-adjacent-0.85",
+      "signal": 1,
+      "change": "BUILD_ADJACENT_BONUS 0.7 -> 0.85",
+      "status": "kept",
+      "cycle": 35,
+      "note": "cluster 12->14, bricks 1042->1058, builtCells 1489->1455, gap 2341->2332, median 1038->1028, comm 0.056->0.096; single 8k sample, within noise"
     }
   ]
 }

@@ -3,6 +3,13 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+
+## Cycle 35 (A/B) — day 435.1 + 8k ticks — `kept`
+
+**Hypothesis** (priority #1): `BUILD_ADJACENT_BONUS` 0.7 -> 0.85. Plateau check: only `largestCluster` flat, so a tunable step is allowed.
+
+Control -> treatment: largestCluster 12 -> 14, brickCells 1042 -> 1058, builtCells 1489 -> 1455, bench gap 2341 -> 2332, medianFitness 1038 -> 1028, commSeparation 0.056 -> 0.096, pop 401 -> 402. Guardrails passed. Single 8k sample, within noise.
+
 ## Cycle 34 (A/B) — day 432.6 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (BUILD_ADJACENT_BONUS 0.5 -> 0.7)
 
 **Hypothesis** (priority #1; plateau.js: nothing plateaued): 0.9 reverted (cycle 13), 0.5 kept (cycle 33); try 0.7. Baseline batch passed (gap 2257).
