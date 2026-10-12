@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 41 (A/B) — day 497.6 + 8k ticks (batch ran 12.5k: 80k and 25k timed out) — `kept` (FIRE_SPREAD_RATE 0.12 -> 0.15)
+
+**Hypothesis** (priority #1; plateau.js: gap and medianFitness flat, cluster/bricks rising, tuning allowed): continue the fire-spread ramp that raised cluster in cycle 40. Baseline batch passed (gap 2264).
+
+Control -> treatment: largestCluster 27 -> 36, brickCells 1673 -> 1707, builtCells 2100 -> 2099, bench gap 2264 -> 2239, medianFitness 1194 -> 1139, commSeparation 0.0026 -> 0.0202, pop 403 -> 400. Guardrails passed. Single 8k sample, differences within noise.
+
 ## Cycle 40 (A/B) — day 489.8 + 8k ticks — `kept` (FIRE_SPREAD_RATE 0.09 -> 0.12)
 
 **Hypothesis** (priority #1; plateau.js: only benchmark.gap flat, tuning allowed): wider fires give more clay a chance to fire into brick. Baseline batch passed (gap 2275).

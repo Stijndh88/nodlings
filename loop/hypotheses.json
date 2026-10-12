@@ -270,6 +270,14 @@
       "status": "kept",
       "cycle": 40,
       "note": "cluster 16->22, bricks 1591->1612, builtCells 2016->2042, gap 2275->2264, median 1263->1163; single 8k sample, within noise"
+    },
+    {
+      "id": "fire-spread-0.15",
+      "signal": 1,
+      "change": "FIRE_SPREAD_RATE 0.12 -> 0.15",
+      "status": "kept",
+      "cycle": 41,
+      "note": "cluster 27->36, bricks 1673->1707, builtCells 2100->2099, gap 2264->2239, median 1194->1139, comm 0.0026->0.0202; single 8k sample, within noise"
     }
   ]
 }
