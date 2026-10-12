@@ -1,25 +1,28 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 474.2 · Autumn
+Seed `20261007` · day 489.8 · Spring
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 398 (29 juvenile) |
-| max generation | 621 |
+| population | 400 (24 juvenile) |
+| max generation | 650 |
 | best fitness | 7002 |
-| avg brain (conns) | 172 |
+| avg brain (conns) | 176 |
 | lineage diversity | 6 colour-groups |
-| diet | 71% herbivore / 20% carnivore |
-| predators | 3, 50 kills, best 113116 |
-| structures (durable) | 4970 (1574) |
-| planks / bricks / bridges | 27 / 1039 / 2599 |
-| flora / cooked food | 5834 / 325 |
+| diet | 72% herbivore / 12% carnivore |
+| predators | 6, 23 kills, best 113116 |
+| structures (durable) | 5688 (1754) |
+| planks / bricks / bridges | 39 / 1115 / 2608 |
+| flora / cooked food | 6090 / 311 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 485.2]** _(trend)_ Lineages are deepening — max generation 632→642. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 479.2]** _(trend)_ Lineages are deepening — max generation 620→632. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 474.2]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 472.6]** _(trend)_ Lineages are deepening — max generation 610→620. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 466.6]** _(trend)_ Lineages are deepening — max generation 596→610. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 460.6]** _(trend)_ Lineages are deepening — max generation 592→596. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
