@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 44 (A/B) — day 528.9 + 8k ticks (batch ran 25k) — `kept` (LEARN_RATE 0.03 -> 0.025)
+
+**Hypothesis** (priority #3; plateau.js: gap and medianFitness flat): slightly slower plasticity may stabilise learned behaviour (0.04 reverted in cycle 32). Baseline batch passed (gap 2260).
+
+Control -> treatment: largestCluster 48 -> 54, brickCells 1957 -> 1966, builtCells 2313 -> 2384, bench gap 2260 -> 2274, medianFitness 1054 -> 1107, commSeparation 0.0028 -> 0.0332, pop 400 -> 400. Guardrails passed. Single 8k sample, differences within noise.
+
 ## Cycle 43 (A/B) — day 513.3 + 16k ticks (batch ran 12.5k: 80k timed out) — `reverted` (FIRE_SPREAD_RATE 0.18 -> 0.2)
 
 **Hypothesis** (priority #1; plateau.js: gap and medianFitness flat, tuning allowed): final step of the fire-spread ramp (range max). Baseline batch passed (gap 2260).

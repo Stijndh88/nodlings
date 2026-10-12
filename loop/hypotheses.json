@@ -294,6 +294,14 @@
       "status": "reverted",
       "cycle": 43,
       "note": "cluster 44->33, brickCells 1876->1905, gap 2260->2255; 0.18 looks like the plateau"
+    },
+    {
+      "id": "learn-rate-0.025",
+      "signal": 3,
+      "change": "brain.js LEARN_RATE 0.03 -> 0.025",
+      "status": "kept",
+      "cycle": 44,
+      "note": "gap 2260->2274, median 1054->1107, cluster 48->54, bricks 1957->1966; single 8k sample, within noise"
     }
   ]
 }
