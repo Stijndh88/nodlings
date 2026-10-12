@@ -286,6 +286,14 @@
       "status": "kept",
       "cycle": 42,
       "note": "cluster 33->33, bricks 1760->1774, builtCells 2245->2264, gap 2239->2260, median 823->932, comm 0.1283->0.0582; single 8k sample, within noise"
+    },
+    {
+      "id": "fire-spread-0.2",
+      "signal": 1,
+      "change": "FIRE_SPREAD_RATE 0.18 -> 0.2 (range max)",
+      "status": "reverted",
+      "cycle": 43,
+      "note": "cluster 44->33, brickCells 1876->1905, gap 2260->2255; 0.18 looks like the plateau"
     }
   ]
 }

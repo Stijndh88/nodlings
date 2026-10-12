@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 43 (A/B) — day 513.3 + 16k ticks (batch ran 12.5k: 80k timed out) — `reverted` (FIRE_SPREAD_RATE 0.18 -> 0.2)
+
+**Hypothesis** (priority #1; plateau.js: gap and medianFitness flat, tuning allowed): final step of the fire-spread ramp (range max). Baseline batch passed (gap 2260).
+
+Control -> treatment: largestCluster 44 -> 33, brickCells 1876 -> 1905, builtCells 2281 -> 2300, bench gap 2260 -> 2255, medianFitness 1325 -> 1254, commSeparation 0.0009 -> 0.022, pop 401 -> 401. Guardrails passed, but target cluster fell (single sample, possibly noise); reverted. Fire-spread ramp is exhausted.
+
 ## Cycle 42 (A/B) — day 505.4 + 8k ticks (batch ran 12.5k: 25k timed out) — `kept` (FIRE_SPREAD_RATE 0.15 -> 0.18)
 
 **Hypothesis** (priority #1; plateau.js: only gap flat, tuning allowed): continue the fire-spread ramp. Baseline batch passed (gap 2239).
