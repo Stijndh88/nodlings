@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-12T12:33Z. Now: day 513.25, benchmark gap **2260** (evolved gene pool minus random genomes), largest built cluster 34, 1763 brick cells, max generation 695.
+Updated 2026-10-12T16:29Z. Now: day 528.88, benchmark gap **2260** (evolved gene pool minus random genomes), largest built cluster 52, 1931 brick cells, max generation 723.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-12T12:33Z. Now: day 513.25, benchmark gap **2260** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 43 | 528.88 | 2260 | 794 | 52 | 1931 | 723 | 0.0043 |
 | 42 | 513.25 | 2260 | 924 | 34 | 1763 | 695 | 0.0506 |
 | 41 | 505.44 | 2239 | 1336 | 32 | 1747 | 682 | 0.0687 |
 | 40 | 497.63 | 2264 | 1233 | 26 | 1642 | 667 | 0.0428 |
@@ -24,7 +25,6 @@ Updated 2026-10-12T12:33Z. Now: day 513.25, benchmark gap **2260** (evolved gene
 | 31 | 412 | 2318 | 1068 | 15 | 797 | 505 | 0.0094 |
 | 30 | 404.19 | 2110 | 1229 | 8 | 735 | 489 | 0.0145 |
 | 29 | 396.38 | 2256 | 1376 | 8 | 633 | 479 | 0.0055 |
-| 28 | 380.75 | 2120 | 1135 | 7 | 456 | 454 | 0.0007 |
 
 ## Hypotheses
 
@@ -64,6 +64,7 @@ Updated 2026-10-12T12:33Z. Now: day 513.25, benchmark gap **2260** (evolved gene
 - **kept**: FIRE_SPREAD_RATE 0.09 -> 0.12 (cluster 16->22, bricks 1591->1612, builtCells 2016->2042, gap 2275->2264, median 1263->1163; single 8k sample, within noise)
 - **kept**: FIRE_SPREAD_RATE 0.12 -> 0.15 (cluster 27->36, bricks 1673->1707, builtCells 2100->2099, gap 2264->2239, median 1194->1139, comm 0.0026->0.0202; single 8k sample, within noise)
 - **kept**: FIRE_SPREAD_RATE 0.15 -> 0.18 (cluster 33->33, bricks 1760->1774, builtCells 2245->2264, gap 2239->2260, median 823->932, comm 0.1283->0.0582; single 8k sample, within noise)
+- **reverted**: FIRE_SPREAD_RATE 0.18 -> 0.2 (range max) (cluster 44->33, brickCells 1876->1905, gap 2260->2255; 0.18 looks like the plateau)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
