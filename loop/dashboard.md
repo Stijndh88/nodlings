@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-12T04:52Z. Now: day 497.63, benchmark gap **2264** (evolved gene pool minus random genomes), largest built cluster 26, 1642 brick cells, max generation 667.
+Updated 2026-10-12T08:43Z. Now: day 505.44, benchmark gap **2239** (evolved gene pool minus random genomes), largest built cluster 32, 1747 brick cells, max generation 682.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-12T04:52Z. Now: day 497.63, benchmark gap **2264** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 41 | 505.44 | 2239 | 1336 | 32 | 1747 | 682 | 0.0687 |
 | 40 | 497.63 | 2264 | 1233 | 26 | 1642 | 667 | 0.0428 |
 | 39 | 489.81 | 2275 | 1066 | 17 | 1537 | 651 | 0.0344 |
 | 38 | 474.19 | 2324 | 927 | 14 | 1400 | 620 | 0.0198 |
@@ -24,7 +25,6 @@ Updated 2026-10-12T04:52Z. Now: day 497.63, benchmark gap **2264** (evolved gene
 | 29 | 396.38 | 2256 | 1376 | 8 | 633 | 479 | 0.0055 |
 | 28 | 380.75 | 2120 | 1135 | 7 | 456 | 454 | 0.0007 |
 | 27 | 365.13 | 2120 | 1035 | 4 | 191 | 428 | 0.011 |
-| 26 | 357.31 | 2313 | 1018 | 4 | 90 | 414 | 0.0661 |
 
 ## Hypotheses
 
@@ -62,6 +62,7 @@ Updated 2026-10-12T04:52Z. Now: day 497.63, benchmark gap **2264** (evolved gene
 - **reverted**: world.js tidal clay deposit chance 0.3 -> 0.5 (cluster 17->15, bricks 1288->1316, builtCells 1658->1719, gap 2324->2190, median 1051->1147, comm 0.026->0.100; target cluster worse, gap lower)
 - **kept**: predators.js: prey with >=2 durable neighbours cannot be caught (all metrics identical to control (cluster 16, bricks 1413, gap 2275); never fired in 8k ticks, null result)
 - **kept**: FIRE_SPREAD_RATE 0.09 -> 0.12 (cluster 16->22, bricks 1591->1612, builtCells 2016->2042, gap 2275->2264, median 1263->1163; single 8k sample, within noise)
+- **kept**: FIRE_SPREAD_RATE 0.12 -> 0.15 (cluster 27->36, bricks 1673->1707, builtCells 2100->2099, gap 2264->2239, median 1194->1139, comm 0.0026->0.0202; single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
