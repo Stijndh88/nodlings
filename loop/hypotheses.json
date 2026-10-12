@@ -262,6 +262,14 @@
       "status": "kept",
       "cycle": 39,
       "note": "all metrics identical to control (cluster 16, bricks 1413, gap 2275); never fired in 8k ticks, null result"
+    },
+    {
+      "id": "fire-spread-0.12",
+      "signal": 1,
+      "change": "FIRE_SPREAD_RATE 0.09 -> 0.12",
+      "status": "kept",
+      "cycle": 40,
+      "note": "cluster 16->22, bricks 1591->1612, builtCells 2016->2042, gap 2275->2264, median 1263->1163; single 8k sample, within noise"
     }
   ]
 }

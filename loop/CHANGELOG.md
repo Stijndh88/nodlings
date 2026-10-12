@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 40 (A/B) — day 489.8 + 8k ticks — `kept` (FIRE_SPREAD_RATE 0.09 -> 0.12)
+
+**Hypothesis** (priority #1; plateau.js: only benchmark.gap flat, tuning allowed): wider fires give more clay a chance to fire into brick. Baseline batch passed (gap 2275).
+
+Control -> treatment: largestCluster 16 -> 22, brickCells 1591 -> 1612, builtCells 2016 -> 2042, bench gap 2275 -> 2264, medianFitness 1263 -> 1163, commSeparation 0.0096 -> 0.0081, pop 400 -> 401. Guardrails passed. Single 8k sample, differences within noise.
+
 ## Cycle 39 (A/B) — day 474.2 + 8k ticks — `STRUCTURAL: kept` (predator shelter)
 
 **Hypothesis** (priority #1; plateau.js: gap, medianFitness, largestCluster flat): a payoff for walls — predators cannot catch prey standing in a cell with >=2 durable neighbours. Baseline batch passed (gap 2324).
