@@ -302,6 +302,14 @@
       "status": "kept",
       "cycle": 44,
       "note": "gap 2260->2274, median 1054->1107, cluster 48->54, bricks 1957->1966; single 8k sample, within noise"
+    },
+    {
+      "id": "pop-cap-500",
+      "signal": 3,
+      "change": "POP_CAP 400 -> 500",
+      "status": "kept",
+      "cycle": 45,
+      "note": "cluster 33->36, bricks 2065->2048, gap 2274->2237, median 911->1150, comm 0.0461->0.0406; single 8k sample, within noise; 8k run took 4m48 so batches need fewer ticks"
     }
   ]
 }

@@ -5,7 +5,7 @@
 
 const VISION = 6;      // vision disc radius — the per-tick sensing cost driver
 const EARSHOT = 12;
-const POP_CAP = 400;   // food isn't limiting until ~800+ (see CHANGELOG cycle 12); runtime scales ~linearly with this
+const POP_CAP = 500;   // food isn't limiting until ~800+ (see CHANGELOG cycle 12); runtime scales ~linearly with this
 const MATURITY = 160;  // age below which a Nodling is a juvenile (can't breed, sees less)
 const SENESCENCE = 900;// age past which upkeep rises (aging)
 const DURABLE_BUILD = ['wood','plank','stone','brick'];

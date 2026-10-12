@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 45 (A/B) — day 544.5 + 8k ticks — `kept` (POP_CAP 400 -> 500)
+
+**Hypothesis** (priority #3; plateau.js: gap and medianFitness flat, tuning allowed): more individuals widen the search and the builder pool. Baseline batch passed (gap 2274).
+
+Control -> treatment: largestCluster 33 -> 36, brickCells 2065 -> 2048, builtCells ? -> 2669, bench gap 2274 -> 2237, medianFitness 911 -> 1150, commSeparation 0.0461 -> 0.0406, pop 400 -> 501. Guardrails passed. Single 8k sample, differences within noise. Runtime: the 8k treatment took ~4m48, so next batches should use fewer ticks (e.g. 12.5k).
+
 ## Cycle 44 (A/B) — day 528.9 + 8k ticks (batch ran 25k) — `kept` (LEARN_RATE 0.03 -> 0.025)
 
 **Hypothesis** (priority #3; plateau.js: gap and medianFitness flat): slightly slower plasticity may stabilise learned behaviour (0.04 reverted in cycle 32). Baseline batch passed (gap 2260).
