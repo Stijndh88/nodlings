@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-13T08:27Z. Now: day 556.22, benchmark gap **2237** (evolved gene pool minus random genomes), largest built cluster 34, 2120 brick cells, max generation 786.
+Updated 2026-10-13T12:40Z. Now: day 560.13, benchmark gap **2237** (evolved gene pool minus random genomes), largest built cluster 34, 2149 brick cells, max generation 792.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-13T08:27Z. Now: day 556.22, benchmark gap **2237** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 48 | 560.13 | 2237 | 1047 | 34 | 2149 | 792 | 0.0481 |
 | 47 | 556.22 | 2237 | 1268 | 34 | 2120 | 786 | 0.0454 |
 | 46 | 552.31 | 2237 | 1146 | 42 | 2064 | 774 | 0.0068 |
 | 45 | 548.41 | 2237 | 1002 | 37 | 2054 | 767 | 0.0516 |
@@ -24,7 +25,6 @@ Updated 2026-10-13T08:27Z. Now: day 556.22, benchmark gap **2237** (evolved gene
 | 36 | 450.75 | 2332 | 1050 | 12 | 1101 | 576 | 0.0166 |
 | 35 | 442.94 | 2332 | 1083 | 14 | 1061 | 560 | 0.0559 |
 | 34 | 435.13 | 2341 | 1186 | 10 | 1017 | 550 | 0.0458 |
-| 33 | 427.63 | 2257 | 1280 | 9 | 935 | 538 | 0.0306 |
 
 ## Hypotheses
 
@@ -69,6 +69,7 @@ Updated 2026-10-13T08:27Z. Now: day 556.22, benchmark gap **2237** (evolved gene
 - **kept**: POP_CAP 400 -> 500 (cluster 33->36, bricks 2065->2048, gap 2274->2237, median 911->1150, comm 0.0461->0.0406; single 8k sample, within noise; 8k run took 4m48 so batches need fewer ticks)
 - **reverted**: world.js tidal clay deposit chance 0.3 -> 0.4 (cluster 42->32, bricks 2074->2097, gap 2237->2164, median 1195->860 (-28%, guardrail); worse on target)
 - **reverted**: LISTEN_BONUS 0.15 -> 0.1 (commSeparation 0.0586->0.0358, cluster 45->45, bricks 2120->2103, gap 2237->2237, median 1057->1205; worse on target)
+- **reverted**: LISTEN_BONUS 0.15 -> 0.2 (commSeparation 0.0564->0.0066, cluster 38->40, bricks 2170->2167, gap 2237->2316, median 941->1159; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
