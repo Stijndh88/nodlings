@@ -1,25 +1,26 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 552.3 · Spring
+Seed `20261007` · day 556.2 · Summer
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (41 juvenile) |
-| max generation | 773 |
+| population | 500 (43 juvenile) |
+| max generation | 785 |
 | best fitness | 7002 |
 | avg brain (conns) | 185 |
-| lineage diversity | 5 colour-groups |
-| diet | 79% herbivore / 8% carnivore |
-| predators | 6, 112 kills, best 113116 |
-| structures (durable) | 4527 (2152) |
-| planks / bricks / bridges | 29 / 1663 / 2622 |
-| flora / cooked food | 3832 / 345 |
+| lineage diversity | 6 colour-groups |
+| diet | 78% herbivore / 7% carnivore |
+| predators | 6, 124 kills, best 113116 |
+| structures (durable) | 5933 (2246) |
+| planks / bricks / bridges | 33 / 1594 / 2619 |
+| flora / cooked food | 5783 / 342 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 553.3]** _(trend)_ Lineages are deepening — max generation 774→778. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 546.5]** _(trend)_ Lineages are deepening — max generation 758→764. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 545.5]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 541.9]** _(issue)_ Food (flora) fell 61% in ~6 days — likely a wildfire or overgrazing. If wildfires recur, lower fire spread further; water/stone lines act as firebreaks.
