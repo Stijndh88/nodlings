@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 47 (A/B) — day 552.3 + 5k ticks (batch ran 6.25k: 25k timed out) — `reverted` (LISTEN_BONUS 0.15 -> 0.1)
+
+**Hypothesis** (priority #2; plateau.js: gap and cluster flat, tuning allowed): a smaller listen bonus might make the alarm correlation cleaner (0.3 was reverted in cycle 20). Baseline batch passed (gap 2237).
+
+Control -> treatment: commSeparation 0.0586 -> 0.0358, largestCluster 45 -> 45, brickCells 2120 -> 2103, builtCells 2446 -> 2531, bench gap 2237 -> 2237, medianFitness 1057 -> 1205, pop 500 -> 497. Guardrails passed, but target worse (single sample, possibly noise); reverted.
+
 ## Cycle 46 (A/B) — day 551.5 + 5k ticks (batch ran 6.25k: 25k and 12.5k timed out) — `reverted` (tidal clay 0.3 -> 0.4)
 
 **Hypothesis** (priority #1; plateau.js: only gap flat, tuning allowed): more shoreline clay deposits. Baseline batch passed (gap 2237).
