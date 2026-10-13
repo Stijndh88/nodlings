@@ -334,6 +334,14 @@
       "status": "reverted",
       "cycle": 48,
       "note": "commSeparation 0.0564->0.0066, cluster 38->40, bricks 2170->2167, gap 2237->2316, median 941->1159; target worse"
+    },
+    {
+      "id": "pop-cap-600",
+      "signal": 3,
+      "change": "POP_CAP 500 -> 600",
+      "status": "reverted",
+      "cycle": 49,
+      "note": "gap 2237->2234, medianFitness 1247->1076, cluster 41->38, bricks 2179->2187; no gain, runtime 6m08 for 5k ticks"
     }
   ]
 }

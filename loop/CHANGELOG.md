@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 49 (A/B) — day 560.1 + 5k ticks (batch ran 6.25k: 25k timed out) — `reverted` (POP_CAP 500 -> 600)
+
+**Hypothesis** (priority #3; plateau.js: gap and cluster flat, tuning allowed): larger population widens the search. Baseline batch passed (gap 2237).
+
+Control -> treatment: bench gap 2237 -> 2234, medianFitness 1247 -> 1076, largestCluster 41 -> 38, brickCells 2179 -> 2187, builtCells 2566 -> 2561, commSeparation 0.0236 -> 0.0095, pop 500 -> 600. Guardrails passed, no gain on target and the 5k run took 6m08, so reverted. POP_CAP is exhausted at 500.
+
 ## Cycle 48 (A/B) — day 556.2 + 8k ticks (batch ran 6.25k) — `reverted` (LISTEN_BONUS 0.15 -> 0.2)
 
 **Hypothesis** (priority #2; plateau.js: gap and cluster flat, tuning allowed): intermediate listen bonus between 0.15 and the reverted 0.1/0.3. Baseline batch passed (gap 2237).
