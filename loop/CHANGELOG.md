@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 48 (A/B) — day 556.2 + 8k ticks (batch ran 6.25k) — `reverted` (LISTEN_BONUS 0.15 -> 0.2)
+
+**Hypothesis** (priority #2; plateau.js: gap and cluster flat, tuning allowed): intermediate listen bonus between 0.15 and the reverted 0.1/0.3. Baseline batch passed (gap 2237).
+
+Control -> treatment: commSeparation 0.0564 -> 0.0066, largestCluster 38 -> 40, brickCells 2170 -> 2167, builtCells 2501 -> 2627, bench gap 2237 -> 2316, medianFitness 941 -> 1159, pop 502 -> 503. Guardrails passed, but target worse (single sample, comm is very noisy); reverted. LISTEN_BONUS is exhausted as a knob.
+
 ## Cycle 47 (A/B) — day 552.3 + 5k ticks (batch ran 6.25k: 25k timed out) — `reverted` (LISTEN_BONUS 0.15 -> 0.1)
 
 **Hypothesis** (priority #2; plateau.js: gap and cluster flat, tuning allowed): a smaller listen bonus might make the alarm correlation cleaner (0.3 was reverted in cycle 20). Baseline batch passed (gap 2237).

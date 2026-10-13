@@ -326,6 +326,14 @@
       "status": "reverted",
       "cycle": 47,
       "note": "commSeparation 0.0586->0.0358, cluster 45->45, bricks 2120->2103, gap 2237->2237, median 1057->1205; worse on target"
+    },
+    {
+      "id": "comm-listen-0.2",
+      "signal": 2,
+      "change": "LISTEN_BONUS 0.15 -> 0.2",
+      "status": "reverted",
+      "cycle": 48,
+      "note": "commSeparation 0.0564->0.0066, cluster 38->40, bricks 2170->2167, gap 2237->2316, median 941->1159; target worse"
     }
   ]
 }
