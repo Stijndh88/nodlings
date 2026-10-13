@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 50 (A/B) — day 567.2 + 5k ticks (batch ran 6.25k) — `reverted` (LEARN_RATE 0.025 -> 0.022)
+
+**Hypothesis** (priority #3; plateau.js: gap and medianFitness flat, tuning allowed): slightly slower plasticity. Baseline batch passed (gap 2237).
+
+Control -> treatment: bench gap 2237 -> 2205, medianFitness 1120 -> 776 (-30.7%, tripped guardrail), largestCluster 68 -> 45, brickCells 2178 -> 2198, builtCells 2612 -> 2518, commSeparation 0.0238 -> 0.0195, pop 500 -> 499. Reverted. LEARN_RATE is exhausted around 0.025.
+
 ## Cycle 49 (A/B) — day 560.1 + 5k ticks (batch ran 6.25k: 25k timed out) — `reverted` (POP_CAP 500 -> 600)
 
 **Hypothesis** (priority #3; plateau.js: gap and cluster flat, tuning allowed): larger population widens the search. Baseline batch passed (gap 2237).

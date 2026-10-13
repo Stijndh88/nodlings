@@ -342,6 +342,14 @@
       "status": "reverted",
       "cycle": 49,
       "note": "gap 2237->2234, medianFitness 1247->1076, cluster 41->38, bricks 2179->2187; no gain, runtime 6m08 for 5k ticks"
+    },
+    {
+      "id": "learn-rate-0.022",
+      "signal": 3,
+      "change": "brain.js LEARN_RATE 0.025 -> 0.022",
+      "status": "reverted",
+      "cycle": 50,
+      "note": "gap 2237->2205, medianFitness 1120->776 (-30.7%, guardrail), cluster 68->45, bricks 2178->2198; worse on target"
     }
   ]
 }
