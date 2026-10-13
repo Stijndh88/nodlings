@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 46 (A/B) — day 551.5 + 5k ticks (batch ran 6.25k: 25k and 12.5k timed out) — `reverted` (tidal clay 0.3 -> 0.4)
+
+**Hypothesis** (priority #1; plateau.js: only gap flat, tuning allowed): more shoreline clay deposits. Baseline batch passed (gap 2237).
+
+Control -> treatment: largestCluster 42 -> 32, brickCells 2074 -> 2097, builtCells 2547 -> 2484, bench gap 2237 -> 2164, medianFitness 1195 -> 860 (-28%, tripped guardrail), commSeparation 0.0155 -> 0.0569, pop 501 -> 500. Reverted; target worse. Note: batches now need ~6k ticks to fit the 10-min limit.
+
 ## Cycle 45 (A/B) — day 544.5 + 8k ticks — `kept` (POP_CAP 400 -> 500)
 
 **Hypothesis** (priority #3; plateau.js: gap and medianFitness flat, tuning allowed): more individuals widen the search and the builder pool. Baseline batch passed (gap 2274).
