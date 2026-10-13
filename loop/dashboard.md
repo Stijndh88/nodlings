@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-13T12:40Z. Now: day 560.13, benchmark gap **2237** (evolved gene pool minus random genomes), largest built cluster 34, 2149 brick cells, max generation 792.
+Updated 2026-10-13T16:28Z. Now: day 564.03, benchmark gap **2237** (evolved gene pool minus random genomes), largest built cluster 47, 2189 brick cells, max generation 801.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-13T12:40Z. Now: day 560.13, benchmark gap **2237** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 49 | 564.03 | 2237 | 965 | 47 | 2189 | 801 | 0.0117 |
 | 48 | 560.13 | 2237 | 1047 | 34 | 2149 | 792 | 0.0481 |
 | 47 | 556.22 | 2237 | 1268 | 34 | 2120 | 786 | 0.0454 |
 | 46 | 552.31 | 2237 | 1146 | 42 | 2064 | 774 | 0.0068 |
@@ -24,7 +25,6 @@ Updated 2026-10-13T12:40Z. Now: day 560.13, benchmark gap **2237** (evolved gene
 | 37 | 458.56 | 2324 | 1358 | 16 | 1205 | 592 | 0.0783 |
 | 36 | 450.75 | 2332 | 1050 | 12 | 1101 | 576 | 0.0166 |
 | 35 | 442.94 | 2332 | 1083 | 14 | 1061 | 560 | 0.0559 |
-| 34 | 435.13 | 2341 | 1186 | 10 | 1017 | 550 | 0.0458 |
 
 ## Hypotheses
 
@@ -70,6 +70,7 @@ Updated 2026-10-13T12:40Z. Now: day 560.13, benchmark gap **2237** (evolved gene
 - **reverted**: world.js tidal clay deposit chance 0.3 -> 0.4 (cluster 42->32, bricks 2074->2097, gap 2237->2164, median 1195->860 (-28%, guardrail); worse on target)
 - **reverted**: LISTEN_BONUS 0.15 -> 0.1 (commSeparation 0.0586->0.0358, cluster 45->45, bricks 2120->2103, gap 2237->2237, median 1057->1205; worse on target)
 - **reverted**: LISTEN_BONUS 0.15 -> 0.2 (commSeparation 0.0564->0.0066, cluster 38->40, bricks 2170->2167, gap 2237->2316, median 941->1159; target worse)
+- **reverted**: POP_CAP 500 -> 600 (gap 2237->2234, medianFitness 1247->1076, cluster 41->38, bricks 2179->2187; no gain, runtime 6m08 for 5k ticks)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
