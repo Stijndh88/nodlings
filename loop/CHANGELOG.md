@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 51 (A/B) — day 568 + 5k ticks (batch ran 6.25k) — `kept` (STRUCTURAL: breeding energy gate 130 -> 115)
+
+**Hypothesis** (priority #3; plateau.js: gap and medianFitness flat): lower the energy needed to be breeding-eligible so more individuals reproduce. (`REPRO_THRESHOLD` in RULES.md no longer exists in code; literal edited in nodling.js.) Baseline batch passed (gap 2237).
+
+Control -> treatment: bench gap 2237 -> 2300, medianFitness 1255 -> 1195, largestCluster 40 -> 42, brickCells 2192 -> 2198, builtCells 2622 -> 2661, commSeparation 0.0292 -> 0.009, pop 500 -> 499. Guardrails passed; single 5k sample, within noise.
+
 ## Cycle 50 (A/B) — day 567.2 + 5k ticks (batch ran 6.25k) — `reverted` (LEARN_RATE 0.025 -> 0.022)
 
 **Hypothesis** (priority #3; plateau.js: gap and medianFitness flat, tuning allowed): slightly slower plasticity. Baseline batch passed (gap 2237).

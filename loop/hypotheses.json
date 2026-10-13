@@ -350,6 +350,14 @@
       "status": "reverted",
       "cycle": 50,
       "note": "gap 2237->2205, medianFitness 1120->776 (-30.7%, guardrail), cluster 68->45, bricks 2178->2198; worse on target"
+    },
+    {
+      "id": "repro-energy-115",
+      "signal": 3,
+      "change": "nodling.js breeding eligibility energy > 130 -> 115",
+      "status": "kept",
+      "cycle": 51,
+      "note": "gap 2237->2300, medianFitness 1255->1195, cluster 40->42, bricks 2192->2198, comm 0.0292->0.009; single 5k sample, within noise"
     }
   ]
 }
