@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-14T16:43Z. Now: day 591.06, benchmark gap **2296** (evolved gene pool minus random genomes), largest built cluster 69, 2339 brick cells, max generation 855.
+Updated 2026-10-14T20:32Z. Now: day 598.56, benchmark gap **2296** (evolved gene pool minus random genomes), largest built cluster 42, 2383 brick cells, max generation 868.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-14T16:43Z. Now: day 591.06, benchmark gap **2296** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 56 | 598.56 | 2296 | 1206 | 42 | 2383 | 868 | 0.0245 |
 | 55 | 591.06 | 2296 | 1018 | 69 | 2339 | 855 | 0.0424 |
 | 54 | 583.56 | 2296 | 1064 | 45 | 2269 | 839 | 0.0108 |
 | 53 | 579.66 | 2300 | 985 | 40 | 2221 | 834 | 0.0806 |
@@ -24,7 +25,6 @@ Updated 2026-10-14T16:43Z. Now: day 591.06, benchmark gap **2296** (evolved gene
 | 44 | 544.5 | 2274 | 908 | 34 | 1997 | 758 | 0.0306 |
 | 43 | 528.88 | 2260 | 794 | 52 | 1931 | 723 | 0.0043 |
 | 42 | 513.25 | 2260 | 924 | 34 | 1763 | 695 | 0.0506 |
-| 41 | 505.44 | 2239 | 1336 | 32 | 1747 | 682 | 0.0687 |
 
 ## Hypotheses
 
@@ -77,6 +77,7 @@ Updated 2026-10-14T16:43Z. Now: day 591.06, benchmark gap **2296** (evolved gene
 - **kept**: nodling.js BRICK_WALL_BONUS 0.5: extra reward for placing brick next to an existing structure (cluster 39->40, bricks 2217->2229, builtCells 3029->2848, gap 2300->2300, median 1148->1207; single 5k sample, within noise)
 - **kept**: nodling.js BRIDGE_BONUS 0.4: reward laying a bridge tile next to an existing bridge tile (cluster 40->48, bricks 2239->2241, gap 2300->2296, median 1036->1052, comm 0.1295->0.0004; single 5k sample, within noise)
 - **reverted**: world.js seasonal ambient amplitude 10 -> 12 (4..28 deg) (gap 2296->1882 (-18%), median 1158->1019, cluster 42->63, bricks 2296->2319; target (gap) worse)
+- **reverted**: nodling.js breeding eligibility energy > 115 -> 100 (gap 2296->2186, medianFitness 940->1026, cluster 60->69, bricks 2355->2351; target (gap) worse; single 5k sample)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
