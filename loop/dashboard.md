@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-14T00:39Z. Now: day 571.84, benchmark gap **2300** (evolved gene pool minus random genomes), largest built cluster 35, 2195 brick cells, max generation 814.
+Updated 2026-10-14T04:29Z. Now: day 575.75, benchmark gap **2300** (evolved gene pool minus random genomes), largest built cluster 34, 2215 brick cells, max generation 823.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-14T00:39Z. Now: day 571.84, benchmark gap **2300** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 52 | 575.75 | 2300 | 996 | 34 | 2215 | 823 | 0.0183 |
 | 51 | 571.84 | 2300 | 1091 | 35 | 2195 | 814 | 0.0066 |
 | 50 | 567.94 | 2237 | 1156 | 66 | 2188 | 809 | 0.0422 |
 | 49 | 564.03 | 2237 | 965 | 47 | 2189 | 801 | 0.0117 |
@@ -24,7 +25,6 @@ Updated 2026-10-14T00:39Z. Now: day 571.84, benchmark gap **2300** (evolved gene
 | 40 | 497.63 | 2264 | 1233 | 26 | 1642 | 667 | 0.0428 |
 | 39 | 489.81 | 2275 | 1066 | 17 | 1537 | 651 | 0.0344 |
 | 38 | 474.19 | 2324 | 927 | 14 | 1400 | 620 | 0.0198 |
-| 37 | 458.56 | 2324 | 1358 | 16 | 1205 | 592 | 0.0783 |
 
 ## Hypotheses
 
@@ -73,6 +73,7 @@ Updated 2026-10-14T00:39Z. Now: day 571.84, benchmark gap **2300** (evolved gene
 - **reverted**: POP_CAP 500 -> 600 (gap 2237->2234, medianFitness 1247->1076, cluster 41->38, bricks 2179->2187; no gain, runtime 6m08 for 5k ticks)
 - **reverted**: brain.js LEARN_RATE 0.025 -> 0.022 (gap 2237->2205, medianFitness 1120->776 (-30.7%, guardrail), cluster 68->45, bricks 2178->2198; worse on target)
 - **kept**: nodling.js breeding eligibility energy > 130 -> 115 (gap 2237->2300, medianFitness 1255->1195, cluster 40->42, bricks 2192->2198, comm 0.0292->0.009; single 5k sample, within noise)
+- **reverted**: nodling.js FOLLOW_BONUS 0.3: reward eating found food within 60 ticks of hearing a non-alarm call (commSeparation 0.0698->0.0012, gap 2300->2267, cluster 35->39, median 1053->1069; target comm worse (noisy))
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
