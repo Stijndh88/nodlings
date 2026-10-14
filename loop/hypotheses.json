@@ -374,6 +374,14 @@
       "status": "kept",
       "cycle": 53,
       "note": "cluster 39->40, bricks 2217->2229, builtCells 3029->2848, gap 2300->2300, median 1148->1207; single 5k sample, within noise"
+    },
+    {
+      "id": "bridge-extend-bonus",
+      "signal": 1,
+      "change": "nodling.js BRIDGE_BONUS 0.4: reward laying a bridge tile next to an existing bridge tile",
+      "status": "kept",
+      "cycle": 54,
+      "note": "cluster 40->48, bricks 2239->2241, gap 2300->2296, median 1036->1052, comm 0.1295->0.0004; single 5k sample, within noise"
     }
   ]
 }

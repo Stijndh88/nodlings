@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 54 (A/B) — day 579.66 + 5k ticks (batch ran 6.25k) — `kept` (STRUCTURAL: bridge-extension bonus)
+
+**Hypothesis** (priority #1; plateau.js: gap, cluster, bricks, maxGen flat): reward (`BRIDGE_BONUS` 0.4) laying a bridge tile on water next to an existing bridge tile, so bridge chains extend. Baseline batch passed (gap 2300).
+
+Control -> treatment: largestCluster 40 -> 48, brickCells 2239 -> 2241, builtCells 2923 -> 2935, bench gap 2300 -> 2296, medianFitness 1036 -> 1052, commSeparation 0.1295 -> 0.0004 (very noisy), pop 502 -> 500. Guardrails passed; target equal/better, single sample, within noise.
+
 ## Cycle 53 (A/B) — day 575.75 + 5k ticks (batch ran 6.25k) — `kept` (STRUCTURAL: brick-wall bonus)
 
 **Hypothesis** (priority #1; plateau.js: gap, cluster, bricks, maxGen flat): extra reward (`BRICK_WALL_BONUS` 0.5) for placing a fired brick next to an existing durable structure, so brick chains extend walls. Baseline batch passed (gap 2300).

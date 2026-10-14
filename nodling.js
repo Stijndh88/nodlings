@@ -13,6 +13,7 @@ const LISTEN_BONUS = 0.15; // reward for hearing a call while a predator is near
 const CACHE_BONUS = 0.5; // reward for eating food stored in a cell enclosed by >=2 durable neighbours
 const KILN_BONUS = 0.5; // reward for dropping clay next to an active fire (feeds the kiln)
 const BRICK_WALL_BONUS = 0.5; // extra reward for adding a fired brick to an existing structure
+const BRIDGE_BONUS = 0.4; // reward for extending a bridge: laying a tile on water next to an existing bridge tile
 const BUILD_ADJACENT_BONUS = 0.85; // reward for placing durable material next to an existing structure
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
@@ -209,6 +210,10 @@ class Nodling {
     if (out.drop > 0.5 && this.carrying){
       const fc = w.at(cx + this.facing[0], cy + this.facing[1]);
       if (fc && fc.water && !fc.stack.length && MATERIALS[this.carrying].buoyant){
+        for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+          const bc = w.at(cx + this.facing[0] + ax, cy + this.facing[1] + ay);
+          if (bc && bc.water && bc.stack.length){ this.bonus += BRIDGE_BONUS; break; }
+        }
         fc.stack.push(this.carrying); // bridge
       } else {
         // building onto an existing durable structure is rewarded (clusters, not scatter)
