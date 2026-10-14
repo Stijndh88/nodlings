@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-13T20:29Z. Now: day 567.94, benchmark gap **2237** (evolved gene pool minus random genomes), largest built cluster 66, 2188 brick cells, max generation 809.
+Updated 2026-10-14T00:39Z. Now: day 571.84, benchmark gap **2300** (evolved gene pool minus random genomes), largest built cluster 35, 2195 brick cells, max generation 814.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-13T20:29Z. Now: day 567.94, benchmark gap **2237** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 51 | 571.84 | 2300 | 1091 | 35 | 2195 | 814 | 0.0066 |
 | 50 | 567.94 | 2237 | 1156 | 66 | 2188 | 809 | 0.0422 |
 | 49 | 564.03 | 2237 | 965 | 47 | 2189 | 801 | 0.0117 |
 | 48 | 560.13 | 2237 | 1047 | 34 | 2149 | 792 | 0.0481 |
@@ -24,7 +25,6 @@ Updated 2026-10-13T20:29Z. Now: day 567.94, benchmark gap **2237** (evolved gene
 | 39 | 489.81 | 2275 | 1066 | 17 | 1537 | 651 | 0.0344 |
 | 38 | 474.19 | 2324 | 927 | 14 | 1400 | 620 | 0.0198 |
 | 37 | 458.56 | 2324 | 1358 | 16 | 1205 | 592 | 0.0783 |
-| 36 | 450.75 | 2332 | 1050 | 12 | 1101 | 576 | 0.0166 |
 
 ## Hypotheses
 
@@ -72,6 +72,7 @@ Updated 2026-10-13T20:29Z. Now: day 567.94, benchmark gap **2237** (evolved gene
 - **reverted**: LISTEN_BONUS 0.15 -> 0.2 (commSeparation 0.0564->0.0066, cluster 38->40, bricks 2170->2167, gap 2237->2316, median 941->1159; target worse)
 - **reverted**: POP_CAP 500 -> 600 (gap 2237->2234, medianFitness 1247->1076, cluster 41->38, bricks 2179->2187; no gain, runtime 6m08 for 5k ticks)
 - **reverted**: brain.js LEARN_RATE 0.025 -> 0.022 (gap 2237->2205, medianFitness 1120->776 (-30.7%, guardrail), cluster 68->45, bricks 2178->2198; worse on target)
+- **kept**: nodling.js breeding eligibility energy > 130 -> 115 (gap 2237->2300, medianFitness 1255->1195, cluster 40->42, bricks 2192->2198, comm 0.0292->0.009; single 5k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
