@@ -3,6 +3,19 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 57 (A/B) — day 591.06 + 5k ticks — `reverted`
+
+**Hypothesis** (priority #3, gap plateau): breeding energy threshold 115 -> 100 (`nodling.js`) for faster turnover. Batch (12k ticks, 25k timed out) passed guardrails.
+
+| | control | treatment |
+|---|---|---|
+| benchmark gap | 2296 | 2186 |
+| medianFitness | 940 | 1026 |
+| largestCluster | 60 | 69 |
+| brickCells | 2355 | 2351 |
+
+Guardrails passed but the target (gap) fell ~5%; reverted.
+
 ## Cycle 55 (A/B) — day 583.56 + 5k ticks (batch ran 6.25k) — `reverted` (STRUCTURAL: harsher winters)
 
 **Hypothesis** (priority #3; plateau.js: gap, medianFitness, maxGen flat): seasonal ambient amplitude 10 -> 12 (4..28°) as environmental pressure to widen the fitness landscape. Baseline batch passed (gap 2296).
