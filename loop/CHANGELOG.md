@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 55 (A/B) — day 583.56 + 5k ticks (batch ran 6.25k) — `reverted` (STRUCTURAL: harsher winters)
+
+**Hypothesis** (priority #3; plateau.js: gap, medianFitness, maxGen flat): seasonal ambient amplitude 10 -> 12 (4..28°) as environmental pressure to widen the fitness landscape. Baseline batch passed (gap 2296).
+
+Control -> treatment: bench gap 2296 -> 1882 (-18%), medianFitness 1158 -> 1019, largestCluster 42 -> 63, brickCells 2296 -> 2319, builtCells 2760 -> 2692, commSeparation 0.0687 -> 0.0903, pop 500 -> 501. Guardrails passed but target (gap) clearly worse; reverted.
+
 ## Cycle 54 (A/B) — day 579.66 + 5k ticks (batch ran 6.25k) — `kept` (STRUCTURAL: bridge-extension bonus)
 
 **Hypothesis** (priority #1; plateau.js: gap, cluster, bricks, maxGen flat): reward (`BRIDGE_BONUS` 0.4) laying a bridge tile on water next to an existing bridge tile, so bridge chains extend. Baseline batch passed (gap 2300).

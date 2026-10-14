@@ -382,6 +382,14 @@
       "status": "kept",
       "cycle": 54,
       "note": "cluster 40->48, bricks 2239->2241, gap 2300->2296, median 1036->1052, comm 0.1295->0.0004; single 5k sample, within noise"
+    },
+    {
+      "id": "harsher-winter",
+      "signal": 3,
+      "change": "world.js seasonal ambient amplitude 10 -> 12 (4..28 deg)",
+      "status": "reverted",
+      "cycle": 55,
+      "note": "gap 2296->1882 (-18%), median 1158->1019, cluster 42->63, bricks 2296->2319; target (gap) worse"
     }
   ]
 }
