@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 53 (A/B) — day 575.75 + 5k ticks (batch ran 6.25k) — `kept` (STRUCTURAL: brick-wall bonus)
+
+**Hypothesis** (priority #1; plateau.js: gap, cluster, bricks, maxGen flat): extra reward (`BRICK_WALL_BONUS` 0.5) for placing a fired brick next to an existing durable structure, so brick chains extend walls. Baseline batch passed (gap 2300).
+
+Control -> treatment: largestCluster 39 -> 40, brickCells 2217 -> 2229, builtCells 3029 -> 2848, bench gap 2300 -> 2300, medianFitness 1148 -> 1207, commSeparation 0.0322 -> 0.0861, pop 499 -> 500. Guardrails passed; target equal/slightly better, within noise.
+
 ## Cycle 52 (A/B) — day 572 + 5k ticks (batch ran 6.25k) — `reverted` (STRUCTURAL: follow-the-call food bonus)
 
 **Hypothesis** (priority #2; plateau.js demanded STRUCTURAL: gap, bricks, maxGen flat): reward eating ground food within 60 ticks of hearing a non-alarm call (`FOLLOW_BONUS` 0.3), so food-found calls pay the listener. Baseline batch passed (gap 2300).

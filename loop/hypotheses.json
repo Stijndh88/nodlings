@@ -366,6 +366,14 @@
       "status": "reverted",
       "cycle": 52,
       "note": "commSeparation 0.0698->0.0012, gap 2300->2267, cluster 35->39, median 1053->1069; target comm worse (noisy)"
+    },
+    {
+      "id": "brick-wall-bonus",
+      "signal": 1,
+      "change": "nodling.js BRICK_WALL_BONUS 0.5: extra reward for placing brick next to an existing structure",
+      "status": "kept",
+      "cycle": 53,
+      "note": "cluster 39->40, bricks 2217->2229, builtCells 3029->2848, gap 2300->2300, median 1148->1207; single 5k sample, within noise"
     }
   ]
 }
