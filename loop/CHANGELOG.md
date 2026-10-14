@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 58 (A/B) — day 598.56 + 5k ticks (batch ran 12k) — `kept` (STRUCTURAL: gentler weight mutation)
+
+**Hypothesis** (priority #3; plateau.js: gap flat): per-connection weight mutation probability 0.8 -> 0.5 (`brain.js`), so offspring keep more of proven parents' tuning. Baseline batch passed.
+
+Control -> treatment: bench gap 2296 -> 2308, medianFitness 1173 -> 1106, largestCluster 76 -> 55, brickCells 2395 -> 2396, commSeparation 0.0184 -> 0.0375, pop 501 -> 502. Guardrails passed; target (gap) marginally better, within noise (cluster fell, not the target here).
+
 ## Cycle 57 (A/B) — day 591.06 + 5k ticks — `reverted`
 
 **Hypothesis** (priority #3, gap plateau): breeding energy threshold 115 -> 100 (`nodling.js`) for faster turnover. Batch (12k ticks, 25k timed out) passed guardrails.
