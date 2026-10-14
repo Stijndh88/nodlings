@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 52 (A/B) — day 572 + 5k ticks (batch ran 6.25k) — `reverted` (STRUCTURAL: follow-the-call food bonus)
+
+**Hypothesis** (priority #2; plateau.js demanded STRUCTURAL: gap, bricks, maxGen flat): reward eating ground food within 60 ticks of hearing a non-alarm call (`FOLLOW_BONUS` 0.3), so food-found calls pay the listener. Baseline batch passed (gap 2300).
+
+Control -> treatment: commSeparation 0.0698 -> 0.0012, bench gap 2300 -> 2267, medianFitness 1053 -> 1069, largestCluster 35 -> 39, brickCells 2204 -> 2202, builtCells 2732 -> 2916, pop 500 -> 504. Guardrails passed but target (comm) worse, though comm is very noisy; reverted.
+
 ## Cycle 51 (A/B) — day 568 + 5k ticks (batch ran 6.25k) — `kept` (STRUCTURAL: breeding energy gate 130 -> 115)
 
 **Hypothesis** (priority #3; plateau.js: gap and medianFitness flat): lower the energy needed to be breeding-eligible so more individuals reproduce. (`REPRO_THRESHOLD` in RULES.md no longer exists in code; literal edited in nodling.js.) Baseline batch passed (gap 2237).

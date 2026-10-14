@@ -358,6 +358,14 @@
       "status": "kept",
       "cycle": 51,
       "note": "gap 2237->2300, medianFitness 1255->1195, cluster 40->42, bricks 2192->2198, comm 0.0292->0.009; single 5k sample, within noise"
+    },
+    {
+      "id": "comm-follow-bonus",
+      "signal": 2,
+      "change": "nodling.js FOLLOW_BONUS 0.3: reward eating found food within 60 ticks of hearing a non-alarm call",
+      "status": "reverted",
+      "cycle": 52,
+      "note": "commSeparation 0.0698->0.0012, gap 2300->2267, cluster 35->39, median 1053->1069; target comm worse (noisy)"
     }
   ]
 }
