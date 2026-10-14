@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-14T12:29Z. Now: day 583.56, benchmark gap **2296** (evolved gene pool minus random genomes), largest built cluster 45, 2269 brick cells, max generation 839.
+Updated 2026-10-14T16:43Z. Now: day 591.06, benchmark gap **2296** (evolved gene pool minus random genomes), largest built cluster 69, 2339 brick cells, max generation 855.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-14T12:29Z. Now: day 583.56, benchmark gap **2296** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 55 | 591.06 | 2296 | 1018 | 69 | 2339 | 855 | 0.0424 |
 | 54 | 583.56 | 2296 | 1064 | 45 | 2269 | 839 | 0.0108 |
 | 53 | 579.66 | 2300 | 985 | 40 | 2221 | 834 | 0.0806 |
 | 52 | 575.75 | 2300 | 996 | 34 | 2215 | 823 | 0.0183 |
@@ -24,7 +25,6 @@ Updated 2026-10-14T12:29Z. Now: day 583.56, benchmark gap **2296** (evolved gene
 | 43 | 528.88 | 2260 | 794 | 52 | 1931 | 723 | 0.0043 |
 | 42 | 513.25 | 2260 | 924 | 34 | 1763 | 695 | 0.0506 |
 | 41 | 505.44 | 2239 | 1336 | 32 | 1747 | 682 | 0.0687 |
-| 40 | 497.63 | 2264 | 1233 | 26 | 1642 | 667 | 0.0428 |
 
 ## Hypotheses
 
@@ -76,6 +76,7 @@ Updated 2026-10-14T12:29Z. Now: day 583.56, benchmark gap **2296** (evolved gene
 - **reverted**: nodling.js FOLLOW_BONUS 0.3: reward eating found food within 60 ticks of hearing a non-alarm call (commSeparation 0.0698->0.0012, gap 2300->2267, cluster 35->39, median 1053->1069; target comm worse (noisy))
 - **kept**: nodling.js BRICK_WALL_BONUS 0.5: extra reward for placing brick next to an existing structure (cluster 39->40, bricks 2217->2229, builtCells 3029->2848, gap 2300->2300, median 1148->1207; single 5k sample, within noise)
 - **kept**: nodling.js BRIDGE_BONUS 0.4: reward laying a bridge tile next to an existing bridge tile (cluster 40->48, bricks 2239->2241, gap 2300->2296, median 1036->1052, comm 0.1295->0.0004; single 5k sample, within noise)
+- **reverted**: world.js seasonal ambient amplitude 10 -> 12 (4..28 deg) (gap 2296->1882 (-18%), median 1158->1019, cluster 42->63, bricks 2296->2319; target (gap) worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
