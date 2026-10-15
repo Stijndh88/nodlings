@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 61 (A/B) — day 621.69 + 5k ticks (batch ran 12.5k) — `reverted` (plasticity mutation 0.3 -> 0.15)
+
+**Hypothesis** (priority #3; plateau.js: gap, medianFitness flat): `brain.js` mutateGenome plasticity-rate mutation probability 0.3 -> 0.15. Baseline batch passed (gap 2357).
+
+Control -> treatment: bench gap 2357 -> 2256, medianFitness 1068 -> 1187, largestCluster 41 -> 82, brickCells 2530 -> 2534, commSeparation 0.0296 -> 0.0464, pop 500 -> 501. Guardrails passed but the target (gap) fell ~4%; reverted.
+
 ## Cycle 60 (A/B) — day 613.88 + 5k ticks (batch ran 12.5k) — `kept` (STRUCTURAL: shared-meal bonus)
 
 **Hypothesis** (priority #3; plateau.js: gap, medianFitness, largestCluster flat -> structural): `SHARED_MEAL_BONUS = 0.3` in `nodling.js` rewards eating found food with another Nodling within 3 cells, a group-foraging pressure. Baseline batch passed (gap 2344).

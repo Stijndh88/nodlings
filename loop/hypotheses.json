@@ -422,6 +422,14 @@
       "status": "kept",
       "cycle": 60,
       "note": "gap 2344->2357, medianFitness 946->1012, cluster 42->41, bricks 2488->2490, comm 0.0556->0.0046; single 5k sample, within noise"
+    },
+    {
+      "id": "plasticity-mutation-0.15",
+      "signal": 3,
+      "change": "brain.js mutateGenome: plasticity-rate mutation probability 0.3 -> 0.15",
+      "status": "reverted",
+      "cycle": 61,
+      "note": "gap 2357->2256, medianFitness 1068->1187, cluster 41->82, bricks 2530->2534, comm 0.0296->0.0464; target (gap) worse"
     }
   ]
 }
