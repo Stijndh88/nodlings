@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-15T08:42Z. Now: day 621.69, benchmark gap **2357** (evolved gene pool minus random genomes), largest built cluster 85, 2524 brick cells, max generation 922.
+Updated 2026-10-15T12:41Z. Now: day 625.59, benchmark gap **2357** (evolved gene pool minus random genomes), largest built cluster 56, 2535 brick cells, max generation 927.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-15T08:42Z. Now: day 621.69, benchmark gap **2357** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 60 | 625.59 | 2357 | 994 | 56 | 2535 | 927 | 0.0219 |
 | 59 | 621.69 | 2357 | 890 | 85 | 2524 | 922 | 0.0244 |
 | 58 | 613.88 | 2344 | 944 | 49 | 2472 | 900 | 0.0121 |
 | 57 | 606.06 | 2308 | 967 | 50 | 2416 | 883 | 0.0044 |
@@ -24,7 +25,6 @@ Updated 2026-10-15T08:42Z. Now: day 621.69, benchmark gap **2357** (evolved gene
 | 48 | 560.13 | 2237 | 1047 | 34 | 2149 | 792 | 0.0481 |
 | 47 | 556.22 | 2237 | 1268 | 34 | 2120 | 786 | 0.0454 |
 | 46 | 552.31 | 2237 | 1146 | 42 | 2064 | 774 | 0.0068 |
-| 45 | 548.41 | 2237 | 1002 | 37 | 2054 | 767 | 0.0516 |
 
 ## Hypotheses
 
@@ -81,6 +81,7 @@ Updated 2026-10-15T08:42Z. Now: day 621.69, benchmark gap **2357** (evolved gene
 - **kept**: brain.js mutateGenome: per-connection weight mutation probability 0.8 -> 0.5 (gap 2296->2308, medianFitness 1173->1106, cluster 76->55, bricks 2395->2396, comm 0.0184->0.0375; single 5k sample, within noise)
 - **kept**: brain.js mutateGenome: weight mutation step magnitude 0.4 -> 0.3 (gap 2308->2344, medianFitness 770->1051, cluster 50->57, bricks 2441->2436, comm 0.0086->0.0249; single 5k sample, within noise)
 - **kept**: nodling.js SHARED_MEAL_BONUS 0.3: reward eating found food with another Nodling within 3 cells (gap 2344->2357, medianFitness 946->1012, cluster 42->41, bricks 2488->2490, comm 0.0556->0.0046; single 5k sample, within noise)
+- **reverted**: brain.js mutateGenome: plasticity-rate mutation probability 0.3 -> 0.15 (gap 2357->2256, medianFitness 1068->1187, cluster 41->82, bricks 2530->2534, comm 0.0296->0.0464; target (gap) worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
