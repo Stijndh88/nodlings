@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 64 (A/B) — day 641.22 + 5k ticks (batch ran 12.5k; 25k timed out) — `kept` (STRUCTURAL: thirst-drink bonus)
+
+**Hypothesis** (priority #3; plateau.js: gap, largestCluster, brickCells flat -> structural): `THIRST_DRINK_BONUS = 0.3` in `nodling.js` rewards drinking while hydration < 40, so thirst management is learnable (649 thirst deaths). Baseline batch passed (gap 2357).
+
+Control -> treatment: all metrics identical (gap 2357, median 1133, cluster 76, bricks 2605, comm 0.1, pop 500). The bonus did not alter any trajectory in 5k ticks; null result, no evidence of effect.
+
 ## Cycle 63 (A/B) — day 633.41 + 5k ticks (batch ran 12.5k) — `reverted` (weight mutation probability 0.5 -> 0.35)
 
 **Hypothesis** (priority #3; plateau.js: gap flat, tuning still productive): `brain.js` mutateGenome per-connection weight mutation probability 0.5 -> 0.35. Baseline batch passed (gap 2357).

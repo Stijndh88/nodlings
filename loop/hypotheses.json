@@ -446,6 +446,14 @@
       "status": "reverted",
       "cycle": 63,
       "note": "gap 2357->2161, medianFitness 1049->1194, cluster 82->95, bricks 2577->2583, comm 0.0164->0.0106; target (gap) worse; single 5k sample"
+    },
+    {
+      "id": "thirst-drink-bonus",
+      "signal": 3,
+      "change": "nodling.js THIRST_DRINK_BONUS 0.3: reward drinking while hydration < 40",
+      "status": "kept",
+      "cycle": 64,
+      "note": "all metrics identical to control (cluster 76, bricks 2605, gap 2357, median 1133); bonus never changed behaviour in 5k ticks, null result"
     }
   ]
 }
