@@ -414,6 +414,14 @@
       "status": "kept",
       "cycle": 59,
       "note": "gap 2308->2344, medianFitness 770->1051, cluster 50->57, bricks 2441->2436, comm 0.0086->0.0249; single 5k sample, within noise"
+    },
+    {
+      "id": "shared-meal-bonus",
+      "signal": 3,
+      "change": "nodling.js SHARED_MEAL_BONUS 0.3: reward eating found food with another Nodling within 3 cells",
+      "status": "kept",
+      "cycle": 60,
+      "note": "gap 2344->2357, medianFitness 946->1012, cluster 42->41, bricks 2488->2490, comm 0.0556->0.0046; single 5k sample, within noise"
     }
   ]
 }

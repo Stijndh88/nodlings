@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 60 (A/B) — day 613.88 + 5k ticks (batch ran 12.5k) — `kept` (STRUCTURAL: shared-meal bonus)
+
+**Hypothesis** (priority #3; plateau.js: gap, medianFitness, largestCluster flat -> structural): `SHARED_MEAL_BONUS = 0.3` in `nodling.js` rewards eating found food with another Nodling within 3 cells, a group-foraging pressure. Baseline batch passed (gap 2344).
+
+Control -> treatment: bench gap 2344 -> 2357, medianFitness 946 -> 1012, largestCluster 42 -> 41, brickCells 2488 -> 2490, commSeparation 0.0556 -> 0.0046, pop 501 -> 501. Guardrails passed; target (gap) marginally better, all within noise (comm fell, not the target here).
+
 ## Cycle 59 (A/B) — day 606.06 + 5k ticks (batch ran 12k) — `kept` (STRUCTURAL: smaller weight-mutation step)
 
 **Hypothesis** (priority #3; plateau.js: gap, medianFitness flat): weight mutation step 0.4 -> 0.3 (`brain.js` mutateGenome) so offspring perturb proven weights less. Baseline batch passed (gap 2308).

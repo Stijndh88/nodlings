@@ -14,6 +14,7 @@ const CACHE_BONUS = 0.5; // reward for eating food stored in a cell enclosed by 
 const KILN_BONUS = 0.5; // reward for dropping clay next to an active fire (feeds the kiln)
 const BRICK_WALL_BONUS = 0.5; // extra reward for adding a fired brick to an existing structure
 const BRIDGE_BONUS = 0.4; // reward for extending a bridge: laying a tile on water next to an existing bridge tile
+const SHARED_MEAL_BONUS = 0.3; // reward for eating found food with another Nodling within 3 cells (group foraging)
 const BUILD_ADJACENT_BONUS = 0.85; // reward for placing durable material next to an existing structure
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
@@ -246,6 +247,9 @@ class Nodling {
           if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))) walls++;
         }
         if (walls >= 2) this.bonus += CACHE_BONUS;
+        for (const o of w.near(w.nIndex, this.x, this.y)){
+          if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 9){ this.bonus += SHARED_MEAL_BONUS; break; }
+        }
         this.eat(cell.stack.pop());
       } else if (cell.water || w.adjacentWater(cx, cy)){
         this.hydration = 100;
