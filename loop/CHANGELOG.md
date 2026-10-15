@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 59 (A/B) — day 606.06 + 5k ticks (batch ran 12k) — `kept` (STRUCTURAL: smaller weight-mutation step)
+
+**Hypothesis** (priority #3; plateau.js: gap, medianFitness flat): weight mutation step 0.4 -> 0.3 (`brain.js` mutateGenome) so offspring perturb proven weights less. Baseline batch passed (gap 2308).
+
+Control -> treatment: bench gap 2308 -> 2344, medianFitness 770 -> 1051, largestCluster 50 -> 57, brickCells 2441 -> 2436, commSeparation 0.0086 -> 0.0249, pop 498 -> 499. Guardrails passed; target equal/better, single sample, within noise.
+
 ## Cycle 58 (A/B) — day 598.56 + 5k ticks (batch ran 12k) — `kept` (STRUCTURAL: gentler weight mutation)
 
 **Hypothesis** (priority #3; plateau.js: gap flat): per-connection weight mutation probability 0.8 -> 0.5 (`brain.js`), so offspring keep more of proven parents' tuning. Baseline batch passed.

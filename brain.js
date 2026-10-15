@@ -116,7 +116,7 @@ function mutateGenome(g, rng, sc = NODLING_SCHEMA){
   const conns = g.conns.map(c => ({...c}));
   const mem = {...(g.mem || {})};
   for (const c of conns){
-    if (rng() < 0.5) c.w = clampW(c.w + (rng()*2-1)*0.4);
+    if (rng() < 0.5) c.w = clampW(c.w + (rng()*2-1)*0.3);
     if (rng() < 0.3) c.pl = Math.max(-1, Math.min(1, c.pl + (rng()*2-1)*0.2));
   }
   const hid = hiddenIds(conns);
