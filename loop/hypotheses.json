@@ -430,6 +430,14 @@
       "status": "reverted",
       "cycle": 61,
       "note": "gap 2357->2256, medianFitness 1068->1187, cluster 41->82, bricks 2530->2534, comm 0.0296->0.0464; target (gap) worse"
+    },
+    {
+      "id": "weight-mutation-step-0.2",
+      "signal": 3,
+      "change": "brain.js mutateGenome: weight mutation step magnitude 0.3 -> 0.2",
+      "status": "reverted",
+      "cycle": 62,
+      "note": "gap 2357->2204, medianFitness 1247->955, cluster 49->55, bricks 2562->2556, comm 0.0123->0.0585; target (gap) worse; single 5k sample"
     }
   ]
 }
