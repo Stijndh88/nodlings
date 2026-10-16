@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 65 (A/B) — day 649.03 + 5k ticks (batch ran 12.5k; 25k timed out) — `reverted` (add-connection probability 0.28 -> 0.2)
+
+**Hypothesis** (priority #3; plateau.js: gap flat, tuning still productive): `brain.js` mutateGenome add-connection probability 0.28 -> 0.2 to limit brain bloat. Baseline batch passed (gap 2357).
+
+Control -> treatment: bench gap 2357 -> 2132, medianFitness 1103 -> 853, largestCluster 156 -> 62, brickCells 2645 -> 2640, commSeparation 0.0471 -> 0.0701, pop 456 -> 500. Guardrails passed but the target (gap) fell ~10%; reverted.
+
 ## Cycle 64 (A/B) — day 641.22 + 5k ticks (batch ran 12.5k; 25k timed out) — `kept` (STRUCTURAL: thirst-drink bonus)
 
 **Hypothesis** (priority #3; plateau.js: gap, largestCluster, brickCells flat -> structural): `THIRST_DRINK_BONUS = 0.3` in `nodling.js` rewards drinking while hydration < 40, so thirst management is learnable (649 thirst deaths). Baseline batch passed (gap 2357).
