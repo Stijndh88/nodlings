@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 66 — day 656.8 + 8k ticks — `STRUCTURAL: kept`
+
+Plateau.js demanded a structural cycle. Baseline batch (12.5k ticks; 25k timed out) passed. Added `ENCLOSE_BONUS = 0.4` in `nodling.js`: extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines).
+Control -> treatment: largestCluster 70 -> 80, brickCells 2686 -> 2678, builtCells 3041 -> 3102, bench gap 2357 -> 2343, medianFitness 1007 -> 957, commSeparation 0.167 -> 0.047. Guardrails passed; single 8k sample, within noise.
+
 ## Cycle 65 (A/B) — day 649.03 + 5k ticks (batch ran 12.5k; 25k timed out) — `reverted` (add-connection probability 0.28 -> 0.2)
 
 **Hypothesis** (priority #3; plateau.js: gap flat, tuning still productive): `brain.js` mutateGenome add-connection probability 0.28 -> 0.2 to limit brain bloat. Baseline batch passed (gap 2357).

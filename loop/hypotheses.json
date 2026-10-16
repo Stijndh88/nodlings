@@ -462,6 +462,14 @@
       "status": "reverted",
       "cycle": 65,
       "note": "gap 2357->2132, medianFitness 1103->853, cluster 156->62, bricks 2645->2640; target (gap) worse; single 5k sample"
+    },
+    {
+      "id": "enclose-bonus",
+      "signal": 1,
+      "change": "nodling.js ENCLOSE_BONUS 0.4: extra reward for placing durable material with >=2 durable 4-neighbours (fill gaps, dense villages)",
+      "status": "kept",
+      "cycle": 66,
+      "note": "cluster 70->80, bricks 2686->2678, builtCells 3041->3102, gap 2357->2343, median 1007->957, comm 0.167->0.047; single 8k sample, within noise"
     }
   ]
 }

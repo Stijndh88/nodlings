@@ -17,6 +17,7 @@ const BRIDGE_BONUS = 0.4; // reward for extending a bridge: laying a tile on wat
 const SHARED_MEAL_BONUS = 0.3; // reward for eating found food with another Nodling within 3 cells (group foraging)
 const THIRST_DRINK_BONUS = 0.3; // reward for drinking while hydration is low (<40): learn to manage thirst
 const BUILD_ADJACENT_BONUS = 0.85; // reward for placing durable material next to an existing structure
+const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
@@ -220,10 +221,12 @@ class Nodling {
       } else {
         // building onto an existing durable structure is rewarded (clusters, not scatter)
         if (DURABLE_BUILD.includes(this.carrying)){
+          let nbs = 0;
           for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
             const nb = w.at(cx+ax, cy+ay);
-            if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += BUILD_ADJACENT_BONUS + (this.carrying === 'brick' ? BRICK_WALL_BONUS : 0); break; }
+            if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))) nbs++;
           }
+          if (nbs) this.bonus += BUILD_ADJACENT_BONUS + (this.carrying === 'brick' ? BRICK_WALL_BONUS : 0) + (nbs >= 2 ? ENCLOSE_BONUS : 0);
         }
         if (this.carrying === 'clay'){
           for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
