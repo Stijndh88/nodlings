@@ -478,6 +478,14 @@
       "status": "reverted",
       "cycle": 67,
       "note": "gap 2343->2185, medianFitness 1141->1015, cluster 151->72, bricks 2699->2719, comm 0.0667->0.1137; target (gap) worse; single 5k sample"
+    },
+    {
+      "id": "hunt-bonus",
+      "signal": 3,
+      "change": "nodling.js HUNT_BONUS 0.4: reward striking down a critter",
+      "status": "kept",
+      "cycle": 68,
+      "note": "gap 2343->2337, medianFitness 1050->989, cluster 76->88, bricks 2722->2714, comm 0.134->0.070; single 5k sample, within noise"
     }
   ]
 }

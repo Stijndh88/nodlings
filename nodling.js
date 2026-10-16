@@ -15,6 +15,7 @@ const KILN_BONUS = 0.5; // reward for dropping clay next to an active fire (feed
 const BRICK_WALL_BONUS = 0.5; // extra reward for adding a fired brick to an existing structure
 const BRIDGE_BONUS = 0.4; // reward for extending a bridge: laying a tile on water next to an existing bridge tile
 const SHARED_MEAL_BONUS = 0.3; // reward for eating found food with another Nodling within 3 cells (group foraging)
+const HUNT_BONUS = 0.4; // reward for striking down a critter (hunting as a learnable food source)
 const THIRST_DRINK_BONUS = 0.3; // reward for drinking while hydration is low (<40): learn to manage thirst
 const BUILD_ADJACENT_BONUS = 0.85; // reward for placing durable material next to an existing structure
 const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
@@ -270,6 +271,7 @@ class Nodling {
         if (cr.dead) continue;
         if ((cr.x-(tx+0.5))**2 + (cr.y-(ty+0.5))**2 < 0.9){
           cr.dead = true;
+          this.bonus += HUNT_BONUS;
           (t || cell).stack.push('meat');
           break;
         }

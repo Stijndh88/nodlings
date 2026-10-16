@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 68 (A/B) — day 668.56 + 5k ticks (batch ran 6.25k; 25k and 12.5k timed out) — `STRUCTURAL: kept` (hunt bonus)
+
+**Hypothesis** (priority #3; plateau.js: gap, medianFitness, largestCluster flat -> structural): `HUNT_BONUS = 0.4` in `nodling.js` rewards striking down a critter, making hunting a learnable food source. Baseline batch passed (gap 2343).
+
+Control -> treatment: bench gap 2343 -> 2337, medianFitness 1050 -> 989, largestCluster 76 -> 88, brickCells 2722 -> 2714, commSeparation 0.134 -> 0.070, pop 501 -> 502. Guardrails passed; gap is flat (-0.3%), all differences within noise.
+
 ## Cycle 67 (A/B) — day 664.66 + 5k ticks (batch ran 12.5k; 25k timed out) — `reverted` (plasticity mutation probability 0.3 -> 0.45)
 
 **Hypothesis** (priority #3; plateau.js: gap and largestCluster flat, tuning still productive): `brain.js` mutateGenome plasticity-rate mutation probability 0.3 -> 0.45 (0.15 was reverted in cycle 61). Baseline batch passed (gap 2343).
