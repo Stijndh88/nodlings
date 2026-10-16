@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 69 (A/B) — day 684.19 + 5k ticks — `reverted` (add-connection probability 0.28 -> 0.35)
+
+**Hypothesis** (priority #3; plateau.js: gap and medianFitness flat, tuning still productive): `brain.js` mutateGenome add-connection probability 0.28 -> 0.35 (0.2 was reverted in cycle 65). Baseline batch (25k ticks) passed (gap 2337).
+
+Control -> treatment: bench gap 2337 -> 2185, medianFitness 893 -> 949, largestCluster 102 -> 109, brickCells 2800 -> 2798, commSeparation 0.206 -> 0.217, pop 499 -> 500. Guardrails passed but the target (gap) fell ~6.5%; reverted.
+
 ## Cycle 68 (A/B) — day 668.56 + 5k ticks (batch ran 6.25k; 25k and 12.5k timed out) — `STRUCTURAL: kept` (hunt bonus)
 
 **Hypothesis** (priority #3; plateau.js: gap, medianFitness, largestCluster flat -> structural): `HUNT_BONUS = 0.4` in `nodling.js` rewards striking down a critter, making hunting a learnable food source. Baseline batch passed (gap 2343).

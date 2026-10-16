@@ -486,6 +486,14 @@
       "status": "kept",
       "cycle": 68,
       "note": "gap 2343->2337, medianFitness 1050->989, cluster 76->88, bricks 2722->2714, comm 0.134->0.070; single 5k sample, within noise"
+    },
+    {
+      "id": "add-conn-0.35",
+      "signal": 3,
+      "change": "brain.js mutateGenome: add-connection probability 0.28 -> 0.35",
+      "status": "reverted",
+      "cycle": 69,
+      "note": "gap 2337->2185, medianFitness 893->949, cluster 102->109, bricks 2800->2798, comm 0.206->0.217; target (gap) worse; single 5k sample"
     }
   ]
 }
