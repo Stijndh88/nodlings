@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-15T20:42Z. Now: day 641.22, benchmark gap **2357** (evolved gene pool minus random genomes), largest built cluster 81, 2580 brick cells, max generation 962.
+Updated 2026-10-16T00:44Z. Now: day 649.03, benchmark gap **2357** (evolved gene pool minus random genomes), largest built cluster 155, 2626 brick cells, max generation 980.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-15T20:42Z. Now: day 641.22, benchmark gap **2357** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 63 | 649.03 | 2357 | 1012 | 155 | 2626 | 980 | 0.0598 |
 | 62 | 641.22 | 2357 | 943 | 81 | 2580 | 962 | 0.0727 |
 | 61 | 633.41 | 2357 | 1077 | 74 | 2578 | 943 | 0.0007 |
 | 60 | 625.59 | 2357 | 994 | 56 | 2535 | 927 | 0.0219 |
@@ -24,7 +25,6 @@ Updated 2026-10-15T20:42Z. Now: day 641.22, benchmark gap **2357** (evolved gene
 | 51 | 571.84 | 2300 | 1091 | 35 | 2195 | 814 | 0.0066 |
 | 50 | 567.94 | 2237 | 1156 | 66 | 2188 | 809 | 0.0422 |
 | 49 | 564.03 | 2237 | 965 | 47 | 2189 | 801 | 0.0117 |
-| 48 | 560.13 | 2237 | 1047 | 34 | 2149 | 792 | 0.0481 |
 
 ## Hypotheses
 
@@ -84,6 +84,7 @@ Updated 2026-10-15T20:42Z. Now: day 641.22, benchmark gap **2357** (evolved gene
 - **reverted**: brain.js mutateGenome: plasticity-rate mutation probability 0.3 -> 0.15 (gap 2357->2256, medianFitness 1068->1187, cluster 41->82, bricks 2530->2534, comm 0.0296->0.0464; target (gap) worse)
 - **reverted**: brain.js mutateGenome: weight mutation step magnitude 0.3 -> 0.2 (gap 2357->2204, medianFitness 1247->955, cluster 49->55, bricks 2562->2556, comm 0.0123->0.0585; target (gap) worse; single 5k sample)
 - **reverted**: brain.js mutateGenome: per-connection weight mutation probability 0.5 -> 0.35 (gap 2357->2161, medianFitness 1049->1194, cluster 82->95, bricks 2577->2583, comm 0.0164->0.0106; target (gap) worse; single 5k sample)
+- **kept**: nodling.js THIRST_DRINK_BONUS 0.3: reward drinking while hydration < 40 (all metrics identical to control (cluster 76, bricks 2605, gap 2357, median 1133); bonus never changed behaviour in 5k ticks, null result)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
