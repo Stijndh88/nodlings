@@ -494,6 +494,14 @@
       "status": "reverted",
       "cycle": 69,
       "note": "gap 2337->2185, medianFitness 893->949, cluster 102->109, bricks 2800->2798, comm 0.206->0.217; target (gap) worse; single 5k sample"
+    },
+    {
+      "id": "add-node-0.22",
+      "signal": 3,
+      "change": "brain.js mutateGenome add-node (split) probability 0.16 -> 0.22",
+      "status": "reverted",
+      "cycle": 70,
+      "note": "gap 2337->2195, medianFitness 1015->1135, cluster 78->65, bricks 2822->2821, comm 0.210->0.305; target (gap) worse"
     }
   ]
 }
