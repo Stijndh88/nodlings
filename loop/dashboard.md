@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-16T08:43Z. Now: day 664.66, benchmark gap **2343** (evolved gene pool minus random genomes), largest built cluster 79, 2695 brick cells, max generation 1010.
+Updated 2026-10-16T12:52Z. Now: day 668.56, benchmark gap **2343** (evolved gene pool minus random genomes), largest built cluster 147, 2717 brick cells, max generation 1021.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-16T08:43Z. Now: day 664.66, benchmark gap **2343** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 66 | 668.56 | 2343 | 903 | 147 | 2717 | 1021 | 0.065 |
 | 65 | 664.66 | 2343 | 1082 | 79 | 2695 | 1010 | 0.0374 |
 | 64 | 656.84 | 2357 | 1269 | 68 | 2653 | 994 | 0.1226 |
 | 63 | 649.03 | 2357 | 1012 | 155 | 2626 | 980 | 0.0598 |
@@ -24,7 +25,6 @@ Updated 2026-10-16T08:43Z. Now: day 664.66, benchmark gap **2343** (evolved gene
 | 54 | 583.56 | 2296 | 1064 | 45 | 2269 | 839 | 0.0108 |
 | 53 | 579.66 | 2300 | 985 | 40 | 2221 | 834 | 0.0806 |
 | 52 | 575.75 | 2300 | 996 | 34 | 2215 | 823 | 0.0183 |
-| 51 | 571.84 | 2300 | 1091 | 35 | 2195 | 814 | 0.0066 |
 
 ## Hypotheses
 
@@ -87,6 +87,7 @@ Updated 2026-10-16T08:43Z. Now: day 664.66, benchmark gap **2343** (evolved gene
 - **kept**: nodling.js THIRST_DRINK_BONUS 0.3: reward drinking while hydration < 40 (all metrics identical to control (cluster 76, bricks 2605, gap 2357, median 1133); bonus never changed behaviour in 5k ticks, null result)
 - **reverted**: brain.js mutateGenome: add-connection probability 0.28 -> 0.2 (gap 2357->2132, medianFitness 1103->853, cluster 156->62, bricks 2645->2640; target (gap) worse; single 5k sample)
 - **kept**: nodling.js ENCLOSE_BONUS 0.4: extra reward for placing durable material with >=2 durable 4-neighbours (fill gaps, dense villages) (cluster 70->80, bricks 2686->2678, builtCells 3041->3102, gap 2357->2343, median 1007->957, comm 0.167->0.047; single 8k sample, within noise)
+- **reverted**: brain.js mutateGenome: plasticity-rate mutation probability 0.3 -> 0.45 (gap 2343->2185, medianFitness 1141->1015, cluster 151->72, bricks 2699->2719, comm 0.0667->0.1137; target (gap) worse; single 5k sample)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
