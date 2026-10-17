@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 74 (A/B) — day 723.25 + 8k ticks (batch ran 12.5k; 25k timed out) — `STRUCTURAL: reverted` (communal build bonus)
+
+**Hypothesis** (priority #1; plateau.js: gap, medianFitness, brickCells flat -> structural): `COMMUNAL_BUILD_BONUS = 0.3` in `nodling.js`, extra reward for adding to a structure with another Nodling within 3 cells (shared villages). Baseline batch passed (gap 2337).
+
+Control -> treatment: largestCluster 166 -> 141, brickCells 2938 -> 2927, bench gap 2337 -> 2250, medianFitness 883 -> 1008, commSeparation 0.186 -> 0.160, pop 498 -> 501. Guardrails passed but the target (cluster) fell; reverted.
+
 ## Cycle 73 (A/B) — day 715.44 + 5k ticks (batch ran 12.5k; 25k timed out) — `reverted` (weight perturbation step 0.3 -> 0.4)
 
 **Hypothesis** (priority #3; plateau.js: gap flat, tuning still productive): `brain.js` mutateGenome weight perturbation step 0.3 -> 0.4. Baseline batch passed (gap 2337).

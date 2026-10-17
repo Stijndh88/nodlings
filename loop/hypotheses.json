@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -526,6 +526,14 @@
       "status": "reverted",
       "cycle": 73,
       "note": "gap 2337->2227, medianFitness 1062->1015, cluster 75->88, bricks 2895->2906, comm 0.2832->0.2756; target (gap) worse; single 5k sample"
+    },
+    {
+      "id": "communal-build-bonus",
+      "signal": 1,
+      "change": "nodling.js COMMUNAL_BUILD_BONUS 0.3: extra reward for adding to a structure with another Nodling within 3 cells",
+      "status": "reverted",
+      "cycle": 74,
+      "note": "cluster 166->141, brickCells 2938->2927, bench gap 2337->2250; target worse"
     }
   ]
 }
