@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 71 (A/B) — day 699.81 + 8k ticks (batch ran 12.5k; 25k timed out) — `reverted` (connection enable-toggle probability 0.1 -> 0.06)
+
+**Hypothesis** (priority #3; plateau.js: gap and largestCluster flat, tuning still productive): `brain.js` mutateGenome enable-toggle probability 0.1 -> 0.06. Baseline batch passed (gap 2337).
+
+Control -> treatment: bench gap 2337 -> 2178, medianFitness 1096 -> 1064, largestCluster 73 -> 87, brickCells 2845 -> 2855, commSeparation 0.203 -> 0.269, pop 500 -> 500. Guardrails passed but the target (gap) fell ~7%; reverted.
+
 ## Cycle 70 (A/B) — day 692 + 8k ticks (batch ran 12.5k; 25k timed out) — `reverted` (add-node probability 0.16 -> 0.22)
 
 **Hypothesis** (priority #3; plateau.js: gap flat, tuning still productive): `brain.js` mutateGenome add-node (split) probability 0.16 -> 0.22. Baseline batch passed (gap 2337).

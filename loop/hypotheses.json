@@ -502,6 +502,14 @@
       "status": "reverted",
       "cycle": 70,
       "note": "gap 2337->2195, medianFitness 1015->1135, cluster 78->65, bricks 2822->2821, comm 0.210->0.305; target (gap) worse"
+    },
+    {
+      "id": "toggle-conn-0.06",
+      "signal": 3,
+      "change": "brain.js mutateGenome: connection enable-toggle probability 0.1 -> 0.06",
+      "status": "reverted",
+      "cycle": 71,
+      "note": "gap 2337->2178, cluster 73->87, bricks 2845->2855; target gap fell ~7%"
     }
   ]
 }
