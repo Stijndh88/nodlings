@@ -510,6 +510,14 @@
       "status": "reverted",
       "cycle": 71,
       "note": "gap 2337->2178, cluster 73->87, bricks 2845->2855; target gap fell ~7%"
+    },
+    {
+      "id": "memory-mut-0.20",
+      "signal": 3,
+      "change": "brain.js mutateGenome memory-cell mutation probability 0.14 -> 0.20",
+      "status": "reverted",
+      "cycle": 72,
+      "note": "gap 2337->2215, medianFitness 1121->1056, cluster 88->78, bricks 2861->2868, comm 0.1036->0.0991; target (gap) worse; single 5k sample"
     }
   ]
 }
