@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-17T12:40Z. Now: day 723.25, benchmark gap **2337** (evolved gene pool minus random genomes), largest built cluster 143, 2906 brick cells, max generation 1137.
+Updated 2026-10-17T16:52Z. Now: day 727.16, benchmark gap **2337** (evolved gene pool minus random genomes), largest built cluster 162, 2935 brick cells, max generation 1148.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-17T12:40Z. Now: day 723.25, benchmark gap **2337** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 73 | 727.16 | 2337 | 992 | 162 | 2935 | 1148 | 0.1928 |
 | 72 | 723.25 | 2337 | 1068 | 143 | 2906 | 1137 | 0.2065 |
 | 71 | 715.44 | 2337 | 1170 | 122 | 2894 | 1119 | 0.1967 |
 | 70 | 707.63 | 2337 | 1202 | 81 | 2859 | 1102 | 0.1773 |
@@ -24,7 +25,6 @@ Updated 2026-10-17T12:40Z. Now: day 723.25, benchmark gap **2337** (evolved gene
 | 61 | 633.41 | 2357 | 1077 | 74 | 2578 | 943 | 0.0007 |
 | 60 | 625.59 | 2357 | 994 | 56 | 2535 | 927 | 0.0219 |
 | 59 | 621.69 | 2357 | 890 | 85 | 2524 | 922 | 0.0244 |
-| 58 | 613.88 | 2344 | 944 | 49 | 2472 | 900 | 0.0121 |
 
 ## Hypotheses
 
@@ -94,6 +94,7 @@ Updated 2026-10-17T12:40Z. Now: day 723.25, benchmark gap **2337** (evolved gene
 - **reverted**: brain.js mutateGenome: connection enable-toggle probability 0.1 -> 0.06 (gap 2337->2178, cluster 73->87, bricks 2845->2855; target gap fell ~7%)
 - **reverted**: brain.js mutateGenome memory-cell mutation probability 0.14 -> 0.20 (gap 2337->2215, medianFitness 1121->1056, cluster 88->78, bricks 2861->2868, comm 0.1036->0.0991; target (gap) worse; single 5k sample)
 - **reverted**: brain.js mutateGenome weight perturbation step 0.3 -> 0.4 (gap 2337->2227, medianFitness 1062->1015, cluster 75->88, bricks 2895->2906, comm 0.2832->0.2756; target (gap) worse; single 5k sample)
+- **reverted**: nodling.js COMMUNAL_BUILD_BONUS 0.3: extra reward for adding to a structure with another Nodling within 3 cells (cluster 166->141, brickCells 2938->2927, bench gap 2337->2250; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
