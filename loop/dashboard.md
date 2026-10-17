@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-17T00:43Z. Now: day 699.81, benchmark gap **2337** (evolved gene pool minus random genomes), largest built cluster 71, 2829 brick cells, max generation 1084.
+Updated 2026-10-17T04:29Z. Now: day 707.63, benchmark gap **2337** (evolved gene pool minus random genomes), largest built cluster 81, 2859 brick cells, max generation 1102.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-17T00:43Z. Now: day 699.81, benchmark gap **2337** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 70 | 707.63 | 2337 | 1202 | 81 | 2859 | 1102 | 0.1773 |
 | 69 | 699.81 | 2337 | 1152 | 71 | 2829 | 1084 | 0.1885 |
 | 68 | 692 | 2337 | 1093 | 82 | 2798 | 1071 | 0.2721 |
 | 67 | 684.19 | 2337 | 1005 | 77 | 2780 | 1057 | 0.2167 |
@@ -24,7 +25,6 @@ Updated 2026-10-17T00:43Z. Now: day 699.81, benchmark gap **2337** (evolved gene
 | 58 | 613.88 | 2344 | 944 | 49 | 2472 | 900 | 0.0121 |
 | 57 | 606.06 | 2308 | 967 | 50 | 2416 | 883 | 0.0044 |
 | 56 | 598.56 | 2296 | 1206 | 42 | 2383 | 868 | 0.0245 |
-| 55 | 591.06 | 2296 | 1018 | 69 | 2339 | 855 | 0.0424 |
 
 ## Hypotheses
 
@@ -91,6 +91,7 @@ Updated 2026-10-17T00:43Z. Now: day 699.81, benchmark gap **2337** (evolved gene
 - **kept**: nodling.js HUNT_BONUS 0.4: reward striking down a critter (gap 2343->2337, medianFitness 1050->989, cluster 76->88, bricks 2722->2714, comm 0.134->0.070; single 5k sample, within noise)
 - **reverted**: brain.js mutateGenome: add-connection probability 0.28 -> 0.35 (gap 2337->2185, medianFitness 893->949, cluster 102->109, bricks 2800->2798, comm 0.206->0.217; target (gap) worse; single 5k sample)
 - **reverted**: brain.js mutateGenome add-node (split) probability 0.16 -> 0.22 (gap 2337->2195, medianFitness 1015->1135, cluster 78->65, bricks 2822->2821, comm 0.210->0.305; target (gap) worse)
+- **reverted**: brain.js mutateGenome: connection enable-toggle probability 0.1 -> 0.06 (gap 2337->2178, cluster 73->87, bricks 2845->2855; target gap fell ~7%)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
