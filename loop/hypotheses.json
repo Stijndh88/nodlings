@@ -542,6 +542,14 @@
       "status": "reverted",
       "cycle": 75,
       "note": "bench gap 2337->2190, median 1167->1103, cluster 163->167; target fell"
+    },
+    {
+      "id": "nest-breed-bonus",
+      "signal": 1,
+      "change": "nodling.js NEST_BREED_BONUS 0.5: parent rewarded for breeding inside a cluster of >=4 stacked cells",
+      "status": "kept",
+      "cycle": 76,
+      "note": "cluster 170->173, bricks 2952->2952, gap 2337->2365, median 1138->1055, comm 0.229->0.191; single 3k sample, within noise"
     }
   ]
 }

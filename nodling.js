@@ -18,6 +18,7 @@ const SHARED_MEAL_BONUS = 0.3; // reward for eating found food with another Nodl
 const HUNT_BONUS = 0.4; // reward for striking down a critter (hunting as a learnable food source)
 const THIRST_DRINK_BONUS = 0.3; // reward for drinking while hydration is low (<40): learn to manage thirst
 const BUILD_ADJACENT_BONUS = 0.85; // reward for placing durable material next to an existing structure
+const NEST_BREED_BONUS = 0.5; // extra reward to a parent that breeds inside a cluster of structures (settling pays)
 const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
@@ -363,7 +364,7 @@ class Nodling {
       for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++){
         const nc = w.at(cx+dx, cy+dy); if (nc && nc.stack.length >= 2) nest++;
       }
-      if (nest >= 4) child.energy += 45;
+      if (nest >= 4){ child.energy += 45; this.bonus += NEST_BREED_BONUS; }
       archiveBehavior(this.signature()); // record what a *successful* breeder did
       return child;
     }

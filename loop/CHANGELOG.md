@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 76 (A/B) — day 735 + 3k ticks (batch ran 12.5k) — `STRUCTURAL: kept` (nest-breed bonus)
+
+**Hypothesis** (priority #1; plateau.js: gap, medianFitness, brickCells flat -> structural): `NEST_BREED_BONUS = 0.5` in `nodling.js`, extra reward to a parent that breeds inside a cluster of >=4 stacked cells, so settling in villages is reinforced (previously only the child got energy).
+
+Control -> treatment: largestCluster 170 -> 173, brickCells 2952 -> 2952, bench gap 2337 -> 2365, medianFitness 1138 -> 1055, commSeparation 0.229 -> 0.191, pop 501 -> 500. Guardrails passed; target equal/slightly better, all differences within noise.
+
 ## Cycle 75 (A/B) — day 727.16 + 3k ticks (batch ran 6.25k; 25k and 12.5k timed out) — `STRUCTURAL: reverted` (hunger-eat bonus)
 
 **Hypothesis** (priority #3; plateau.js: gap, medianFitness, brickCells flat -> structural): `HUNGER_EAT_BONUS = 0.3` in `nodling.js`, reward for eating found food while energy < 50. Baseline batch passed (gap 2337).
