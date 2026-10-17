@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 75 (A/B) — day 727.16 + 3k ticks (batch ran 6.25k; 25k and 12.5k timed out) — `STRUCTURAL: reverted` (hunger-eat bonus)
+
+**Hypothesis** (priority #3; plateau.js: gap, medianFitness, brickCells flat -> structural): `HUNGER_EAT_BONUS = 0.3` in `nodling.js`, reward for eating found food while energy < 50. Baseline batch passed (gap 2337).
+
+Control -> treatment: bench gap 2337 -> 2190, medianFitness 1167 -> 1103, largestCluster 163 -> 167, brickCells 2933 -> 2942, commSeparation 0.230 -> 0.197, pop 501 -> 502. Guardrails passed but the target (gap) fell ~6%; reverted.
+
 ## Cycle 74 (A/B) — day 723.25 + 8k ticks (batch ran 12.5k; 25k timed out) — `STRUCTURAL: reverted` (communal build bonus)
 
 **Hypothesis** (priority #1; plateau.js: gap, medianFitness, brickCells flat -> structural): `COMMUNAL_BUILD_BONUS = 0.3` in `nodling.js`, extra reward for adding to a structure with another Nodling within 3 cells (shared villages). Baseline batch passed (gap 2337).

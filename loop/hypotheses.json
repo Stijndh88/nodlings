@@ -534,6 +534,14 @@
       "status": "reverted",
       "cycle": 74,
       "note": "cluster 166->141, brickCells 2938->2927, bench gap 2337->2250; target worse"
+    },
+    {
+      "id": "hunger-eat-bonus",
+      "signal": 3,
+      "change": "nodling.js HUNGER_EAT_BONUS 0.3: reward eating found food while energy < 50",
+      "status": "reverted",
+      "cycle": 75,
+      "note": "bench gap 2337->2190, median 1167->1103, cluster 163->167; target fell"
     }
   ]
 }
