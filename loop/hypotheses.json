@@ -582,6 +582,14 @@
       "status": "reverted",
       "cycle": 80,
       "note": "cluster 288->277, bench gap 2366->2177; worse on target"
+    },
+    {
+      "id": "toggle-conn-0.14",
+      "signal": 3,
+      "change": "brain.js mutateGenome: connection enable-toggle probability 0.1 -> 0.14",
+      "status": "reverted",
+      "cycle": 81,
+      "note": "gap 2366->2170, medianFitness 1130->967, cluster 296->229, bricks 3057->3068, comm 0.027->0.032; target (gap) worse; single 3k sample"
     }
   ]
 }

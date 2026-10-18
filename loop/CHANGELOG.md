@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 81 (A/B) — day 774.03 + 3k ticks (batch ran 12.5k) — `reverted` (enable-toggle probability 0.10 -> 0.14)
+
+**Hypothesis** (priority #3; plateau.js: gap, brickCells flat, tuning still productive): `brain.js` mutateGenome connection enable-toggle probability 0.1 -> 0.14 (0.06 was reverted in cycle 71). Baseline batch passed (gap 2366).
+
+Control -> treatment: bench gap 2366 -> 2170, medianFitness 1130 -> 967, largestCluster 296 -> 229, brickCells 3057 -> 3068, commSeparation 0.027 -> 0.032, pop 499 -> 500. Guardrails passed but the target (gap) fell ~8%; reverted.
+
 ## Cycle 80 (A/B) — day 766.22 + 5k ticks (batch ran 12.5k) — `STRUCTURAL: reverted` (night shelter bonus)
 
 **Hypothesis** (priority #1; plateau.js: gap, medianFitness, brickCells flat -> structural): `SHELTER_NIGHT_BONUS = 0.05` per tick at night when standing with >=2 durable neighbours, so walls become a learnable shelter. Baseline batch passed (gap 2366).
