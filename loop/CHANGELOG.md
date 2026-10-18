@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 82 — day 786.8 — `reverted` — `STRUCTURAL:`
+
+**Hypothesis** (priority 1/3, plateau.js demanded a structural cycle): walled shade — hydration drain halved for a Nodling with >=2 stacked 4-neighbours, so settling among walls is a survival affordance.
+
+- Control vs treatment (8k ticks): largestCluster 219 -> 194, brickCells 3096 -> 3092, bench gap 2366 -> 2318, medianFitness 1020 -> 1082, thirst deaths 810 -> 366, population 500 -> 502. Guardrails passed, but the target metric fell, so reverted.
+
 ## Cycle 81 (A/B) — day 774.03 + 3k ticks (batch ran 12.5k) — `reverted` (enable-toggle probability 0.10 -> 0.14)
 
 **Hypothesis** (priority #3; plateau.js: gap, brickCells flat, tuning still productive): `brain.js` mutateGenome connection enable-toggle probability 0.1 -> 0.14 (0.06 was reverted in cycle 71). Baseline batch passed (gap 2366).

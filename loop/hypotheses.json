@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -590,6 +590,14 @@
       "status": "reverted",
       "cycle": 81,
       "note": "gap 2366->2170, medianFitness 1130->967, cluster 296->229, bricks 3057->3068, comm 0.027->0.032; target (gap) worse; single 3k sample"
+    },
+    {
+      "id": "walled-shade",
+      "signal": 1,
+      "change": "nodling.js: hydration drain halved when >=2 stacked 4-neighbours",
+      "status": "reverted",
+      "cycle": 82,
+      "note": "largestCluster 219->194, bench gap 2366->2318, medianFitness 1020->1082, thirst deaths 810->366; target worse"
     }
   ]
 }
