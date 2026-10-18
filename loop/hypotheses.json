@@ -558,6 +558,14 @@
       "status": "reverted",
       "cycle": 77,
       "note": "bench gap 2365->2109, largestCluster 173->171, brickCells 2980->2985, medianFitness 1110->1134; target fell"
+    },
+    {
+      "id": "memory-mut-0.10",
+      "signal": 3,
+      "change": "brain.js mutateGenome memory-cell mutation probability 0.14 -> 0.10",
+      "status": "reverted",
+      "cycle": 78,
+      "note": "bench gap 2365->2132; cluster 125->199, brickCells 3005->3024, commSep 0.098->0.137, medianFitness 1131->1128; target (gap) fell ~10%"
     }
   ]
 }
