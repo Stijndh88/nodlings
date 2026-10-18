@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-18T04:40Z. Now: day 750.59, benchmark gap **2365** (evolved gene pool minus random genomes), largest built cluster 206, 3002 brick cells, max generation 1200.
+Updated 2026-10-18T08:40Z. Now: day 758.41, benchmark gap **2365** (evolved gene pool minus random genomes), largest built cluster 208, 3017 brick cells, max generation 1217.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-18T04:40Z. Now: day 750.59, benchmark gap **2365** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 77 | 758.41 | 2365 | 1079 | 208 | 3017 | 1217 | 0.1044 |
 | 76 | 750.59 | 2365 | 997 | 206 | 3002 | 1200 | 0.122 |
 | 75 | 742.78 | 2365 | 1156 | 176 | 2974 | 1189 | 0.1144 |
 | 74 | 734.97 | 2337 | 1064 | 172 | 2943 | 1165 | 0.2352 |
@@ -24,7 +25,6 @@ Updated 2026-10-18T04:40Z. Now: day 750.59, benchmark gap **2365** (evolved gene
 | 65 | 664.66 | 2343 | 1082 | 79 | 2695 | 1010 | 0.0374 |
 | 64 | 656.84 | 2357 | 1269 | 68 | 2653 | 994 | 0.1226 |
 | 63 | 649.03 | 2357 | 1012 | 155 | 2626 | 980 | 0.0598 |
-| 62 | 641.22 | 2357 | 943 | 81 | 2580 | 962 | 0.0727 |
 
 ## Hypotheses
 
@@ -98,6 +98,7 @@ Updated 2026-10-18T04:40Z. Now: day 750.59, benchmark gap **2365** (evolved gene
 - **reverted**: nodling.js HUNGER_EAT_BONUS 0.3: reward eating found food while energy < 50 (bench gap 2337->2190, median 1167->1103, cluster 163->167; target fell)
 - **kept**: nodling.js NEST_BREED_BONUS 0.5: parent rewarded for breeding inside a cluster of >=4 stacked cells (cluster 170->173, bricks 2952->2952, gap 2337->2365, median 1138->1055, comm 0.229->0.191; single 3k sample, within noise)
 - **reverted**: brain.js mutateGenome add-node (split) probability 0.16 -> 0.12 (bench gap 2365->2109, largestCluster 173->171, brickCells 2980->2985, medianFitness 1110->1134; target fell)
+- **reverted**: brain.js mutateGenome memory-cell mutation probability 0.14 -> 0.10 (bench gap 2365->2132; cluster 125->199, brickCells 3005->3024, commSep 0.098->0.137, medianFitness 1131->1128; target (gap) fell ~10%)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
