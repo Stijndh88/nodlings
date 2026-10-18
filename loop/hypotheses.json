@@ -550,6 +550,14 @@
       "status": "kept",
       "cycle": 76,
       "note": "cluster 170->173, bricks 2952->2952, gap 2337->2365, median 1138->1055, comm 0.229->0.191; single 3k sample, within noise"
+    },
+    {
+      "id": "add-node-0.12",
+      "signal": 3,
+      "change": "brain.js mutateGenome add-node (split) probability 0.16 -> 0.12",
+      "status": "reverted",
+      "cycle": 77,
+      "note": "bench gap 2365->2109, largestCluster 173->171, brickCells 2980->2985, medianFitness 1110->1134; target fell"
     }
   ]
 }

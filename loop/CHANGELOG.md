@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 77 (A/B) — day 742.78 + 5k ticks (batch ran 12.5k; 25k timed out) — `reverted` (add-node probability 0.16 -> 0.12)
+
+**Hypothesis** (priority #3; plateau.js: gap, brickCells flat, tuning still productive): `brain.js` mutateGenome add-node (split) probability 0.16 -> 0.12 (0.22 was reverted in cycle 70). Baseline batch passed (gap 2365).
+
+Control -> treatment: bench gap 2365 -> 2109, medianFitness 1110 -> 1134, largestCluster 173 -> 171, brickCells 2980 -> 2985, commSeparation 0.142 -> 0.096, pop 502 -> 501. Guardrails passed but the target (gap) fell ~11%; reverted.
+
 ## Cycle 76 (A/B) — day 735 + 3k ticks (batch ran 12.5k) — `STRUCTURAL: kept` (nest-breed bonus)
 
 **Hypothesis** (priority #1; plateau.js: gap, medianFitness, brickCells flat -> structural): `NEST_BREED_BONUS = 0.5` in `nodling.js`, extra reward to a parent that breeds inside a cluster of >=4 stacked cells, so settling in villages is reinforced (previously only the child got energy).
