@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 80 (A/B) — day 766.22 + 5k ticks (batch ran 12.5k) — `STRUCTURAL: reverted` (night shelter bonus)
+
+**Hypothesis** (priority #1; plateau.js: gap, medianFitness, brickCells flat -> structural): `SHELTER_NIGHT_BONUS = 0.05` per tick at night when standing with >=2 durable neighbours, so walls become a learnable shelter. Baseline batch passed (gap 2366).
+
+Control -> treatment: largestCluster 288 -> 277, brickCells 3042 -> 3042, bench gap 2366 -> 2177, medianFitness 878 -> 895, commSeparation 0.054 -> 0.042, pop 500 -> 501. Guardrails passed but target (cluster) and gap fell; reverted.
+
 ## Cycle 79 (A/B) — day 758.41 + 8k ticks (batch ran 12.5k; 25k timed out) — `kept` (MAX_HIDDEN 60 -> 80)
 
 **Hypothesis** (priority #3; plateau.js: gap, brickCells flat, tuning still productive): `brain.js` MAX_HIDDEN 60 -> 80 to give evolved brains headroom. Baseline batch passed (gap 2365).
