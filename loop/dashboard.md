@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-17T20:30Z. Now: day 734.97, benchmark gap **2337** (evolved gene pool minus random genomes), largest built cluster 172, 2943 brick cells, max generation 1165.
+Updated 2026-10-18T00:43Z. Now: day 742.78, benchmark gap **2365** (evolved gene pool minus random genomes), largest built cluster 176, 2974 brick cells, max generation 1189.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-17T20:30Z. Now: day 734.97, benchmark gap **2337** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 75 | 742.78 | 2365 | 1156 | 176 | 2974 | 1189 | 0.1144 |
 | 74 | 734.97 | 2337 | 1064 | 172 | 2943 | 1165 | 0.2352 |
 | 73 | 727.16 | 2337 | 992 | 162 | 2935 | 1148 | 0.1928 |
 | 72 | 723.25 | 2337 | 1068 | 143 | 2906 | 1137 | 0.2065 |
@@ -24,7 +25,6 @@ Updated 2026-10-17T20:30Z. Now: day 734.97, benchmark gap **2337** (evolved gene
 | 63 | 649.03 | 2357 | 1012 | 155 | 2626 | 980 | 0.0598 |
 | 62 | 641.22 | 2357 | 943 | 81 | 2580 | 962 | 0.0727 |
 | 61 | 633.41 | 2357 | 1077 | 74 | 2578 | 943 | 0.0007 |
-| 60 | 625.59 | 2357 | 994 | 56 | 2535 | 927 | 0.0219 |
 
 ## Hypotheses
 
@@ -96,6 +96,7 @@ Updated 2026-10-17T20:30Z. Now: day 734.97, benchmark gap **2337** (evolved gene
 - **reverted**: brain.js mutateGenome weight perturbation step 0.3 -> 0.4 (gap 2337->2227, medianFitness 1062->1015, cluster 75->88, bricks 2895->2906, comm 0.2832->0.2756; target (gap) worse; single 5k sample)
 - **reverted**: nodling.js COMMUNAL_BUILD_BONUS 0.3: extra reward for adding to a structure with another Nodling within 3 cells (cluster 166->141, brickCells 2938->2927, bench gap 2337->2250; target worse)
 - **reverted**: nodling.js HUNGER_EAT_BONUS 0.3: reward eating found food while energy < 50 (bench gap 2337->2190, median 1167->1103, cluster 163->167; target fell)
+- **kept**: nodling.js NEST_BREED_BONUS 0.5: parent rewarded for breeding inside a cluster of >=4 stacked cells (cluster 170->173, bricks 2952->2952, gap 2337->2365, median 1138->1055, comm 0.229->0.191; single 3k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
