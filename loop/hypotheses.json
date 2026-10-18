@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -566,6 +566,14 @@
       "status": "reverted",
       "cycle": 78,
       "note": "bench gap 2365->2132; cluster 125->199, brickCells 3005->3024, commSep 0.098->0.137, medianFitness 1131->1128; target (gap) fell ~10%"
+    },
+    {
+      "id": "max-hidden-80",
+      "signal": 3,
+      "change": "brain.js MAX_HIDDEN 60 -> 80",
+      "status": "kept",
+      "cycle": 79,
+      "note": "gap 2365 -> 2366, median 1034 -> 1099, cluster 209 -> 203; within noise (cap rarely binds), harmless headroom"
     }
   ]
 }

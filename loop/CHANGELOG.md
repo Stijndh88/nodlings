@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 79 (A/B) — day 758.41 + 8k ticks (batch ran 12.5k; 25k timed out) — `kept` (MAX_HIDDEN 60 -> 80)
+
+**Hypothesis** (priority #3; plateau.js: gap, brickCells flat, tuning still productive): `brain.js` MAX_HIDDEN 60 -> 80 to give evolved brains headroom. Baseline batch passed (gap 2365).
+
+Control -> treatment: bench gap 2365 -> 2366, medianFitness 1034 -> 1099, largestCluster 209 -> 203, brickCells 3036 -> 3036, commSeparation 0.173 -> 0.141, pop 500 -> 501. Guardrails passed; target equal, all differences within noise (the cap rarely binds at this horizon).
+
 ## Cycle 78 (A/B) — day 750.59 + 8k ticks (batch ran 12.5k; 25k timed out) — `reverted` (memory-cell mutation probability 0.14 -> 0.10)
 
 **Hypothesis** (priority #3; plateau.js: gap, brickCells flat, tuning still productive): `brain.js` mutateGenome memory-cell mutation probability 0.14 -> 0.10 (0.20 was reverted in cycle 72). Baseline batch passed (gap 2365).
