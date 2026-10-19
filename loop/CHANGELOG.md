@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 83 — day 797.5 + 8k ticks — `reverted` — `STRUCTURAL:`
+
+**Hypothesis** (priority 1; plateau.js demanded a structural cycle): walled garden — `floraCanGrow` also allows a bare cell with >=2 durable 4-neighbours to sprout flora, so food appears inside villages. Baseline batch passed (gap 2366).
+
+- Control vs treatment (8k ticks): largestCluster 207 -> 207, brickCells 3133 -> 3128, bench gap 2366 -> 2075, medianFitness 913 -> 967, population 500 -> 500. Guardrails passed, but the target did not move and gap fell ~12%; reverted.
+
 ## Cycle 82 — day 786.8 — `reverted` — `STRUCTURAL:`
 
 **Hypothesis** (priority 1/3, plateau.js demanded a structural cycle): walled shade — hydration drain halved for a Nodling with >=2 stacked 4-neighbours, so settling among walls is a survival affordance.

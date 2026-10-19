@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -598,6 +598,14 @@
       "status": "reverted",
       "cycle": 82,
       "note": "largestCluster 219->194, bench gap 2366->2318, medianFitness 1020->1082, thirst deaths 810->366; target worse"
+    },
+    {
+      "id": "walled-garden",
+      "signal": 1,
+      "change": "world.js floraCanGrow: bare cell with >=2 durable 4-neighbours can sprout flora (sheltered gardens inside villages)",
+      "status": "reverted",
+      "cycle": 83,
+      "note": "cluster 207->207, brickCells 3133->3128, bench gap 2366->2075, medianFitness 913->967; no gain on target, gap fell"
     }
   ]
 }
