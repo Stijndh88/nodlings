@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 87 — day 824.3 + 5k ticks (batch ran 6k; 25k timed out) — `reverted` (no effect) — `STRUCTURAL:`
+
+Plateau: gap, largestCluster, brickCells flat. Hypothesis (priority 1): `WALL_RAISE_BONUS = 0.4` for completing a 3-high solid wall beside an existing structure. Baseline batch passed (gap 2366).
+Control vs treatment (5k ticks): metrics bit-identical (cluster 204, brickCells 3177, builtCells 3723, gap 2366, medianFitness 1029, pop 500). The bonus never altered behaviour; reverted as dead code. Note: runs take ~7 min each at 5-6k ticks.
+
 ## Cycle 86 — day 820.6 + 8k ticks (batch ran 12k; 25k timed out) — `kept` — `STRUCTURAL:`
 
 Plateau: gap, largestCluster, brickCells flat. Added `BRICK_GRAB_BONUS = 0.3` (nodling.js): reward picking up a fired brick, so kiln output gets salvaged for walls.

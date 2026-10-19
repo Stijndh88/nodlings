@@ -630,6 +630,14 @@
       "status": "kept",
       "cycle": 86,
       "note": "cluster 205->209, bricks 3166->3164, gap 2366->2366, median 988->1095; single 8k sample, within noise"
+    },
+    {
+      "id": "wall-raise-bonus",
+      "signal": 1,
+      "change": "nodling.js WALL_RAISE_BONUS 0.4: reward completing a 3-high solid wall beside an existing structure",
+      "status": "reverted",
+      "cycle": 87,
+      "note": "metrics bit-identical to control (cluster 204, bricks 3177, gap 2366); bonus never changed behaviour in 5k ticks, dead code"
     }
   ]
 }
