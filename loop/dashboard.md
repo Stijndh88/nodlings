@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-18T20:41Z. Now: day 781.84, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 197, 3078 brick cells, max generation 1277.
+Updated 2026-10-19T00:33Z. Now: day 797.47, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 207, 3118 brick cells, max generation 1319.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-18T20:41Z. Now: day 781.84, benchmark gap **2366** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 81 | 797.47 | 2366 | 949 | 207 | 3118 | 1319 | 0.0044 |
 | 80 | 781.84 | 2366 | 925 | 197 | 3078 | 1277 | 0.011 |
 | 79 | 774.03 | 2366 | 1130 | 293 | 3053 | 1256 | 0.017 |
 | 78 | 766.22 | 2366 | 917 | 217 | 3046 | 1236 | 0.1189 |
@@ -24,7 +25,6 @@ Updated 2026-10-18T20:41Z. Now: day 781.84, benchmark gap **2366** (evolved gene
 | 69 | 699.81 | 2337 | 1152 | 71 | 2829 | 1084 | 0.1885 |
 | 68 | 692 | 2337 | 1093 | 82 | 2798 | 1071 | 0.2721 |
 | 67 | 684.19 | 2337 | 1005 | 77 | 2780 | 1057 | 0.2167 |
-| 66 | 668.56 | 2343 | 903 | 147 | 2717 | 1021 | 0.065 |
 
 ## Hypotheses
 
@@ -102,6 +102,7 @@ Updated 2026-10-18T20:41Z. Now: day 781.84, benchmark gap **2366** (evolved gene
 - **kept**: brain.js MAX_HIDDEN 60 -> 80 (gap 2365 -> 2366, median 1034 -> 1099, cluster 209 -> 203; within noise (cap rarely binds), harmless headroom)
 - **reverted**: nodling.js SHELTER_NIGHT_BONUS 0.05: per-tick reward at night when standing with >=2 durable neighbours (cluster 288->277, bench gap 2366->2177; worse on target)
 - **reverted**: brain.js mutateGenome: connection enable-toggle probability 0.1 -> 0.14 (gap 2366->2170, medianFitness 1130->967, cluster 296->229, bricks 3057->3068, comm 0.027->0.032; target (gap) worse; single 3k sample)
+- **reverted**: nodling.js: hydration drain halved when >=2 stacked 4-neighbours (largestCluster 219->194, bench gap 2366->2318, medianFitness 1020->1082, thirst deaths 810->366; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
