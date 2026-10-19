@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-19T12:45Z. Now: day 820.59, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 201, 3166 brick cells, max generation 1376.
+Updated 2026-10-19T16:32Z. Now: day 824.34, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 204, 3169 brick cells, max generation 1384.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-19T12:45Z. Now: day 820.59, benchmark gap **2366** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 85 | 824.34 | 2366 | 1038 | 204 | 3169 | 1384 | 0.001 |
 | 84 | 820.59 | 2366 | 1016 | 201 | 3166 | 1376 | 0.0537 |
 | 83 | 813.09 | 2366 | 1055 | 189 | 3142 | 1356 | 0.0069 |
 | 82 | 805.28 | 2366 | 983 | 207 | 3133 | 1343 | 0.0218 |
@@ -24,7 +25,6 @@ Updated 2026-10-19T12:45Z. Now: day 820.59, benchmark gap **2366** (evolved gene
 | 73 | 727.16 | 2337 | 992 | 162 | 2935 | 1148 | 0.1928 |
 | 72 | 723.25 | 2337 | 1068 | 143 | 2906 | 1137 | 0.2065 |
 | 71 | 715.44 | 2337 | 1170 | 122 | 2894 | 1119 | 0.1967 |
-| 70 | 707.63 | 2337 | 1202 | 81 | 2859 | 1102 | 0.1773 |
 
 ## Hypotheses
 
@@ -106,6 +106,7 @@ Updated 2026-10-19T12:45Z. Now: day 820.59, benchmark gap **2366** (evolved gene
 - **reverted**: world.js floraCanGrow: bare cell with >=2 durable 4-neighbours can sprout flora (sheltered gardens inside villages) (cluster 207->207, brickCells 3133->3128, bench gap 2366->2075, medianFitness 913->967; no gain on target, gap fell)
 - **reverted**: world.js ignite: kiln fire +4 duration when >=2 durable 4-neighbours (metrics bit-identical to control (cluster 192, bricks 3141, gap 2366); branch never fires, so no effect)
 - **reverted**: world.js: perishables rot at half rate in cells with >=2 durable 4-neighbours (cluster 201->197, brickCells 3155->3140, gap 2366->2366; no gain)
+- **kept**: nodling.js BRICK_GRAB_BONUS 0.3: reward picking up a fired brick (cluster 205->209, bricks 3166->3164, gap 2366->2366, median 988->1095; single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
