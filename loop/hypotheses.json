@@ -622,6 +622,14 @@
       "status": "reverted",
       "cycle": 85,
       "note": "cluster 201->197, brickCells 3155->3140, gap 2366->2366; no gain"
+    },
+    {
+      "id": "brick-grab-bonus",
+      "signal": 1,
+      "change": "nodling.js BRICK_GRAB_BONUS 0.3: reward picking up a fired brick",
+      "status": "kept",
+      "cycle": 86,
+      "note": "cluster 205->209, bricks 3166->3164, gap 2366->2366, median 988->1095; single 8k sample, within noise"
     }
   ]
 }

@@ -13,6 +13,7 @@ const LISTEN_BONUS = 0.15; // reward for hearing a call while a predator is near
 const CACHE_BONUS = 0.5; // reward for eating food stored in a cell enclosed by >=2 durable neighbours
 const KILN_BONUS = 0.5; // reward for dropping clay next to an active fire (feeds the kiln)
 const BRICK_WALL_BONUS = 0.5; // extra reward for adding a fired brick to an existing structure
+const BRICK_GRAB_BONUS = 0.3; // reward for picking up a fired brick (salvaging kiln output for walls)
 const BRIDGE_BONUS = 0.4; // reward for extending a bridge: laying a tile on water next to an existing bridge tile
 const SHARED_MEAL_BONUS = 0.3; // reward for eating found food with another Nodling within 3 cells (group foraging)
 const HUNT_BONUS = 0.4; // reward for striking down a critter (hunting as a learnable food source)
@@ -209,7 +210,7 @@ class Nodling {
 
     // -- grab / drop --
     if (out.grab > 0.5 && !this.carrying && cell.stack.length)
-      this.carrying = cell.stack.pop();
+    { this.carrying = cell.stack.pop(); if (this.carrying === 'brick') this.bonus += BRICK_GRAB_BONUS; }
     // -- drop: onto a faced water cell with buoyant cargo, it lays a bridge
     //    tile (walkable); otherwise it drops on the current cell as usual --
     if (out.drop > 0.5 && this.carrying){

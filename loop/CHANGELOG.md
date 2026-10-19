@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 86 — day 820.6 + 8k ticks (batch ran 12k; 25k timed out) — `kept` — `STRUCTURAL:`
+
+Plateau: gap, largestCluster, brickCells flat. Added `BRICK_GRAB_BONUS = 0.3` (nodling.js): reward picking up a fired brick, so kiln output gets salvaged for walls.
+Control vs treatment: cluster 205 -> 209, brickCells 3166 -> 3164, builtCells 3724 -> 3600, gap 2366 -> 2366, medianFitness 988 -> 1095, comm 0.0227 -> 0.0224. Guardrails pass; differences are within noise.
+
 ## Cycle 85 — day 813.09 + 8k ticks (batch ran 12.5k; 25k timed out) — `reverted` (no gain) — `STRUCTURAL:`
 
 **Hypothesis** (priority 1; plateau.js demanded a structural cycle): granary — perishables (meat/cooked) rot at half rate in cells with >=2 durable 4-neighbours, so stores in villages last. Baseline batch passed (gap 2366).
