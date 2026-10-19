@@ -614,6 +614,14 @@
       "status": "reverted",
       "cycle": 84,
       "note": "metrics bit-identical to control (cluster 192, bricks 3141, gap 2366); branch never fires, so no effect"
+    },
+    {
+      "id": "granary-slow-rot",
+      "signal": 1,
+      "change": "world.js: perishables rot at half rate in cells with >=2 durable 4-neighbours",
+      "status": "reverted",
+      "cycle": 85,
+      "note": "cluster 201->197, brickCells 3155->3140, gap 2366->2366; no gain"
     }
   ]
 }

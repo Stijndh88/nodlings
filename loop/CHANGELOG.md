@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 85 — day 813.09 + 8k ticks (batch ran 12.5k; 25k timed out) — `reverted` (no gain) — `STRUCTURAL:`
+
+**Hypothesis** (priority 1; plateau.js demanded a structural cycle): granary — perishables (meat/cooked) rot at half rate in cells with >=2 durable 4-neighbours, so stores in villages last. Baseline batch passed (gap 2366).
+
+- Control vs treatment (8k ticks): largestCluster 201 -> 197, brickCells 3155 -> 3140, bench gap 2366 -> 2366, medianFitness 1160 -> 1226, commSeparation 0.074 -> 0.082, pop 500. Guardrails passed but the target slipped (within noise); reverted.
+
 ## Cycle 84 — day 810.3 (batch ran 12.5k; 25k timed out) — `reverted` (no effect) — `STRUCTURAL:`
 
 **Hypothesis** (priority 1; plateau.js demanded a structural cycle): kiln hearth — a kiln-lit fire with >=2 durable 4-neighbours burns 4 ticks longer, so kilns inside villages make more brick. Baseline batch passed (gap 2366).
