@@ -3,6 +3,12 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 84 — day 810.3 (batch ran 12.5k; 25k timed out) — `reverted` (no effect) — `STRUCTURAL:`
+
+**Hypothesis** (priority 1; plateau.js demanded a structural cycle): kiln hearth — a kiln-lit fire with >=2 durable 4-neighbours burns 4 ticks longer, so kilns inside villages make more brick. Baseline batch passed (gap 2366).
+
+- Control vs treatment (8k ticks): metrics bit-identical (largestCluster 192, brickCells 3141, gap 2366, medianFitness 1188, pop 501). The branch never triggers in practice (kiln sparks land away from walls), so nothing to keep; reverted as dead code.
+
 ## Cycle 83 — day 797.5 + 8k ticks — `reverted` — `STRUCTURAL:`
 
 **Hypothesis** (priority 1; plateau.js demanded a structural cycle): walled garden — `floraCanGrow` also allows a bare cell with >=2 durable 4-neighbours to sprout flora, so food appears inside villages. Baseline batch passed (gap 2366).

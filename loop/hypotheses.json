@@ -606,6 +606,14 @@
       "status": "reverted",
       "cycle": 83,
       "note": "cluster 207->207, brickCells 3133->3128, bench gap 2366->2075, medianFitness 913->967; no gain on target, gap fell"
+    },
+    {
+      "id": "kiln-hearth",
+      "signal": 1,
+      "change": "world.js ignite: kiln fire +4 duration when >=2 durable 4-neighbours",
+      "status": "reverted",
+      "cycle": 84,
+      "note": "metrics bit-identical to control (cluster 192, bricks 3141, gap 2366); branch never fires, so no effect"
     }
   ]
 }
