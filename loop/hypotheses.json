@@ -638,6 +638,14 @@
       "status": "reverted",
       "cycle": 87,
       "note": "metrics bit-identical to control (cluster 204, bricks 3177, gap 2366); bonus never changed behaviour in 5k ticks, dead code"
+    },
+    {
+      "id": "coop-build-bonus",
+      "signal": 1,
+      "change": "nodling.js COOP_BUILD_BONUS 0.3: extra reward for building onto a structure with another Nodling within 3 cells",
+      "status": "reverted",
+      "cycle": 88,
+      "note": "cluster 226->207, brickCells 3183->3184, bench gap 2366->2308, medianFitness 1158->1115; target worse"
     }
   ]
 }

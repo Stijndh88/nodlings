@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 88 — day 830.59 + 4k ticks (batch ran 10k; 25k timed out) — `reverted` (target worse) — `STRUCTURAL:`
+
+Plateau: gap, medianFitness, brickCells, maxGen flat. Hypothesis (priority 1): `COOP_BUILD_BONUS = 0.3` for building onto a structure with another Nodling within 3 cells. Baseline batch passed (gap 2366).
+Control vs treatment (4k ticks): largestCluster 226 -> 207, brickCells 3183 -> 3184, builtCells 3927 -> 4025, gap 2366 -> 2308, medianFitness 1158 -> 1115, pop 498 -> 499. Guardrails passed but the target slipped; reverted.
+
 ## Cycle 87 — day 824.3 + 5k ticks (batch ran 6k; 25k timed out) — `reverted` (no effect) — `STRUCTURAL:`
 
 Plateau: gap, largestCluster, brickCells flat. Hypothesis (priority 1): `WALL_RAISE_BONUS = 0.4` for completing a 3-high solid wall beside an existing structure. Baseline batch passed (gap 2366).
