@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-19T04:40Z. Now: day 805.28, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 207, 3133 brick cells, max generation 1343.
+Updated 2026-10-19T08:42Z. Now: day 813.09, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 189, 3142 brick cells, max generation 1356.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-19T04:40Z. Now: day 805.28, benchmark gap **2366** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 83 | 813.09 | 2366 | 1055 | 189 | 3142 | 1356 | 0.0069 |
 | 82 | 805.28 | 2366 | 983 | 207 | 3133 | 1343 | 0.0218 |
 | 81 | 797.47 | 2366 | 949 | 207 | 3118 | 1319 | 0.0044 |
 | 80 | 781.84 | 2366 | 925 | 197 | 3078 | 1277 | 0.011 |
@@ -24,7 +25,6 @@ Updated 2026-10-19T04:40Z. Now: day 805.28, benchmark gap **2366** (evolved gene
 | 71 | 715.44 | 2337 | 1170 | 122 | 2894 | 1119 | 0.1967 |
 | 70 | 707.63 | 2337 | 1202 | 81 | 2859 | 1102 | 0.1773 |
 | 69 | 699.81 | 2337 | 1152 | 71 | 2829 | 1084 | 0.1885 |
-| 68 | 692 | 2337 | 1093 | 82 | 2798 | 1071 | 0.2721 |
 
 ## Hypotheses
 
@@ -104,6 +104,7 @@ Updated 2026-10-19T04:40Z. Now: day 805.28, benchmark gap **2366** (evolved gene
 - **reverted**: brain.js mutateGenome: connection enable-toggle probability 0.1 -> 0.14 (gap 2366->2170, medianFitness 1130->967, cluster 296->229, bricks 3057->3068, comm 0.027->0.032; target (gap) worse; single 3k sample)
 - **reverted**: nodling.js: hydration drain halved when >=2 stacked 4-neighbours (largestCluster 219->194, bench gap 2366->2318, medianFitness 1020->1082, thirst deaths 810->366; target worse)
 - **reverted**: world.js floraCanGrow: bare cell with >=2 durable 4-neighbours can sprout flora (sheltered gardens inside villages) (cluster 207->207, brickCells 3133->3128, bench gap 2366->2075, medianFitness 913->967; no gain on target, gap fell)
+- **reverted**: world.js ignite: kiln fire +4 duration when >=2 durable 4-neighbours (metrics bit-identical to control (cluster 192, bricks 3141, gap 2366); branch never fires, so no effect)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
