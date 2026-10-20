@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 91 — day 853.41 + 4k ticks (batch ran 12k; 25k timed out) — `reverted` (no effect)
+
+Plateau: gap, brickCells flat; tuning still productive. Hypothesis (priority 1): `ENCLOSE_BONUS` 0.4 -> 0.6. Baseline batch passed (gap 2366).
+Control vs treatment (4k ticks): metrics bit-identical (largestCluster 192, brickCells 3240, gap 2366, medianFitness 956, comm 0.026, pop 500). No behavioural change; reverted.
+
 ## Cycle 90 — day 845.91 + 4k ticks (batch ran 12.5k; 25k timed out) — `reverted` (gap worse)
 
 Plateau: gap, brickCells flat; tuning still productive. Hypothesis (priority 3): brain.js plasticity-rate perturbation step 0.2 -> 0.3. Baseline batch passed (gap 2366).

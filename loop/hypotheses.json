@@ -662,6 +662,14 @@
       "status": "reverted",
       "cycle": 90,
       "note": "bench gap 2366->2257, medianFitness 1050->1334, cluster 207->184, bricks 3214->3209; target (gap) worse; single 4k sample"
+    },
+    {
+      "id": "enclose-bonus-0.6",
+      "signal": 1,
+      "change": "ENCLOSE_BONUS 0.4 -> 0.6",
+      "status": "reverted",
+      "cycle": 91,
+      "note": "metrics bit-identical to control (cluster 192, bricks 3240, gap 2366, median 956); bonus never changed behaviour"
     }
   ]
 }
