@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-20T00:31Z. Now: day 838.09, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 216, 3194 brick cells, max generation 1415.
+Updated 2026-10-20T04:41Z. Now: day 845.91, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 230, 3214 brick cells, max generation 1435.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-20T00:31Z. Now: day 838.09, benchmark gap **2366** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 88 | 845.91 | 2366 | 1235 | 230 | 3214 | 1435 | 0.0036 |
 | 87 | 838.09 | 2366 | 1182 | 216 | 3194 | 1415 | 0.019 |
 | 86 | 830.59 | 2366 | 985 | 211 | 3186 | 1396 | 0.0864 |
 | 85 | 824.34 | 2366 | 1038 | 204 | 3169 | 1384 | 0.001 |
@@ -24,7 +25,6 @@ Updated 2026-10-20T00:31Z. Now: day 838.09, benchmark gap **2366** (evolved gene
 | 76 | 750.59 | 2365 | 997 | 206 | 3002 | 1200 | 0.122 |
 | 75 | 742.78 | 2365 | 1156 | 176 | 2974 | 1189 | 0.1144 |
 | 74 | 734.97 | 2337 | 1064 | 172 | 2943 | 1165 | 0.2352 |
-| 73 | 727.16 | 2337 | 992 | 162 | 2935 | 1148 | 0.1928 |
 
 ## Hypotheses
 
@@ -109,6 +109,7 @@ Updated 2026-10-20T00:31Z. Now: day 838.09, benchmark gap **2366** (evolved gene
 - **kept**: nodling.js BRICK_GRAB_BONUS 0.3: reward picking up a fired brick (cluster 205->209, bricks 3166->3164, gap 2366->2366, median 988->1095; single 8k sample, within noise)
 - **reverted**: nodling.js WALL_RAISE_BONUS 0.4: reward completing a 3-high solid wall beside an existing structure (metrics bit-identical to control (cluster 204, bricks 3177, gap 2366); bonus never changed behaviour in 5k ticks, dead code)
 - **reverted**: nodling.js COOP_BUILD_BONUS 0.3: extra reward for building onto a structure with another Nodling within 3 cells (cluster 226->207, brickCells 3183->3184, bench gap 2366->2308, medianFitness 1158->1115; target worse)
+- **kept**: nodling.js CLAY_GATHER_BONUS 0.3: reward picking up clay while a fire burns within 6 cells (cluster 219 -> 220, brickCells 3193 -> 3193, gap 2366 -> 2366; within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
