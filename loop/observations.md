@@ -1,25 +1,26 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 868.4 · Spring
+Seed `20261007` · day 875.9 · Spring
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (42 juvenile) |
-| max generation | 1483 |
+| population | 500 (30 juvenile) |
+| max generation | 1502 |
 | best fitness | 7002 |
-| avg brain (conns) | 221 |
+| avg brain (conns) | 219 |
 | lineage diversity | 5 colour-groups |
-| diet | 76% herbivore / 11% carnivore |
-| predators | 5, 27 kills, best 114012 |
-| structures (durable) | 7850 (3739) |
-| planks / bricks / bridges | 17 / 2822 / 2660 |
-| flora / cooked food | 4460 / 303 |
+| diet | 71% herbivore / 16% carnivore |
+| predators | 6, 98 kills, best 114012 |
+| structures (durable) | 5899 (3484) |
+| planks / bricks / bridges | 16 / 2937 / 2660 |
+| flora / cooked food | 4461 / 467 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 870.4]** _(trend)_ Lineages are deepening — max generation 1487→1492. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 867.9]** _(trend)_ Nodlings are grouping more tightly (mean spacing 2.8→1.9) — possible flocking / proto-tribe.
 - **[day 863.9]** _(trend)_ Brains are genuinely shrinking below capacity — selection favours simpler wiring right now.
 - **[day 863.9]** _(trend)_ Lineages are deepening — max generation 1469→1473. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.

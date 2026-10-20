@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-20T16:34Z. Now: day 868.41, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 220, 3259 brick cells, max generation 1487.
+Updated 2026-10-20T20:31Z. Now: day 875.91, benchmark gap **2219** (evolved gene pool minus random genomes), largest built cluster 196, 3279 brick cells, max generation 1503.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-20T16:34Z. Now: day 868.41, benchmark gap **2366** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 92 | 875.91 | 2219 | 1333 | 196 | 3279 | 1503 | 0.0158 |
 | 91 | 868.41 | 2366 | 1031 | 220 | 3259 | 1487 | 0.0277 |
 | 90 | 860.91 | 2366 | 1067 | 160 | 3240 | 1469 | 0.009 |
 | 89 | 853.41 | 2366 | 1179 | 234 | 3233 | 1455 | 0.0231 |
@@ -24,7 +25,6 @@ Updated 2026-10-20T16:34Z. Now: day 868.41, benchmark gap **2366** (evolved gene
 | 80 | 781.84 | 2366 | 925 | 197 | 3078 | 1277 | 0.011 |
 | 79 | 774.03 | 2366 | 1130 | 293 | 3053 | 1256 | 0.017 |
 | 78 | 766.22 | 2366 | 917 | 217 | 3046 | 1236 | 0.1189 |
-| 77 | 758.41 | 2365 | 1079 | 208 | 3017 | 1217 | 0.1044 |
 
 ## Hypotheses
 
@@ -113,6 +113,7 @@ Updated 2026-10-20T16:34Z. Now: day 868.41, benchmark gap **2366** (evolved gene
 - **reverted**: brain.js mutateGenome plasticity-rate perturbation step 0.2 -> 0.3 (bench gap 2366->2257, medianFitness 1050->1334, cluster 207->184, bricks 3214->3209; target (gap) worse; single 4k sample)
 - **reverted**: ENCLOSE_BONUS 0.4 -> 0.6 (metrics bit-identical to control (cluster 192, bricks 3240, gap 2366, median 956); bonus never changed behaviour)
 - **reverted**: nodling.js HAUL_BONUS 0.3: extra build reward when material was hauled >=8 cells from pickup (cluster 225->223, brickCells 3243->3244, gap 2366->2289, medianFitness 970->874; target not better)
+- **kept**: nodling.js FLEE_HEARD_BONUS 0.2: reward gaining distance from a predator while hearing a call (commSeparation 0.0232 -> 0.0336, cluster 223 -> 258, bench gap 2366 -> 2219 (-6%, inside guardrail); single 3k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
