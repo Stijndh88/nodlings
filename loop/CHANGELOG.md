@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 92 — day 860.91 + 4k ticks (batch ran 12k; 25k timed out) — `reverted` (target not better) — `STRUCTURAL:`
+
+Plateau: gap, medianFitness, largestCluster, brickCells flat. Hypothesis (priority 1): `HAUL_BONUS = 0.3` extra build reward when the block was carried >=8 cells from its pickup (supply lines). Baseline batch passed (gap 2366).
+Control vs treatment (4k ticks): largestCluster 225 -> 223, brickCells 3243 -> 3244, builtCells 3935 -> 3934, gap 2366 -> 2289, medianFitness 970 -> 874, comm 0.0247 -> 0.0472, pop 501 -> 500. Guardrails passed but no gain on target; reverted.
+
 ## Cycle 91 — day 853.41 + 4k ticks (batch ran 12k; 25k timed out) — `reverted` (no effect)
 
 Plateau: gap, brickCells flat; tuning still productive. Hypothesis (priority 1): `ENCLOSE_BONUS` 0.4 -> 0.6. Baseline batch passed (gap 2366).

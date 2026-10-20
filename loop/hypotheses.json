@@ -670,6 +670,14 @@
       "status": "reverted",
       "cycle": 91,
       "note": "metrics bit-identical to control (cluster 192, bricks 3240, gap 2366, median 956); bonus never changed behaviour"
+    },
+    {
+      "id": "haul-bonus",
+      "signal": 1,
+      "change": "nodling.js HAUL_BONUS 0.3: extra build reward when material was hauled >=8 cells from pickup",
+      "status": "reverted",
+      "cycle": 92,
+      "note": "cluster 225->223, brickCells 3243->3244, gap 2366->2289, medianFitness 970->874; target not better"
     }
   ]
 }
