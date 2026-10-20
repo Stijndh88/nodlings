@@ -646,6 +646,14 @@
       "status": "reverted",
       "cycle": 88,
       "note": "cluster 226->207, brickCells 3183->3184, bench gap 2366->2308, medianFitness 1158->1115; target worse"
+    },
+    {
+      "id": "clay-gather-bonus",
+      "signal": 1,
+      "change": "nodling.js CLAY_GATHER_BONUS 0.3: reward picking up clay while a fire burns within 6 cells",
+      "status": "kept",
+      "cycle": 89,
+      "note": "cluster 219 -> 220, brickCells 3193 -> 3193, gap 2366 -> 2366; within noise"
     }
   ]
 }

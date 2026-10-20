@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 89 — day 838.09 + 4k ticks (batch ran 12k; 25k timed out) — `kept` — `STRUCTURAL:`
+
+Plateau: gap, brickCells, maxGen flat. Added `CLAY_GATHER_BONUS = 0.3` (nodling.js): reward picking up clay with a fire within 6 cells, so kiln stocking is learnable. Baseline batch passed (gap 2366).
+Control vs treatment (4k ticks): largestCluster 219 -> 220, brickCells 3193 -> 3193, builtCells (n/a) -> 3730, gap 2366 -> 2366, medianFitness 1203 -> 1207, comm 0.0445 -> 0.0208, pop 501. Guardrails pass; differences within noise.
+
 ## Cycle 88 — day 830.59 + 4k ticks (batch ran 10k; 25k timed out) — `reverted` (target worse) — `STRUCTURAL:`
 
 Plateau: gap, medianFitness, brickCells, maxGen flat. Hypothesis (priority 1): `COOP_BUILD_BONUS = 0.3` for building onto a structure with another Nodling within 3 cells. Baseline batch passed (gap 2366).
