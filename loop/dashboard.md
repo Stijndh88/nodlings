@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-20T08:41Z. Now: day 853.41, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 234, 3233 brick cells, max generation 1455.
+Updated 2026-10-20T12:32Z. Now: day 860.91, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 160, 3240 brick cells, max generation 1469.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-20T08:41Z. Now: day 853.41, benchmark gap **2366** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 90 | 860.91 | 2366 | 1067 | 160 | 3240 | 1469 | 0.009 |
 | 89 | 853.41 | 2366 | 1179 | 234 | 3233 | 1455 | 0.0231 |
 | 88 | 845.91 | 2366 | 1235 | 230 | 3214 | 1435 | 0.0036 |
 | 87 | 838.09 | 2366 | 1182 | 216 | 3194 | 1415 | 0.019 |
@@ -24,7 +25,6 @@ Updated 2026-10-20T08:41Z. Now: day 853.41, benchmark gap **2366** (evolved gene
 | 78 | 766.22 | 2366 | 917 | 217 | 3046 | 1236 | 0.1189 |
 | 77 | 758.41 | 2365 | 1079 | 208 | 3017 | 1217 | 0.1044 |
 | 76 | 750.59 | 2365 | 997 | 206 | 3002 | 1200 | 0.122 |
-| 75 | 742.78 | 2365 | 1156 | 176 | 2974 | 1189 | 0.1144 |
 
 ## Hypotheses
 
@@ -111,6 +111,7 @@ Updated 2026-10-20T08:41Z. Now: day 853.41, benchmark gap **2366** (evolved gene
 - **reverted**: nodling.js COOP_BUILD_BONUS 0.3: extra reward for building onto a structure with another Nodling within 3 cells (cluster 226->207, brickCells 3183->3184, bench gap 2366->2308, medianFitness 1158->1115; target worse)
 - **kept**: nodling.js CLAY_GATHER_BONUS 0.3: reward picking up clay while a fire burns within 6 cells (cluster 219 -> 220, brickCells 3193 -> 3193, gap 2366 -> 2366; within noise)
 - **reverted**: brain.js mutateGenome plasticity-rate perturbation step 0.2 -> 0.3 (bench gap 2366->2257, medianFitness 1050->1334, cluster 207->184, bricks 3214->3209; target (gap) worse; single 4k sample)
+- **reverted**: ENCLOSE_BONUS 0.4 -> 0.6 (metrics bit-identical to control (cluster 192, bricks 3240, gap 2366, median 956); bonus never changed behaviour)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
