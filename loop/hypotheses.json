@@ -654,6 +654,14 @@
       "status": "kept",
       "cycle": 89,
       "note": "cluster 219 -> 220, brickCells 3193 -> 3193, gap 2366 -> 2366; within noise"
+    },
+    {
+      "id": "plasticity-step-0.3",
+      "signal": 3,
+      "change": "brain.js mutateGenome plasticity-rate perturbation step 0.2 -> 0.3",
+      "status": "reverted",
+      "cycle": 90,
+      "note": "bench gap 2366->2257, medianFitness 1050->1334, cluster 207->184, bricks 3214->3209; target (gap) worse; single 4k sample"
     }
   ]
 }
