@@ -686,6 +686,14 @@
       "status": "kept",
       "cycle": 93,
       "note": "commSeparation 0.0232 -> 0.0336, cluster 223 -> 258, bench gap 2366 -> 2219 (-6%, inside guardrail); single 3k sample, within noise"
+    },
+    {
+      "id": "village-density-bonus",
+      "signal": 1,
+      "change": "nodling.js VILLAGE_BONUS 0.3: extra build reward when >=3 of 8 surrounding cells hold durable material",
+      "status": "reverted",
+      "cycle": 94,
+      "note": "cluster 247->210, brickCells 3291->3290, bench gap 2219->2261, medianFitness 968->851; target worse"
     }
   ]
 }

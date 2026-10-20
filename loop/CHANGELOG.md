@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 94 — day 875.91 + 3k ticks (batch ran 12k; 25k timed out) — `reverted` (target worse) — `STRUCTURAL:`
+
+Plateau: structural cycle required. Hypothesis (priority 1): `VILLAGE_BONUS = 0.3` extra build reward when >=3 of the 8 surrounding cells hold durable material (dense villages, not lines). Baseline batch passed (gap 2219).
+Control vs treatment (3k ticks): largestCluster 247 -> 210, brickCells 3291 -> 3290, builtCells 3712 -> 3661, gap 2219 -> 2261, medianFitness 968 -> 851, comm 0.008 -> 0.0029, pop 500 -> 502. Guardrails passed but the target fell; reverted.
+
 ## Cycle 93 — day 868.41 + 3k ticks (batch ran 12k; 25k timed out) — `kept` — `STRUCTURAL:`
 
 Plateau: gap, medianFitness, largestCluster, brickCells flat. Hypothesis (priority 2): `FLEE_HEARD_BONUS = 0.2` (nodling.js), reward for gaining distance from the nearest predator while hearing a call, so alarm->flee is learnable. Baseline batch passed (gap 2366).
