@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-20T12:32Z. Now: day 860.91, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 160, 3240 brick cells, max generation 1469.
+Updated 2026-10-20T16:34Z. Now: day 868.41, benchmark gap **2366** (evolved gene pool minus random genomes), largest built cluster 220, 3259 brick cells, max generation 1487.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-20T12:32Z. Now: day 860.91, benchmark gap **2366** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 91 | 868.41 | 2366 | 1031 | 220 | 3259 | 1487 | 0.0277 |
 | 90 | 860.91 | 2366 | 1067 | 160 | 3240 | 1469 | 0.009 |
 | 89 | 853.41 | 2366 | 1179 | 234 | 3233 | 1455 | 0.0231 |
 | 88 | 845.91 | 2366 | 1235 | 230 | 3214 | 1435 | 0.0036 |
@@ -24,7 +25,6 @@ Updated 2026-10-20T12:32Z. Now: day 860.91, benchmark gap **2366** (evolved gene
 | 79 | 774.03 | 2366 | 1130 | 293 | 3053 | 1256 | 0.017 |
 | 78 | 766.22 | 2366 | 917 | 217 | 3046 | 1236 | 0.1189 |
 | 77 | 758.41 | 2365 | 1079 | 208 | 3017 | 1217 | 0.1044 |
-| 76 | 750.59 | 2365 | 997 | 206 | 3002 | 1200 | 0.122 |
 
 ## Hypotheses
 
@@ -112,6 +112,7 @@ Updated 2026-10-20T12:32Z. Now: day 860.91, benchmark gap **2366** (evolved gene
 - **kept**: nodling.js CLAY_GATHER_BONUS 0.3: reward picking up clay while a fire burns within 6 cells (cluster 219 -> 220, brickCells 3193 -> 3193, gap 2366 -> 2366; within noise)
 - **reverted**: brain.js mutateGenome plasticity-rate perturbation step 0.2 -> 0.3 (bench gap 2366->2257, medianFitness 1050->1334, cluster 207->184, bricks 3214->3209; target (gap) worse; single 4k sample)
 - **reverted**: ENCLOSE_BONUS 0.4 -> 0.6 (metrics bit-identical to control (cluster 192, bricks 3240, gap 2366, median 956); bonus never changed behaviour)
+- **reverted**: nodling.js HAUL_BONUS 0.3: extra build reward when material was hauled >=8 cells from pickup (cluster 225->223, brickCells 3243->3244, gap 2366->2289, medianFitness 970->874; target not better)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
