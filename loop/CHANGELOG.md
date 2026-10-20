@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 93 — day 868.41 + 3k ticks (batch ran 12k; 25k timed out) — `kept` — `STRUCTURAL:`
+
+Plateau: gap, medianFitness, largestCluster, brickCells flat. Hypothesis (priority 2): `FLEE_HEARD_BONUS = 0.2` (nodling.js), reward for gaining distance from the nearest predator while hearing a call, so alarm->flee is learnable. Baseline batch passed (gap 2366).
+Control vs treatment (3k ticks): commSeparation 0.0232 -> 0.0336, largestCluster 223 -> 258, brickCells 3261 -> 3266, gap 2366 -> 2219, medianFitness 1108 -> 1059, pop 501 -> 501. Guardrails pass; gap dipped 6% and gains are within single-sample noise.
+
 ## Cycle 92 — day 860.91 + 4k ticks (batch ran 12k; 25k timed out) — `reverted` (target not better) — `STRUCTURAL:`
 
 Plateau: gap, medianFitness, largestCluster, brickCells flat. Hypothesis (priority 1): `HAUL_BONUS = 0.3` extra build reward when the block was carried >=8 cells from its pickup (supply lines). Baseline batch passed (gap 2366).

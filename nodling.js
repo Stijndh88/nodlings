@@ -9,6 +9,7 @@ const POP_CAP = 500;   // food isn't limiting until ~800+ (see CHANGELOG cycle 1
 const MATURITY = 160;  // age below which a Nodling is a juvenile (can't breed, sees less)
 const SENESCENCE = 900;// age past which upkeep rises (aging)
 const DURABLE_BUILD = ['wood','plank','stone','brick'];
+const FLEE_HEARD_BONUS = 0.2; // reward gaining distance from a predator while hearing a call (makes alarm->flee learnable)
 const LISTEN_BONUS = 0.15; // reward for hearing a call while a predator is near
 const CACHE_BONUS = 0.5; // reward for eating food stored in a cell enclosed by >=2 durable neighbours
 const KILN_BONUS = 0.5; // reward for dropping clay next to an active fire (feeds the kiln)
@@ -139,7 +140,11 @@ class Nodling {
     }
     if (bp){ s[38] = (bp.x-this.x)/12; s[39] = (bp.y-this.y)/12; s[40] = 1 - Math.sqrt(bpd)/12; }
     // listening pays when it matters: hearing a call with a predator close makes sound informative to the listener
-    if (bp && bs) this.bonus += LISTEN_BONUS;
+    if (bp && bs){
+      this.bonus += LISTEN_BONUS;
+      if (this.prevPredD2 !== undefined && bpd > this.prevPredD2) this.bonus += FLEE_HEARD_BONUS;
+    }
+    this.prevPredD2 = bp ? bpd : undefined;
 
     // social: neighbour's health, kinship (hue ≈ lineage), and its last action
     // (so imitation can be *learned* — the brain may choose to copy it)

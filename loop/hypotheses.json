@@ -678,6 +678,14 @@
       "status": "reverted",
       "cycle": 92,
       "note": "cluster 225->223, brickCells 3243->3244, gap 2366->2289, medianFitness 970->874; target not better"
+    },
+    {
+      "id": "flee-heard-bonus",
+      "signal": 2,
+      "change": "nodling.js FLEE_HEARD_BONUS 0.2: reward gaining distance from a predator while hearing a call",
+      "status": "kept",
+      "cycle": 93,
+      "note": "commSeparation 0.0232 -> 0.0336, cluster 223 -> 258, bench gap 2366 -> 2219 (-6%, inside guardrail); single 3k sample, within noise"
     }
   ]
 }
