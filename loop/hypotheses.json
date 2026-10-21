@@ -702,6 +702,14 @@
       "status": "reverted",
       "cycle": 95,
       "note": "commSeparation 0.0439->0.0103 (target worse); cluster 186->193, gap 2219->2289"
+    },
+    {
+      "id": "site-persistence-bonus",
+      "signal": 1,
+      "change": "nodling.js SITE_BONUS 0.3: extra reward for an adjacent build within 6 cells of own previous build",
+      "status": "kept",
+      "cycle": 96,
+      "note": "cluster 181->209, brickCells 3312->3315, gap 2219->2258, median 983->1326, comm 0.0237->0.013; single 8k sample, within noise"
     }
   ]
 }

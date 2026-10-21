@@ -22,6 +22,7 @@ const HUNT_BONUS = 0.4; // reward for striking down a critter (hunting as a lear
 const THIRST_DRINK_BONUS = 0.3; // reward for drinking while hydration is low (<40): learn to manage thirst
 const BUILD_ADJACENT_BONUS = 0.85; // reward for placing durable material next to an existing structure
 const NEST_BREED_BONUS = 0.5; // extra reward to a parent that breeds inside a cluster of structures (settling pays)
+const SITE_BONUS = 0.3; // extra reward for an adjacent build within 6 cells of this Nodling's previous build (stay on one site)
 const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
@@ -244,6 +245,8 @@ class Nodling {
             const nb = w.at(cx+ax, cy+ay);
             if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))) nbs++;
           }
+          if (nbs && this.lastBuild && (this.lastBuild[0]-cx)**2 + (this.lastBuild[1]-cy)**2 <= 36) this.bonus += SITE_BONUS;
+          if (nbs) this.lastBuild = [cx, cy];
           if (nbs) this.bonus += BUILD_ADJACENT_BONUS + (this.carrying === 'brick' ? BRICK_WALL_BONUS : 0) + (nbs >= 2 ? ENCLOSE_BONUS : 0);
         }
         if (this.carrying === 'clay'){

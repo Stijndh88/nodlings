@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 96 — day 899.03 + 8k ticks (batch ran full 25k) — `kept` — `STRUCTURAL:`
+
+Plateau: gap, largestCluster, brickCells flat. Hypothesis (priority 1): `SITE_BONUS = 0.3` (nodling.js), extra reward for an adjacent build within 6 cells of the Nodling's previous build, so builders stay on one site. Baseline batch passed (gap 2219).
+Control vs treatment (8k ticks): largestCluster 181 -> 209, brickCells 3312 -> 3315, builtCells 3772 -> 3841, gap 2219 -> 2258, medianFitness 983 -> 1326, comm 0.0237 -> 0.013, pop 500 -> 500. Guardrails pass; gains are within single-sample noise, comm dipped.
+
 ## Cycle 95 — day 883.41 + 3k ticks (batch ran 12k; 25k timed out) — `reverted` (target worse)
 
 Plateau: gap, brickCells flat; tuning still productive. Hypothesis (priority 2): `FLEE_HEARD_BONUS` 0.2 -> 0.3. Baseline batch passed (gap 2219).
