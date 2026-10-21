@@ -694,6 +694,14 @@
       "status": "reverted",
       "cycle": 94,
       "note": "cluster 247->210, brickCells 3291->3290, bench gap 2219->2261, medianFitness 968->851; target worse"
+    },
+    {
+      "id": "flee-heard-0.3",
+      "signal": 2,
+      "change": "FLEE_HEARD_BONUS 0.2 -> 0.3",
+      "status": "reverted",
+      "cycle": 95,
+      "note": "commSeparation 0.0439->0.0103 (target worse); cluster 186->193, gap 2219->2289"
     }
   ]
 }
