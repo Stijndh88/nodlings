@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 97 — day 906.84 + 8k ticks (batch ran 12.5k; 25k timed out) — `reverted` (target worse) — `STRUCTURAL:`
+
+Plateau: gap, medianFitness, largestCluster, brickCells flat. Hypothesis (priority 2): `FOLLOW_HEARD_BONUS = 0.15`, reward for closing on a heard call when hungry and no predator is near (food-found -> approach). Baseline batch passed (gap 2258).
+Control vs treatment (8k ticks): commSeparation 0.061 -> 0.0438, largestCluster 235 -> 186, brickCells 3325 -> 3329, gap 2258 -> 2150, medianFitness 1180 -> 1185, pop 500 -> 499. Guardrails passed but the target fell; reverted.
+
 ## Cycle 96 — day 899.03 + 8k ticks (batch ran full 25k) — `kept` — `STRUCTURAL:`
 
 Plateau: gap, largestCluster, brickCells flat. Hypothesis (priority 1): `SITE_BONUS = 0.3` (nodling.js), extra reward for an adjacent build within 6 cells of the Nodling's previous build, so builders stay on one site. Baseline batch passed (gap 2219).

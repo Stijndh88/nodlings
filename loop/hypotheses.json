@@ -710,6 +710,14 @@
       "status": "kept",
       "cycle": 96,
       "note": "cluster 181->209, brickCells 3312->3315, gap 2219->2258, median 983->1326, comm 0.0237->0.013; single 8k sample, within noise"
+    },
+    {
+      "id": "follow-heard-bonus",
+      "signal": 2,
+      "change": "nodling.js FOLLOW_HEARD_BONUS 0.15: hungry, no predator near, reward closing on a heard call (food-found->approach)",
+      "status": "reverted",
+      "cycle": 97,
+      "note": "commSeparation 0.061->0.0438, cluster 235->186, gap 2258->2150, median 1180->1185; target worse"
     }
   ]
 }
