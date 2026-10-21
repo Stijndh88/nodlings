@@ -259,7 +259,7 @@ class World {
     for (let i = 0; i < tries; i++){
       const x = (this.rng()*GRID_W)|0, y = (this.rng()*GRID_H)|0;
       const c = this.at(x, y);
-      if (c && !c.water && !c.stack.length && this.rng() < 0.42 && this.floraCanGrow(x, y))
+      if (c && !c.water && !c.stack.length && this.rng() < (this.season() === 'Summer' ? 0.3 : 0.42) && this.floraCanGrow(x, y))  // summer drought: sparser regrowth
         c.stack.push('flora');
     }
 

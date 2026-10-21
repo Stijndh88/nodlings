@@ -770,3 +770,8 @@ next to flame and get fired into brick — a precondition for kiln chains.
 STRUCTURAL: lean winters (priority 3, plateau.js demanded structural): `world.js` base flora regrowth tries halved (16 -> 8) in Winter.
 - Control vs treatment (8k ticks): medianFitness 951 -> 1109, bench gap 2258 -> 2196 (-2.7%), largestCluster 286 -> 286, brickCells 3340 -> 3338, commSeparation 0.0024 -> 0.0034, pop 499 -> 499. Guardrails pass; differences are within single-sample noise.
 - Note: the 25000-tick baseline batch exceeds the 600s tool timeout now; ran 12500 ticks instead.
+
+## Cycle 90 — day 935 — `kept`
+
+STRUCTURAL: summer drought (priority 3, plateau.js demanded structural): `world.js` flora regrowth acceptance 0.42 -> 0.30 in Summer.
+- Control vs treatment (8k ticks): all metrics identical (gap 2196, medianFitness 1113, largestCluster 298, brickCells 3343, pop 500). The 8k window (days 930-935) is not in Summer, so the change never fired; effect unverified, no harm shown. Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
