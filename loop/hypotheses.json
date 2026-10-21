@@ -718,6 +718,14 @@
       "status": "reverted",
       "cycle": 97,
       "note": "commSeparation 0.061->0.0438, cluster 235->186, gap 2258->2150, median 1180->1185; target worse"
+    },
+    {
+      "id": "brick-row-bonus",
+      "signal": 1,
+      "change": "nodling.js BRICK_ROW_BONUS 0.3: extra reward for laying a brick beside another brick",
+      "status": "reverted",
+      "cycle": 98,
+      "note": "3k ticks: metrics bit-identical to control (cluster 282, bricks 3330, gap 2258); no behavioural change"
     }
   ]
 }

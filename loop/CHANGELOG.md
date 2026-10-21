@@ -3,6 +3,11 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Cycle 98 — day 914.34 + 3k ticks (batch ran 12k; 25k timed out) — `reverted` (no effect) — `STRUCTURAL:`
+
+Plateau: gap, medianFitness, brickCells flat. Hypothesis (priority 1): `BRICK_ROW_BONUS = 0.3`, extra build reward for laying a brick directly beside another brick. Baseline batch passed (gap 2258).
+Control vs treatment (3k ticks): metrics bit-identical (largestCluster 282, brickCells 3330, gap 2258, medianFitness 1270, comm 0.0143, pop 500). No behavioural change in the window; reverted.
+
 ## Cycle 97 — day 906.84 + 8k ticks (batch ran 12.5k; 25k timed out) — `reverted` (target worse) — `STRUCTURAL:`
 
 Plateau: gap, medianFitness, largestCluster, brickCells flat. Hypothesis (priority 2): `FOLLOW_HEARD_BONUS = 0.15`, reward for closing on a heard call when hungry and no predator is near (food-found -> approach). Baseline batch passed (gap 2258).
