@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-21T12:32Z. Now: day 914.34, benchmark gap **2258** (evolved gene pool minus random genomes), largest built cluster 281, 3332 brick cells, max generation 1598.
+Updated 2026-10-21T16:43Z. Now: day 922.16, benchmark gap **2258** (evolved gene pool minus random genomes), largest built cluster 279, 3332 brick cells, max generation 1616.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-21T12:32Z. Now: day 914.34, benchmark gap **2258** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 97 | 922.16 | 2258 | 1117 | 279 | 3332 | 1616 | 0.0173 |
 | 96 | 914.34 | 2258 | 902 | 281 | 3332 | 1598 | 0.0278 |
 | 95 | 906.84 | 2258 | 1209 | 187 | 3316 | 1580 | 0.0004 |
 | 94 | 899.03 | 2219 | 1187 | 193 | 3307 | 1559 | 0.0493 |
@@ -24,7 +25,6 @@ Updated 2026-10-21T12:32Z. Now: day 914.34, benchmark gap **2258** (evolved gene
 | 85 | 824.34 | 2366 | 1038 | 204 | 3169 | 1384 | 0.001 |
 | 84 | 820.59 | 2366 | 1016 | 201 | 3166 | 1376 | 0.0537 |
 | 83 | 813.09 | 2366 | 1055 | 189 | 3142 | 1356 | 0.0069 |
-| 82 | 805.28 | 2366 | 983 | 207 | 3133 | 1343 | 0.0218 |
 
 ## Hypotheses
 
@@ -118,6 +118,7 @@ Updated 2026-10-21T12:32Z. Now: day 914.34, benchmark gap **2258** (evolved gene
 - **reverted**: FLEE_HEARD_BONUS 0.2 -> 0.3 (commSeparation 0.0439->0.0103 (target worse); cluster 186->193, gap 2219->2289)
 - **kept**: nodling.js SITE_BONUS 0.3: extra reward for an adjacent build within 6 cells of own previous build (cluster 181->209, brickCells 3312->3315, gap 2219->2258, median 983->1326, comm 0.0237->0.013; single 8k sample, within noise)
 - **reverted**: nodling.js FOLLOW_HEARD_BONUS 0.15: hungry, no predator near, reward closing on a heard call (food-found->approach) (commSeparation 0.061->0.0438, cluster 235->186, gap 2258->2150, median 1180->1185; target worse)
+- **reverted**: nodling.js BRICK_ROW_BONUS 0.3: extra reward for laying a brick beside another brick (3k ticks: metrics bit-identical to control (cluster 282, bricks 3330, gap 2258); no behavioural change)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
