@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -726,6 +726,14 @@
       "status": "reverted",
       "cycle": 98,
       "note": "3k ticks: metrics bit-identical to control (cluster 282, bricks 3330, gap 2258); no behavioural change"
+    },
+    {
+      "id": "lean-winter",
+      "signal": 3,
+      "change": "world.js: base flora regrowth tries halved (16->8) in Winter",
+      "status": "kept",
+      "cycle": 89,
+      "note": "medianFitness 951->1109, gap 2258->2196 (-2.7%), cluster 286->286, bricks 3340->3338; single 8k sample, within noise"
     }
   ]
 }

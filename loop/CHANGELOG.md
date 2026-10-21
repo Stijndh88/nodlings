@@ -764,3 +764,9 @@ next to flame and get fired into brick — a precondition for kiln chains.
 
 - Before: population 247, fitness 4904, built 739 (cumulative), day 51.7
 - After (16k-tick validation): population 251, fitness 5203, day 61.7 — guardrails passed, no population/fitness drop.
+
+## Cycle 89 — day 922 — `kept`
+
+STRUCTURAL: lean winters (priority 3, plateau.js demanded structural): `world.js` base flora regrowth tries halved (16 -> 8) in Winter.
+- Control vs treatment (8k ticks): medianFitness 951 -> 1109, bench gap 2258 -> 2196 (-2.7%), largestCluster 286 -> 286, brickCells 3340 -> 3338, commSeparation 0.0024 -> 0.0034, pop 499 -> 499. Guardrails pass; differences are within single-sample noise.
+- Note: the 25000-tick baseline batch exceeds the 600s tool timeout now; ran 12500 ticks instead.
