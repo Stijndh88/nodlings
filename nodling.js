@@ -26,6 +26,7 @@ const BRIDGE_CROSS_BONUS = 0.2; // reward for stepping from land onto a bridge t
 const HEARTH_BONUS = 0.05; // per-tick reward for warming up (body < comfort) beside a fire without standing in it
 const SITE_BONUS = 0.3; // extra reward for an adjacent build within 6 cells of this Nodling's previous build (stay on one site)
 const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
+const HUNGRY_EAT_BONUS = 0.3; // reward for eating found food while energy is low (<60): learn to forage before starving
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
@@ -278,6 +279,7 @@ class Nodling {
         for (const o of w.near(w.nIndex, this.x, this.y)){
           if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 9){ this.bonus += SHARED_MEAL_BONUS; break; }
         }
+        if (this.energy < 60) this.bonus += HUNGRY_EAT_BONUS;
         this.eat(cell.stack.pop());
       } else if (cell.water || w.adjacentWater(cx, cy)){
         if (this.hydration < 40) this.bonus += THIRST_DRINK_BONUS;

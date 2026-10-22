@@ -792,3 +792,9 @@ STRUCTURAL: autumn harvest (priority 3, plateau.js demanded structural): `world.
 
 STRUCTURAL: hearth warmth (priority 3, plateau.js demanded structural): `nodling.js` HEARTH_BONUS 0.05 per tick for warming up (body below comfort) beside, not in, a fire.
 - Control vs treatment (8k ticks): all metrics identical (gap 2106, medianFitness 818, largestCluster 305, brickCells 3366, commSeparation 0.0351, pop 499). The window never triggered the bonus, so effect unverified; no harm shown. Baseline batch ran 12500 ticks.
+
+## Cycle 94 — day 966 — `kept`
+
+STRUCTURAL: hunger-eating reward (priority 3, plateau.js demanded structural): `nodling.js` HUNGRY_EAT_BONUS 0.3 for eating found food while energy < 60 (starvation is the main death cause).
+- Control vs treatment (8k ticks): bench gap 2106 -> 2122 (+0.8%), medianFitness 1291 -> 1246 (-3.5%), largestCluster 316 -> 306, brickCells 3379 -> 3380, commSeparation 0.057 -> 0.0376, pop 500 -> 501. Guardrails pass; all differences within single-sample noise.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

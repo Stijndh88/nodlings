@@ -766,6 +766,14 @@
       "status": "kept",
       "cycle": 93,
       "note": "all metrics identical to control; the 8k window (days ~945-950) had no cold bodies near fires, effect unverified"
+    },
+    {
+      "id": "hungry-eat-bonus",
+      "signal": 3,
+      "change": "nodling.js HUNGRY_EAT_BONUS 0.3: reward eating found food while energy <60",
+      "status": "kept",
+      "cycle": 94,
+      "note": "bench gap 2106 -> 2122, medianFitness 1291 -> 1246 (-3.5%); single 8k sample, within noise"
     }
   ]
 }
