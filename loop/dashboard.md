@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-22T16:30Z. Now: day 961.22, benchmark gap **2106** (evolved gene pool minus random genomes), largest built cluster 308, 3365 brick cells, max generation 1709.
+Updated 2026-10-22T20:30Z. Now: day 969.03, benchmark gap **2122** (evolved gene pool minus random genomes), largest built cluster 301, 3380 brick cells, max generation 1729.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-22T16:30Z. Now: day 961.22, benchmark gap **2106** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 103 | 969.03 | 2122 | 1199 | 301 | 3380 | 1729 | 0.0301 |
 | 102 | 961.22 | 2106 | 934 | 308 | 3365 | 1709 | 0.0238 |
 | 101 | 953.41 | 2106 | 949 | 275 | 3363 | 1683 | 0.0144 |
 | 100 | 945.59 | 2106 | 1064 | 285 | 3352 | 1664 | 0.0091 |
@@ -24,7 +25,6 @@ Updated 2026-10-22T16:30Z. Now: day 961.22, benchmark gap **2106** (evolved gene
 | 91 | 868.41 | 2366 | 1031 | 220 | 3259 | 1487 | 0.0277 |
 | 90 | 860.91 | 2366 | 1067 | 160 | 3240 | 1469 | 0.009 |
 | 89 | 853.41 | 2366 | 1179 | 234 | 3233 | 1455 | 0.0231 |
-| 88 | 845.91 | 2366 | 1235 | 230 | 3214 | 1435 | 0.0036 |
 
 ## Hypotheses
 
@@ -124,6 +124,7 @@ Updated 2026-10-22T16:30Z. Now: day 961.22, benchmark gap **2106** (evolved gene
 - **kept**: nodling.js BRIDGE_CROSS_BONUS 0.2: reward stepping from land onto a bridge tile (cluster/bricks identical, bench gap 2196 -> 2106 (noise); effect unverified)
 - **reverted**: world.js flora regrowth acceptance 0.42 -> 0.55 in Autumn (medianFitness 1252 -> 1183, bench gap 2106 -> 2106, cluster 278 -> 276; no gain on target)
 - **kept**: nodling.js HEARTH_BONUS 0.05: per-tick reward for warming up (body below comfort) beside a fire without standing in it (all metrics identical to control; the 8k window (days ~945-950) had no cold bodies near fires, effect unverified)
+- **kept**: nodling.js HUNGRY_EAT_BONUS 0.3: reward eating found food while energy <60 (bench gap 2106 -> 2122, medianFitness 1291 -> 1246 (-3.5%); single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
