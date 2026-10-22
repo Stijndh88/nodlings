@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-22T12:33Z. Now: day 953.41, benchmark gap **2106** (evolved gene pool minus random genomes), largest built cluster 275, 3363 brick cells, max generation 1683.
+Updated 2026-10-22T16:30Z. Now: day 961.22, benchmark gap **2106** (evolved gene pool minus random genomes), largest built cluster 308, 3365 brick cells, max generation 1709.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-22T12:33Z. Now: day 953.41, benchmark gap **2106** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 102 | 961.22 | 2106 | 934 | 308 | 3365 | 1709 | 0.0238 |
 | 101 | 953.41 | 2106 | 949 | 275 | 3363 | 1683 | 0.0144 |
 | 100 | 945.59 | 2106 | 1064 | 285 | 3352 | 1664 | 0.0091 |
 | 99 | 937.78 | 2196 | 1362 | 288 | 3349 | 1644 | 0.0344 |
@@ -24,7 +25,6 @@ Updated 2026-10-22T12:33Z. Now: day 953.41, benchmark gap **2106** (evolved gene
 | 90 | 860.91 | 2366 | 1067 | 160 | 3240 | 1469 | 0.009 |
 | 89 | 853.41 | 2366 | 1179 | 234 | 3233 | 1455 | 0.0231 |
 | 88 | 845.91 | 2366 | 1235 | 230 | 3214 | 1435 | 0.0036 |
-| 87 | 838.09 | 2366 | 1182 | 216 | 3194 | 1415 | 0.019 |
 
 ## Hypotheses
 
@@ -123,6 +123,7 @@ Updated 2026-10-22T12:33Z. Now: day 953.41, benchmark gap **2106** (evolved gene
 - **kept**: world.js: flora regrowth acceptance 0.42 -> 0.30 in Summer (metrics identical to control (gap 2196, median 1113, cluster 298, bricks 3343); window days 930-935 is not Summer so the change never fired; effect unverified)
 - **kept**: nodling.js BRIDGE_CROSS_BONUS 0.2: reward stepping from land onto a bridge tile (cluster/bricks identical, bench gap 2196 -> 2106 (noise); effect unverified)
 - **reverted**: world.js flora regrowth acceptance 0.42 -> 0.55 in Autumn (medianFitness 1252 -> 1183, bench gap 2106 -> 2106, cluster 278 -> 276; no gain on target)
+- **kept**: nodling.js HEARTH_BONUS 0.05: per-tick reward for warming up (body below comfort) beside a fire without standing in it (all metrics identical to control; the 8k window (days ~945-950) had no cold bodies near fires, effect unverified)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
