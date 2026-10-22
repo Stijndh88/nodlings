@@ -758,6 +758,14 @@
       "status": "reverted",
       "cycle": 92,
       "note": "medianFitness 1252 -> 1183, bench gap 2106 -> 2106, cluster 278 -> 276; no gain on target"
+    },
+    {
+      "id": "winter-shelter-bonus",
+      "signal": 3,
+      "change": "nodling.js WINTER_SHELTER_BONUS 0.05: per-tick reward in Winter for standing beside >=2 durable cells",
+      "status": "kept",
+      "cycle": 93,
+      "note": "medianFitness 818 -> 950, gap 2106 -> 2267, cluster 305 -> 287, bricks 3366 -> 3363; single 8k sample, within noise"
     }
   ]
 }

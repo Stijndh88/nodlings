@@ -25,6 +25,7 @@ const NEST_BREED_BONUS = 0.5; // extra reward to a parent that breeds inside a c
 const BRIDGE_CROSS_BONUS = 0.2; // reward for stepping from land onto a bridge tile (bridges get used, not just laid)
 const SITE_BONUS = 0.3; // extra reward for an adjacent build within 6 cells of this Nodling's previous build (stay on one site)
 const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
+const WINTER_SHELTER_BONUS = 0.05; // per-tick reward for standing beside >=2 durable cells in Winter (walls pay when it is cold)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
@@ -147,6 +148,14 @@ class Nodling {
       if (this.prevPredD2 !== undefined && bpd > this.prevPredD2) this.bonus += FLEE_HEARD_BONUS;
     }
     this.prevPredD2 = bp ? bpd : undefined;
+    if (w.season() === 'Winter'){
+      let wall = 0;
+      for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+        const nb = w.at((this.x|0)+ax, (this.y|0)+ay);
+        if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))) wall++;
+      }
+      if (wall >= 2) this.bonus += WINTER_SHELTER_BONUS;
+    }
 
     // social: neighbour's health, kinship (hue ≈ lineage), and its last action
     // (so imitation can be *learned* — the brain may choose to copy it)

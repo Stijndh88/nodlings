@@ -787,3 +787,9 @@ STRUCTURAL: bridge-cross reward (priority 1, plateau.js demanded structural): `n
 STRUCTURAL: autumn harvest (priority 3, plateau.js demanded structural): `world.js` flora regrowth acceptance 0.42 -> 0.55 in Autumn.
 - Control vs treatment (8k ticks): medianFitness 1252 -> 1183 (-5.5%), bench gap 2106 -> 2106, largestCluster 278 -> 276, brickCells 3358 -> 3354, commSeparation 0.0333 -> 0.0172, pop 501 -> 501. Guardrails pass but the growth target was not better, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 93 — day 953 — `kept`
+
+STRUCTURAL: winter shelter bonus (priority 3, plateau.js demanded structural): `nodling.js` WINTER_SHELTER_BONUS 0.05 per tick in Winter when standing beside >=2 durable cells.
+- Control vs treatment (8k ticks): medianFitness 818 -> 950, bench gap 2106 -> 2267, largestCluster 305 -> 287, brickCells 3366 -> 3363, commSeparation 0.0351 -> 0.0648, pop 500 -> 500. Guardrails pass; differences are within single-sample noise (cluster slightly lower).
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout). Pushed to the session branch claude/happy-goodall-sob62n, not master.
