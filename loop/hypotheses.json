@@ -758,6 +758,14 @@
       "status": "reverted",
       "cycle": 92,
       "note": "medianFitness 1252 -> 1183, bench gap 2106 -> 2106, cluster 278 -> 276; no gain on target"
+    },
+    {
+      "id": "hearth-warmth-bonus",
+      "signal": 3,
+      "change": "nodling.js HEARTH_BONUS 0.05: per-tick reward for warming up (body below comfort) beside a fire without standing in it",
+      "status": "kept",
+      "cycle": 93,
+      "note": "all metrics identical to control; the 8k window (days ~945-950) had no cold bodies near fires, effect unverified"
     }
   ]
 }

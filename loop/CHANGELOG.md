@@ -787,3 +787,8 @@ STRUCTURAL: bridge-cross reward (priority 1, plateau.js demanded structural): `n
 STRUCTURAL: autumn harvest (priority 3, plateau.js demanded structural): `world.js` flora regrowth acceptance 0.42 -> 0.55 in Autumn.
 - Control vs treatment (8k ticks): medianFitness 1252 -> 1183 (-5.5%), bench gap 2106 -> 2106, largestCluster 278 -> 276, brickCells 3358 -> 3354, commSeparation 0.0333 -> 0.0172, pop 501 -> 501. Guardrails pass but the growth target was not better, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 93 — day 953 — `kept`
+
+STRUCTURAL: hearth warmth (priority 3, plateau.js demanded structural): `nodling.js` HEARTH_BONUS 0.05 per tick for warming up (body below comfort) beside, not in, a fire.
+- Control vs treatment (8k ticks): all metrics identical (gap 2106, medianFitness 818, largestCluster 305, brickCells 3366, commSeparation 0.0351, pop 499). The window never triggered the bonus, so effect unverified; no harm shown. Baseline batch ran 12500 ticks.

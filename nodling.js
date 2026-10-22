@@ -23,6 +23,7 @@ const THIRST_DRINK_BONUS = 0.3; // reward for drinking while hydration is low (<
 const BUILD_ADJACENT_BONUS = 0.85; // reward for placing durable material next to an existing structure
 const NEST_BREED_BONUS = 0.5; // extra reward to a parent that breeds inside a cluster of structures (settling pays)
 const BRIDGE_CROSS_BONUS = 0.2; // reward for stepping from land onto a bridge tile (bridges get used, not just laid)
+const HEARTH_BONUS = 0.05; // per-tick reward for warming up (body < comfort) beside a fire without standing in it
 const SITE_BONUS = 0.3; // extra reward for an adjacent build within 6 cells of this Nodling's previous build (stay on one site)
 const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
@@ -336,7 +337,9 @@ class Nodling {
     // -- temperature: body drifts toward local temp. Ideal is COMFORT (18°).
     //    Outside the comfort band energy drains; past the lethal band a per-tick
     //    death roll grows with how far past the limit you are (shelter mitigates). --
+    const prevTemp = this.bodyTemp;
     this.bodyTemp += (w.cellTemp(cx, cy) - this.bodyTemp)*0.03;
+    if (!cell.fire && this.bodyTemp < TEMP_COMFORT_LO && this.bodyTemp > prevTemp && w.cellTemp(cx, cy) > 30) this.bonus += HEARTH_BONUS;
     if (this.bodyTemp < TEMP_COMFORT_LO) this.energy -= (TEMP_COMFORT_LO - this.bodyTemp)*0.05;
     if (this.bodyTemp > TEMP_COMFORT_HI) this.energy -= (this.bodyTemp - TEMP_COMFORT_HI)*0.04;
     let mortal = 0;
