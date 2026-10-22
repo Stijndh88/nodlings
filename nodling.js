@@ -357,7 +357,7 @@ class Nodling {
     // -- reproduction: thrive long enough and the genome propagates. Crowding
     //    suppresses it (density dependence damps the boom-bust swings). The
     //    crowd scan only runs for breeding-eligible Nodlings — a big saving. --
-    const eligible = this.energy > 115 && this.hydration > 50 && this.age > 140 && w.pop < POP_CAP;
+    const eligible = this.energy > 115 && this.hydration > 50 && this.age > 110 && w.pop < POP_CAP;
     // Speciation via fitness sharing: you compete for breeding mostly with your
     // OWN kind (similar colour, diet, brain size), so a novel or rare lineage
     // isn't smothered by the dominant one — this preserves diversity.

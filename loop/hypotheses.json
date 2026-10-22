@@ -774,6 +774,14 @@
       "status": "kept",
       "cycle": 94,
       "note": "bench gap 2106 -> 2122, medianFitness 1291 -> 1246 (-3.5%); single 8k sample, within noise"
+    },
+    {
+      "id": "repro-age-110",
+      "signal": 3,
+      "change": "nodling.js breeding eligibility age 140 -> 110",
+      "status": "kept",
+      "cycle": 95,
+      "note": "bench gap 2122 -> 2240, medianFitness 1075 -> 1081; within single-sample noise"
     }
   ]
 }

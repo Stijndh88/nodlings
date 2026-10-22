@@ -798,3 +798,9 @@ STRUCTURAL: hearth warmth (priority 3, plateau.js demanded structural): `nodling
 STRUCTURAL: hunger-eating reward (priority 3, plateau.js demanded structural): `nodling.js` HUNGRY_EAT_BONUS 0.3 for eating found food while energy < 60 (starvation is the main death cause).
 - Control vs treatment (8k ticks): bench gap 2106 -> 2122 (+0.8%), medianFitness 1291 -> 1246 (-3.5%), largestCluster 316 -> 306, brickCells 3379 -> 3380, commSeparation 0.057 -> 0.0376, pop 500 -> 501. Guardrails pass; all differences within single-sample noise.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 95 — day 974 — `kept`
+
+Breeding-eligibility age 140 -> 110 in `nodling.js` (priority 3, plateau.js said tuning still productive).
+- Control vs treatment (8k ticks): bench gap 2122 -> 2240 (+5.6%), medianFitness 1075 -> 1081, brickCells 3386 -> 3388, commSeparation 0.0309 -> 0.0082, largestCluster 614 -> 283 (control was a spike; the pre-change batch measured 301), pop 499 -> 499. Guardrails pass; differences are within single-sample noise.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
