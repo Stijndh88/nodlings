@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-22T00:30Z. Now: day 937.78, benchmark gap **2196** (evolved gene pool minus random genomes), largest built cluster 288, 3349 brick cells, max generation 1644.
+Updated 2026-10-22T04:33Z. Now: day 945.59, benchmark gap **2106** (evolved gene pool minus random genomes), largest built cluster 285, 3352 brick cells, max generation 1664.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-22T00:30Z. Now: day 937.78, benchmark gap **2196** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 100 | 945.59 | 2106 | 1064 | 285 | 3352 | 1664 | 0.0091 |
 | 99 | 937.78 | 2196 | 1362 | 288 | 3349 | 1644 | 0.0344 |
 | 98 | 929.97 | 2196 | 1047 | 286 | 3341 | 1623 | 0.007 |
 | 97 | 922.16 | 2258 | 1117 | 279 | 3332 | 1616 | 0.0173 |
@@ -24,7 +25,6 @@ Updated 2026-10-22T00:30Z. Now: day 937.78, benchmark gap **2196** (evolved gene
 | 88 | 845.91 | 2366 | 1235 | 230 | 3214 | 1435 | 0.0036 |
 | 87 | 838.09 | 2366 | 1182 | 216 | 3194 | 1415 | 0.019 |
 | 86 | 830.59 | 2366 | 985 | 211 | 3186 | 1396 | 0.0864 |
-| 85 | 824.34 | 2366 | 1038 | 204 | 3169 | 1384 | 0.001 |
 
 ## Hypotheses
 
@@ -121,6 +121,7 @@ Updated 2026-10-22T00:30Z. Now: day 937.78, benchmark gap **2196** (evolved gene
 - **reverted**: nodling.js BRICK_ROW_BONUS 0.3: extra reward for laying a brick beside another brick (3k ticks: metrics bit-identical to control (cluster 282, bricks 3330, gap 2258); no behavioural change)
 - **kept**: world.js: base flora regrowth tries halved (16->8) in Winter (medianFitness 951->1109, gap 2258->2196 (-2.7%), cluster 286->286, bricks 3340->3338; single 8k sample, within noise)
 - **kept**: world.js: flora regrowth acceptance 0.42 -> 0.30 in Summer (metrics identical to control (gap 2196, median 1113, cluster 298, bricks 3343); window days 930-935 is not Summer so the change never fired; effect unverified)
+- **kept**: nodling.js BRIDGE_CROSS_BONUS 0.2: reward stepping from land onto a bridge tile (cluster/bricks identical, bench gap 2196 -> 2106 (noise); effect unverified)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
