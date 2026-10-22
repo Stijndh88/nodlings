@@ -781,3 +781,9 @@ STRUCTURAL: summer drought (priority 3, plateau.js demanded structural): `world.
 STRUCTURAL: bridge-cross reward (priority 1, plateau.js demanded structural): `nodling.js` BRIDGE_CROSS_BONUS 0.2 when stepping from land onto a bridge tile.
 - Control vs treatment (8k ticks): largestCluster 282 -> 282, brickCells 3348 -> 3348, builtCells 3984 -> 3984, bench gap 2196 -> 2106 (-4%, within noise), medianFitness 1005 -> 1005, pop 500 -> 500. Guardrails pass; no measurable effect on target (bridges likely rare), no harm shown.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 92 — day 945 — `reverted`
+
+STRUCTURAL: autumn harvest (priority 3, plateau.js demanded structural): `world.js` flora regrowth acceptance 0.42 -> 0.55 in Autumn.
+- Control vs treatment (8k ticks): medianFitness 1252 -> 1183 (-5.5%), bench gap 2106 -> 2106, largestCluster 278 -> 276, brickCells 3358 -> 3354, commSeparation 0.0333 -> 0.0172, pop 501 -> 501. Guardrails pass but the growth target was not better, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

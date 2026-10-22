@@ -750,6 +750,14 @@
       "status": "kept",
       "cycle": 91,
       "note": "cluster/bricks identical, bench gap 2196 -> 2106 (noise); effect unverified"
+    },
+    {
+      "id": "autumn-harvest",
+      "signal": 3,
+      "change": "world.js flora regrowth acceptance 0.42 -> 0.55 in Autumn",
+      "status": "reverted",
+      "cycle": 92,
+      "note": "medianFitness 1252 -> 1183, bench gap 2106 -> 2106, cluster 278 -> 276; no gain on target"
     }
   ]
 }
