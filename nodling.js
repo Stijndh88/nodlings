@@ -22,6 +22,7 @@ const HUNT_BONUS = 0.4; // reward for striking down a critter (hunting as a lear
 const THIRST_DRINK_BONUS = 0.3; // reward for drinking while hydration is low (<40): learn to manage thirst
 const BUILD_ADJACENT_BONUS = 0.85; // reward for placing durable material next to an existing structure
 const NEST_BREED_BONUS = 0.5; // extra reward to a parent that breeds inside a cluster of structures (settling pays)
+const BRIDGE_CROSS_BONUS = 0.2; // reward for stepping from land onto a bridge tile (bridges get used, not just laid)
 const SITE_BONUS = 0.3; // extra reward for an adjacent build within 6 cells of this Nodling's previous build (stay on one site)
 const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
@@ -206,6 +207,7 @@ class Nodling {
     const ny = Math.max(0, Math.min(GRID_H - 0.01, this.y + out.moveY*0.25));
     const dest = w.at(nx|0, ny|0);
     if (dest && dest.stack.length < 3 && (!dest.water || dest.stack.length > 0)){
+      if (dest.water && !w.at(this.x|0, this.y|0).water) this.bonus += BRIDGE_CROSS_BONUS;
       this.x = nx; this.y = ny;
     }
     const fx = out.moveX > 0.3 ? 1 : out.moveX < -0.3 ? -1 : 0;

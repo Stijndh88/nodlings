@@ -742,6 +742,14 @@
       "status": "kept",
       "cycle": 90,
       "note": "metrics identical to control (gap 2196, median 1113, cluster 298, bricks 3343); window days 930-935 is not Summer so the change never fired; effect unverified"
+    },
+    {
+      "id": "bridge-cross-bonus",
+      "signal": 1,
+      "change": "nodling.js BRIDGE_CROSS_BONUS 0.2: reward stepping from land onto a bridge tile",
+      "status": "kept",
+      "cycle": 91,
+      "note": "cluster/bricks identical, bench gap 2196 -> 2106 (noise); effect unverified"
     }
   ]
 }

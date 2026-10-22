@@ -775,3 +775,9 @@ STRUCTURAL: lean winters (priority 3, plateau.js demanded structural): `world.js
 
 STRUCTURAL: summer drought (priority 3, plateau.js demanded structural): `world.js` flora regrowth acceptance 0.42 -> 0.30 in Summer.
 - Control vs treatment (8k ticks): all metrics identical (gap 2196, medianFitness 1113, largestCluster 298, brickCells 3343, pop 500). The 8k window (days 930-935) is not in Summer, so the change never fired; effect unverified, no harm shown. Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 91 — day 943 — `kept`
+
+STRUCTURAL: bridge-cross reward (priority 1, plateau.js demanded structural): `nodling.js` BRIDGE_CROSS_BONUS 0.2 when stepping from land onto a bridge tile.
+- Control vs treatment (8k ticks): largestCluster 282 -> 282, brickCells 3348 -> 3348, builtCells 3984 -> 3984, bench gap 2196 -> 2106 (-4%, within noise), medianFitness 1005 -> 1005, pop 500 -> 500. Guardrails pass; no measurable effect on target (bridges likely rare), no harm shown.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
