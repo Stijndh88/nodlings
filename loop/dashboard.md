@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-23T00:29Z. Now: day 976.84, benchmark gap **2240** (evolved gene pool minus random genomes), largest built cluster 230, 3389 brick cells, max generation 1748.
+Updated 2026-10-23T04:29Z. Now: day 984.66, benchmark gap **2240** (evolved gene pool minus random genomes), largest built cluster 228, 3395 brick cells, max generation 1763.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-23T00:29Z. Now: day 976.84, benchmark gap **2240** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 105 | 984.66 | 2240 | 1131 | 228 | 3395 | 1763 | 0.0173 |
 | 104 | 976.84 | 2240 | 1157 | 230 | 3389 | 1748 | 0.0061 |
 | 103 | 969.03 | 2122 | 1199 | 301 | 3380 | 1729 | 0.0301 |
 | 102 | 961.22 | 2106 | 934 | 308 | 3365 | 1709 | 0.0238 |
@@ -24,7 +25,6 @@ Updated 2026-10-23T00:29Z. Now: day 976.84, benchmark gap **2240** (evolved gene
 | 93 | 883.41 | 2219 | 1107 | 194 | 3291 | 1520 | 0.008 |
 | 92 | 875.91 | 2219 | 1333 | 196 | 3279 | 1503 | 0.0158 |
 | 91 | 868.41 | 2366 | 1031 | 220 | 3259 | 1487 | 0.0277 |
-| 90 | 860.91 | 2366 | 1067 | 160 | 3240 | 1469 | 0.009 |
 
 ## Hypotheses
 
@@ -126,6 +126,7 @@ Updated 2026-10-23T00:29Z. Now: day 976.84, benchmark gap **2240** (evolved gene
 - **kept**: nodling.js HEARTH_BONUS 0.05: per-tick reward for warming up (body below comfort) beside a fire without standing in it (all metrics identical to control; the 8k window (days ~945-950) had no cold bodies near fires, effect unverified)
 - **kept**: nodling.js HUNGRY_EAT_BONUS 0.3: reward eating found food while energy <60 (bench gap 2106 -> 2122, medianFitness 1291 -> 1246 (-3.5%); single 8k sample, within noise)
 - **kept**: nodling.js breeding eligibility age 140 -> 110 (bench gap 2122 -> 2240, medianFitness 1075 -> 1081; within single-sample noise)
+- **reverted**: breeding-eligibility age 110 -> 90 (bench gap 2240->2155 (-3.8%), medianFitness 1130->1136, cluster 227->231; main growth signal (gap) worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
