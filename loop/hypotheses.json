@@ -798,6 +798,14 @@
       "status": "reverted",
       "cycle": 97,
       "note": "bench gap 2240->2162, medianFitness 976->954, cluster 232->230, bricks 3398->3397, comm 0.0084->0.0206; target (gap) worse"
+    },
+    {
+      "id": "mate-provision",
+      "signal": 3,
+      "change": "nodling.js MATE_PROVISION 30: newborn of a mated pair starts with +30 energy",
+      "status": "reverted",
+      "cycle": 98,
+      "note": "bench gap 2240->2055 (-8%), medianFitness 872->956, cluster 245->235, bricks 3399->3397, comm 0.037->0.008; target (gap) worse"
     }
   ]
 }

@@ -816,3 +816,9 @@ Breeding-eligibility age 110 -> 90 in `nodling.js` (priority 3, plateau.js: tuni
 Hungry-eat bonus window energy < 60 -> < 90 in `nodling.js` (priority 3, plateau.js: tuning still productive).
 - Control vs treatment (8k ticks): bench gap 2240 -> 2162 (-3.5%), medianFitness 976 -> 954, largestCluster 232 -> 230, brickCells 3398 -> 3397, commSeparation 0.0084 -> 0.0206, pop 499 -> 500. Guardrails pass, but the main growth signal (gap) was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 98 — day 988 — `reverted`
+
+STRUCTURAL: mate provisioning (priority 3, plateau.js demanded structural): `nodling.js` MATE_PROVISION 30, newborn of a mated pair starts with +30 energy.
+- Control vs treatment (8k ticks): bench gap 2240 -> 2055 (-8%), medianFitness 872 -> 956, largestCluster 245 -> 235, brickCells 3399 -> 3397, commSeparation 0.0372 -> 0.0076, pop 500 -> 499. Guardrails pass but the growth target (gap) was worse, so reverted.
+- Baseline batch ran 6000 ticks (12500 exceeded the tool timeout); the first control attempt at 8000 ran in the background and completed.
