@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -806,6 +806,14 @@
       "status": "kept",
       "cycle": 98,
       "note": "all metrics identical to control in 8k ticks (bonus never fired or no effect); effect unverified, no harm"
+    },
+    {
+      "id": "explore-region-bonus",
+      "signal": 3,
+      "change": "nodling.js EXPLORE_BONUS 0.05 for entering a new 8x8 region while energy < 100",
+      "status": "reverted",
+      "cycle": 99,
+      "note": "bench gap 2240 -> 2148, medianFitness 1167 -> 1056; growth signal worse"
     }
   ]
 }

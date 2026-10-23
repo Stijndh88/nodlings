@@ -821,3 +821,9 @@ Hungry-eat bonus window energy < 60 -> < 90 in `nodling.js` (priority 3, plateau
 
 STRUCTURAL: kiln-in-village reward (priority 1, plateau.js demanded structural): `nodling.js` KILN_SITE_BONUS 0.3 for dropping clay beside a fire within 3 cells of an existing durable structure.
 - Control vs treatment (8k ticks): all metrics identical (gap 2240, medianFitness 1149, largestCluster 242, brickCells 3396, commSeparation 0.0082, pop 502). Clay-by-fire drops near structures did not occur in the window, so effect unverified; no harm shown. Baseline batch ran 12500 ticks.
+
+## Cycle 99 — day 1000 — `reverted`
+
+STRUCTURAL: exploration reward (priority 3, plateau.js demanded structural): `nodling.js` EXPLORE_BONUS 0.05 for entering a new 8x8 region while energy < 100.
+- Control vs treatment (8k ticks): bench gap 2240 -> 2148 (-4.1%), medianFitness 1167 -> 1056, largestCluster 192 -> 232, brickCells 3418 -> 3420, commSeparation 0.0076 -> 0.0279, pop 502 -> 502. Guardrails pass, but the growth target was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
