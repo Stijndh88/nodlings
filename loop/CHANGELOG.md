@@ -810,3 +810,9 @@ Breeding-eligibility age 140 -> 110 in `nodling.js` (priority 3, plateau.js said
 Breeding-eligibility age 110 -> 90 in `nodling.js` (priority 3, plateau.js: tuning still productive).
 - Control vs treatment (8k ticks): bench gap 2240 -> 2155 (-3.8%), medianFitness 1130 -> 1136, largestCluster 227 -> 231, brickCells 3396 -> 3391, commSeparation 0.0178 -> 0.0111, pop 501 -> 500. Guardrails pass, but the main growth signal (gap) was worse, so reverted; breeding age looks exhausted around 110.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 97 — day 985 — `reverted`
+
+Hungry-eat bonus window energy < 60 -> < 90 in `nodling.js` (priority 3, plateau.js: tuning still productive).
+- Control vs treatment (8k ticks): bench gap 2240 -> 2162 (-3.5%), medianFitness 976 -> 954, largestCluster 232 -> 230, brickCells 3398 -> 3397, commSeparation 0.0084 -> 0.0206, pop 499 -> 500. Guardrails pass, but the main growth signal (gap) was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

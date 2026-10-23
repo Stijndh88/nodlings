@@ -790,6 +790,14 @@
       "status": "reverted",
       "cycle": 96,
       "note": "bench gap 2240->2155 (-3.8%), medianFitness 1130->1136, cluster 227->231; main growth signal (gap) worse"
+    },
+    {
+      "id": "hungry-eat-window-90",
+      "signal": 3,
+      "change": "nodling.js hungry-eat bonus window energy < 60 -> < 90",
+      "status": "reverted",
+      "cycle": 97,
+      "note": "bench gap 2240->2162, medianFitness 976->954, cluster 232->230, bricks 3398->3397, comm 0.0084->0.0206; target (gap) worse"
     }
   ]
 }
