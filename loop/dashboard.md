@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-23T16:34Z. Now: day 1000.28, benchmark gap **2240** (evolved gene pool minus random genomes), largest built cluster 275, 3406 brick cells, max generation 1796.
+Updated 2026-10-23T20:30Z. Now: day 1008.09, benchmark gap **2240** (evolved gene pool minus random genomes), largest built cluster 190, 3419 brick cells, max generation 1815.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-23T16:34Z. Now: day 1000.28, benchmark gap **2240** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 108 | 1008.09 | 2240 | 1015 | 190 | 3419 | 1815 | 0.0061 |
 | 107 | 1000.28 | 2240 | 1394 | 275 | 3406 | 1796 | 0.0215 |
 | 106 | 992.47 | 2240 | 916 | 239 | 3395 | 1782 | 0.0143 |
 | 105 | 984.66 | 2240 | 1131 | 228 | 3395 | 1763 | 0.0173 |
@@ -24,7 +25,6 @@ Updated 2026-10-23T16:34Z. Now: day 1000.28, benchmark gap **2240** (evolved gen
 | 96 | 914.34 | 2258 | 902 | 281 | 3332 | 1598 | 0.0278 |
 | 95 | 906.84 | 2258 | 1209 | 187 | 3316 | 1580 | 0.0004 |
 | 94 | 899.03 | 2219 | 1187 | 193 | 3307 | 1559 | 0.0493 |
-| 93 | 883.41 | 2219 | 1107 | 194 | 3291 | 1520 | 0.008 |
 
 ## Hypotheses
 
@@ -129,6 +129,7 @@ Updated 2026-10-23T16:34Z. Now: day 1000.28, benchmark gap **2240** (evolved gen
 - **reverted**: breeding-eligibility age 110 -> 90 (bench gap 2240->2155 (-3.8%), medianFitness 1130->1136, cluster 227->231; main growth signal (gap) worse)
 - **reverted**: nodling.js hungry-eat bonus window energy < 60 -> < 90 (bench gap 2240->2162, medianFitness 976->954, cluster 232->230, bricks 3398->3397, comm 0.0084->0.0206; target (gap) worse)
 - **kept**: nodling.js KILN_SITE_BONUS 0.3: extra reward for feeding a kiln (clay beside fire) within 3 cells of an existing structure (all metrics identical to control in 8k ticks (bonus never fired or no effect); effect unverified, no harm)
+- **reverted**: nodling.js EXPLORE_BONUS 0.05 for entering a new 8x8 region while energy < 100 (bench gap 2240 -> 2148, medianFitness 1167 -> 1056; growth signal worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
