@@ -782,6 +782,14 @@
       "status": "kept",
       "cycle": 95,
       "note": "bench gap 2122 -> 2240, medianFitness 1075 -> 1081; within single-sample noise"
+    },
+    {
+      "id": "repro-age-90",
+      "signal": 3,
+      "change": "breeding-eligibility age 110 -> 90",
+      "status": "reverted",
+      "cycle": 96,
+      "note": "bench gap 2240->2155 (-3.8%), medianFitness 1130->1136, cluster 227->231; main growth signal (gap) worse"
     }
   ]
 }

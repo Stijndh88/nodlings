@@ -804,3 +804,9 @@ STRUCTURAL: hunger-eating reward (priority 3, plateau.js demanded structural): `
 Breeding-eligibility age 140 -> 110 in `nodling.js` (priority 3, plateau.js said tuning still productive).
 - Control vs treatment (8k ticks): bench gap 2122 -> 2240 (+5.6%), medianFitness 1075 -> 1081, brickCells 3386 -> 3388, commSeparation 0.0309 -> 0.0082, largestCluster 614 -> 283 (control was a spike; the pre-change batch measured 301), pop 499 -> 499. Guardrails pass; differences are within single-sample noise.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 96 — day 982 — `reverted`
+
+Breeding-eligibility age 110 -> 90 in `nodling.js` (priority 3, plateau.js: tuning still productive).
+- Control vs treatment (8k ticks): bench gap 2240 -> 2155 (-3.8%), medianFitness 1130 -> 1136, largestCluster 227 -> 231, brickCells 3396 -> 3391, commSeparation 0.0178 -> 0.0111, pop 501 -> 500. Guardrails pass, but the main growth signal (gap) was worse, so reverted; breeding age looks exhausted around 110.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
