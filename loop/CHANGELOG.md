@@ -827,3 +827,9 @@ STRUCTURAL: kiln-in-village reward (priority 1, plateau.js demanded structural):
 STRUCTURAL: exploration reward (priority 3, plateau.js demanded structural): `nodling.js` EXPLORE_BONUS 0.05 for entering a new 8x8 region while energy < 100.
 - Control vs treatment (8k ticks): bench gap 2240 -> 2148 (-4.1%), medianFitness 1167 -> 1056, largestCluster 192 -> 232, brickCells 3418 -> 3420, commSeparation 0.0076 -> 0.0279, pop 502 -> 502. Guardrails pass, but the growth target was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 100 — day 1008 — `reverted`
+
+STRUCTURAL: well reward (priority 1, plateau.js demanded structural): `nodling.js` WELL_BONUS 0.3 for drinking within 2 cells of a durable structure (settle by water).
+- Control vs treatment (8k ticks): largestCluster 303 -> 192, bench gap 2240 -> 2059 (-8.1%), medianFitness 977 -> 945, brickCells 3421 -> 3423, commSeparation 0.0173 -> 0.0654, pop 501 -> 500. Guardrails pass, but target and growth signal were worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

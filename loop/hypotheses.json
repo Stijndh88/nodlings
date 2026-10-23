@@ -814,6 +814,14 @@
       "status": "reverted",
       "cycle": 99,
       "note": "bench gap 2240 -> 2148, medianFitness 1167 -> 1056; growth signal worse"
+    },
+    {
+      "id": "well-bonus",
+      "signal": 1,
+      "change": "nodling.js WELL_BONUS 0.3: extra reward for drinking within 2 cells of a durable structure",
+      "status": "reverted",
+      "cycle": 100,
+      "note": "largestCluster 303->192, bench gap 2240->2059, medianFitness 977->945; target worse"
     }
   ]
 }
