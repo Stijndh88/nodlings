@@ -816,3 +816,8 @@ Breeding-eligibility age 110 -> 90 in `nodling.js` (priority 3, plateau.js: tuni
 Hungry-eat bonus window energy < 60 -> < 90 in `nodling.js` (priority 3, plateau.js: tuning still productive).
 - Control vs treatment (8k ticks): bench gap 2240 -> 2162 (-3.5%), medianFitness 976 -> 954, largestCluster 232 -> 230, brickCells 3398 -> 3397, commSeparation 0.0084 -> 0.0206, pop 499 -> 500. Guardrails pass, but the main growth signal (gap) was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 98 — day 992 — `kept`
+
+STRUCTURAL: kiln-in-village reward (priority 1, plateau.js demanded structural): `nodling.js` KILN_SITE_BONUS 0.3 for dropping clay beside a fire within 3 cells of an existing durable structure.
+- Control vs treatment (8k ticks): all metrics identical (gap 2240, medianFitness 1149, largestCluster 242, brickCells 3396, commSeparation 0.0082, pop 502). Clay-by-fire drops near structures did not occur in the window, so effect unverified; no harm shown. Baseline batch ran 12500 ticks.

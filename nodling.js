@@ -27,6 +27,7 @@ const HEARTH_BONUS = 0.05; // per-tick reward for warming up (body < comfort) be
 const SITE_BONUS = 0.3; // extra reward for an adjacent build within 6 cells of this Nodling's previous build (stay on one site)
 const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
 const HUNGRY_EAT_BONUS = 0.3; // reward for eating found food while energy is low (<60): learn to forage before starving
+const KILN_SITE_BONUS = 0.3; // extra reward for feeding a kiln (clay beside fire) within 3 cells of an existing structure (kilns inside villages)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
@@ -256,7 +257,14 @@ class Nodling {
         if (this.carrying === 'clay'){
           for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
             const kc = w.at(cx+dx, cy+dy);
-            if (kc && kc.fire){ this.bonus += KILN_BONUS; dy = 2; break; }
+            if (kc && kc.fire){
+              this.bonus += KILN_BONUS;
+              site: for (let sy = -3; sy <= 3; sy++) for (let sx = -3; sx <= 3; sx++){
+                const sc = w.at(cx+sx, cy+sy);
+                if (sc && sc.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += KILN_SITE_BONUS; break site; }
+              }
+              dy = 2; break;
+            }
           }
         }
         cell.stack.push(this.carrying);

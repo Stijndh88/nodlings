@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -798,6 +798,14 @@
       "status": "reverted",
       "cycle": 97,
       "note": "bench gap 2240->2162, medianFitness 976->954, cluster 232->230, bricks 3398->3397, comm 0.0084->0.0206; target (gap) worse"
+    },
+    {
+      "id": "kiln-site-bonus",
+      "signal": 1,
+      "change": "nodling.js KILN_SITE_BONUS 0.3: extra reward for feeding a kiln (clay beside fire) within 3 cells of an existing structure",
+      "status": "kept",
+      "cycle": 98,
+      "note": "all metrics identical to control in 8k ticks (bonus never fired or no effect); effect unverified, no harm"
     }
   ]
 }
