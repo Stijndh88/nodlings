@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-23T12:32Z. Now: day 992.47, benchmark gap **2240** (evolved gene pool minus random genomes), largest built cluster 239, 3395 brick cells, max generation 1782.
+Updated 2026-10-23T16:34Z. Now: day 1000.28, benchmark gap **2240** (evolved gene pool minus random genomes), largest built cluster 275, 3406 brick cells, max generation 1796.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-23T12:32Z. Now: day 992.47, benchmark gap **2240** (evolved gene
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 107 | 1000.28 | 2240 | 1394 | 275 | 3406 | 1796 | 0.0215 |
 | 106 | 992.47 | 2240 | 916 | 239 | 3395 | 1782 | 0.0143 |
 | 105 | 984.66 | 2240 | 1131 | 228 | 3395 | 1763 | 0.0173 |
 | 104 | 976.84 | 2240 | 1157 | 230 | 3389 | 1748 | 0.0061 |
@@ -24,7 +25,6 @@ Updated 2026-10-23T12:32Z. Now: day 992.47, benchmark gap **2240** (evolved gene
 | 95 | 906.84 | 2258 | 1209 | 187 | 3316 | 1580 | 0.0004 |
 | 94 | 899.03 | 2219 | 1187 | 193 | 3307 | 1559 | 0.0493 |
 | 93 | 883.41 | 2219 | 1107 | 194 | 3291 | 1520 | 0.008 |
-| 92 | 875.91 | 2219 | 1333 | 196 | 3279 | 1503 | 0.0158 |
 
 ## Hypotheses
 
@@ -128,6 +128,7 @@ Updated 2026-10-23T12:32Z. Now: day 992.47, benchmark gap **2240** (evolved gene
 - **kept**: nodling.js breeding eligibility age 140 -> 110 (bench gap 2122 -> 2240, medianFitness 1075 -> 1081; within single-sample noise)
 - **reverted**: breeding-eligibility age 110 -> 90 (bench gap 2240->2155 (-3.8%), medianFitness 1130->1136, cluster 227->231; main growth signal (gap) worse)
 - **reverted**: nodling.js hungry-eat bonus window energy < 60 -> < 90 (bench gap 2240->2162, medianFitness 976->954, cluster 232->230, bricks 3398->3397, comm 0.0084->0.0206; target (gap) worse)
+- **kept**: nodling.js KILN_SITE_BONUS 0.3: extra reward for feeding a kiln (clay beside fire) within 3 cells of an existing structure (all metrics identical to control in 8k ticks (bonus never fired or no effect); effect unverified, no harm)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 

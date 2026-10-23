@@ -1,25 +1,26 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 992.5 · Winter
+Seed `20261007` · day 1000.3 · Spring
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (40 juvenile) |
-| max generation | 1779 |
+| population | 499 (31 juvenile) |
+| max generation | 1794 |
 | best fitness | 7002 |
-| avg brain (conns) | 208 |
+| avg brain (conns) | 206 |
 | lineage diversity | 5 colour-groups |
-| diet | 78% herbivore / 9% carnivore |
-| predators | 3, 4 kills, best 114012 |
-| structures (durable) | 7313 (3774) |
-| planks / bricks / bridges | 23 / 3035 / 2660 |
-| flora / cooked food | 3967 / 301 |
+| diet | 72% herbivore / 10% carnivore |
+| predators | 3, 9 kills, best 114012 |
+| structures (durable) | 5662 (3629) |
+| planks / bricks / bridges | 20 / 3081 / 2660 |
+| flora / cooked food | 2717 / 444 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 994.5]** _(trend)_ Lineages are deepening — max generation 1782→1787. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 987.7]** _(trend)_ Lineages are deepening — max generation 1763→1768. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 986.7]** _(issue)_ Food (flora) fell 60% in ~6 days — likely a wildfire or overgrazing. If wildfires recur, lower fire spread further; water/stone lines act as firebreaks.
 - **[day 980.8]** _(trend)_ Lineages are deepening — max generation 1748→1753. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
