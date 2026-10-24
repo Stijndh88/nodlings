@@ -857,3 +857,9 @@ STRUCTURAL: parental endowment (priority 3, plateau.js demanded structural): `no
 STRUCTURAL: spring-breed bonus (priority 3, plateau.js demanded structural): `nodling.js` SPRING_BREED_BONUS 0.3 (and +30 newborn hydration, which was a no-op as newborns start at 100) for breeding within 3 cells of water.
 - Control vs treatment (8k ticks): bench gap 2248 -> 2200 (-2.1%), medianFitness 1189 -> 1130, largestCluster 320 -> 400, brickCells 3442 -> 3436, commSeparation 0.0237 -> 0.096, pop 499 -> 500. Guardrails pass, but the growth target was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 105 — day 1052 — `reverted`
+
+STRUCTURAL: apprentice meal bonus (priority 3, plateau.js demanded structural): `nodling.js` APPRENTICE_BONUS 0.3 for a juvenile eating found food within 3 cells of an adult.
+- Control vs treatment (8k ticks): bench gap 2248 -> 2161 (-3.9%), medianFitness 1041 -> 1163, largestCluster 235 -> 327, brickCells 3446 -> 3446, commSeparation 0.0336 -> 0.0223, pop 501 -> 500. Guardrails pass, but the growth target (gap) was worse, so reverted; median/cluster gains are within single-sample noise.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
