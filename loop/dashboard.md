@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-24T00:30Z. Now: day 1015.91, benchmark gap **2240** (evolved gene pool minus random genomes), largest built cluster 190, 3422 brick cells, max generation 1834.
+Updated 2026-10-24T04:29Z. Now: day 1023.72, benchmark gap **2240** (evolved gene pool minus random genomes), largest built cluster 337, 3422 brick cells, max generation 1850.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-24T00:30Z. Now: day 1015.91, benchmark gap **2240** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 110 | 1023.72 | 2240 | 1014 | 337 | 3422 | 1850 | 0.0323 |
 | 109 | 1015.91 | 2240 | 1080 | 190 | 3422 | 1834 | 0.0279 |
 | 108 | 1008.09 | 2240 | 1015 | 190 | 3419 | 1815 | 0.0061 |
 | 107 | 1000.28 | 2240 | 1394 | 275 | 3406 | 1796 | 0.0215 |
@@ -24,7 +25,6 @@ Updated 2026-10-24T00:30Z. Now: day 1015.91, benchmark gap **2240** (evolved gen
 | 98 | 929.97 | 2196 | 1047 | 286 | 3341 | 1623 | 0.007 |
 | 97 | 922.16 | 2258 | 1117 | 279 | 3332 | 1616 | 0.0173 |
 | 96 | 914.34 | 2258 | 902 | 281 | 3332 | 1598 | 0.0278 |
-| 95 | 906.84 | 2258 | 1209 | 187 | 3316 | 1580 | 0.0004 |
 
 ## Hypotheses
 
@@ -131,6 +131,7 @@ Updated 2026-10-24T00:30Z. Now: day 1015.91, benchmark gap **2240** (evolved gen
 - **kept**: nodling.js KILN_SITE_BONUS 0.3: extra reward for feeding a kiln (clay beside fire) within 3 cells of an existing structure (all metrics identical to control in 8k ticks (bonus never fired or no effect); effect unverified, no harm)
 - **reverted**: nodling.js EXPLORE_BONUS 0.05 for entering a new 8x8 region while energy < 100 (bench gap 2240 -> 2148, medianFitness 1167 -> 1056; growth signal worse)
 - **reverted**: nodling.js WELL_BONUS 0.3: extra reward for drinking within 2 cells of a durable structure (largestCluster 303->192, bench gap 2240->2059, medianFitness 977->945; target worse)
+- **reverted**: nodling.js PROVIDE_BONUS 0.2 for eating found food with a juvenile within 3 cells (bench gap 2240 -> 2141 (-4.4%), medianFitness 960 -> 1097, cluster 327 -> 379; growth target (gap) worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 

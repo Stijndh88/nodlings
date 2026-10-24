@@ -1,25 +1,29 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1015.9 · Autumn
+Seed `20261007` · day 1023.7 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (32 juvenile) |
-| max generation | 1831 |
+| population | 501 (43 juvenile) |
+| max generation | 1855 |
 | best fitness | 7002 |
-| avg brain (conns) | 189 |
-| lineage diversity | 5 colour-groups |
-| diet | 76% herbivore / 10% carnivore |
-| predators | 3, 6 kills, best 114012 |
-| structures (durable) | 6423 (3625) |
-| planks / bricks / bridges | 18 / 3061 / 2660 |
-| flora / cooked food | 4363 / 361 |
+| avg brain (conns) | 191 |
+| lineage diversity | 6 colour-groups |
+| diet | 76% herbivore / 14% carnivore |
+| predators | 6, 27 kills, best 114012 |
+| structures (durable) | 5817 (3629) |
+| planks / bricks / bridges | 18 / 3095 / 2660 |
+| flora / cooked food | 2810 / 421 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1021.9]** _(issue)_ Food (flora) fell 64% in ~6 days — likely a wildfire or overgrazing. If wildfires recur, lower fire spread further; water/stone lines act as firebreaks.
+- **[day 1021.9]** _(trend)_ Lineages are deepening — max generation 1834→1850. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1020.9]** _(trend)_ Nodlings are grouping more tightly (mean spacing 2.9→1.7) — possible flocking / proto-tribe.
+- **[day 1016.9]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1015.1]** _(trend)_ Lineages are deepening — max generation 1819→1831. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1014.1]** _(trend)_ Brains are genuinely shrinking below capacity — selection favours simpler wiring right now.
 - **[day 1009.1]** _(trend)_ Lineages are deepening — max generation 1815→1819. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
