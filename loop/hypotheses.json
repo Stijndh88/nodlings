@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -846,6 +846,14 @@
       "status": "reverted",
       "cycle": 103,
       "note": "bench gap 2248 -> 2044 (-9%), medianFitness 1199 -> 1143, largestCluster 391 -> 303, brickCells 3423 -> 3440"
+    },
+    {
+      "id": "spring-breed-bonus",
+      "signal": 3,
+      "change": "SPRING_BREED_BONUS 0.3 for breeding within 3 cells of water",
+      "status": "reverted",
+      "cycle": 104,
+      "note": "gap 2248 -> 2200, others within noise"
     }
   ]
 }

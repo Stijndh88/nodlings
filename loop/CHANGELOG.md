@@ -851,3 +851,9 @@ STRUCTURAL: fittest-mate choice (priority 3, plateau.js demanded structural): `n
 STRUCTURAL: parental endowment (priority 3, plateau.js demanded structural): `nodling.js` ENDOW_ENERGY 25, a parent with energy >150 transfers 25 energy to its newborn.
 - Control vs treatment (8k ticks): bench gap 2248 -> 2044 (-9.1%), medianFitness 1199 -> 1143, largestCluster 391 -> 303, brickCells 3423 -> 3440, commSeparation 0.021 -> 0.0161, pop 500 -> 500. Guardrails pass, but the growth target was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 104 — day 1039 — `reverted`
+
+STRUCTURAL: spring-breed bonus (priority 3, plateau.js demanded structural): `nodling.js` SPRING_BREED_BONUS 0.3 (and +30 newborn hydration, which was a no-op as newborns start at 100) for breeding within 3 cells of water.
+- Control vs treatment (8k ticks): bench gap 2248 -> 2200 (-2.1%), medianFitness 1189 -> 1130, largestCluster 320 -> 400, brickCells 3442 -> 3436, commSeparation 0.0237 -> 0.096, pop 499 -> 500. Guardrails pass, but the growth target was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
