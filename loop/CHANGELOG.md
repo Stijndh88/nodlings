@@ -839,3 +839,9 @@ STRUCTURAL: well reward (priority 1, plateau.js demanded structural): `nodling.j
 STRUCTURAL: provide bonus (priority 3, plateau.js demanded structural): `nodling.js` PROVIDE_BONUS 0.2 for adults eating found food with a juvenile (age < 110) within 3 cells.
 - Control vs treatment (8k ticks): bench gap 2240 -> 2141 (-4.4%), medianFitness 960 -> 1097, largestCluster 327 -> 379, brickCells 3422 -> 3425, commSeparation 0.0344 -> 0.0163, pop 501 -> 500. Guardrails pass, but the gap (main growth signal) was worse, so reverted; cluster/median gains are within single-sample noise.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 102 — day 1029 — `kept`
+
+STRUCTURAL: fittest-mate choice (priority 3, plateau.js demanded structural): `nodling.js` breeders now pick the fittest willing neighbour (age + 250 x offspring) as crossover mate instead of the first found.
+- Control vs treatment (8k ticks): bench gap 2240 -> 2248 (+0.4%), medianFitness 1056 -> 1074, largestCluster 395 -> 259 (control was a spike), brickCells 3423 -> 3423, commSeparation 0.0251 -> 0.0345, pop 500 -> 501. Guardrails pass; differences are within single-sample noise.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

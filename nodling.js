@@ -386,9 +386,14 @@ class Nodling {
       this.offspring++;
       this.bonus = 1;   // reproduction is strongly rewarding to the learner
       let mate = null;
+      // mate choice: of the willing neighbours, pick the fittest (age + 250 x offspring)
+      let bestFit = -1;
       for (const o of w.near(w.nIndex, this.x, this.y))
         if (o !== this && !o.dead && o.energy > 100
-            && (o.x-this.x)**2 + (o.y-this.y)**2 < 4){ mate = o; break; }
+            && (o.x-this.x)**2 + (o.y-this.y)**2 < 4){
+          const f = o.age + 250*o.offspring;
+          if (f > bestFit){ bestFit = f; mate = o; }
+        }
       const g = mutateGenome(
         mate ? crossoverGenome(this.genome, mate.genome, w.rng) : this.genome, w.rng);
       const child = new Nodling(w, this.x, this.y, g, this.gen + 1);

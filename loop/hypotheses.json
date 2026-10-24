@@ -830,6 +830,14 @@
       "status": "reverted",
       "cycle": 101,
       "note": "bench gap 2240 -> 2141 (-4.4%), medianFitness 960 -> 1097, cluster 327 -> 379; growth target (gap) worse"
+    },
+    {
+      "id": "fittest-mate",
+      "signal": 3,
+      "change": "nodling.js mate choice: pick the fittest willing neighbour instead of the first",
+      "status": "kept",
+      "cycle": 102,
+      "note": "bench gap 2240 -> 2248, medianFitness 1056 -> 1074, largestCluster 395 -> 259; within single-sample noise"
     }
   ]
 }
