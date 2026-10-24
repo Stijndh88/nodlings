@@ -862,6 +862,14 @@
       "status": "reverted",
       "cycle": 105,
       "note": "bench gap 2248 -> 2161 (-3.9%), medianFitness 1041 -> 1163, largestCluster 235 -> 327, commSeparation 0.0336 -> 0.0223; growth target worse"
+    },
+    {
+      "id": "shelter-bonus",
+      "signal": 1,
+      "change": "nodling.js SHELTER_BONUS 0.03 per tick in a cell with >=2 durable neighbours while body temp outside comfort",
+      "status": "reverted",
+      "cycle": 106,
+      "note": "bench gap 2248 -> 1994 (-11%), medianFitness 1100 -> 1099, largestCluster 302 -> 298, brickCells 3446 -> 3453; growth target worse"
     }
   ]
 }

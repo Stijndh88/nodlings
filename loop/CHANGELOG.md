@@ -863,3 +863,9 @@ STRUCTURAL: spring-breed bonus (priority 3, plateau.js demanded structural): `no
 STRUCTURAL: apprentice meal bonus (priority 3, plateau.js demanded structural): `nodling.js` APPRENTICE_BONUS 0.3 for a juvenile eating found food within 3 cells of an adult.
 - Control vs treatment (8k ticks): bench gap 2248 -> 2161 (-3.9%), medianFitness 1041 -> 1163, largestCluster 235 -> 327, brickCells 3446 -> 3446, commSeparation 0.0336 -> 0.0223, pop 501 -> 500. Guardrails pass, but the growth target (gap) was worse, so reverted; median/cluster gains are within single-sample noise.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 106 — day 1055 — `reverted`
+
+STRUCTURAL: shelter bonus (priority 1, plateau.js demanded structural): `nodling.js` SHELTER_BONUS 0.03 per tick for standing in a cell with >=2 durable neighbours while body temp is outside the comfort band.
+- Control vs treatment (8k ticks): bench gap 2248 -> 1994 (-11.3%), medianFitness 1100 -> 1099, largestCluster 302 -> 298, brickCells 3446 -> 3453, commSeparation 0.0082 -> 0.001, pop 504 -> 500. Guardrails pass, but the growth target (gap) was worse and cluster did not improve, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
