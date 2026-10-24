@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-24T16:40Z. Now: day 1047.16, benchmark gap **2248** (evolved gene pool minus random genomes), largest built cluster 333, 3445 brick cells, max generation 1909.
+Updated 2026-10-24T20:30Z. Now: day 1054.97, benchmark gap **2248** (evolved gene pool minus random genomes), largest built cluster 289, 3447 brick cells, max generation 1931.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-24T16:40Z. Now: day 1047.16, benchmark gap **2248** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 114 | 1054.97 | 2248 | 1145 | 289 | 3447 | 1931 | 0.0258 |
 | 113 | 1047.16 | 2248 | 1264 | 333 | 3445 | 1909 | 0.0105 |
 | 112 | 1039.34 | 2248 | 1078 | 396 | 3433 | 1889 | 0.0008 |
 | 111 | 1031.53 | 2248 | 987 | 388 | 3424 | 1873 | 0.0527 |
@@ -24,7 +25,6 @@ Updated 2026-10-24T16:40Z. Now: day 1047.16, benchmark gap **2248** (evolved gen
 | 102 | 961.22 | 2106 | 934 | 308 | 3365 | 1709 | 0.0238 |
 | 101 | 953.41 | 2106 | 949 | 275 | 3363 | 1683 | 0.0144 |
 | 100 | 945.59 | 2106 | 1064 | 285 | 3352 | 1664 | 0.0091 |
-| 99 | 937.78 | 2196 | 1362 | 288 | 3349 | 1644 | 0.0344 |
 
 ## Hypotheses
 
@@ -135,6 +135,7 @@ Updated 2026-10-24T16:40Z. Now: day 1047.16, benchmark gap **2248** (evolved gen
 - **kept**: nodling.js mate choice: pick the fittest willing neighbour instead of the first (bench gap 2240 -> 2248, medianFitness 1056 -> 1074, largestCluster 395 -> 259; within single-sample noise)
 - **reverted**: nodling.js ENDOW_ENERGY 25: parent with energy >150 transfers 25 energy to its newborn (bench gap 2248 -> 2044 (-9%), medianFitness 1199 -> 1143, largestCluster 391 -> 303, brickCells 3423 -> 3440)
 - **reverted**: SPRING_BREED_BONUS 0.3 for breeding within 3 cells of water (gap 2248 -> 2200, others within noise)
+- **reverted**: nodling.js APPRENTICE_BONUS 0.3: juvenile eating found food within 3 cells of an adult (bench gap 2248 -> 2161 (-3.9%), medianFitness 1041 -> 1163, largestCluster 235 -> 327, commSeparation 0.0336 -> 0.0223; growth target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
