@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -838,6 +838,14 @@
       "status": "kept",
       "cycle": 102,
       "note": "bench gap 2240 -> 2248, medianFitness 1056 -> 1074, largestCluster 395 -> 259; within single-sample noise"
+    },
+    {
+      "id": "parental-endowment",
+      "signal": 3,
+      "change": "nodling.js ENDOW_ENERGY 25: parent with energy >150 transfers 25 energy to its newborn",
+      "status": "reverted",
+      "cycle": 103,
+      "note": "bench gap 2248 -> 2044 (-9%), medianFitness 1199 -> 1143, largestCluster 391 -> 303, brickCells 3423 -> 3440"
     }
   ]
 }

@@ -845,3 +845,9 @@ STRUCTURAL: provide bonus (priority 3, plateau.js demanded structural): `nodling
 STRUCTURAL: fittest-mate choice (priority 3, plateau.js demanded structural): `nodling.js` breeders now pick the fittest willing neighbour (age + 250 x offspring) as crossover mate instead of the first found.
 - Control vs treatment (8k ticks): bench gap 2240 -> 2248 (+0.4%), medianFitness 1056 -> 1074, largestCluster 395 -> 259 (control was a spike), brickCells 3423 -> 3423, commSeparation 0.0251 -> 0.0345, pop 500 -> 501. Guardrails pass; differences are within single-sample noise.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 103 — day 1031 — `reverted`
+
+STRUCTURAL: parental endowment (priority 3, plateau.js demanded structural): `nodling.js` ENDOW_ENERGY 25, a parent with energy >150 transfers 25 energy to its newborn.
+- Control vs treatment (8k ticks): bench gap 2248 -> 2044 (-9.1%), medianFitness 1199 -> 1143, largestCluster 391 -> 303, brickCells 3423 -> 3440, commSeparation 0.021 -> 0.0161, pop 500 -> 500. Guardrails pass, but the growth target was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
