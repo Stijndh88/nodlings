@@ -833,3 +833,9 @@ STRUCTURAL: exploration reward (priority 3, plateau.js demanded structural): `no
 STRUCTURAL: well reward (priority 1, plateau.js demanded structural): `nodling.js` WELL_BONUS 0.3 for drinking within 2 cells of a durable structure (settle by water).
 - Control vs treatment (8k ticks): largestCluster 303 -> 192, bench gap 2240 -> 2059 (-8.1%), medianFitness 977 -> 945, brickCells 3421 -> 3423, commSeparation 0.0173 -> 0.0654, pop 501 -> 500. Guardrails pass, but target and growth signal were worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 101 — day 1016 — `reverted`
+
+STRUCTURAL: provide bonus (priority 3, plateau.js demanded structural): `nodling.js` PROVIDE_BONUS 0.2 for adults eating found food with a juvenile (age < 110) within 3 cells.
+- Control vs treatment (8k ticks): bench gap 2240 -> 2141 (-4.4%), medianFitness 960 -> 1097, largestCluster 327 -> 379, brickCells 3422 -> 3425, commSeparation 0.0344 -> 0.0163, pop 501 -> 500. Guardrails pass, but the gap (main growth signal) was worse, so reverted; cluster/median gains are within single-sample noise.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

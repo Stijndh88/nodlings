@@ -822,6 +822,14 @@
       "status": "reverted",
       "cycle": 100,
       "note": "largestCluster 303->192, bench gap 2240->2059, medianFitness 977->945; target worse"
+    },
+    {
+      "id": "provide-bonus",
+      "signal": 3,
+      "change": "nodling.js PROVIDE_BONUS 0.2 for eating found food with a juvenile within 3 cells",
+      "status": "reverted",
+      "cycle": 101,
+      "note": "bench gap 2240 -> 2141 (-4.4%), medianFitness 960 -> 1097, cluster 327 -> 379; growth target (gap) worse"
     }
   ]
 }
