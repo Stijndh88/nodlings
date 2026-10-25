@@ -902,6 +902,14 @@
       "status": "reverted",
       "cycle": 110,
       "note": "bench gap 2248 -> 2010 (-10.6%), median 956 -> 947, cluster 295 -> 243; target worse"
+    },
+    {
+      "id": "repro-energy-100",
+      "signal": 3,
+      "change": "nodling.js breeding energy gate 115 -> 100",
+      "status": "reverted",
+      "cycle": 111,
+      "note": "medianFitness 1299->938 (-27.8%, guardrail), gap 2248->1957, cluster 393->380"
     }
   ]
 }
