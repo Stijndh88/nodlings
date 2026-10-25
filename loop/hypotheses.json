@@ -870,6 +870,14 @@
       "status": "reverted",
       "cycle": 106,
       "note": "bench gap 2248 -> 1994 (-11%), medianFitness 1100 -> 1099, largestCluster 302 -> 298, brickCells 3446 -> 3453; growth target worse"
+    },
+    {
+      "id": "wide-mate-radius",
+      "signal": 3,
+      "change": "nodling.js mate search radius 2 -> 4 cells (wider fittest-mate choice)",
+      "status": "reverted",
+      "cycle": 107,
+      "note": "bench gap 2248 -> 2241 (-0.3%), medianFitness 1309 -> 1099, largestCluster 256 -> 288; growth target not better"
     }
   ]
 }

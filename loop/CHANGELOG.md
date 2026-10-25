@@ -869,3 +869,9 @@ STRUCTURAL: apprentice meal bonus (priority 3, plateau.js demanded structural): 
 STRUCTURAL: shelter bonus (priority 1, plateau.js demanded structural): `nodling.js` SHELTER_BONUS 0.03 per tick for standing in a cell with >=2 durable neighbours while body temp is outside the comfort band.
 - Control vs treatment (8k ticks): bench gap 2248 -> 1994 (-11.3%), medianFitness 1100 -> 1099, largestCluster 302 -> 298, brickCells 3446 -> 3453, commSeparation 0.0082 -> 0.001, pop 504 -> 500. Guardrails pass, but the growth target (gap) was worse and cluster did not improve, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 107 — day 1062 — `reverted`
+
+STRUCTURAL: wide mate radius (priority 3, plateau.js demanded structural): `nodling.js` fittest-mate search radius 2 -> 4 cells.
+- Control vs treatment (8k ticks): bench gap 2248 -> 2241 (-0.3%, noise), medianFitness 1309 -> 1099, largestCluster 256 -> 288, brickCells 3446 -> 3448, commSeparation 0.011 -> 0.0139, pop 502 -> 502. Guardrails pass, but the growth target was not better, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
