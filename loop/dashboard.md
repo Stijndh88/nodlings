@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-25T00:29Z. Now: day 1062.78, benchmark gap **2248** (evolved gene pool minus random genomes), largest built cluster 267, 3449 brick cells, max generation 1951.
+Updated 2026-10-25T04:39Z. Now: day 1070.59, benchmark gap **2248** (evolved gene pool minus random genomes), largest built cluster 388, 3449 brick cells, max generation 1969.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-25T00:29Z. Now: day 1062.78, benchmark gap **2248** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 116 | 1070.59 | 2248 | 1184 | 388 | 3449 | 1969 | 0.0051 |
 | 115 | 1062.78 | 2248 | 1038 | 267 | 3449 | 1951 | 0.0017 |
 | 114 | 1054.97 | 2248 | 1145 | 289 | 3447 | 1931 | 0.0258 |
 | 113 | 1047.16 | 2248 | 1264 | 333 | 3445 | 1909 | 0.0105 |
@@ -24,7 +25,6 @@ Updated 2026-10-25T00:29Z. Now: day 1062.78, benchmark gap **2248** (evolved gen
 | 104 | 976.84 | 2240 | 1157 | 230 | 3389 | 1748 | 0.0061 |
 | 103 | 969.03 | 2122 | 1199 | 301 | 3380 | 1729 | 0.0301 |
 | 102 | 961.22 | 2106 | 934 | 308 | 3365 | 1709 | 0.0238 |
-| 101 | 953.41 | 2106 | 949 | 275 | 3363 | 1683 | 0.0144 |
 
 ## Hypotheses
 
@@ -137,6 +137,7 @@ Updated 2026-10-25T00:29Z. Now: day 1062.78, benchmark gap **2248** (evolved gen
 - **reverted**: SPRING_BREED_BONUS 0.3 for breeding within 3 cells of water (gap 2248 -> 2200, others within noise)
 - **reverted**: nodling.js APPRENTICE_BONUS 0.3: juvenile eating found food within 3 cells of an adult (bench gap 2248 -> 2161 (-3.9%), medianFitness 1041 -> 1163, largestCluster 235 -> 327, commSeparation 0.0336 -> 0.0223; growth target worse)
 - **reverted**: nodling.js SHELTER_BONUS 0.03 per tick in a cell with >=2 durable neighbours while body temp outside comfort (bench gap 2248 -> 1994 (-11%), medianFitness 1100 -> 1099, largestCluster 302 -> 298, brickCells 3446 -> 3453; growth target worse)
+- **reverted**: nodling.js mate search radius 2 -> 4 cells (wider fittest-mate choice) (bench gap 2248 -> 2241 (-0.3%), medianFitness 1309 -> 1099, largestCluster 256 -> 288; growth target not better)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
