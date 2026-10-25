@@ -887,3 +887,9 @@ STRUCTURAL: thirst top-up bonus (priority 3, plateau.js demanded structural): `n
 STRUCTURAL: double mutation for unproven asexual breeders (priority 3, plateau.js demanded structural): `nodling.js` children with no mate from a parent on its first offspring get a second `mutateGenome` round.
 - Control vs treatment (8k ticks): bench gap 2248 -> 2012 (-10.5%), medianFitness 1001 -> 1016, largestCluster 284 -> 240, brickCells 3465 -> 3462, commSeparation 0.0032 -> 0.0421, pop 500 -> 501. Guardrails pass, but the growth target (gap) was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 110 — day 1086 — `reverted`
+
+STRUCTURAL: forage-site fidelity (priority 3, plateau.js demanded structural): `nodling.js` FORAGE_SITE_BONUS 0.2 for eating found food within 6 cells of the previous meal.
+- Control vs treatment (8k ticks): bench gap 2248 -> 2010 (-10.6%), medianFitness 956 -> 947, largestCluster 295 -> 243, brickCells 3472 -> 3468, commSeparation 0.0127 -> 0.0108, pop 501 -> 502. Guardrails pass, but the growth target (gap) was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

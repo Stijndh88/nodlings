@@ -894,6 +894,14 @@
       "status": "reverted",
       "cycle": 109,
       "note": "bench gap 2248 -> 2012 (-10.5%), medianFitness 1001 -> 1016, largestCluster 284 -> 240; growth target worse"
+    },
+    {
+      "id": "forage-site-bonus",
+      "signal": 3,
+      "change": "nodling.js FORAGE_SITE_BONUS 0.2 for eating within 6 cells of previous meal",
+      "status": "reverted",
+      "cycle": 110,
+      "note": "bench gap 2248 -> 2010 (-10.6%), median 956 -> 947, cluster 295 -> 243; target worse"
     }
   ]
 }
