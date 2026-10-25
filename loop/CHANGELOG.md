@@ -893,3 +893,9 @@ STRUCTURAL: double mutation for unproven asexual breeders (priority 3, plateau.j
 STRUCTURAL: forage-site fidelity (priority 3, plateau.js demanded structural): `nodling.js` FORAGE_SITE_BONUS 0.2 for eating found food within 6 cells of the previous meal.
 - Control vs treatment (8k ticks): bench gap 2248 -> 2010 (-10.6%), medianFitness 956 -> 947, largestCluster 295 -> 243, brickCells 3472 -> 3468, commSeparation 0.0127 -> 0.0108, pop 501 -> 502. Guardrails pass, but the growth target (gap) was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 111 — day 1094 — `reverted`
+
+Tuning (plateau.js: gap and brickCells flat, tuning allowed; priority 3): `nodling.js` breeding energy gate 115 -> 100.
+- Control vs treatment (8k ticks): bench gap 2248 -> 1957 (-12.9%), medianFitness (see control.json) -> 938 (-27.8%, tripped guardrail), largestCluster -> 380, brickCells -> 3479, commSeparation -> 0.0214, pop -> 503. Reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
