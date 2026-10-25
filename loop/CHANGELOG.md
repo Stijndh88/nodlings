@@ -881,3 +881,9 @@ STRUCTURAL: wide mate radius (priority 3, plateau.js demanded structural): `nodl
 STRUCTURAL: thirst top-up bonus (priority 3, plateau.js demanded structural): `nodling.js` THIRST_TOPUP_BONUS 0.1 for drinking at hydration 40-70 (thirst is the second death cause).
 - Control vs treatment (8k ticks): bench gap 2248 -> 2190 (-2.6%), medianFitness 1111 -> 1114, largestCluster 289 -> 200, brickCells 3454 -> 3448, commSeparation 0.044 -> 0.0275, pop 501 -> 500. Guardrails pass, but the growth target (gap) was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout). A first batch run on a stale local master (day 992) was discarded unpushed; the cycle was redone from origin/master.
+
+## Cycle 109 — day 1078 — `reverted`
+
+STRUCTURAL: double mutation for unproven asexual breeders (priority 3, plateau.js demanded structural): `nodling.js` children with no mate from a parent on its first offspring get a second `mutateGenome` round.
+- Control vs treatment (8k ticks): bench gap 2248 -> 2012 (-10.5%), medianFitness 1001 -> 1016, largestCluster 284 -> 240, brickCells 3465 -> 3462, commSeparation 0.0032 -> 0.0421, pop 500 -> 501. Guardrails pass, but the growth target (gap) was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

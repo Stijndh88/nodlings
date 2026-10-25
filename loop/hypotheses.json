@@ -886,6 +886,14 @@
       "status": "reverted",
       "cycle": 107,
       "note": "bench gap 2248 -> 2241 (-0.3%), medianFitness 1309 -> 1099, largestCluster 256 -> 288; growth target not better"
+    },
+    {
+      "id": "double-mutate-unproven-clone",
+      "signal": 3,
+      "change": "nodling.js: asexual children of first-time breeders get a second mutateGenome round",
+      "status": "reverted",
+      "cycle": 109,
+      "note": "bench gap 2248 -> 2012 (-10.5%), medianFitness 1001 -> 1016, largestCluster 284 -> 240; growth target worse"
     }
   ]
 }
