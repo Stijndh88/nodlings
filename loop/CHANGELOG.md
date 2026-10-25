@@ -899,3 +899,9 @@ STRUCTURAL: forage-site fidelity (priority 3, plateau.js demanded structural): `
 Tuning (plateau.js: gap and brickCells flat, tuning allowed; priority 3): `nodling.js` breeding energy gate 115 -> 100.
 - Control vs treatment (8k ticks): bench gap 2248 -> 1957 (-12.9%), medianFitness 1299 -> 938 (-27.8%, tripped guardrail), largestCluster -> 380, brickCells -> 3479, commSeparation -> 0.0214, pop -> 503. Reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 112 — day 1101 — `reverted`
+
+STRUCTURAL: wean bonus (priority 3, plateau.js demanded structural): `nodling.js` WEAN_BONUS 0.5 to a living parent when its child reaches MATURITY (rewards raising offspring).
+- Control vs treatment (8k ticks): bench gap 2248 -> 2162 (-3.8%), medianFitness 1147 -> 1124, largestCluster 653 -> 350, brickCells 3486 -> 3487, commSeparation 0.0287 -> 0.0217, pop 502 -> 503. Guardrails pass, but the growth target (gap) was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
