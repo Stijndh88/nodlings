@@ -875,3 +875,9 @@ STRUCTURAL: shelter bonus (priority 1, plateau.js demanded structural): `nodling
 STRUCTURAL: wide mate radius (priority 3, plateau.js demanded structural): `nodling.js` fittest-mate search radius 2 -> 4 cells.
 - Control vs treatment (8k ticks): bench gap 2248 -> 2241 (-0.3%, noise), medianFitness 1309 -> 1099, largestCluster 256 -> 288, brickCells 3446 -> 3448, commSeparation 0.011 -> 0.0139, pop 502 -> 502. Guardrails pass, but the growth target was not better, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 108 — day 1070 — `reverted`
+
+STRUCTURAL: thirst top-up bonus (priority 3, plateau.js demanded structural): `nodling.js` THIRST_TOPUP_BONUS 0.1 for drinking at hydration 40-70 (thirst is the second death cause).
+- Control vs treatment (8k ticks): bench gap 2248 -> 2190 (-2.6%), medianFitness 1111 -> 1114, largestCluster 289 -> 200, brickCells 3454 -> 3448, commSeparation 0.044 -> 0.0275, pop 501 -> 500. Guardrails pass, but the growth target (gap) was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout). A first batch run on a stale local master (day 992) was discarded unpushed; the cycle was redone from origin/master.

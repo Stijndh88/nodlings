@@ -872,6 +872,14 @@
       "note": "bench gap 2248 -> 1994 (-11%), medianFitness 1100 -> 1099, largestCluster 302 -> 298, brickCells 3446 -> 3453; growth target worse"
     },
     {
+      "id": "thirst-topup-bonus",
+      "signal": 3,
+      "change": "nodling.js THIRST_TOPUP_BONUS 0.1 for drinking at hydration 40-70",
+      "status": "reverted",
+      "cycle": 108,
+      "note": "bench gap 2248 -> 2190 (-2.6%), no gain on growth"
+    },
+    {
       "id": "wide-mate-radius",
       "signal": 3,
       "change": "nodling.js mate search radius 2 -> 4 cells (wider fittest-mate choice)",
