@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-25T12:29Z. Now: day 1086.22, benchmark gap **2248** (evolved gene pool minus random genomes), largest built cluster 292, 3464 brick cells, max generation 2018.
+Updated 2026-10-25T16:30Z. Now: day 1094.03, benchmark gap **2248** (evolved gene pool minus random genomes), largest built cluster 392, 3474 brick cells, max generation 2032.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-25T12:29Z. Now: day 1086.22, benchmark gap **2248** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 119 | 1094.03 | 2248 | 1213 | 392 | 3474 | 2032 | 0.0189 |
 | 118 | 1086.22 | 2248 | 935 | 292 | 3464 | 2018 | 0.0126 |
 | 117 | 1078.41 | 2248 | 1134 | 297 | 3451 | 1996 | 0.0026 |
 | 116 | 1070.59 | 2248 | 1184 | 388 | 3449 | 1969 | 0.0051 |
@@ -24,7 +25,6 @@ Updated 2026-10-25T12:29Z. Now: day 1086.22, benchmark gap **2248** (evolved gen
 | 107 | 1000.28 | 2240 | 1394 | 275 | 3406 | 1796 | 0.0215 |
 | 106 | 992.47 | 2240 | 916 | 239 | 3395 | 1782 | 0.0143 |
 | 105 | 984.66 | 2240 | 1131 | 228 | 3395 | 1763 | 0.0173 |
-| 104 | 976.84 | 2240 | 1157 | 230 | 3389 | 1748 | 0.0061 |
 
 ## Hypotheses
 
@@ -140,6 +140,7 @@ Updated 2026-10-25T12:29Z. Now: day 1086.22, benchmark gap **2248** (evolved gen
 - **reverted**: nodling.js THIRST_TOPUP_BONUS 0.1 for drinking at hydration 40-70 (bench gap 2248 -> 2190 (-2.6%), no gain on growth)
 - **reverted**: nodling.js mate search radius 2 -> 4 cells (wider fittest-mate choice) (bench gap 2248 -> 2241 (-0.3%), medianFitness 1309 -> 1099, largestCluster 256 -> 288; growth target not better)
 - **reverted**: nodling.js: asexual children of first-time breeders get a second mutateGenome round (bench gap 2248 -> 2012 (-10.5%), medianFitness 1001 -> 1016, largestCluster 284 -> 240; growth target worse)
+- **reverted**: nodling.js FORAGE_SITE_BONUS 0.2 for eating within 6 cells of previous meal (bench gap 2248 -> 2010 (-10.6%), median 956 -> 947, cluster 295 -> 243; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
