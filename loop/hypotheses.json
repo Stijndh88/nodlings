@@ -926,6 +926,14 @@
       "status": "reverted",
       "cycle": 113,
       "note": "bench gap 2248->2048 (-8.9%), medianFitness 1041->1144, largestCluster 396->295; growth target worse"
+    },
+    {
+      "id": "winter-frost",
+      "signal": 3,
+      "change": "world.js flora regrowth acceptance 0.42 -> 0.30 in Winter (as in Summer)",
+      "status": "reverted",
+      "cycle": 114,
+      "note": "bench gap 2248->1952 (-13.2%), largestCluster 403->297; growth target worse"
     }
   ]
 }

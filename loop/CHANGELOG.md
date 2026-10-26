@@ -911,3 +911,9 @@ STRUCTURAL: wean bonus (priority 3, plateau.js demanded structural): `nodling.js
 STRUCTURAL: huddle bonus (priority 3, plateau.js demanded structural): `nodling.js` HUDDLE_BONUS 0.03/tick for being cold (body < comfort) with another Nodling within 1.5 cells.
 - Control vs treatment (8k ticks): bench gap 2248 -> 2048 (-8.9%), medianFitness 1041 -> 1144, largestCluster 396 -> 295, brickCells 3485 -> 3480, commSeparation 0.0406 -> 0.0287, pop 499 -> 501. Guardrails pass, but the growth target (gap) was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 114 — day 1117 — `reverted`
+
+STRUCTURAL: winter frost (priority 3, plateau.js demanded structural): `world.js` flora regrowth acceptance 0.42 -> 0.30 in Winter (on top of the lean-winter halving).
+- Control vs treatment (8k ticks): bench gap 2248 -> 1952 (-13.2%), medianFitness 865 -> 839, largestCluster 403 -> 297, brickCells 3494 -> 3491, commSeparation 0.0135 -> 0.0529, pop 502 -> 500. Guardrails pass, but the growth target (gap) was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
