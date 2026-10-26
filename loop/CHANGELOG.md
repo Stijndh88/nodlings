@@ -923,3 +923,9 @@ STRUCTURAL: winter frost (priority 3, plateau.js demanded structural): `world.js
 STRUCTURAL: hungry hunt bonus (priority 3, plateau.js demanded structural): `nodling.js` HUNT_HUNGRY_BONUS 0.4 extra for a kill while energy < 60.
 - Control vs treatment (8k ticks): bench gap 2248 -> 2233 (-0.7%), medianFitness 1147 -> 1147, largestCluster 408 -> 408, brickCells 3506 -> 3506, commSeparation 0.0061 -> 0.0061, pop 502 -> 502. Effect is essentially nil (hunting is rare), and the target gap was marginally worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 116 — day 1133 — `reverted`
+
+STRUCTURAL: elder bonus (priority 3, plateau.js demanded structural): `nodling.js` ELDER_BONUS 0.5 at every 250th tick of age survived.
+- Control vs treatment (8k ticks): bench gap 2248 -> 2225 (-1.0%), medianFitness 1047 -> 1080, largestCluster 323 -> 245, brickCells 3518 -> 3515, commSeparation 0.0152 -> 0.0026, pop 500 -> 500. Guardrails pass, but the growth target (gap) was marginally worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

@@ -942,6 +942,14 @@
       "status": "reverted",
       "cycle": 115,
       "note": "bench gap 2248->2233 (-0.7%), all else identical (median 1147, cluster 408, brick 3506); no gain on target"
+    },
+    {
+      "id": "elder-bonus",
+      "signal": 3,
+      "change": "nodling.js ELDER_BONUS 0.5 at every 250th tick of age",
+      "status": "reverted",
+      "cycle": 116,
+      "note": "bench gap 2248->2225 (-1.0%), medianFitness 1047->1080, largestCluster 323->245; target not better"
     }
   ]
 }
