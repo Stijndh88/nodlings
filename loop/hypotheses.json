@@ -934,6 +934,14 @@
       "status": "reverted",
       "cycle": 114,
       "note": "bench gap 2248->1952 (-13.2%), largestCluster 403->297; growth target worse"
+    },
+    {
+      "id": "hunt-hungry-bonus",
+      "signal": 3,
+      "change": "nodling.js HUNT_HUNGRY_BONUS 0.4 extra for a kill while energy < 60",
+      "status": "reverted",
+      "cycle": 115,
+      "note": "bench gap 2248->2233 (-0.7%), all else identical (median 1147, cluster 408, brick 3506); no gain on target"
     }
   ]
 }
