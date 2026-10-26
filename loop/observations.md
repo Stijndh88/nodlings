@@ -1,25 +1,28 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1133.1 · Summer
+Seed `20261007` · day 1140.9 · Autumn
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (44 juvenile) |
-| max generation | 2132 |
+| population | 501 (53 juvenile) |
+| max generation | 2140 |
 | best fitness | 7002 |
-| avg brain (conns) | 211 |
-| lineage diversity | 7 colour-groups |
-| diet | 84% herbivore / 3% carnivore |
-| predators | 2, 4 kills, best 114012 |
-| structures (durable) | 8438 (3906) |
-| planks / bricks / bridges | 22 / 3137 / 2660 |
-| flora / cooked food | 5052 / 311 |
+| avg brain (conns) | 203 |
+| lineage diversity | 6 colour-groups |
+| diet | 87% herbivore / 2% carnivore |
+| predators | 3, 15 kills, best 114012 |
+| structures (durable) | 6279 (3766) |
+| planks / bricks / bridges | 23 / 3161 / 2660 |
+| flora / cooked food | 3600 / 386 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1140.1]** _(trend)_ Brains are genuinely shrinking below capacity — selection favours simpler wiring right now.
+- **[day 1140.1]** _(trend)_ Lineages are deepening — max generation 2136→2140. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1133.1]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1127.3]** _(trend)_ Lineages are deepening — max generation 2110→2117. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1120.5]** _(trend)_ Lineages are deepening — max generation 2095→2100. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1113.7]** _(trend)_ Lineages are deepening — max generation 2078→2083. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
