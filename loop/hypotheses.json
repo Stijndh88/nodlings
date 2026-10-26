@@ -950,6 +950,14 @@
       "status": "reverted",
       "cycle": 116,
       "note": "bench gap 2248->2225 (-1.0%), medianFitness 1047->1080, largestCluster 323->245; target not better"
+    },
+    {
+      "id": "roving-meal-bonus",
+      "signal": 3,
+      "change": "nodling.js ROVING_MEAL_BONUS 0.2 for eating found food >=10 cells from the previous meal",
+      "status": "reverted",
+      "cycle": 117,
+      "note": "bench gap 2248 -> 2110 (-6.1%); target worse"
     }
   ]
 }

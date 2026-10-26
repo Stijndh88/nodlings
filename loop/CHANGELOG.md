@@ -929,3 +929,9 @@ STRUCTURAL: hungry hunt bonus (priority 3, plateau.js demanded structural): `nod
 STRUCTURAL: elder bonus (priority 3, plateau.js demanded structural): `nodling.js` ELDER_BONUS 0.5 at every 250th tick of age survived.
 - Control vs treatment (8k ticks): bench gap 2248 -> 2225 (-1.0%), medianFitness 1047 -> 1080, largestCluster 323 -> 245, brickCells 3518 -> 3515, commSeparation 0.0152 -> 0.0026, pop 500 -> 500. Guardrails pass, but the growth target (gap) was marginally worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 117 — day 1141 — `reverted`
+
+STRUCTURAL: roving meal bonus (priority 3, plateau.js demanded structural): `nodling.js` ROVING_MEAL_BONUS 0.2 for eating found food >=10 cells from the previous meal.
+- Control vs treatment (8k ticks): bench gap 2248 -> 2110 (-6.1%), medianFitness 1072 (control not recorded here), largestCluster 286, brickCells 3527, commSeparation 0.0557 (control 0.1407), pop 501. Guardrails pass, but the growth target (gap) was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
