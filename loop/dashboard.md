@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-26T04:30Z. Now: day 1109.66, benchmark gap **2248** (evolved gene pool minus random genomes), largest built cluster 622, 3489 brick cells, max generation 2078.
+Updated 2026-10-26T08:31Z. Now: day 1117.47, benchmark gap **2248** (evolved gene pool minus random genomes), largest built cluster 405, 3487 brick cells, max generation 2095.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-26T04:30Z. Now: day 1109.66, benchmark gap **2248** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 122 | 1117.47 | 2248 | 980 | 405 | 3487 | 2095 | 0.0693 |
 | 121 | 1109.66 | 2248 | 1032 | 622 | 3489 | 2078 | 0.0292 |
 | 120 | 1101.84 | 2248 | 1216 | 400 | 3488 | 2056 | 0.0235 |
 | 119 | 1094.03 | 2248 | 1213 | 392 | 3474 | 2032 | 0.0189 |
@@ -24,7 +25,6 @@ Updated 2026-10-26T04:30Z. Now: day 1109.66, benchmark gap **2248** (evolved gen
 | 110 | 1023.72 | 2240 | 1014 | 337 | 3422 | 1850 | 0.0323 |
 | 109 | 1015.91 | 2240 | 1080 | 190 | 3422 | 1834 | 0.0279 |
 | 108 | 1008.09 | 2240 | 1015 | 190 | 3419 | 1815 | 0.0061 |
-| 107 | 1000.28 | 2240 | 1394 | 275 | 3406 | 1796 | 0.0215 |
 
 ## Hypotheses
 
@@ -143,6 +143,7 @@ Updated 2026-10-26T04:30Z. Now: day 1109.66, benchmark gap **2248** (evolved gen
 - **reverted**: nodling.js FORAGE_SITE_BONUS 0.2 for eating within 6 cells of previous meal (bench gap 2248 -> 2010 (-10.6%), median 956 -> 947, cluster 295 -> 243; target worse)
 - **reverted**: nodling.js breeding energy gate 115 -> 100 (medianFitness 1299->938 (-27.8%, guardrail), gap 2248->1957, cluster 393->380)
 - **reverted**: nodling.js WEAN_BONUS 0.5 to a living parent when its child reaches MATURITY (bench gap 2248->2162 (-3.8%), medianFitness 1147->1124, largestCluster 653->350; target worse)
+- **reverted**: nodling.js HUDDLE_BONUS 0.03/tick for being cold with another Nodling within 1.5 cells (bench gap 2248->2048 (-8.9%), medianFitness 1041->1144, largestCluster 396->295; growth target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
