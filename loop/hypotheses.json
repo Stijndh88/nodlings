@@ -918,6 +918,14 @@
       "status": "reverted",
       "cycle": 112,
       "note": "bench gap 2248->2162 (-3.8%), medianFitness 1147->1124, largestCluster 653->350; target worse"
+    },
+    {
+      "id": "mate-bonus",
+      "signal": 3,
+      "change": "nodling.js MATE_BONUS 0.4: extra reward to a parent that breeds with a mate (crossover over cloning)",
+      "status": "kept",
+      "cycle": 113,
+      "note": "medianFitness 1041->1163, gap 2248->2207 (-1.8%, noise), cluster 396->624; single 8k sample"
     }
   ]
 }

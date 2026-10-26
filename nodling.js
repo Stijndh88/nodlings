@@ -28,6 +28,7 @@ const SITE_BONUS = 0.3; // extra reward for an adjacent build within 6 cells of 
 const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
 const HUNGRY_EAT_BONUS = 0.3; // reward for eating found food while energy is low (<60): learn to forage before starving
 const KILN_SITE_BONUS = 0.3; // extra reward for feeding a kiln (clay beside fire) within 3 cells of an existing structure (kilns inside villages)
+const MATE_BONUS = 0.4; // extra reward to a parent that breeds with a mate (crossover beats cloning)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
@@ -396,6 +397,7 @@ class Nodling {
         }
       const g = mutateGenome(
         mate ? crossoverGenome(this.genome, mate.genome, w.rng) : this.genome, w.rng);
+      if (mate) this.bonus += MATE_BONUS;
       const child = new Nodling(w, this.x, this.y, g, this.gen + 1);
       // nest bonus: breeding inside a cluster of structures gives the newborn a
       // head start, so settling and building together pays off (drives villages)

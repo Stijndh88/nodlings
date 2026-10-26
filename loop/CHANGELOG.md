@@ -905,3 +905,9 @@ Tuning (plateau.js: gap and brickCells flat, tuning allowed; priority 3): `nodli
 STRUCTURAL: wean bonus (priority 3, plateau.js demanded structural): `nodling.js` WEAN_BONUS 0.5 to a living parent when its child reaches MATURITY (rewards raising offspring).
 - Control vs treatment (8k ticks): bench gap 2248 -> 2162 (-3.8%), medianFitness 1147 -> 1124, largestCluster 653 -> 350, brickCells 3486 -> 3487, commSeparation 0.0287 -> 0.0217, pop 502 -> 503. Guardrails pass, but the growth target (gap) was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 113 — day 1109 — `kept`
+
+STRUCTURAL: mate bonus (priority 3, plateau.js demanded structural): `nodling.js` MATE_BONUS 0.4 added to a parent's reward when it breeds with a mate (crossover rather than cloning).
+- Control vs treatment (8k ticks): medianFitness 1041 -> 1163, bench gap 2248 -> 2207 (-1.8%, within noise), largestCluster 396 -> 624, brickCells 3485 -> 3490, commSeparation 0.0406 -> 0.1238, pop 499 -> 498. Guardrails pass; single sample, gap difference is noise.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout). Pushed to the session branch claude/happy-goodall-v7egmj (equal to master at start).
