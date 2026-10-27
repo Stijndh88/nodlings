@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-27T16:42Z. Now: day 1176.06, benchmark gap **2311** (evolved gene pool minus random genomes), largest built cluster 400, 3543 brick cells, max generation 2227.
+Updated 2026-10-27T20:28Z. Now: day 1179.97, benchmark gap **2311** (evolved gene pool minus random genomes), largest built cluster 403, 3542 brick cells, max generation 2238.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-27T16:42Z. Now: day 1176.06, benchmark gap **2311** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 131 | 1179.97 | 2311 | 1122 | 403 | 3542 | 2238 | 0.1576 |
 | 130 | 1176.06 | 2311 | 999 | 400 | 3543 | 2227 | 0.0523 |
 | 129 | 1172.16 | 2311 | 1100 | 322 | 3541 | 2217 | 0.0355 |
 | 128 | 1164.34 | 2311 | 889 | 320 | 3540 | 2196 | 0.009 |
@@ -24,7 +25,6 @@ Updated 2026-10-27T16:42Z. Now: day 1176.06, benchmark gap **2311** (evolved gen
 | 119 | 1094.03 | 2248 | 1213 | 392 | 3474 | 2032 | 0.0189 |
 | 118 | 1086.22 | 2248 | 935 | 292 | 3464 | 2018 | 0.0126 |
 | 117 | 1078.41 | 2248 | 1134 | 297 | 3451 | 1996 | 0.0026 |
-| 116 | 1070.59 | 2248 | 1184 | 388 | 3449 | 1969 | 0.0051 |
 
 ## Hypotheses
 
@@ -152,6 +152,7 @@ Updated 2026-10-27T16:42Z. Now: day 1176.06, benchmark gap **2311** (evolved gen
 - **reverted**: nodling.js STREAK_BONUS 0.2: extra reward for an adjacent build within 60 ticks of own previous adjacent build (cluster 320->320, builtCells 4171->4171, bench gap 2311->2294; effect nil, gap marginally worse)
 - **reverted**: nodling.js REST_BONUS 0.02/tick for moving<0.1 at night (bench gap 2311->2141, others ~flat; no gain on target)
 - **kept**: nodling.js FATTEN_BONUS 0.01/tick for energy > 180 in Autumn (gap 2311 -> 2311 (flat), medianFitness 960 -> 1193, largestCluster 316 -> 403; single 8k sample, within noise)
+- **reverted**: nodling.js COOP_BONUS 0.2: extra reward for an adjacent build with another Nodling within 3 cells (cluster 404->401, builtCells 4195->4069, bench gap 2311->2240; no gain on target)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
