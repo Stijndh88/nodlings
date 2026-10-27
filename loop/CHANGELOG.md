@@ -953,3 +953,9 @@ STRUCTURAL: build-streak bonus (priority 1, plateau.js demanded structural): `no
 STRUCTURAL: night-rest bonus (priority 3, plateau.js demanded structural): `nodling.js` REST_BONUS 0.02/tick for resting (movement < 0.1) at night.
 - Control vs treatment (8k ticks): bench gap 2311 -> 2141 (-7.4%), medianFitness 1086 -> 1111, largestCluster 322 -> 327, brickCells 3535 -> 3538, builtCells 4086 -> 4057, commSeparation 0.0654 -> 0.0241, pop 503 -> 503. Guardrails pass, but the growth target (gap) was worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 121 — day 1172 — `kept`
+
+STRUCTURAL: autumn fattening bonus (priority 3, plateau.js demanded structural): `nodling.js` FATTEN_BONUS 0.01/tick for energy > 180 in Autumn.
+- Control vs treatment (8k ticks): bench gap 2311 -> 2311 (flat), medianFitness 960 -> 1193, largestCluster 316 -> 403, builtCells 3929 -> 4139, brickCells 3548 -> 3543, commSeparation 0.0717 -> 0.0507, pop 499 -> 500. Guardrails pass; target equal or better, but single 8k sample, within noise.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

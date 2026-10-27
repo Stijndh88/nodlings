@@ -982,6 +982,14 @@
       "status": "reverted",
       "cycle": 120,
       "note": "bench gap 2311->2141, others ~flat; no gain on target"
+    },
+    {
+      "id": "autumn-fatten-bonus",
+      "signal": 3,
+      "change": "nodling.js FATTEN_BONUS 0.01/tick for energy > 180 in Autumn",
+      "status": "kept",
+      "cycle": 121,
+      "note": "gap 2311 -> 2311 (flat), medianFitness 960 -> 1193, largestCluster 316 -> 403; single 8k sample, within noise"
     }
   ]
 }
