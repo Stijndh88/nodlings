@@ -958,6 +958,14 @@
       "status": "reverted",
       "cycle": 117,
       "note": "bench gap 2248 -> 2110 (-6.1%); target worse"
+    },
+    {
+      "id": "home-night-bonus",
+      "signal": 1,
+      "change": "nodling.js HOME_BONUS 0.02/tick for being within 4 cells of own last build site at night",
+      "status": "kept",
+      "cycle": 118,
+      "note": "gap 2248 -> 2311, cluster 195 -> 229, builtCells 4095 -> 4315; single 8k sample, within noise"
     }
   ]
 }
