@@ -24,6 +24,7 @@ const BUILD_ADJACENT_BONUS = 0.85; // reward for placing durable material next t
 const NEST_BREED_BONUS = 0.5; // extra reward to a parent that breeds inside a cluster of structures (settling pays)
 const BRIDGE_CROSS_BONUS = 0.2; // reward for stepping from land onto a bridge tile (bridges get used, not just laid)
 const HEARTH_BONUS = 0.05; // per-tick reward for warming up (body < comfort) beside a fire without standing in it
+const COOL_BONUS = 0.05; // per-tick reward for cooling down (body > comfort and falling): seek shade/water in summer heat
 const HOME_BONUS = 0.02; // per-tick reward for being within 4 cells of own last build site at night (return home to the village)
 const FATTEN_BONUS = 0.01; // per-tick reward for holding energy > 180 in Autumn (store fat before the lean winter)
 const SITE_BONUS = 0.3; // extra reward for an adjacent build within 6 cells of this Nodling's previous build (stay on one site)
@@ -352,6 +353,7 @@ class Nodling {
     const prevTemp = this.bodyTemp;
     this.bodyTemp += (w.cellTemp(cx, cy) - this.bodyTemp)*0.03;
     if (!cell.fire && this.bodyTemp < TEMP_COMFORT_LO && this.bodyTemp > prevTemp && w.cellTemp(cx, cy) > 30) this.bonus += HEARTH_BONUS;
+    if (this.bodyTemp > TEMP_COMFORT_HI && this.bodyTemp < prevTemp) this.bonus += COOL_BONUS;
     if (this.energy > 180 && w.season() === 'Autumn') this.bonus += FATTEN_BONUS;
     if (this.lastBuild && w.isNight() && (this.lastBuild[0]-cx)**2 + (this.lastBuild[1]-cy)**2 <= 16) this.bonus += HOME_BONUS;
     if (this.bodyTemp < TEMP_COMFORT_LO) this.energy -= (TEMP_COMFORT_LO - this.bodyTemp)*0.05;

@@ -998,6 +998,14 @@
       "status": "reverted",
       "cycle": 122,
       "note": "cluster 404->401, builtCells 4195->4069, bench gap 2311->2240; no gain on target"
+    },
+    {
+      "id": "summer-cool-bonus",
+      "signal": 3,
+      "change": "nodling.js COOL_BONUS 0.05/tick while body temp > comfort-high and falling",
+      "status": "kept",
+      "cycle": 123,
+      "note": "gap 2311 -> 2311, median 1101 -> 1101, cluster 401 -> 401, builtCells 4243 (control ~4126-4195); effectively no-op, within noise"
     }
   ]
 }

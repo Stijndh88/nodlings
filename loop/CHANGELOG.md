@@ -965,3 +965,9 @@ STRUCTURAL: autumn fattening bonus (priority 3, plateau.js demanded structural):
 STRUCTURAL: cooperative-build bonus (priority 1, plateau.js demanded structural): `nodling.js` COOP_BONUS 0.2 for an adjacent build with another Nodling within 3 cells.
 - Control vs treatment (8k ticks): bench gap 2311 -> 2240 (-3.1%), medianFitness 1016 -> 1020, largestCluster 404 -> 401, brickCells 3544 -> 3546, builtCells 4195 -> 4069, commSeparation 0.1682 -> 0.0752, pop 499 -> 500. Guardrails pass, but target flat/slightly worse and gap lower, so reverted.
 - Baseline batch ran 6250 ticks (12500 timed out at 600s).
+
+## Cycle 123 — day 1180 — `kept`
+
+STRUCTURAL: summer cooling bonus (priority 3, plateau.js demanded structural): `nodling.js` COOL_BONUS 0.05/tick while body temp > comfort-high and falling.
+- Control vs treatment (8k ticks): bench gap 2311 -> 2311 (flat), medianFitness 1101 -> 1101, largestCluster 401 -> 401, brickCells 3545 -> 3545, commSeparation 0.1274 -> 0.1274, pop 500 -> 500. Guardrails pass; metrics essentially identical (bonus rarely fires), so within noise.
+- Baseline batch ran 6250 ticks (25000 exceeds the tool timeout).
