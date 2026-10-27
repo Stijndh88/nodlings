@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-27T12:39Z. Now: day 1172.16, benchmark gap **2311** (evolved gene pool minus random genomes), largest built cluster 322, 3541 brick cells, max generation 2217.
+Updated 2026-10-27T16:42Z. Now: day 1176.06, benchmark gap **2311** (evolved gene pool minus random genomes), largest built cluster 400, 3543 brick cells, max generation 2227.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-27T12:39Z. Now: day 1172.16, benchmark gap **2311** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 130 | 1176.06 | 2311 | 999 | 400 | 3543 | 2227 | 0.0523 |
 | 129 | 1172.16 | 2311 | 1100 | 322 | 3541 | 2217 | 0.0355 |
 | 128 | 1164.34 | 2311 | 889 | 320 | 3540 | 2196 | 0.009 |
 | 127 | 1156.53 | 2311 | 1047 | 219 | 3531 | 2179 | 0.0023 |
@@ -24,7 +25,6 @@ Updated 2026-10-27T12:39Z. Now: day 1172.16, benchmark gap **2311** (evolved gen
 | 118 | 1086.22 | 2248 | 935 | 292 | 3464 | 2018 | 0.0126 |
 | 117 | 1078.41 | 2248 | 1134 | 297 | 3451 | 1996 | 0.0026 |
 | 116 | 1070.59 | 2248 | 1184 | 388 | 3449 | 1969 | 0.0051 |
-| 115 | 1062.78 | 2248 | 1038 | 267 | 3449 | 1951 | 0.0017 |
 
 ## Hypotheses
 
@@ -151,6 +151,7 @@ Updated 2026-10-27T12:39Z. Now: day 1172.16, benchmark gap **2311** (evolved gen
 - **kept**: nodling.js HOME_BONUS 0.02/tick for being within 4 cells of own last build site at night (gap 2248 -> 2311, cluster 195 -> 229, builtCells 4095 -> 4315; single 8k sample, within noise)
 - **reverted**: nodling.js STREAK_BONUS 0.2: extra reward for an adjacent build within 60 ticks of own previous adjacent build (cluster 320->320, builtCells 4171->4171, bench gap 2311->2294; effect nil, gap marginally worse)
 - **reverted**: nodling.js REST_BONUS 0.02/tick for moving<0.1 at night (bench gap 2311->2141, others ~flat; no gain on target)
+- **kept**: nodling.js FATTEN_BONUS 0.01/tick for energy > 180 in Autumn (gap 2311 -> 2311 (flat), medianFitness 960 -> 1193, largestCluster 316 -> 403; single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
