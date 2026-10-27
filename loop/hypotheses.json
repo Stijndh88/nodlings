@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -974,6 +974,14 @@
       "status": "reverted",
       "cycle": 119,
       "note": "cluster 320->320, builtCells 4171->4171, bench gap 2311->2294; effect nil, gap marginally worse"
+    },
+    {
+      "id": "night-rest-bonus",
+      "signal": 3,
+      "change": "nodling.js REST_BONUS 0.02/tick for moving<0.1 at night",
+      "status": "reverted",
+      "cycle": 120,
+      "note": "bench gap 2311->2141, others ~flat; no gain on target"
     }
   ]
 }

@@ -947,3 +947,9 @@ STRUCTURAL: home-at-night bonus (priority 1, plateau.js demanded structural): `n
 STRUCTURAL: build-streak bonus (priority 1, plateau.js demanded structural): `nodling.js` STREAK_BONUS 0.2 for an adjacent build within 60 ticks of the previous adjacent build.
 - Control vs treatment (8k ticks): bench gap 2311 -> 2294 (-0.7%), medianFitness 1020 -> 1020, largestCluster 320 -> 320, brickCells 3536 -> 3536, builtCells 4171 -> 4171, commSeparation 0.0098 -> 0.0098, pop 500 -> 500. Guardrails pass, but the effect is nil on the target and the gap was marginally worse, so reverted.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 120 — day 1164 — `reverted`
+
+STRUCTURAL: night-rest bonus (priority 3, plateau.js demanded structural): `nodling.js` REST_BONUS 0.02/tick for resting (movement < 0.1) at night.
+- Control vs treatment (8k ticks): bench gap 2311 -> 2141 (-7.4%), medianFitness 1086 -> 1111, largestCluster 322 -> 327, brickCells 3535 -> 3538, builtCells 4086 -> 4057, commSeparation 0.0654 -> 0.0241, pop 503 -> 503. Guardrails pass, but the growth target (gap) was worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
