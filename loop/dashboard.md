@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-27T00:30Z. Now: day 1148.72, benchmark gap **2248** (evolved gene pool minus random genomes), largest built cluster 215, 3530 brick cells, max generation 2155.
+Updated 2026-10-27T04:28Z. Now: day 1156.53, benchmark gap **2311** (evolved gene pool minus random genomes), largest built cluster 219, 3531 brick cells, max generation 2179.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-27T00:30Z. Now: day 1148.72, benchmark gap **2248** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 127 | 1156.53 | 2311 | 1047 | 219 | 3531 | 2179 | 0.0023 |
 | 126 | 1148.72 | 2248 | 1093 | 215 | 3530 | 2155 | 0.0193 |
 | 125 | 1140.91 | 2248 | 1237 | 281 | 3524 | 2141 | 0.0209 |
 | 124 | 1133.09 | 2248 | 785 | 314 | 3513 | 2135 | 0.0049 |
@@ -24,7 +25,6 @@ Updated 2026-10-27T00:30Z. Now: day 1148.72, benchmark gap **2248** (evolved gen
 | 115 | 1062.78 | 2248 | 1038 | 267 | 3449 | 1951 | 0.0017 |
 | 114 | 1054.97 | 2248 | 1145 | 289 | 3447 | 1931 | 0.0258 |
 | 113 | 1047.16 | 2248 | 1264 | 333 | 3445 | 1909 | 0.0105 |
-| 112 | 1039.34 | 2248 | 1078 | 396 | 3433 | 1889 | 0.0008 |
 
 ## Hypotheses
 
@@ -148,6 +148,7 @@ Updated 2026-10-27T00:30Z. Now: day 1148.72, benchmark gap **2248** (evolved gen
 - **reverted**: nodling.js HUNT_HUNGRY_BONUS 0.4 extra for a kill while energy < 60 (bench gap 2248->2233 (-0.7%), all else identical (median 1147, cluster 408, brick 3506); no gain on target)
 - **reverted**: nodling.js ELDER_BONUS 0.5 at every 250th tick of age (bench gap 2248->2225 (-1.0%), medianFitness 1047->1080, largestCluster 323->245; target not better)
 - **reverted**: nodling.js ROVING_MEAL_BONUS 0.2 for eating found food >=10 cells from the previous meal (bench gap 2248 -> 2110 (-6.1%); target worse)
+- **kept**: nodling.js HOME_BONUS 0.02/tick for being within 4 cells of own last build site at night (gap 2248 -> 2311, cluster 195 -> 229, builtCells 4095 -> 4315; single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
