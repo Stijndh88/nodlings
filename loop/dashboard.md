@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-27T04:28Z. Now: day 1156.53, benchmark gap **2311** (evolved gene pool minus random genomes), largest built cluster 219, 3531 brick cells, max generation 2179.
+Updated 2026-10-27T08:31Z. Now: day 1164.34, benchmark gap **2311** (evolved gene pool minus random genomes), largest built cluster 320, 3540 brick cells, max generation 2196.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-27T04:28Z. Now: day 1156.53, benchmark gap **2311** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 128 | 1164.34 | 2311 | 889 | 320 | 3540 | 2196 | 0.009 |
 | 127 | 1156.53 | 2311 | 1047 | 219 | 3531 | 2179 | 0.0023 |
 | 126 | 1148.72 | 2248 | 1093 | 215 | 3530 | 2155 | 0.0193 |
 | 125 | 1140.91 | 2248 | 1237 | 281 | 3524 | 2141 | 0.0209 |
@@ -24,7 +25,6 @@ Updated 2026-10-27T04:28Z. Now: day 1156.53, benchmark gap **2311** (evolved gen
 | 116 | 1070.59 | 2248 | 1184 | 388 | 3449 | 1969 | 0.0051 |
 | 115 | 1062.78 | 2248 | 1038 | 267 | 3449 | 1951 | 0.0017 |
 | 114 | 1054.97 | 2248 | 1145 | 289 | 3447 | 1931 | 0.0258 |
-| 113 | 1047.16 | 2248 | 1264 | 333 | 3445 | 1909 | 0.0105 |
 
 ## Hypotheses
 
@@ -149,6 +149,7 @@ Updated 2026-10-27T04:28Z. Now: day 1156.53, benchmark gap **2311** (evolved gen
 - **reverted**: nodling.js ELDER_BONUS 0.5 at every 250th tick of age (bench gap 2248->2225 (-1.0%), medianFitness 1047->1080, largestCluster 323->245; target not better)
 - **reverted**: nodling.js ROVING_MEAL_BONUS 0.2 for eating found food >=10 cells from the previous meal (bench gap 2248 -> 2110 (-6.1%); target worse)
 - **kept**: nodling.js HOME_BONUS 0.02/tick for being within 4 cells of own last build site at night (gap 2248 -> 2311, cluster 195 -> 229, builtCells 4095 -> 4315; single 8k sample, within noise)
+- **reverted**: nodling.js STREAK_BONUS 0.2: extra reward for an adjacent build within 60 ticks of own previous adjacent build (cluster 320->320, builtCells 4171->4171, bench gap 2311->2294; effect nil, gap marginally worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
