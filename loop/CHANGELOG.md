@@ -941,3 +941,9 @@ STRUCTURAL: roving meal bonus (priority 3, plateau.js demanded structural): `nod
 STRUCTURAL: home-at-night bonus (priority 1, plateau.js demanded structural): `nodling.js` HOME_BONUS 0.02/tick for being within 4 cells of own last build site at night.
 - Control vs treatment (8k ticks): bench gap 2248 -> 2311 (+2.8%), medianFitness 1052 -> 1004, largestCluster 195 -> 229, builtCells 4095 -> 4315, brickCells 3531 -> 3530, commSeparation 0.0367 -> 0.0171, pop 499 -> 500. Guardrails pass; target equal or better, but single 8k sample, within noise.
 - Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).
+
+## Cycle 119 — day 1156 — `reverted`
+
+STRUCTURAL: build-streak bonus (priority 1, plateau.js demanded structural): `nodling.js` STREAK_BONUS 0.2 for an adjacent build within 60 ticks of the previous adjacent build.
+- Control vs treatment (8k ticks): bench gap 2311 -> 2294 (-0.7%), medianFitness 1020 -> 1020, largestCluster 320 -> 320, brickCells 3536 -> 3536, builtCells 4171 -> 4171, commSeparation 0.0098 -> 0.0098, pop 500 -> 500. Guardrails pass, but the effect is nil on the target and the gap was marginally worse, so reverted.
+- Baseline batch ran 12500 ticks (25000 exceeds the tool timeout).

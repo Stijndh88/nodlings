@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -966,6 +966,14 @@
       "status": "kept",
       "cycle": 118,
       "note": "gap 2248 -> 2311, cluster 195 -> 229, builtCells 4095 -> 4315; single 8k sample, within noise"
+    },
+    {
+      "id": "build-streak-bonus",
+      "signal": 1,
+      "change": "nodling.js STREAK_BONUS 0.2: extra reward for an adjacent build within 60 ticks of own previous adjacent build",
+      "status": "reverted",
+      "cycle": 119,
+      "note": "cluster 320->320, builtCells 4171->4171, bench gap 2311->2294; effect nil, gap marginally worse"
     }
   ]
 }
