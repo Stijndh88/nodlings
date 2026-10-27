@@ -990,6 +990,14 @@
       "status": "kept",
       "cycle": 121,
       "note": "gap 2311 -> 2311 (flat), medianFitness 960 -> 1193, largestCluster 316 -> 403; single 8k sample, within noise"
+    },
+    {
+      "id": "coop-build-bonus",
+      "signal": 1,
+      "change": "nodling.js COOP_BONUS 0.2: extra reward for an adjacent build with another Nodling within 3 cells",
+      "status": "reverted",
+      "cycle": 122,
+      "note": "cluster 404->401, builtCells 4195->4069, bench gap 2311->2240; no gain on target"
     }
   ]
 }
