@@ -1,25 +1,26 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1180.0 · Autumn
+Seed `20261007` · day 1183.9 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (44 juvenile) |
-| max generation | 2235 |
+| population | 506 (47 juvenile) |
+| max generation | 2247 |
 | best fitness | 7002 |
-| avg brain (conns) | 212 |
-| lineage diversity | 6 colour-groups |
-| diet | 72% herbivore / 20% carnivore |
-| predators | 6, 54 kills, best 114012 |
-| structures (durable) | 6887 (3798) |
-| planks / bricks / bridges | 26 / 3120 / 2660 |
-| flora / cooked food | 4064 / 337 |
+| avg brain (conns) | 205 |
+| lineage diversity | 5 colour-groups |
+| diet | 80% herbivore / 4% carnivore |
+| predators | 3, 33 kills, best 114012 |
+| structures (durable) | 5921 (3759) |
+| planks / bricks / bridges | 20 / 3195 / 2660 |
+| flora / cooked food | 2772 / 419 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1182]** _(trend)_ Lineages are deepening — max generation 2238→2244. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1174.2]** _(trend)_ Lineages are deepening — max generation 2217→2223. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1172.2]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1168.3]** _(trend)_ Brains are genuinely shrinking below capacity — selection favours simpler wiring right now.
