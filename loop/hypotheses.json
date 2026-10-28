@@ -1014,6 +1014,14 @@
       "status": "kept",
       "cycle": 124,
       "note": "metrics identical to control (gap 2265, median 981, cluster 387); bonus apparently rarely fires; null result"
+    },
+    {
+      "id": "corner-bonus",
+      "signal": 1,
+      "change": "nodling.js CORNER_BONUS 0.2 for adjacent build with durable diagonal neighbour",
+      "status": "kept",
+      "cycle": 125,
+      "note": "cluster 291->379, gap 2265->2232, single 8k sample"
     }
   ]
 }

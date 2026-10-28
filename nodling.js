@@ -32,6 +32,7 @@ const HUNGRY_EAT_BONUS = 0.3; // reward for eating found food while energy is lo
 const QUARRY_BONUS = 0.2; // reward for grabbing durable material from a cell with no durable neighbours (harvest raw material, don't dismantle villages)
 const KILN_SITE_BONUS = 0.3; // extra reward for feeding a kiln (clay beside fire) within 3 cells of an existing structure (kilns inside villages)
 const COOL_BONUS = 0.05; // per-tick reward for cooling down (body > comfort-high and falling): seek shade/water in the heat
+const CORNER_BONUS = 0.2; // extra reward for an adjacent build that also touches a durable diagonal neighbour (filled blocks, not thin lines)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
@@ -264,6 +265,12 @@ class Nodling {
           }
           if (nbs && this.lastBuild && (this.lastBuild[0]-cx)**2 + (this.lastBuild[1]-cy)**2 <= 36) this.bonus += SITE_BONUS;
           if (nbs) this.lastBuild = [cx, cy];
+          if (nbs){
+            for (const [ax, ay] of [[1,1],[-1,1],[1,-1],[-1,-1]]){
+              const nb = w.at(cx+ax, cy+ay);
+              if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += CORNER_BONUS; break; }
+            }
+          }
           if (nbs) this.bonus += BUILD_ADJACENT_BONUS + (this.carrying === 'brick' ? BRICK_WALL_BONUS : 0) + (nbs >= 2 ? ENCLOSE_BONUS : 0);
         }
         if (this.carrying === 'clay'){

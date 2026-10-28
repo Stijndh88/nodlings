@@ -977,3 +977,9 @@ STRUCTURAL: quarry bonus (priority 1, plateau.js demanded structural): `nodling.
 STRUCTURAL: cooling bonus (priority 3, plateau.js demanded structural): `nodling.js` COOL_BONUS 0.05/tick for body temp above comfort-high and falling.
 - Control vs treatment (8k ticks): bench gap 2265 -> 2265, medianFitness 981 -> 981, largestCluster 387 -> 387, brickCells 3552 -> 3552, commSeparation 0.0697 -> 0.0697, pop 501 -> 501. Guardrails pass; metrics identical, so the bonus essentially never fires (null result, not a measured improvement).
 - Baseline batch ran 6250 ticks (12500 timed out at 600s).
+
+## Cycle 125 — day 1197 — `kept`
+
+STRUCTURAL: corner bonus (priority 1, plateau.js demanded structural): `nodling.js` CORNER_BONUS 0.2 for an adjacent build that also touches a durable diagonal neighbour (filled blocks, not lines).
+- Control vs treatment (8k ticks): bench gap 2265 -> 2232 (-1.5%), medianFitness 1066 -> 1142, largestCluster 291 -> 379, builtCells 4024 -> 4013, brickCells 3565 -> 3556, commSeparation 0.0309 -> 0.0716, pop 502 -> 500. Guardrails pass; target better, but single 8k sample, within noise.
+- Baseline batch ran 12500 ticks.
