@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-28T04:27Z. Now: day 1183.88, benchmark gap **2265** (evolved gene pool minus random genomes), largest built cluster 402, 3549 brick cells, max generation 2250.
+Updated 2026-10-28T08:31Z. Now: day 1191.69, benchmark gap **2265** (evolved gene pool minus random genomes), largest built cluster 387, 3550 brick cells, max generation 2269.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-28T04:27Z. Now: day 1183.88, benchmark gap **2265** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 133 | 1191.69 | 2265 | 1152 | 387 | 3550 | 2269 | 0.0408 |
 | 132 | 1183.88 | 2265 | 1083 | 402 | 3549 | 2250 | 0.1103 |
 | 131 | 1179.97 | 2311 | 1122 | 403 | 3542 | 2238 | 0.1576 |
 | 130 | 1176.06 | 2311 | 999 | 400 | 3543 | 2227 | 0.0523 |
@@ -24,7 +25,6 @@ Updated 2026-10-28T04:27Z. Now: day 1183.88, benchmark gap **2265** (evolved gen
 | 121 | 1109.66 | 2248 | 1032 | 622 | 3489 | 2078 | 0.0292 |
 | 120 | 1101.84 | 2248 | 1216 | 400 | 3488 | 2056 | 0.0235 |
 | 119 | 1094.03 | 2248 | 1213 | 392 | 3474 | 2032 | 0.0189 |
-| 118 | 1086.22 | 2248 | 935 | 292 | 3464 | 2018 | 0.0126 |
 
 ## Hypotheses
 
@@ -154,6 +154,7 @@ Updated 2026-10-28T04:27Z. Now: day 1183.88, benchmark gap **2265** (evolved gen
 - **kept**: nodling.js FATTEN_BONUS 0.01/tick for energy > 180 in Autumn (gap 2311 -> 2311 (flat), medianFitness 960 -> 1193, largestCluster 316 -> 403; single 8k sample, within noise)
 - **reverted**: nodling.js COOP_BONUS 0.2: extra reward for an adjacent build with another Nodling within 3 cells (cluster 404->401, builtCells 4195->4069, bench gap 2311->2240; no gain on target)
 - **kept**: nodling.js QUARRY_BONUS 0.2 for grabbing durable material from a cell with no durable neighbours (cluster 401->405, brickCells 3545->3547, bench gap 2311->2265 (-2%); single 8k sample, within noise)
+- **kept**: nodling.js COOL_BONUS 0.05/tick for body > comfort-high and falling (seek shade/water in the heat) (metrics identical to control (gap 2265, median 981, cluster 387); bonus apparently rarely fires; null result)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
