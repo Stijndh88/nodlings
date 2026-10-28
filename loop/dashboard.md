@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-28T16:30Z. Now: day 1203.41, benchmark gap **2231** (evolved gene pool minus random genomes), largest built cluster 377, 3552 brick cells, max generation 2301.
+Updated 2026-10-28T20:40Z. Now: day 1207.31, benchmark gap **2231** (evolved gene pool minus random genomes), largest built cluster 295, 3557 brick cells, max generation 2307.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-28T16:30Z. Now: day 1203.41, benchmark gap **2231** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 136 | 1207.31 | 2231 | 1091 | 295 | 3557 | 2307 | 0.0398 |
 | 135 | 1203.41 | 2231 | 972 | 377 | 3552 | 2301 | 0.0519 |
 | 134 | 1195.59 | 2232 | 1023 | 376 | 3556 | 2278 | 0.0457 |
 | 133 | 1191.69 | 2265 | 1152 | 387 | 3550 | 2269 | 0.0408 |
@@ -24,7 +25,6 @@ Updated 2026-10-28T16:30Z. Now: day 1203.41, benchmark gap **2231** (evolved gen
 | 124 | 1133.09 | 2248 | 785 | 314 | 3513 | 2135 | 0.0049 |
 | 123 | 1125.28 | 2248 | 1039 | 408 | 3495 | 2110 | 0.0111 |
 | 122 | 1117.47 | 2248 | 980 | 405 | 3487 | 2095 | 0.0693 |
-| 121 | 1109.66 | 2248 | 1032 | 622 | 3489 | 2078 | 0.0292 |
 
 ## Hypotheses
 
@@ -157,6 +157,7 @@ Updated 2026-10-28T16:30Z. Now: day 1203.41, benchmark gap **2231** (evolved gen
 - **kept**: nodling.js COOL_BONUS 0.05/tick for body > comfort-high and falling (seek shade/water in the heat) (metrics identical to control (gap 2265, median 981, cluster 387); bonus apparently rarely fires; null result)
 - **kept**: nodling.js CORNER_BONUS 0.2 for adjacent build with durable diagonal neighbour (cluster 291->379, gap 2265->2232, single 8k sample)
 - **kept**: nodling.js TOWER_BONUS 0.2 for adjacent build onto a cell already holding durable material (metrics identical to control (gap 2232->2231, cluster 384); bonus apparently rarely fires; null result)
+- **reverted**: nodling.js CALL_FOOD_BONUS 0.3: eating found food within 20 ticks of hearing a call (commSeparation 0.0431->0.0205, bench gap 2231->2107; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
