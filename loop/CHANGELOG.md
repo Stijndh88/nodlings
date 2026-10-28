@@ -983,3 +983,9 @@ STRUCTURAL: cooling bonus (priority 3, plateau.js demanded structural): `nodling
 STRUCTURAL: corner bonus (priority 1, plateau.js demanded structural): `nodling.js` CORNER_BONUS 0.2 for an adjacent build that also touches a durable diagonal neighbour (filled blocks, not lines).
 - Control vs treatment (8k ticks): bench gap 2265 -> 2232 (-1.5%), medianFitness 1066 -> 1142, largestCluster 291 -> 379, builtCells 4024 -> 4013, brickCells 3565 -> 3556, commSeparation 0.0309 -> 0.0716, pop 502 -> 500. Guardrails pass; target better, but single 8k sample, within noise.
 - Baseline batch ran 12500 ticks.
+
+## Cycle 126 — day 1196 — `kept`
+
+STRUCTURAL: tower bonus (priority 1, plateau.js demanded structural): `nodling.js` TOWER_BONUS 0.2 for an adjacent build dropped onto a cell already holding durable material (height, not just footprint).
+- Control vs treatment (8k ticks): bench gap 2232 -> 2231, medianFitness 966 -> 966, largestCluster 384 -> 384, brickCells 3552 -> 3552, builtCells 4052 -> 4052, commSeparation 0.0851 -> 0.0851, pop 503 -> 503. Guardrails pass; metrics identical, so the bonus essentially never fires (null result, not a measured improvement).
+- Baseline batch ran 6250 ticks (12500 timed out at 600s).

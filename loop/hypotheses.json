@@ -1022,6 +1022,14 @@
       "status": "kept",
       "cycle": 125,
       "note": "cluster 291->379, gap 2265->2232, single 8k sample"
+    },
+    {
+      "id": "tower-bonus",
+      "signal": 1,
+      "change": "nodling.js TOWER_BONUS 0.2 for adjacent build onto a cell already holding durable material",
+      "status": "kept",
+      "cycle": 126,
+      "note": "metrics identical to control (gap 2232->2231, cluster 384); bonus apparently rarely fires; null result"
     }
   ]
 }
