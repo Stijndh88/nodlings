@@ -1030,6 +1030,14 @@
       "status": "kept",
       "cycle": 126,
       "note": "metrics identical to control (gap 2232->2231, cluster 384); bonus apparently rarely fires; null result"
+    },
+    {
+      "id": "call-food-bonus",
+      "signal": 2,
+      "change": "nodling.js CALL_FOOD_BONUS 0.3: eating found food within 20 ticks of hearing a call",
+      "status": "reverted",
+      "cycle": 127,
+      "note": "commSeparation 0.0431->0.0205, bench gap 2231->2107; target worse"
     }
   ]
 }

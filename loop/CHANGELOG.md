@@ -989,3 +989,9 @@ STRUCTURAL: corner bonus (priority 1, plateau.js demanded structural): `nodling.
 STRUCTURAL: tower bonus (priority 1, plateau.js demanded structural): `nodling.js` TOWER_BONUS 0.2 for an adjacent build dropped onto a cell already holding durable material (height, not just footprint).
 - Control vs treatment (8k ticks): bench gap 2232 -> 2231, medianFitness 966 -> 966, largestCluster 384 -> 384, brickCells 3552 -> 3552, builtCells 4052 -> 4052, commSeparation 0.0851 -> 0.0851, pop 503 -> 503. Guardrails pass; metrics identical, so the bonus essentially never fires (null result, not a measured improvement).
 - Baseline batch ran 6250 ticks (12500 timed out at 600s).
+
+## Cycle 127 — day 1203 — `reverted`
+
+STRUCTURAL: call-food bonus (priority 2, plateau.js demanded structural): `nodling.js` CALL_FOOD_BONUS 0.3 for eating found food within 20 ticks of hearing a call.
+- Control vs treatment (8k ticks): commSeparation 0.0431 -> 0.0205, bench gap 2231 -> 2107 (-5.6%), medianFitness 1097 -> 1114, largestCluster 296 -> 297, brickCells 3557 -> 3553, builtCells 4182 -> 4017, pop 500 -> 501. Guardrails pass, but target comm signal worse and gap lower, so reverted.
+- Baseline batch ran 12500 ticks.
