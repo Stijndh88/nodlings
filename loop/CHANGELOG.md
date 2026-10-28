@@ -965,3 +965,9 @@ STRUCTURAL: autumn fattening bonus (priority 3, plateau.js demanded structural):
 STRUCTURAL: cooperative-build bonus (priority 1, plateau.js demanded structural): `nodling.js` COOP_BONUS 0.2 for an adjacent build with another Nodling within 3 cells.
 - Control vs treatment (8k ticks): bench gap 2311 -> 2240 (-3.1%), medianFitness 1016 -> 1020, largestCluster 404 -> 401, brickCells 3544 -> 3546, builtCells 4195 -> 4069, commSeparation 0.1682 -> 0.0752, pop 499 -> 500. Guardrails pass, but target flat/slightly worse and gap lower, so reverted.
 - Baseline batch ran 6250 ticks (12500 timed out at 600s).
+
+## Cycle 123 — day 1185 — `kept`
+
+STRUCTURAL: quarry bonus (priority 1, plateau.js demanded structural): `nodling.js` QUARRY_BONUS 0.2 for grabbing wood/plank/stone from a cell with no durable neighbours (harvest raw material instead of dismantling villages).
+- Control vs treatment (8k ticks): bench gap 2311 -> 2265 (-2.0%), medianFitness 1101 -> 1110, largestCluster 401 -> 405, builtCells 4243 -> 4195, brickCells 3545 -> 3547, commSeparation 0.1274 -> 0.0966, pop 500 -> 500. Guardrails pass; target equal or better, but single 8k sample, within noise.
+- Baseline batch ran 6250 ticks (12500 timed out at 600s).

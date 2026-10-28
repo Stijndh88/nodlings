@@ -998,6 +998,14 @@
       "status": "reverted",
       "cycle": 122,
       "note": "cluster 404->401, builtCells 4195->4069, bench gap 2311->2240; no gain on target"
+    },
+    {
+      "id": "quarry-bonus",
+      "signal": 1,
+      "change": "nodling.js QUARRY_BONUS 0.2 for grabbing durable material from a cell with no durable neighbours",
+      "status": "kept",
+      "cycle": 123,
+      "note": "cluster 401->405, brickCells 3545->3547, bench gap 2311->2265 (-2%); single 8k sample, within noise"
     }
   ]
 }
