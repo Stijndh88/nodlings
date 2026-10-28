@@ -971,3 +971,9 @@ STRUCTURAL: cooperative-build bonus (priority 1, plateau.js demanded structural)
 STRUCTURAL: quarry bonus (priority 1, plateau.js demanded structural): `nodling.js` QUARRY_BONUS 0.2 for grabbing wood/plank/stone from a cell with no durable neighbours (harvest raw material instead of dismantling villages).
 - Control vs treatment (8k ticks): bench gap 2311 -> 2265 (-2.0%), medianFitness 1101 -> 1110, largestCluster 401 -> 405, builtCells 4243 -> 4195, brickCells 3545 -> 3547, commSeparation 0.1274 -> 0.0966, pop 500 -> 500. Guardrails pass; target equal or better, but single 8k sample, within noise.
 - Baseline batch ran 6250 ticks (12500 timed out at 600s).
+
+## Cycle 124 — day 1192 — `kept`
+
+STRUCTURAL: cooling bonus (priority 3, plateau.js demanded structural): `nodling.js` COOL_BONUS 0.05/tick for body temp above comfort-high and falling.
+- Control vs treatment (8k ticks): bench gap 2265 -> 2265, medianFitness 981 -> 981, largestCluster 387 -> 387, brickCells 3552 -> 3552, commSeparation 0.0697 -> 0.0697, pop 501 -> 501. Guardrails pass; metrics identical, so the bonus essentially never fires (null result, not a measured improvement).
+- Baseline batch ran 6250 ticks (12500 timed out at 600s).

@@ -1006,6 +1006,14 @@
       "status": "kept",
       "cycle": 123,
       "note": "cluster 401->405, brickCells 3545->3547, bench gap 2311->2265 (-2%); single 8k sample, within noise"
+    },
+    {
+      "id": "cool-bonus",
+      "signal": 3,
+      "change": "nodling.js COOL_BONUS 0.05/tick for body > comfort-high and falling (seek shade/water in the heat)",
+      "status": "kept",
+      "cycle": 124,
+      "note": "metrics identical to control (gap 2265, median 981, cluster 387); bonus apparently rarely fires; null result"
     }
   ]
 }

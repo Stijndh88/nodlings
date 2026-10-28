@@ -31,6 +31,7 @@ const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap
 const HUNGRY_EAT_BONUS = 0.3; // reward for eating found food while energy is low (<60): learn to forage before starving
 const QUARRY_BONUS = 0.2; // reward for grabbing durable material from a cell with no durable neighbours (harvest raw material, don't dismantle villages)
 const KILN_SITE_BONUS = 0.3; // extra reward for feeding a kiln (clay beside fire) within 3 cells of an existing structure (kilns inside villages)
+const COOL_BONUS = 0.05; // per-tick reward for cooling down (body > comfort-high and falling): seek shade/water in the heat
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
@@ -361,6 +362,7 @@ class Nodling {
     const prevTemp = this.bodyTemp;
     this.bodyTemp += (w.cellTemp(cx, cy) - this.bodyTemp)*0.03;
     if (!cell.fire && this.bodyTemp < TEMP_COMFORT_LO && this.bodyTemp > prevTemp && w.cellTemp(cx, cy) > 30) this.bonus += HEARTH_BONUS;
+    if (this.bodyTemp > TEMP_COMFORT_HI && this.bodyTemp < prevTemp) this.bonus += COOL_BONUS;
     if (this.energy > 180 && w.season() === 'Autumn') this.bonus += FATTEN_BONUS;
     if (this.lastBuild && w.isNight() && (this.lastBuild[0]-cx)**2 + (this.lastBuild[1]-cy)**2 <= 16) this.bonus += HOME_BONUS;
     if (this.bodyTemp < TEMP_COMFORT_LO) this.energy -= (TEMP_COMFORT_LO - this.bodyTemp)*0.05;
