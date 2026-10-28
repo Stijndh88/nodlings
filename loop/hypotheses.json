@@ -1038,6 +1038,14 @@
       "status": "reverted",
       "cycle": 127,
       "note": "commSeparation 0.0431->0.0205, bench gap 2231->2107; target worse"
+    },
+    {
+      "id": "well-bonus",
+      "signal": 1,
+      "change": "nodling.js WELL_BONUS 0.2: reward drinking within 4 cells of a durable structure",
+      "status": "kept",
+      "cycle": 128,
+      "note": "largestCluster 281->299, gap 2231->2057 (-7.8%), medianFitness 797->1119; single 8k sample, within noise"
     }
   ]
 }

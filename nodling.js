@@ -34,6 +34,7 @@ const KILN_SITE_BONUS = 0.3; // extra reward for feeding a kiln (clay beside fir
 const COOL_BONUS = 0.05; // per-tick reward for cooling down (body > comfort-high and falling): seek shade/water in the heat
 const TOWER_BONUS = 0.2; // extra reward for dropping durable material onto a cell that already holds durable material (height, not just footprint)
 const CORNER_BONUS = 0.2; // extra reward for an adjacent build that also touches a durable diagonal neighbour (filled blocks, not thin lines)
+const WELL_BONUS = 0.2; // reward for drinking within 4 cells of a durable structure (villages near water)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
@@ -312,6 +313,10 @@ class Nodling {
         this.eat(cell.stack.pop());
       } else if (cell.water || w.adjacentWater(cx, cy)){
         if (this.hydration < 40) this.bonus += THIRST_DRINK_BONUS;
+        well: for (let sy = -4; sy <= 4; sy++) for (let sx = -4; sx <= 4; sx++){
+          const sc = w.at(cx+sx, cy+sy);
+          if (sc && sc.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += WELL_BONUS; break well; }
+        }
         this.hydration = 100;
       }
     }

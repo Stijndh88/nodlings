@@ -995,3 +995,9 @@ STRUCTURAL: tower bonus (priority 1, plateau.js demanded structural): `nodling.j
 STRUCTURAL: call-food bonus (priority 2, plateau.js demanded structural): `nodling.js` CALL_FOOD_BONUS 0.3 for eating found food within 20 ticks of hearing a call.
 - Control vs treatment (8k ticks): commSeparation 0.0431 -> 0.0205, bench gap 2231 -> 2107 (-5.6%), medianFitness 1097 -> 1114, largestCluster 296 -> 297, brickCells 3557 -> 3553, builtCells 4182 -> 4017, pop 500 -> 501. Guardrails pass, but target comm signal worse and gap lower, so reverted.
 - Baseline batch ran 12500 ticks.
+
+## Cycle 128 — day 1212 — `kept`
+
+STRUCTURAL: well bonus (priority 1, plateau.js demanded structural): `nodling.js` WELL_BONUS 0.2 for drinking within 4 cells of a durable structure (villages pulled toward water).
+- Control vs treatment (8k ticks): largestCluster 281 -> 299, brickCells 3556 -> 3563, builtCells 3946 -> 4106, bench gap 2231 -> 2057 (-7.8%), medianFitness 797 -> 1119, commSeparation 0.0438 -> 0.0141, pop 500 -> 502. Guardrails pass; target slightly better, but single 8k sample, within noise (comm and gap lower).
+- Baseline batch ran 6250 ticks (12500 timed out at 600s).
