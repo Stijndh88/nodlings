@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-28T12:45Z. Now: day 1195.59, benchmark gap **2232** (evolved gene pool minus random genomes), largest built cluster 376, 3556 brick cells, max generation 2278.
+Updated 2026-10-28T16:30Z. Now: day 1203.41, benchmark gap **2231** (evolved gene pool minus random genomes), largest built cluster 377, 3552 brick cells, max generation 2301.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-28T12:45Z. Now: day 1195.59, benchmark gap **2232** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 135 | 1203.41 | 2231 | 972 | 377 | 3552 | 2301 | 0.0519 |
 | 134 | 1195.59 | 2232 | 1023 | 376 | 3556 | 2278 | 0.0457 |
 | 133 | 1191.69 | 2265 | 1152 | 387 | 3550 | 2269 | 0.0408 |
 | 132 | 1183.88 | 2265 | 1083 | 402 | 3549 | 2250 | 0.1103 |
@@ -24,7 +25,6 @@ Updated 2026-10-28T12:45Z. Now: day 1195.59, benchmark gap **2232** (evolved gen
 | 123 | 1125.28 | 2248 | 1039 | 408 | 3495 | 2110 | 0.0111 |
 | 122 | 1117.47 | 2248 | 980 | 405 | 3487 | 2095 | 0.0693 |
 | 121 | 1109.66 | 2248 | 1032 | 622 | 3489 | 2078 | 0.0292 |
-| 120 | 1101.84 | 2248 | 1216 | 400 | 3488 | 2056 | 0.0235 |
 
 ## Hypotheses
 
@@ -156,6 +156,7 @@ Updated 2026-10-28T12:45Z. Now: day 1195.59, benchmark gap **2232** (evolved gen
 - **kept**: nodling.js QUARRY_BONUS 0.2 for grabbing durable material from a cell with no durable neighbours (cluster 401->405, brickCells 3545->3547, bench gap 2311->2265 (-2%); single 8k sample, within noise)
 - **kept**: nodling.js COOL_BONUS 0.05/tick for body > comfort-high and falling (seek shade/water in the heat) (metrics identical to control (gap 2265, median 981, cluster 387); bonus apparently rarely fires; null result)
 - **kept**: nodling.js CORNER_BONUS 0.2 for adjacent build with durable diagonal neighbour (cluster 291->379, gap 2265->2232, single 8k sample)
+- **kept**: nodling.js TOWER_BONUS 0.2 for adjacent build onto a cell already holding durable material (metrics identical to control (gap 2232->2231, cluster 384); bonus apparently rarely fires; null result)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
