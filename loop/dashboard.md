@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-29T12:46Z. Now: day 1234.66, benchmark gap **2057** (evolved gene pool minus random genomes), largest built cluster 328, 3579 brick cells, max generation 2370.
+Updated 2026-10-29T16:53Z. Now: day 1238.56, benchmark gap **1993** (evolved gene pool minus random genomes), largest built cluster 309, 3586 brick cells, max generation 2377.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-29T12:46Z. Now: day 1234.66, benchmark gap **2057** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 141 | 1238.56 | 1993 | 1049 | 309 | 3586 | 2377 | 0.03 |
 | 140 | 1234.66 | 2057 | 1113 | 328 | 3579 | 2370 | 0.2311 |
 | 139 | 1226.84 | 2057 | 1185 | 297 | 3578 | 2352 | 0.1896 |
 | 138 | 1222.94 | 2057 | 1052 | 302 | 3566 | 2346 | 0.084 |
@@ -24,7 +25,6 @@ Updated 2026-10-29T12:46Z. Now: day 1234.66, benchmark gap **2057** (evolved gen
 | 129 | 1172.16 | 2311 | 1100 | 322 | 3541 | 2217 | 0.0355 |
 | 128 | 1164.34 | 2311 | 889 | 320 | 3540 | 2196 | 0.009 |
 | 127 | 1156.53 | 2311 | 1047 | 219 | 3531 | 2179 | 0.0023 |
-| 126 | 1148.72 | 2248 | 1093 | 215 | 3530 | 2155 | 0.0193 |
 
 ## Hypotheses
 
@@ -162,6 +162,7 @@ Updated 2026-10-29T12:46Z. Now: day 1234.66, benchmark gap **2057** (evolved gen
 - **kept**: nodling.js NOTCH_BONUS 0.2 for a build filling a cell with >=3 durable neighbours (metrics identical to control; bonus essentially never fires (null result))
 - **reverted**: nodling.js SHELTER_BONUS 0.03/tick at night in a cell with >=2 durable orthogonal neighbours (largestCluster 302->279, builtCells 4147->4005, gap 2057->2102, medianFitness 1140->1263; target worse)
 - **kept**: nodling.js SHORE_BONUS 0.2: adjacent build on a cell beside water (metrics identical to control; bonus essentially never fires (null result))
+- **kept**: nodling.js WINTER_BUILD_BONUS 0.2: adjacent build during Winter (world metrics identical to control; only bench gap 2057->1993 (-3%, noise); bonus essentially never fires in the main world (null result))
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 

@@ -1,21 +1,21 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1234.7 · Summer
+Seed `20261007` · day 1238.6 · Autumn
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (51 juvenile) |
-| max generation | 2369 |
+| population | 501 (41 juvenile) |
+| max generation | 2374 |
 | best fitness | 7002 |
-| avg brain (conns) | 173 |
-| lineage diversity | 5 colour-groups |
-| diet | 82% herbivore / 2% carnivore |
-| predators | 4, 9 kills, best 114012 |
-| structures (durable) | 7390 (3872) |
-| planks / bricks / bridges | 36 / 3131 / 2661 |
-| flora / cooked food | 4438 / 302 |
+| avg brain (conns) | 171 |
+| lineage diversity | 4 colour-groups |
+| diet | 87% herbivore / 1% carnivore |
+| predators | 3, 5 kills, best 114012 |
+| structures (durable) | 6506 (3821) |
+| planks / bricks / bridges | 27 / 3204 / 2661 |
+| flora / cooked food | 4803 / 390 |
 | active fires | 0 |
 
 ## Log (newest first)
