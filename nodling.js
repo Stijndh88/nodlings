@@ -35,6 +35,7 @@ const COOL_BONUS = 0.05; // per-tick reward for cooling down (body > comfort-hig
 const TOWER_BONUS = 0.2; // extra reward for dropping durable material onto a cell that already holds durable material (height, not just footprint)
 const CORNER_BONUS = 0.2; // extra reward for an adjacent build that also touches a durable diagonal neighbour (filled blocks, not thin lines)
 const NOTCH_BONUS = 0.2; // extra reward for an adjacent build that fills a notch (>=3 durable orthogonal neighbours), sealing walls into solid blocks
+const SHORE_BONUS = 0.2; // extra reward for an adjacent build on a cell beside water (waterfront villages, quays)
 const WELL_BONUS = 0.2; // reward for drinking within 4 cells of a durable structure (villages near water)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
@@ -276,6 +277,7 @@ class Nodling {
             }
           }
           if (nbs >= 3) this.bonus += NOTCH_BONUS;
+          if (nbs && w.adjacentWater(cx, cy)) this.bonus += SHORE_BONUS;
           if (nbs) this.bonus += BUILD_ADJACENT_BONUS + (this.carrying === 'brick' ? BRICK_WALL_BONUS : 0) + (nbs >= 2 ? ENCLOSE_BONUS : 0);
         }
         if (this.carrying === 'clay'){

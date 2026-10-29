@@ -1062,6 +1062,14 @@
       "status": "reverted",
       "cycle": 130,
       "note": "largestCluster 302->279, builtCells 4147->4005, gap 2057->2102, medianFitness 1140->1263; target worse"
+    },
+    {
+      "id": "shore-bonus",
+      "signal": 1,
+      "change": "nodling.js SHORE_BONUS 0.2: adjacent build on a cell beside water",
+      "status": "kept",
+      "cycle": 131,
+      "note": "metrics identical to control; bonus essentially never fires (null result)"
     }
   ]
 }
