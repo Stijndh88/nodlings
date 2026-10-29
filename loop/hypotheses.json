@@ -1054,6 +1054,14 @@
       "status": "kept",
       "cycle": 129,
       "note": "metrics identical to control; bonus essentially never fires (null result)"
+    },
+    {
+      "id": "shelter-bonus",
+      "signal": 1,
+      "change": "nodling.js SHELTER_BONUS 0.03/tick at night in a cell with >=2 durable orthogonal neighbours",
+      "status": "reverted",
+      "cycle": 130,
+      "note": "largestCluster 302->279, builtCells 4147->4005, gap 2057->2102, medianFitness 1140->1263; target worse"
     }
   ]
 }

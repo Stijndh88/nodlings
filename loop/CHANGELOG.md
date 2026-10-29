@@ -1007,3 +1007,9 @@ STRUCTURAL: well bonus (priority 1, plateau.js demanded structural): `nodling.js
 STRUCTURAL: notch bonus (priority 1, plateau.js demanded structural): `nodling.js` NOTCH_BONUS 0.2 for an adjacent build onto a cell with >=3 durable orthogonal neighbours (fills notches into solid blocks).
 - Control vs treatment (8k ticks): bench gap 2057 -> 2057, medianFitness 992 -> 992, largestCluster 306 -> 306, brickCells 3568 -> 3568, commSeparation 0.1066 -> 0.1066, pop 500 -> 500. Guardrails pass; metrics identical, so the bonus essentially never fires (null result, not a measured improvement).
 - Baseline batch ran 12500 ticks.
+
+## Cycle 130 — day 1223 — `reverted`
+
+STRUCTURAL: shelter bonus (priority 1, plateau.js demanded structural): `nodling.js` SHELTER_BONUS 0.03/tick for standing at night in a cell with >=2 durable orthogonal neighbours (sleep inside walls).
+- Control vs treatment (8k ticks): largestCluster 302 -> 279, builtCells 4147 -> 4005, brickCells 3578 -> 3577, bench gap 2057 -> 2102, medianFitness 1140 -> 1263, commSeparation 0.1821 -> 0.0977, pop 497 -> 500. Guardrails pass, but target construction metric worse, so reverted.
+- Baseline batch ran 12500 ticks.
