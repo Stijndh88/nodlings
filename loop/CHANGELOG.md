@@ -1025,3 +1025,9 @@ STRUCTURAL: shore bonus (priority 1, plateau.js demanded structural): `nodling.j
 STRUCTURAL: winter build bonus (priority 1, plateau.js demanded structural): `nodling.js` WINTER_BUILD_BONUS 0.2 for an adjacent build during Winter (build through the lean season).
 - Control vs treatment (8k ticks): largestCluster 309 -> 309, builtCells 4199 -> 4199, brickCells 3587 -> 3587, medianFitness 961 -> 961, commSeparation 0.0261 -> 0.0261, pop 500 -> 500, bench gap 2057 -> 1993 (-3%, benchmark cohort only). Guardrails pass; world metrics identical, so the bonus essentially never fires in the main world (null result, not a measured improvement).
 - Baseline batch ran 12500 ticks.
+
+## Cycle 133 — day 1243 — `kept`
+
+STRUCTURAL: feast bonus (priority 1, plateau.js demanded structural): `nodling.js` FEAST_BONUS 0.2 added to the shared-meal reward when the meal is a cached one (>=2 durable walls): communal granaries.
+- Control vs treatment (8k ticks): largestCluster 297 -> 299, brickCells 3586 -> 3588, builtCells 4182 -> 4127, bench gap 1993 -> 1963 (-1.5%), medianFitness 1074 -> 943, commSeparation 0.0518 -> 0.0691, pop 499 -> 500. Guardrails pass; target marginally better, but single 8k sample, within noise.
+- Baseline batch ran 6250 ticks (12500 timed out at 600s).
