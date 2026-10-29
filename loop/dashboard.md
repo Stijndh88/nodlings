@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-28T20:40Z. Now: day 1207.31, benchmark gap **2231** (evolved gene pool minus random genomes), largest built cluster 295, 3557 brick cells, max generation 2307.
+Updated 2026-10-29T00:29Z. Now: day 1215.13, benchmark gap **2057** (evolved gene pool minus random genomes), largest built cluster 302, 3567 brick cells, max generation 2326.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-28T20:40Z. Now: day 1207.31, benchmark gap **2231** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 137 | 1215.13 | 2057 | 1076 | 302 | 3567 | 2326 | 0.0173 |
 | 136 | 1207.31 | 2231 | 1091 | 295 | 3557 | 2307 | 0.0398 |
 | 135 | 1203.41 | 2231 | 972 | 377 | 3552 | 2301 | 0.0519 |
 | 134 | 1195.59 | 2232 | 1023 | 376 | 3556 | 2278 | 0.0457 |
@@ -24,7 +25,6 @@ Updated 2026-10-28T20:40Z. Now: day 1207.31, benchmark gap **2231** (evolved gen
 | 125 | 1140.91 | 2248 | 1237 | 281 | 3524 | 2141 | 0.0209 |
 | 124 | 1133.09 | 2248 | 785 | 314 | 3513 | 2135 | 0.0049 |
 | 123 | 1125.28 | 2248 | 1039 | 408 | 3495 | 2110 | 0.0111 |
-| 122 | 1117.47 | 2248 | 980 | 405 | 3487 | 2095 | 0.0693 |
 
 ## Hypotheses
 
@@ -158,6 +158,7 @@ Updated 2026-10-28T20:40Z. Now: day 1207.31, benchmark gap **2231** (evolved gen
 - **kept**: nodling.js CORNER_BONUS 0.2 for adjacent build with durable diagonal neighbour (cluster 291->379, gap 2265->2232, single 8k sample)
 - **kept**: nodling.js TOWER_BONUS 0.2 for adjacent build onto a cell already holding durable material (metrics identical to control (gap 2232->2231, cluster 384); bonus apparently rarely fires; null result)
 - **reverted**: nodling.js CALL_FOOD_BONUS 0.3: eating found food within 20 ticks of hearing a call (commSeparation 0.0431->0.0205, bench gap 2231->2107; target worse)
+- **kept**: nodling.js WELL_BONUS 0.2: reward drinking within 4 cells of a durable structure (largestCluster 281->299, gap 2231->2057 (-7.8%), medianFitness 797->1119; single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
