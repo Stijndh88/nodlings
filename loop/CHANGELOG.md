@@ -1019,3 +1019,9 @@ STRUCTURAL: shelter bonus (priority 1, plateau.js demanded structural): `nodling
 STRUCTURAL: shore bonus (priority 1, plateau.js demanded structural): `nodling.js` SHORE_BONUS 0.2 for an adjacent build on a cell beside water (waterfront villages).
 - Control vs treatment (8k ticks): bench gap 2057 -> 2057, medianFitness 883 -> 883, largestCluster 321 -> 321, brickCells 3575 -> 3575, builtCells 4019 -> 4019, commSeparation 0.288 -> 0.288, pop 501 -> 501. Guardrails pass; metrics identical, so the bonus essentially never fires (null result, not a measured improvement).
 - Baseline batch ran 6250 ticks (12500 timed out at 600s).
+
+## Cycle 132 — day 1234 — `kept`
+
+STRUCTURAL: winter build bonus (priority 1, plateau.js demanded structural): `nodling.js` WINTER_BUILD_BONUS 0.2 for an adjacent build during Winter (build through the lean season).
+- Control vs treatment (8k ticks): largestCluster 309 -> 309, builtCells 4199 -> 4199, brickCells 3587 -> 3587, medianFitness 961 -> 961, commSeparation 0.0261 -> 0.0261, pop 500 -> 500, bench gap 2057 -> 1993 (-3%, benchmark cohort only). Guardrails pass; world metrics identical, so the bonus essentially never fires in the main world (null result, not a measured improvement).
+- Baseline batch ran 12500 ticks.

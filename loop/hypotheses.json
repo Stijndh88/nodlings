@@ -1070,6 +1070,14 @@
       "status": "kept",
       "cycle": 131,
       "note": "metrics identical to control; bonus essentially never fires (null result)"
+    },
+    {
+      "id": "winter-build-bonus",
+      "signal": 1,
+      "change": "nodling.js WINTER_BUILD_BONUS 0.2: adjacent build during Winter",
+      "status": "kept",
+      "cycle": 132,
+      "note": "world metrics identical to control; only bench gap 2057->1993 (-3%, noise); bonus essentially never fires in the main world (null result)"
     }
   ]
 }
