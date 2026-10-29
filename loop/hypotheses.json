@@ -1046,6 +1046,14 @@
       "status": "kept",
       "cycle": 128,
       "note": "largestCluster 281->299, gap 2231->2057 (-7.8%), medianFitness 797->1119; single 8k sample, within noise"
+    },
+    {
+      "id": "notch-bonus",
+      "signal": 1,
+      "change": "nodling.js NOTCH_BONUS 0.2 for a build filling a cell with >=3 durable neighbours",
+      "status": "kept",
+      "cycle": 129,
+      "note": "metrics identical to control; bonus essentially never fires (null result)"
     }
   ]
 }

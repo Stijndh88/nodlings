@@ -1001,3 +1001,9 @@ STRUCTURAL: call-food bonus (priority 2, plateau.js demanded structural): `nodli
 STRUCTURAL: well bonus (priority 1, plateau.js demanded structural): `nodling.js` WELL_BONUS 0.2 for drinking within 4 cells of a durable structure (villages pulled toward water).
 - Control vs treatment (8k ticks): largestCluster 281 -> 299, brickCells 3556 -> 3563, builtCells 3946 -> 4106, bench gap 2231 -> 2057 (-7.8%), medianFitness 797 -> 1119, commSeparation 0.0438 -> 0.0141, pop 500 -> 502. Guardrails pass; target slightly better, but single 8k sample, within noise (comm and gap lower).
 - Baseline batch ran 6250 ticks (12500 timed out at 600s).
+
+## Cycle 129 — day 1215 — `kept`
+
+STRUCTURAL: notch bonus (priority 1, plateau.js demanded structural): `nodling.js` NOTCH_BONUS 0.2 for an adjacent build onto a cell with >=3 durable orthogonal neighbours (fills notches into solid blocks).
+- Control vs treatment (8k ticks): bench gap 2057 -> 2057, medianFitness 992 -> 992, largestCluster 306 -> 306, brickCells 3568 -> 3568, commSeparation 0.1066 -> 0.1066, pop 500 -> 500. Guardrails pass; metrics identical, so the bonus essentially never fires (null result, not a measured improvement).
+- Baseline batch ran 12500 ticks.
