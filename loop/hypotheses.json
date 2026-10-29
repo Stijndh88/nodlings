@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -1086,6 +1086,14 @@
       "status": "kept",
       "cycle": 133,
       "note": "cluster 297->299, bricks 3586->3588, gap 1993->1963 (-1.5%); single 8k sample, within noise"
+    },
+    {
+      "id": "gap-bonus",
+      "signal": 1,
+      "change": "nodling.js GAP_BONUS 0.2: adjacent build closing a gap between two opposite durable neighbours",
+      "status": "kept",
+      "cycle": 134,
+      "note": "all metrics identical to control (cluster 389, bricks 3583, gap 1963); bonus essentially never fires (null result)"
     }
   ]
 }

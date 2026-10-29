@@ -39,6 +39,7 @@ const SHORE_BONUS = 0.2; // extra reward for an adjacent build on a cell beside 
 const WINTER_BUILD_BONUS = 0.2; // extra reward for an adjacent build during Winter (keep building through the lean season)
 const WELL_BONUS = 0.2; // reward for drinking within 4 cells of a durable structure (villages near water)
 const FEAST_BONUS = 0.2; // extra reward for a cached meal (>=2 walls) eaten beside another Nodling (communal granaries)
+const GAP_BONUS = 0.2; // extra reward for an adjacent build that closes a gap between two opposite durable neighbours (joins separate wall segments)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
 class Nodling {
@@ -277,6 +278,10 @@ class Nodling {
               const nb = w.at(cx+ax, cy+ay);
               if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += CORNER_BONUS; break; }
             }
+          }
+          if (nbs >= 2){
+            const dur = (ax, ay) => { const nb = w.at(cx+ax, cy+ay); return nb && nb.stack.some(m => DURABLE_BUILD.includes(m)); };
+            if ((dur(1,0) && dur(-1,0)) || (dur(0,1) && dur(0,-1))) this.bonus += GAP_BONUS;
           }
           if (nbs >= 3) this.bonus += NOTCH_BONUS;
           if (nbs && w.adjacentWater(cx, cy)) this.bonus += SHORE_BONUS;

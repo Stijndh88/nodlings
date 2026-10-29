@@ -1031,3 +1031,9 @@ STRUCTURAL: winter build bonus (priority 1, plateau.js demanded structural): `no
 STRUCTURAL: feast bonus (priority 1, plateau.js demanded structural): `nodling.js` FEAST_BONUS 0.2 added to the shared-meal reward when the meal is a cached one (>=2 durable walls): communal granaries.
 - Control vs treatment (8k ticks): largestCluster 297 -> 299, brickCells 3586 -> 3588, builtCells 4182 -> 4127, bench gap 1993 -> 1963 (-1.5%), medianFitness 1074 -> 943, commSeparation 0.0518 -> 0.0691, pop 499 -> 500. Guardrails pass; target marginally better, but single 8k sample, within noise.
 - Baseline batch ran 6250 ticks (12500 timed out at 600s).
+
+## Cycle 134 — day 1251 — `kept`
+
+STRUCTURAL: gap bonus (priority 1, plateau.js demanded structural): `nodling.js` GAP_BONUS 0.2 for an adjacent build that closes a gap between two opposite durable neighbours (joins wall segments).
+- Control vs treatment (8k ticks): largestCluster 389 -> 389, builtCells 4367 -> 4367, brickCells 3583 -> 3583, bench gap 1963 -> 1963, medianFitness 1033 -> 1033, commSeparation 0.2573 -> 0.2573, pop 494 -> 494. Guardrails pass; metrics identical, so the bonus essentially never fires (null result, not a measured improvement).
+- Baseline batch ran 12500 ticks.
