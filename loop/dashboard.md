@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-29T08:40Z. Now: day 1226.84, benchmark gap **2057** (evolved gene pool minus random genomes), largest built cluster 297, 3578 brick cells, max generation 2352.
+Updated 2026-10-29T12:46Z. Now: day 1234.66, benchmark gap **2057** (evolved gene pool minus random genomes), largest built cluster 328, 3579 brick cells, max generation 2370.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-29T08:40Z. Now: day 1226.84, benchmark gap **2057** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 140 | 1234.66 | 2057 | 1113 | 328 | 3579 | 2370 | 0.2311 |
 | 139 | 1226.84 | 2057 | 1185 | 297 | 3578 | 2352 | 0.1896 |
 | 138 | 1222.94 | 2057 | 1052 | 302 | 3566 | 2346 | 0.084 |
 | 137 | 1215.13 | 2057 | 1076 | 302 | 3567 | 2326 | 0.0173 |
@@ -24,7 +25,6 @@ Updated 2026-10-29T08:40Z. Now: day 1226.84, benchmark gap **2057** (evolved gen
 | 128 | 1164.34 | 2311 | 889 | 320 | 3540 | 2196 | 0.009 |
 | 127 | 1156.53 | 2311 | 1047 | 219 | 3531 | 2179 | 0.0023 |
 | 126 | 1148.72 | 2248 | 1093 | 215 | 3530 | 2155 | 0.0193 |
-| 125 | 1140.91 | 2248 | 1237 | 281 | 3524 | 2141 | 0.0209 |
 
 ## Hypotheses
 
@@ -161,6 +161,7 @@ Updated 2026-10-29T08:40Z. Now: day 1226.84, benchmark gap **2057** (evolved gen
 - **kept**: nodling.js WELL_BONUS 0.2: reward drinking within 4 cells of a durable structure (largestCluster 281->299, gap 2231->2057 (-7.8%), medianFitness 797->1119; single 8k sample, within noise)
 - **kept**: nodling.js NOTCH_BONUS 0.2 for a build filling a cell with >=3 durable neighbours (metrics identical to control; bonus essentially never fires (null result))
 - **reverted**: nodling.js SHELTER_BONUS 0.03/tick at night in a cell with >=2 durable orthogonal neighbours (largestCluster 302->279, builtCells 4147->4005, gap 2057->2102, medianFitness 1140->1263; target worse)
+- **kept**: nodling.js SHORE_BONUS 0.2: adjacent build on a cell beside water (metrics identical to control; bonus essentially never fires (null result))
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
