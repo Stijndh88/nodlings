@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-30T12:34Z. Now: day 1277.63, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 324, 3602 brick cells, max generation 2478.
+Updated 2026-10-30T16:32Z. Now: day 1285.44, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 320, 3604 brick cells, max generation 2498.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-30T12:34Z. Now: day 1277.63, benchmark gap **1963** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 147 | 1285.44 | 1963 | 1143 | 320 | 3604 | 2498 | 0.2604 |
 | 146 | 1277.63 | 1963 | 1128 | 324 | 3602 | 2478 | 0.2597 |
 | 145 | 1269.81 | 1963 | 766 | 320 | 3602 | 2461 | 0.3012 |
 | 144 | 1262 | 1963 | 1028 | 311 | 3600 | 2440 | 0.1409 |
@@ -24,7 +25,6 @@ Updated 2026-10-30T12:34Z. Now: day 1277.63, benchmark gap **1963** (evolved gen
 | 135 | 1203.41 | 2231 | 972 | 377 | 3552 | 2301 | 0.0519 |
 | 134 | 1195.59 | 2232 | 1023 | 376 | 3556 | 2278 | 0.0457 |
 | 133 | 1191.69 | 2265 | 1152 | 387 | 3550 | 2269 | 0.0408 |
-| 132 | 1183.88 | 2265 | 1083 | 402 | 3549 | 2250 | 0.1103 |
 
 ## Hypotheses
 
@@ -168,6 +168,7 @@ Updated 2026-10-30T12:34Z. Now: day 1277.63, benchmark gap **1963** (evolved gen
 - **kept**: nodling.js HAUL_BONUS 0.2 for an adjacent build >=8 cells from the material's pickup cell (cluster 276->299, builtCells 3979->4095, bricks 3597->3596, gap 1963 identical; single 8k sample, within noise)
 - **kept**: nodling.js TEAM_BUILD_BONUS 0.2 for an adjacent build with another Nodling within 3 cells (cluster 250->331, builtCells 4006->4087, bricks 3601->3596, gap 1963 identical; single 8k sample, within noise)
 - **reverted**: nodling.js WALL_RUN_BONUS 0.2 for an adjacent build extending a straight run of >=2 durable cells (cluster 326->314, builtCells 4132->4111, bricks 3602->3603, gap 1963 identical; target worse)
+- **reverted**: nodling.js MASON_BONUS 0.2: brick laid beside another brick (metrics identical to control (bonus never fires); code discarded as dead weight)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
