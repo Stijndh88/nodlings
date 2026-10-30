@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-30T16:32Z. Now: day 1285.44, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 320, 3604 brick cells, max generation 2498.
+Updated 2026-10-30T20:30Z. Now: day 1293.25, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 293, 3607 brick cells, max generation 2521.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-30T16:32Z. Now: day 1285.44, benchmark gap **1963** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 148 | 1293.25 | 1963 | 1143 | 293 | 3607 | 2521 | 0.2955 |
 | 147 | 1285.44 | 1963 | 1143 | 320 | 3604 | 2498 | 0.2604 |
 | 146 | 1277.63 | 1963 | 1128 | 324 | 3602 | 2478 | 0.2597 |
 | 145 | 1269.81 | 1963 | 766 | 320 | 3602 | 2461 | 0.3012 |
@@ -24,7 +25,6 @@ Updated 2026-10-30T16:32Z. Now: day 1285.44, benchmark gap **1963** (evolved gen
 | 136 | 1207.31 | 2231 | 1091 | 295 | 3557 | 2307 | 0.0398 |
 | 135 | 1203.41 | 2231 | 972 | 377 | 3552 | 2301 | 0.0519 |
 | 134 | 1195.59 | 2232 | 1023 | 376 | 3556 | 2278 | 0.0457 |
-| 133 | 1191.69 | 2265 | 1152 | 387 | 3550 | 2269 | 0.0408 |
 
 ## Hypotheses
 
@@ -169,6 +169,7 @@ Updated 2026-10-30T16:32Z. Now: day 1285.44, benchmark gap **1963** (evolved gen
 - **kept**: nodling.js TEAM_BUILD_BONUS 0.2 for an adjacent build with another Nodling within 3 cells (cluster 250->331, builtCells 4006->4087, bricks 3601->3596, gap 1963 identical; single 8k sample, within noise)
 - **reverted**: nodling.js WALL_RUN_BONUS 0.2 for an adjacent build extending a straight run of >=2 durable cells (cluster 326->314, builtCells 4132->4111, bricks 3602->3603, gap 1963 identical; target worse)
 - **reverted**: nodling.js MASON_BONUS 0.2: brick laid beside another brick (metrics identical to control (bonus never fires); code discarded as dead weight)
+- **kept**: nodling.js MIXED_BONUS 0.2: adjacent build whose material differs from a neighbouring structure's top material (largestCluster 288 -> 306, builtCells 4060 -> 4050, bench gap 1963 -> 1963, medianFitness 1239 -> 1084; single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
