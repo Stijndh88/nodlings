@@ -1134,6 +1134,14 @@
       "status": "kept",
       "cycle": 139,
       "note": "largestCluster 288 -> 306, builtCells 4060 -> 4050, bench gap 1963 -> 1963, medianFitness 1239 -> 1084; single 8k sample, within noise"
+    },
+    {
+      "id": "night-build-bonus",
+      "signal": 1,
+      "change": "nodling.js NIGHT_BUILD_BONUS 0.2: adjacent build at night",
+      "status": "reverted",
+      "cycle": 140,
+      "note": "metrics identical to control (bonus never fires); code discarded as dead weight"
     }
   ]
 }
