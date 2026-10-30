@@ -1043,3 +1043,9 @@ STRUCTURAL: gap bonus (priority 1, plateau.js demanded structural): `nodling.js`
 STRUCTURAL: haul bonus (priority 1, plateau.js demanded structural): `nodling.js` HAUL_BONUS 0.2 for an adjacent build >=8 cells from where the material was picked up (carry material to the village instead of restacking in place). Unlike the recent null bonuses this one fires.
 - Control vs treatment (8k ticks): largestCluster 276 -> 299, builtCells 3979 -> 4095, brickCells 3597 -> 3596, bench gap 1963 -> 1963, medianFitness 1144 -> 1019, commSeparation 0.0805 -> 0.1884, pop 500 -> 506. Guardrails pass; target slightly better, but single 8k sample, within noise.
 - Baseline batch ran 12500 ticks.
+
+## Cycle 136 — day 1262 — `kept`
+
+STRUCTURAL: team build bonus (priority 1, plateau.js demanded structural): `nodling.js` TEAM_BUILD_BONUS 0.2 for an adjacent build with another Nodling within 3 cells (barn-raising: build together).
+- Control vs treatment (8k ticks): largestCluster 250 -> 331, builtCells 4006 -> 4087, brickCells 3601 -> 3596, bench gap 1963 -> 1963, medianFitness 1190 -> 1123, commSeparation 0.032 -> 0.2204, pop 500 -> 500. Guardrails pass; target better, but single 8k sample, within noise.
+- Baseline batch ran 12500 ticks.

@@ -1102,6 +1102,14 @@
       "status": "kept",
       "cycle": 135,
       "note": "cluster 276->299, builtCells 3979->4095, bricks 3597->3596, gap 1963 identical; single 8k sample, within noise"
+    },
+    {
+      "id": "team-build-bonus",
+      "signal": 1,
+      "change": "nodling.js TEAM_BUILD_BONUS 0.2 for an adjacent build with another Nodling within 3 cells",
+      "status": "kept",
+      "cycle": 136,
+      "note": "cluster 250->331, builtCells 4006->4087, bricks 3601->3596, gap 1963 identical; single 8k sample, within noise"
     }
   ]
 }
