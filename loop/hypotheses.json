@@ -1094,6 +1094,14 @@
       "status": "kept",
       "cycle": 134,
       "note": "all metrics identical to control (cluster 389, bricks 3583, gap 1963); bonus essentially never fires (null result)"
+    },
+    {
+      "id": "haul-bonus",
+      "signal": 1,
+      "change": "nodling.js HAUL_BONUS 0.2 for an adjacent build >=8 cells from the material's pickup cell",
+      "status": "kept",
+      "cycle": 135,
+      "note": "cluster 276->299, builtCells 3979->4095, bricks 3597->3596, gap 1963 identical; single 8k sample, within noise"
     }
   ]
 }

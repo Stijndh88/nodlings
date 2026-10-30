@@ -1037,3 +1037,9 @@ STRUCTURAL: feast bonus (priority 1, plateau.js demanded structural): `nodling.j
 STRUCTURAL: gap bonus (priority 1, plateau.js demanded structural): `nodling.js` GAP_BONUS 0.2 for an adjacent build that closes a gap between two opposite durable neighbours (joins wall segments).
 - Control vs treatment (8k ticks): largestCluster 389 -> 389, builtCells 4367 -> 4367, brickCells 3583 -> 3583, bench gap 1963 -> 1963, medianFitness 1033 -> 1033, commSeparation 0.2573 -> 0.2573, pop 494 -> 494. Guardrails pass; metrics identical, so the bonus essentially never fires (null result, not a measured improvement).
 - Baseline batch ran 12500 ticks.
+
+## Cycle 135 — day 1254 — `kept`
+
+STRUCTURAL: haul bonus (priority 1, plateau.js demanded structural): `nodling.js` HAUL_BONUS 0.2 for an adjacent build >=8 cells from where the material was picked up (carry material to the village instead of restacking in place). Unlike the recent null bonuses this one fires.
+- Control vs treatment (8k ticks): largestCluster 276 -> 299, builtCells 3979 -> 4095, brickCells 3597 -> 3596, bench gap 1963 -> 1963, medianFitness 1144 -> 1019, commSeparation 0.0805 -> 0.1884, pop 500 -> 506. Guardrails pass; target slightly better, but single 8k sample, within noise.
+- Baseline batch ran 12500 ticks.
