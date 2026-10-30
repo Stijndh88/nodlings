@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-30T04:32Z. Now: day 1262, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 311, 3600 brick cells, max generation 2440.
+Updated 2026-10-30T08:27Z. Now: day 1269.81, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 320, 3602 brick cells, max generation 2461.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-30T04:32Z. Now: day 1262, benchmark gap **1963** (evolved gene p
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 145 | 1269.81 | 1963 | 766 | 320 | 3602 | 2461 | 0.3012 |
 | 144 | 1262 | 1963 | 1028 | 311 | 3600 | 2440 | 0.1409 |
 | 143 | 1254.19 | 1963 | 1228 | 303 | 3589 | 2420 | 0.1921 |
 | 142 | 1246.38 | 1963 | 841 | 303 | 3585 | 2401 | 0.1099 |
@@ -24,7 +25,6 @@ Updated 2026-10-30T04:32Z. Now: day 1262, benchmark gap **1963** (evolved gene p
 | 133 | 1191.69 | 2265 | 1152 | 387 | 3550 | 2269 | 0.0408 |
 | 132 | 1183.88 | 2265 | 1083 | 402 | 3549 | 2250 | 0.1103 |
 | 131 | 1179.97 | 2311 | 1122 | 403 | 3542 | 2238 | 0.1576 |
-| 130 | 1176.06 | 2311 | 999 | 400 | 3543 | 2227 | 0.0523 |
 
 ## Hypotheses
 
@@ -166,6 +166,7 @@ Updated 2026-10-30T04:32Z. Now: day 1262, benchmark gap **1963** (evolved gene p
 - **kept**: nodling.js FEAST_BONUS 0.2: cached meal eaten beside another Nodling (cluster 297->299, bricks 3586->3588, gap 1993->1963 (-1.5%); single 8k sample, within noise)
 - **kept**: nodling.js GAP_BONUS 0.2: adjacent build closing a gap between two opposite durable neighbours (all metrics identical to control (cluster 389, bricks 3583, gap 1963); bonus essentially never fires (null result))
 - **kept**: nodling.js HAUL_BONUS 0.2 for an adjacent build >=8 cells from the material's pickup cell (cluster 276->299, builtCells 3979->4095, bricks 3597->3596, gap 1963 identical; single 8k sample, within noise)
+- **kept**: nodling.js TEAM_BUILD_BONUS 0.2 for an adjacent build with another Nodling within 3 cells (cluster 250->331, builtCells 4006->4087, bricks 3601->3596, gap 1963 identical; single 8k sample, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
