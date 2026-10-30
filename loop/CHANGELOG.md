@@ -1049,3 +1049,9 @@ STRUCTURAL: haul bonus (priority 1, plateau.js demanded structural): `nodling.js
 STRUCTURAL: team build bonus (priority 1, plateau.js demanded structural): `nodling.js` TEAM_BUILD_BONUS 0.2 for an adjacent build with another Nodling within 3 cells (barn-raising: build together).
 - Control vs treatment (8k ticks): largestCluster 250 -> 331, builtCells 4006 -> 4087, brickCells 3601 -> 3596, bench gap 1963 -> 1963, medianFitness 1190 -> 1123, commSeparation 0.032 -> 0.2204, pop 500 -> 500. Guardrails pass; target better, but single 8k sample, within noise.
 - Baseline batch ran 12500 ticks.
+
+## Cycle 137 — day 1270 — `reverted`
+
+STRUCTURAL: wall-run bonus (priority 1, plateau.js demanded structural): `nodling.js` WALL_RUN_BONUS 0.2 for an adjacent build extending a straight run of >=2 durable cells.
+- Control vs treatment (8k ticks): largestCluster 326 -> 314, builtCells 4132 -> 4111, brickCells 3602 -> 3603, bench gap 1963 -> 1963, medianFitness 1086 -> 1182, commSeparation 0.2518 -> 0.2733, pop 500 -> 499. Guardrails pass; target worse (within noise), so reverted.
+- Baseline batch ran 12500 ticks.

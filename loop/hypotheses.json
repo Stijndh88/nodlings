@@ -1110,6 +1110,14 @@
       "status": "kept",
       "cycle": 136,
       "note": "cluster 250->331, builtCells 4006->4087, bricks 3601->3596, gap 1963 identical; single 8k sample, within noise"
+    },
+    {
+      "id": "wall-run-bonus",
+      "signal": 1,
+      "change": "nodling.js WALL_RUN_BONUS 0.2 for an adjacent build extending a straight run of >=2 durable cells",
+      "status": "reverted",
+      "cycle": 137,
+      "note": "cluster 326->314, builtCells 4132->4111, bricks 3602->3603, gap 1963 identical; target worse"
     }
   ]
 }
