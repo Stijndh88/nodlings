@@ -41,6 +41,7 @@ const WELL_BONUS = 0.2; // reward for drinking within 4 cells of a durable struc
 const FEAST_BONUS = 0.2; // extra reward for a cached meal (>=2 walls) eaten beside another Nodling (communal granaries)
 const GAP_BONUS = 0.2; // extra reward for an adjacent build that closes a gap between two opposite durable neighbours (joins separate wall segments)
 const HAUL_BONUS = 0.2; // extra reward for an adjacent build >=8 cells from where the material was picked up (haul to the village, don't restack in place)
+const MIXED_BONUS = 0.2; // extra reward for an adjacent build whose material differs from a neighbouring structure's top material (mixed masonry: wood+stone+brick)
 const TEAM_BUILD_BONUS = 0.2; // extra reward for an adjacent build with another Nodling within 3 cells (barn-raising: build together)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
@@ -288,6 +289,13 @@ class Nodling {
           }
           if (nbs >= 3) this.bonus += NOTCH_BONUS;
           if (nbs && w.adjacentWater(cx, cy)) this.bonus += SHORE_BONUS;
+          if (nbs){
+            for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+              const nb = w.at(cx+ax, cy+ay);
+              const top = nb && nb.stack.length ? nb.stack[nb.stack.length-1] : null;
+              if (top && DURABLE_BUILD.includes(top) && top !== this.carrying){ this.bonus += MIXED_BONUS; break; }
+            }
+          }
           if (nbs && w.season() === 'Winter') this.bonus += WINTER_BUILD_BONUS;
           if (nbs && this.pickup && (this.pickup[0]-cx)**2 + (this.pickup[1]-cy)**2 >= 64) this.bonus += HAUL_BONUS;
           if (nbs){
