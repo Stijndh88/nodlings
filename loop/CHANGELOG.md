@@ -1055,3 +1055,9 @@ STRUCTURAL: team build bonus (priority 1, plateau.js demanded structural): `nodl
 STRUCTURAL: wall-run bonus (priority 1, plateau.js demanded structural): `nodling.js` WALL_RUN_BONUS 0.2 for an adjacent build extending a straight run of >=2 durable cells.
 - Control vs treatment (8k ticks): largestCluster 326 -> 314, builtCells 4132 -> 4111, brickCells 3602 -> 3603, bench gap 1963 -> 1963, medianFitness 1086 -> 1182, commSeparation 0.2518 -> 0.2733, pop 500 -> 499. Guardrails pass; target worse (within noise), so reverted.
 - Baseline batch ran 12500 ticks.
+
+## Cycle 138 — day 1277 — `reverted`
+
+STRUCTURAL: mason bonus (priority 1, plateau.js demanded structural): `nodling.js` MASON_BONUS 0.2 for laying a fired brick beside another brick.
+- Control vs treatment (8k ticks): largestCluster 330 -> 330, builtCells 4446 -> 4446, brickCells 3600 -> 3600, bench gap 1963 -> 1963, medianFitness 965 -> 965, commSeparation 0.2594 -> 0.2594, pop 501 -> 501. Guardrails pass; metrics identical, so the bonus never fires. Code discarded (null result).
+- Baseline batch ran 12500 ticks.
