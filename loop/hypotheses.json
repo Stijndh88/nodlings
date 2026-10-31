@@ -1182,6 +1182,14 @@
       "status": "reverted",
       "cycle": 145,
       "note": "metrics identical to control; rule never fires"
+    },
+    {
+      "id": "call-follow-food",
+      "signal": 2,
+      "change": "nodling.js CALL_FOLLOW_BONUS 0.3: eating found food within 20 ticks of hearing a call with no predator near (food-found call -> approach)",
+      "status": "kept",
+      "cycle": 146,
+      "note": "commSeparation 0.1877 -> 0.2696, bench gap 1963 -> 1996, cluster 337 -> 334; single 8k sample, within noise"
     }
   ]
 }

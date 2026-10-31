@@ -1103,3 +1103,9 @@ STRUCTURAL: brick-floor shelter (priority 1, plateau.js demanded structural): `p
 STRUCTURAL: raised-platform shelter (priority 1, plateau.js demanded structural): `predators.js` prey standing on a stacked durable cell (stack >=2) counts as sheltered.
 - Control vs treatment (8k ticks): largestCluster 266 -> 266, builtCells 4195 -> 4195, brickCells 3638 -> 3638, bench gap 1963 -> 1963, medianFitness 1045 -> 1045, commSeparation 0.0317 -> 0.0317, pop 502 -> 502. Guardrails pass; metrics identical, so the rule never fires. Code discarded (null result).
 - Baseline batch ran 12500 ticks. Note: shelter-rule tweaks in predators.js have now been null twice in a row; try a different lever next.
+
+## Cycle 146 — day 1341 — `kept`
+
+STRUCTURAL: call-follow food (priority 2, plateau.js demanded structural; shelter tweaks were null twice): `nodling.js` CALL_FOLLOW_BONUS 0.3 for eating found food within 20 ticks of hearing a call with no predator near.
+- Control vs treatment (8k ticks): commSeparation 0.1877 -> 0.2696, bench gap 1963 -> 1996, largestCluster 337 -> 334, builtCells 4347 -> 4219, brickCells 3642 -> 3645, medianFitness 912 -> 901, pop 500 -> 500. Guardrails pass; target better, but single 8k sample, within noise.
+- Baseline batch ran 12500 ticks.

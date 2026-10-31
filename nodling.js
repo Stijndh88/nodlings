@@ -42,6 +42,7 @@ const FEAST_BONUS = 0.2; // extra reward for a cached meal (>=2 walls) eaten bes
 const GAP_BONUS = 0.2; // extra reward for an adjacent build that closes a gap between two opposite durable neighbours (joins separate wall segments)
 const HAUL_BONUS = 0.2; // extra reward for an adjacent build >=8 cells from where the material was picked up (haul to the village, don't restack in place)
 const MIXED_BONUS = 0.2; // extra reward for an adjacent build whose material differs from a neighbouring structure's top material (mixed masonry: wood+stone+brick)
+const CALL_FOLLOW_BONUS = 0.3; // reward for eating found food within 20 ticks of hearing a call with no predator near (food-found call -> approach)
 const TEAM_BUILD_BONUS = 0.2; // extra reward for an adjacent build with another Nodling within 3 cells (barn-raising: build together)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
 
@@ -165,6 +166,7 @@ class Nodling {
       if (this.prevPredD2 !== undefined && bpd > this.prevPredD2) this.bonus += FLEE_HEARD_BONUS;
     }
     this.prevPredD2 = bp ? bpd : undefined;
+    if (bs && !bp) this.heardCallAge = this.age;
 
     // social: neighbour's health, kinship (hue ≈ lineage), and its last action
     // (so imitation can be *learned* — the brain may choose to copy it)
@@ -339,6 +341,7 @@ class Nodling {
           if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 9){ this.bonus += SHARED_MEAL_BONUS + (walls >= 2 ? FEAST_BONUS : 0); break; }
         }
         if (this.energy < 60) this.bonus += HUNGRY_EAT_BONUS;
+        if (this.heardCallAge !== undefined && this.age - this.heardCallAge <= 20) this.bonus += CALL_FOLLOW_BONUS;
         this.eat(cell.stack.pop());
       } else if (cell.water || w.adjacentWater(cx, cy)){
         if (this.hydration < 40) this.bonus += THIRST_DRINK_BONUS;
