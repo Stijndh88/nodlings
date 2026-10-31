@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-30T20:30Z. Now: day 1293.25, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 293, 3607 brick cells, max generation 2521.
+Updated 2026-10-31T00:33Z. Now: day 1301.06, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 432, 3615 brick cells, max generation 2543.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-30T20:30Z. Now: day 1293.25, benchmark gap **1963** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 149 | 1301.06 | 1963 | 1068 | 432 | 3615 | 2543 | 0.1765 |
 | 148 | 1293.25 | 1963 | 1143 | 293 | 3607 | 2521 | 0.2955 |
 | 147 | 1285.44 | 1963 | 1143 | 320 | 3604 | 2498 | 0.2604 |
 | 146 | 1277.63 | 1963 | 1128 | 324 | 3602 | 2478 | 0.2597 |
@@ -24,7 +25,6 @@ Updated 2026-10-30T20:30Z. Now: day 1293.25, benchmark gap **1963** (evolved gen
 | 137 | 1215.13 | 2057 | 1076 | 302 | 3567 | 2326 | 0.0173 |
 | 136 | 1207.31 | 2231 | 1091 | 295 | 3557 | 2307 | 0.0398 |
 | 135 | 1203.41 | 2231 | 972 | 377 | 3552 | 2301 | 0.0519 |
-| 134 | 1195.59 | 2232 | 1023 | 376 | 3556 | 2278 | 0.0457 |
 
 ## Hypotheses
 
@@ -170,6 +170,7 @@ Updated 2026-10-30T20:30Z. Now: day 1293.25, benchmark gap **1963** (evolved gen
 - **reverted**: nodling.js WALL_RUN_BONUS 0.2 for an adjacent build extending a straight run of >=2 durable cells (cluster 326->314, builtCells 4132->4111, bricks 3602->3603, gap 1963 identical; target worse)
 - **reverted**: nodling.js MASON_BONUS 0.2: brick laid beside another brick (metrics identical to control (bonus never fires); code discarded as dead weight)
 - **kept**: nodling.js MIXED_BONUS 0.2: adjacent build whose material differs from a neighbouring structure's top material (largestCluster 288 -> 306, builtCells 4060 -> 4050, bench gap 1963 -> 1963, medianFitness 1239 -> 1084; single 8k sample, within noise)
+- **reverted**: nodling.js NIGHT_BUILD_BONUS 0.2: adjacent build at night (metrics identical to control (bonus never fires); code discarded as dead weight)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
