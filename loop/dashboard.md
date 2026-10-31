@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-31T04:29Z. Now: day 1308.88, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 451, 3620 brick cells, max generation 2560.
+Updated 2026-10-31T08:40Z. Now: day 1316.69, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 446, 3621 brick cells, max generation 2575.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-31T04:29Z. Now: day 1308.88, benchmark gap **1963** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 151 | 1316.69 | 1963 | 1004 | 446 | 3621 | 2575 | 0.1174 |
 | 150 | 1308.88 | 1963 | 1013 | 451 | 3620 | 2560 | 0.1734 |
 | 149 | 1301.06 | 1963 | 1068 | 432 | 3615 | 2543 | 0.1765 |
 | 148 | 1293.25 | 1963 | 1143 | 293 | 3607 | 2521 | 0.2955 |
@@ -24,7 +25,6 @@ Updated 2026-10-31T04:29Z. Now: day 1308.88, benchmark gap **1963** (evolved gen
 | 139 | 1226.84 | 2057 | 1185 | 297 | 3578 | 2352 | 0.1896 |
 | 138 | 1222.94 | 2057 | 1052 | 302 | 3566 | 2346 | 0.084 |
 | 137 | 1215.13 | 2057 | 1076 | 302 | 3567 | 2326 | 0.0173 |
-| 136 | 1207.31 | 2231 | 1091 | 295 | 3557 | 2307 | 0.0398 |
 
 ## Hypotheses
 
@@ -172,6 +172,7 @@ Updated 2026-10-31T04:29Z. Now: day 1308.88, benchmark gap **1963** (evolved gen
 - **kept**: nodling.js MIXED_BONUS 0.2: adjacent build whose material differs from a neighbouring structure's top material (largestCluster 288 -> 306, builtCells 4060 -> 4050, bench gap 1963 -> 1963, medianFitness 1239 -> 1084; single 8k sample, within noise)
 - **reverted**: nodling.js NIGHT_BUILD_BONUS 0.2: adjacent build at night (metrics identical to control (bonus never fires); code discarded as dead weight)
 - **reverted**: nodling.js DENSITY_BONUS 0.2: adjacent build with >=8 durable cells in surrounding 5x5 (metrics identical to control; bonus never fires)
+- **reverted**: nodling.js EXPAND_BONUS 0.2: extra reward for an adjacent build onto a cell with no durable material yet (metrics identical to control; bonus never fires)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
