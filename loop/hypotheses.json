@@ -1158,6 +1158,14 @@
       "status": "reverted",
       "cycle": 142,
       "note": "metrics identical to control; bonus never fires"
+    },
+    {
+      "id": "corner-shelter",
+      "signal": 1,
+      "change": "predators.js: prey with 1 durable orthogonal wall + 1 durable diagonal also counts as sheltered (predator pressure rewards compact structures)",
+      "status": "kept",
+      "cycle": 143,
+      "note": "cluster 305 -> 349, builtCells 4104 -> 4176; single 8k sample, within noise"
     }
   ]
 }

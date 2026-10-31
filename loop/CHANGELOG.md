@@ -1085,3 +1085,9 @@ STRUCTURAL: density bonus (priority 1, plateau.js demanded structural): `nodling
 STRUCTURAL: expand bonus (priority 1, plateau.js demanded structural): `nodling.js` EXPAND_BONUS 0.2 for an adjacent build onto a cell with no durable material yet.
 - Control vs treatment (8k ticks): largestCluster 454 -> 454, builtCells 4500 -> 4500, brickCells 3619 -> 3619, bench gap 1963 -> 1963, medianFitness 1011 -> 1011, commSeparation 0.1413 -> 0.1413, pop 500 -> 500. Guardrails pass; metrics identical, so the bonus never fires. Code discarded (null result).
 - Baseline batch ran 12500 ticks.
+
+## Cycle 143 — day 1317 — `kept`
+
+STRUCTURAL: corner shelter (priority 1, plateau.js demanded structural): `predators.js` prey with one durable orthogonal wall plus one durable diagonal counts as sheltered (predator pressure favours compact structures).
+- Control vs treatment (8k ticks): largestCluster 305 -> 349, builtCells 4104 -> 4176, brickCells 3623 -> 3627, bench gap 1963 -> 1963, medianFitness 1147 -> 1059, commSeparation 0.0479 -> 0.0097, pop 500 -> 500. Guardrails pass; target better, but single 8k sample, within noise.
+- Baseline batch ran 12500 ticks (25000 timed out).

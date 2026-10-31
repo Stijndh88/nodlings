@@ -68,7 +68,12 @@ class Predator {
         const nb = w.at((prey.x|0)+ax, (prey.y|0)+ay);
         if (nb && nb.stack.some(m => m === 'wood' || m === 'plank' || m === 'stone' || m === 'brick')) walls++;
       }
-      sheltered = walls >= 2;
+      let diag = 0;   // corner shelter: one wall plus a durable diagonal also blocks the strike
+      for (const [ax, ay] of [[1,1],[-1,1],[1,-1],[-1,-1]]){
+        const nb = w.at((prey.x|0)+ax, (prey.y|0)+ay);
+        if (nb && nb.stack.some(m => m === 'wood' || m === 'plank' || m === 'stone' || m === 'brick')) diag++;
+      }
+      sheltered = walls >= 2 || (walls >= 1 && diag >= 1);
     }
     if (prey && pd < 0.8*0.8 && !sheltered){   // caught it
       prey.die(w.at(prey.x|0, prey.y|0));
