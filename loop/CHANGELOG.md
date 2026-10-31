@@ -1097,3 +1097,9 @@ STRUCTURAL: corner shelter (priority 1, plateau.js demanded structural): `predat
 STRUCTURAL: brick-floor shelter (priority 1, plateau.js demanded structural): `predators.js` prey standing on a brick cell with one durable wall counts as sheltered.
 - Control vs treatment (8k ticks): largestCluster 320 -> 320, builtCells 4140 -> 4140, brickCells 3631 -> 3631, bench gap 1963 -> 1963, medianFitness 1096 -> 1096, commSeparation 0.0409 -> 0.0409, pop 503 -> 503. Guardrails pass; metrics identical, so the rule never fires. Code discarded (null result).
 - Baseline batch ran 6250 ticks (25000 and 12500 timed out).
+
+## Cycle 145 — day 1328 — `reverted`
+
+STRUCTURAL: raised-platform shelter (priority 1, plateau.js demanded structural): `predators.js` prey standing on a stacked durable cell (stack >=2) counts as sheltered.
+- Control vs treatment (8k ticks): largestCluster 266 -> 266, builtCells 4195 -> 4195, brickCells 3638 -> 3638, bench gap 1963 -> 1963, medianFitness 1045 -> 1045, commSeparation 0.0317 -> 0.0317, pop 502 -> 502. Guardrails pass; metrics identical, so the rule never fires. Code discarded (null result).
+- Baseline batch ran 12500 ticks. Note: shelter-rule tweaks in predators.js have now been null twice in a row; try a different lever next.

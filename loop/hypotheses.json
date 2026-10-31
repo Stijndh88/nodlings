@@ -1174,6 +1174,14 @@
       "status": "reverted",
       "cycle": 144,
       "note": "metrics identical to control (cluster 320, bricks 3631, gap 1963); never fires"
+    },
+    {
+      "id": "raised-platform-shelter",
+      "signal": 1,
+      "change": "predators.js prey standing on a stacked durable cell counts as sheltered",
+      "status": "reverted",
+      "cycle": 145,
+      "note": "metrics identical to control; rule never fires"
     }
   ]
 }
