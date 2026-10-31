@@ -1073,3 +1073,9 @@ STRUCTURAL: mixed-masonry bonus (priority 1, plateau.js demanded structural): `n
 STRUCTURAL: night build bonus (priority 1, plateau.js demanded structural): `nodling.js` NIGHT_BUILD_BONUS 0.2 for an adjacent build at night.
 - Control vs treatment (8k ticks): largestCluster 296 -> 296, builtCells 4094 -> 4094, brickCells 3611 -> 3611, bench gap 1963 -> 1963, medianFitness 1078 -> 1078, commSeparation 0.1642 -> 0.1642, pop 502 -> 502. Guardrails pass; metrics identical, so the bonus never fires. Code discarded (null result).
 - Baseline batch ran 12500 ticks.
+
+## Cycle 141 — day 1301 — `reverted`
+
+STRUCTURAL: density bonus (priority 1, plateau.js demanded structural): `nodling.js` DENSITY_BONUS 0.2 for an adjacent build with >=8 durable cells in the surrounding 5x5 block.
+- Control vs treatment (8k ticks): largestCluster 440 -> 440, builtCells 4230 -> 4230, brickCells 3619 -> 3619, bench gap 1963 -> 1963, medianFitness 1115 -> 1115, commSeparation 0.0989 -> 0.0989, pop 500 -> 500. Guardrails pass; metrics identical, so the bonus never fires. Code discarded (null result).
+- Baseline batch ran 12500 ticks.

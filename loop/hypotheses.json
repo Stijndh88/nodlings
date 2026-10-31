@@ -1142,6 +1142,7 @@
       "status": "reverted",
       "cycle": 140,
       "note": "metrics identical to control (bonus never fires); code discarded as dead weight"
-    }
+    },
+    {"id":"density-bonus","signal":1,"change":"nodling.js DENSITY_BONUS 0.2: adjacent build with >=8 durable cells in surrounding 5x5","status":"reverted","cycle":141,"note":"metrics identical to control; bonus never fires"}
   ]
 }
