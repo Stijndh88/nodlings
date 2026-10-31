@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-10-31T12:41Z. Now: day 1320.59, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 351, 3624 brick cells, max generation 2587.
+Updated 2026-10-31T16:30Z. Now: day 1328.41, benchmark gap **1963** (evolved gene pool minus random genomes), largest built cluster 321, 3637 brick cells, max generation 2608.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-10-31T12:41Z. Now: day 1320.59, benchmark gap **1963** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 153 | 1328.41 | 1963 | 958 | 321 | 3637 | 2608 | 0.0439 |
 | 152 | 1320.59 | 1963 | 1135 | 351 | 3624 | 2587 | 0.0031 |
 | 151 | 1316.69 | 1963 | 1004 | 446 | 3621 | 2575 | 0.1174 |
 | 150 | 1308.88 | 1963 | 1013 | 451 | 3620 | 2560 | 0.1734 |
@@ -24,7 +25,6 @@ Updated 2026-10-31T12:41Z. Now: day 1320.59, benchmark gap **1963** (evolved gen
 | 141 | 1238.56 | 1993 | 1049 | 309 | 3586 | 2377 | 0.03 |
 | 140 | 1234.66 | 2057 | 1113 | 328 | 3579 | 2370 | 0.2311 |
 | 139 | 1226.84 | 2057 | 1185 | 297 | 3578 | 2352 | 0.1896 |
-| 138 | 1222.94 | 2057 | 1052 | 302 | 3566 | 2346 | 0.084 |
 
 ## Hypotheses
 
@@ -174,6 +174,7 @@ Updated 2026-10-31T12:41Z. Now: day 1320.59, benchmark gap **1963** (evolved gen
 - **reverted**: nodling.js DENSITY_BONUS 0.2: adjacent build with >=8 durable cells in surrounding 5x5 (metrics identical to control; bonus never fires)
 - **reverted**: nodling.js EXPAND_BONUS 0.2: extra reward for an adjacent build onto a cell with no durable material yet (metrics identical to control; bonus never fires)
 - **kept**: predators.js: prey with 1 durable orthogonal wall + 1 durable diagonal also counts as sheltered (predator pressure rewards compact structures) (cluster 305 -> 349, builtCells 4104 -> 4176; single 8k sample, within noise)
+- **reverted**: predators.js: prey standing on a brick cell with one durable wall counts as sheltered (metrics identical to control (cluster 320, bricks 3631, gap 1963); never fires)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
