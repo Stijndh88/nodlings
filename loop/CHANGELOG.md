@@ -1091,3 +1091,9 @@ STRUCTURAL: expand bonus (priority 1, plateau.js demanded structural): `nodling.
 STRUCTURAL: corner shelter (priority 1, plateau.js demanded structural): `predators.js` prey with one durable orthogonal wall plus one durable diagonal counts as sheltered (predator pressure favours compact structures).
 - Control vs treatment (8k ticks): largestCluster 305 -> 349, builtCells 4104 -> 4176, brickCells 3623 -> 3627, bench gap 1963 -> 1963, medianFitness 1147 -> 1059, commSeparation 0.0479 -> 0.0097, pop 500 -> 500. Guardrails pass; target better, but single 8k sample, within noise.
 - Baseline batch ran 12500 ticks (25000 timed out).
+
+## Cycle 144 — day 1320 — `reverted`
+
+STRUCTURAL: brick-floor shelter (priority 1, plateau.js demanded structural): `predators.js` prey standing on a brick cell with one durable wall counts as sheltered.
+- Control vs treatment (8k ticks): largestCluster 320 -> 320, builtCells 4140 -> 4140, brickCells 3631 -> 3631, bench gap 1963 -> 1963, medianFitness 1096 -> 1096, commSeparation 0.0409 -> 0.0409, pop 503 -> 503. Guardrails pass; metrics identical, so the rule never fires. Code discarded (null result).
+- Baseline batch ran 6250 ticks (25000 and 12500 timed out).

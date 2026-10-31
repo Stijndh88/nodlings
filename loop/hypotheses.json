@@ -1166,6 +1166,14 @@
       "status": "kept",
       "cycle": 143,
       "note": "cluster 305 -> 349, builtCells 4104 -> 4176; single 8k sample, within noise"
+    },
+    {
+      "id": "brick-floor-shelter",
+      "signal": 1,
+      "change": "predators.js: prey standing on a brick cell with one durable wall counts as sheltered",
+      "status": "reverted",
+      "cycle": 144,
+      "note": "metrics identical to control (cluster 320, bricks 3631, gap 1963); never fires"
     }
   ]
 }
