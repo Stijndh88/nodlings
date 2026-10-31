@@ -1,25 +1,29 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1328.4 · Summer
+Seed `20261007` · day 1336.2 · Autumn
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 498 (53 juvenile) |
-| max generation | 2607 |
+| population | 500 (57 juvenile) |
+| max generation | 2629 |
 | best fitness | 7002 |
-| avg brain (conns) | 153 |
-| lineage diversity | 5 colour-groups |
-| diet | 71% herbivore / 16% carnivore |
-| predators | 3, 4 kills, best 114012 |
-| structures (durable) | 8379 (4007) |
-| planks / bricks / bridges | 19 / 3295 / 2660 |
-| flora / cooked food | 5390 / 272 |
+| avg brain (conns) | 130 |
+| lineage diversity | 6 colour-groups |
+| diet | 60% herbivore / 26% carnivore |
+| predators | 2, 2 kills, best 114012 |
+| structures (durable) | 7571 (3927) |
+| planks / bricks / bridges | 18 / 3309 / 2660 |
+| flora / cooked food | 4847 / 328 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1335.4]** _(trend)_ Lineages are deepening — max generation 2612→2629. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1333.4]** _(trend)_ Brains are genuinely shrinking below capacity — selection favours simpler wiring right now.
+- **[day 1329.4]** _(trend)_ Lineages are deepening — max generation 2608→2612. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1328.4]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1322.6]** _(trend)_ Lineages are deepening — max generation 2587→2594. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1319.7]** _(trend)_ Brains are genuinely shrinking below capacity — selection favours simpler wiring right now.
 - **[day 1314.9]** _(trend)_ Lineages are deepening — max generation 2560→2570. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
