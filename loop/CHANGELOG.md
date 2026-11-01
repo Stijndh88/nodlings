@@ -1121,3 +1121,9 @@ STRUCTURAL: alarm relay (priority 2, plateau.js demanded structural): `nodling.j
 STRUCTURAL: call-build bonus (priority 1, plateau.js demanded structural): `nodling.js` CALL_BUILD_BONUS 0.3 for an adjacent build within 30 ticks of hearing a call with no predator near.
 - Control vs treatment (8k ticks): largestCluster 243 -> 331, builtCells 4305 -> 4361, brickCells 3656 -> 3656, bench gap 1996 -> 1996, medianFitness 1105 -> 1154, commSeparation 0.1738 -> 0.0955, pop 500 -> 501. Guardrails pass; target better, but single 8k sample, within noise (commSeparation swings widely between samples).
 - Baseline batch ran 6250 ticks (25000 times out).
+
+## Cycle 149 — day 1351 — `reverted`
+
+STRUCTURAL: call-kiln bonus (priority 1, plateau.js demanded structural): `nodling.js` CALL_KILN_BONUS 0.3 for feeding a kiln within 30 ticks of hearing a call.
+- Control vs treatment (8k ticks): largestCluster 331 -> 331, builtCells 4088 -> 4088, brickCells 3652 -> 3652, bench gap 1996 -> 1996, medianFitness 951 -> 951, commSeparation 0.1133 -> 0.1133, pop 501 -> 501. Guardrails pass; metrics identical, so the bonus never fires. Code discarded (null result).
+- Baseline batch ran 6250 ticks.

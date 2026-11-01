@@ -1206,6 +1206,14 @@
       "status": "kept",
       "cycle": 148,
       "note": "cluster 243 -> 331, builtCells 4305 -> 4361, gap 1996 identical, commSeparation 0.1738 -> 0.0955; single 8k sample, within noise"
+    },
+    {
+      "id": "call-kiln-bonus",
+      "signal": 1,
+      "change": "nodling.js CALL_KILN_BONUS 0.3: feed a kiln (clay beside fire) within 30 ticks of hearing a call",
+      "status": "reverted",
+      "cycle": 149,
+      "note": "metrics identical to control (cluster 331, bricks 3652, gap 1996); bonus never fires"
     }
   ]
 }
