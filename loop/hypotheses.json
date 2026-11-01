@@ -1198,6 +1198,14 @@
       "status": "reverted",
       "cycle": 147,
       "note": "metrics identical to control (commSeparation 0.0068 both); bonus never fires"
+    },
+    {
+      "id": "call-build-bonus",
+      "signal": 1,
+      "change": "nodling.js CALL_BUILD_BONUS 0.3: adjacent build within 30 ticks of hearing a call with no predator near",
+      "status": "kept",
+      "cycle": 148,
+      "note": "cluster 243 -> 331, builtCells 4305 -> 4361, gap 1996 identical, commSeparation 0.1738 -> 0.0955; single 8k sample, within noise"
     }
   ]
 }

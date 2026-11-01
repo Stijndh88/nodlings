@@ -42,6 +42,7 @@ const FEAST_BONUS = 0.2; // extra reward for a cached meal (>=2 walls) eaten bes
 const GAP_BONUS = 0.2; // extra reward for an adjacent build that closes a gap between two opposite durable neighbours (joins separate wall segments)
 const HAUL_BONUS = 0.2; // extra reward for an adjacent build >=8 cells from where the material was picked up (haul to the village, don't restack in place)
 const MIXED_BONUS = 0.2; // extra reward for an adjacent build whose material differs from a neighbouring structure's top material (mixed masonry: wood+stone+brick)
+const CALL_BUILD_BONUS = 0.3; // reward for an adjacent build within 30 ticks of hearing a call with no predator near (call -> gather and build)
 const CALL_FOLLOW_BONUS = 0.3; // reward for eating found food within 20 ticks of hearing a call with no predator near (food-found call -> approach)
 const TEAM_BUILD_BONUS = 0.2; // extra reward for an adjacent build with another Nodling within 3 cells (barn-raising: build together)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
@@ -298,6 +299,7 @@ class Nodling {
               if (top && DURABLE_BUILD.includes(top) && top !== this.carrying){ this.bonus += MIXED_BONUS; break; }
             }
           }
+          if (nbs && this.heardCallAge !== undefined && this.age - this.heardCallAge <= 30) this.bonus += CALL_BUILD_BONUS;
           if (nbs && w.season() === 'Winter') this.bonus += WINTER_BUILD_BONUS;
           if (nbs && this.pickup && (this.pickup[0]-cx)**2 + (this.pickup[1]-cy)**2 >= 64) this.bonus += HAUL_BONUS;
           if (nbs){
