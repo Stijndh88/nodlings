@@ -1190,6 +1190,14 @@
       "status": "kept",
       "cycle": 146,
       "note": "commSeparation 0.1877 -> 0.2696, bench gap 1963 -> 1996, cluster 337 -> 334; single 8k sample, within noise"
+    },
+    {
+      "id": "alarm-relay-bonus",
+      "signal": 2,
+      "change": "nodling.js ALARM_RELAY_BONUS 0.3: call with predator near within 10 ticks of hearing a call",
+      "status": "reverted",
+      "cycle": 147,
+      "note": "metrics identical to control (commSeparation 0.0068 both); bonus never fires"
     }
   ]
 }
