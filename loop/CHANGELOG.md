@@ -1139,3 +1139,9 @@ STRUCTURAL: call-brick bonus (priority 1, plateau.js demanded structural): `nodl
 STRUCTURAL: call-tower bonus (priority 1, plateau.js demanded structural): `nodling.js` CALL_TOWER_BONUS 0.3 for stacking onto durable material within 30 ticks of hearing a call.
 - Control vs treatment (8k ticks): largestCluster 193 -> 193, builtCells 4327 -> 4327, brickCells 3670 -> 3670, bench gap 1996 -> 1996, medianFitness 1162 -> 1162, commSeparation 0.045 -> 0.045, pop 501 -> 501. Guardrails pass; metrics identical, so the bonus never fires. Code discarded (null result).
 - Baseline batch ran 12500 ticks. Note: call-conditioned bonuses on rarer actions (kiln, tower) never fire; only the common ones (build, brick) did.
+
+## Cycle 152 — day 1380 — `reverted`
+
+STRUCTURAL: call-haul bonus (priority 1, plateau.js demanded structural): `nodling.js` CALL_HAUL_BONUS 0.3 for a hauled adjacent build (>=8 cells from pickup) within 30 ticks of hearing a call.
+- Control vs treatment (8k ticks): largestCluster 206 -> 206, builtCells 4132 -> 4132, brickCells 3674 -> 3674, bench gap 1996 -> 1996, medianFitness 760 -> 760, commSeparation 0.0125 -> 0.0125, pop 500 -> 500. Guardrails pass; metrics identical, so the bonus never fires. Code discarded (null result).
+- Baseline batch ran 12500 ticks (25000 times out). Note: call-conditioned bonuses beyond plain build/brick pickup keep being null; try a non-call lever next.

@@ -1230,6 +1230,14 @@
       "status": "reverted",
       "cycle": 151,
       "note": "metrics identical to control (cluster 193, bricks 3670, gap 1996); bonus never fires"
+    },
+    {
+      "id": "call-haul-bonus",
+      "signal": 1,
+      "change": "nodling.js CALL_HAUL_BONUS 0.3: hauled adjacent build within 30 ticks of hearing a call",
+      "status": "reverted",
+      "cycle": 152,
+      "note": "metrics identical to control (cluster 206, bricks 3674, gap 1996); bonus never fires"
     }
   ]
 }
