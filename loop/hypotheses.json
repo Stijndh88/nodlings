@@ -1214,6 +1214,14 @@
       "status": "reverted",
       "cycle": 149,
       "note": "metrics identical to control (cluster 331, bricks 3652, gap 1996); bonus never fires"
+    },
+    {
+      "id": "call-brick-bonus",
+      "signal": 1,
+      "change": "nodling.js CALL_BRICK_BONUS 0.3: pick up a fired brick within 30 ticks of hearing a call",
+      "status": "kept",
+      "cycle": 150,
+      "note": "cluster 199 -> 404, builtCells 4038 -> 4118, brickCells 3663 -> 3661, gap 1996 identical; single 8k sample, within noise"
     }
   ]
 }
