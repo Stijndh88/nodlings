@@ -1222,6 +1222,14 @@
       "status": "kept",
       "cycle": 150,
       "note": "cluster 199 -> 404, builtCells 4038 -> 4118, brickCells 3663 -> 3661, gap 1996 identical; single 8k sample, within noise"
+    },
+    {
+      "id": "call-tower-bonus",
+      "signal": 1,
+      "change": "nodling.js CALL_TOWER_BONUS 0.3: stack onto durable material within 30 ticks of hearing a call",
+      "status": "reverted",
+      "cycle": 151,
+      "note": "metrics identical to control (cluster 193, bricks 3670, gap 1996); bonus never fires"
     }
   ]
 }
