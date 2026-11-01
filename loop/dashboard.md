@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-01T00:33Z. Now: day 1344.03, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 336, 3648 brick cells, max generation 2650.
+Updated 2026-11-01T04:27Z. Now: day 1347.94, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 343, 3646 brick cells, max generation 2662.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-01T00:33Z. Now: day 1344.03, benchmark gap **1996** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 156 | 1347.94 | 1996 | 1061 | 343 | 3646 | 2662 | 0.0079 |
 | 155 | 1344.03 | 1996 | 1040 | 336 | 3648 | 2650 | 0.2409 |
 | 154 | 1336.22 | 1963 | 1111 | 322 | 3642 | 2632 | 0.0287 |
 | 153 | 1328.41 | 1963 | 958 | 321 | 3637 | 2608 | 0.0439 |
@@ -24,7 +25,6 @@ Updated 2026-11-01T00:33Z. Now: day 1344.03, benchmark gap **1996** (evolved gen
 | 144 | 1262 | 1963 | 1028 | 311 | 3600 | 2440 | 0.1409 |
 | 143 | 1254.19 | 1963 | 1228 | 303 | 3589 | 2420 | 0.1921 |
 | 142 | 1246.38 | 1963 | 841 | 303 | 3585 | 2401 | 0.1099 |
-| 141 | 1238.56 | 1993 | 1049 | 309 | 3586 | 2377 | 0.03 |
 
 ## Hypotheses
 
@@ -177,6 +177,7 @@ Updated 2026-11-01T00:33Z. Now: day 1344.03, benchmark gap **1996** (evolved gen
 - **reverted**: predators.js: prey standing on a brick cell with one durable wall counts as sheltered (metrics identical to control (cluster 320, bricks 3631, gap 1963); never fires)
 - **reverted**: predators.js prey standing on a stacked durable cell counts as sheltered (metrics identical to control; rule never fires)
 - **kept**: nodling.js CALL_FOLLOW_BONUS 0.3: eating found food within 20 ticks of hearing a call with no predator near (food-found call -> approach) (commSeparation 0.1877 -> 0.2696, bench gap 1963 -> 1996, cluster 337 -> 334; single 8k sample, within noise)
+- **reverted**: nodling.js ALARM_RELAY_BONUS 0.3: call with predator near within 10 ticks of hearing a call (metrics identical to control (commSeparation 0.0068 both); bonus never fires)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
