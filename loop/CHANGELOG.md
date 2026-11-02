@@ -1163,3 +1163,9 @@ STRUCTURAL: frost heave (priority 1, plateau.js demanded structural): `world.js`
 STRUCTURAL: isolated-brick erosion (priority 1, plateau.js demanded structural): `world.js` lone brick with no brick neighbour crumbles (p=0.05 per sampled cell), a year-round pressure toward clustering.
 - Control vs treatment (8k ticks): largestCluster 204 -> 190, builtCells 4142 -> 3723, brickCells 3693 -> 3265, bench gap 1996 -> 1800, medianFitness 1180 -> 1100, commSeparation 0.2175 -> 0.162, pop 499 -> 500. Guardrails pass; target worse (loses bricks without growing the cluster). Code discarded.
 - Baseline batch ran 12500 ticks (25000 times out). Note: destroying material does not push toward villages; try a pull (payoff for clusters) rather than a penalty.
+
+## Cycle 156 — day 1406 — `kept`
+
+STRUCTURAL: village residency payoff (priority 1, plateau.js demanded structural; a pull, not a penalty): `nodling.js` VILLAGE_BONUS reward (0.03 x8, sampled every 8 ticks) for standing with >=12 durable cells within 3 cells.
+- Control vs treatment (8k ticks): largestCluster 216 -> 354, builtCells 4608 -> 4306, brickCells 3695 -> 3698, bench gap 1996 -> 1996, medianFitness 972 -> 1058, commSeparation 0.0527 -> 0.0151, pop 502 -> 500. Guardrails pass; target improved, single 8k sample so partly noise.
+- Baseline batch ran 12500 ticks (25000 times out).

@@ -1262,6 +1262,14 @@
       "status": "reverted",
       "cycle": 155,
       "note": "cluster 204->190, brickCells 3693->3265, bench gap 1996->1800; worse on target"
+    },
+    {
+      "id": "village-residency-bonus",
+      "signal": 1,
+      "change": "nodling.js VILLAGE_BONUS 0.03 (x8 every 8 ticks) for standing near >=12 durable cells within 3",
+      "status": "kept",
+      "cycle": 156,
+      "note": "largestCluster 216 -> 354, bricks 3695 -> 3698, builtCells 4608 -> 4306, gap 1996 -> 1996; single 8k sample"
     }
   ]
 }
