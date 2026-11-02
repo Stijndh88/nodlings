@@ -1278,6 +1278,14 @@
       "status": "reverted",
       "cycle": 157,
       "note": "cluster 499->323, builtCells 4388->4137; worse"
+    },
+    {
+      "id": "village-palisade",
+      "signal": 1,
+      "change": "predators.js: prey with >=10 durable cells within 2 cannot be struck",
+      "status": "reverted",
+      "cycle": 158,
+      "note": "metrics identical to control (cluster 382->382); never fires"
     }
   ]
 }
