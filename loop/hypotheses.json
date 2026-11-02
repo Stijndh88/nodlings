@@ -1246,6 +1246,14 @@
       "status": "reverted",
       "cycle": 153,
       "note": "metrics identical to control; bonus never fires"
+    },
+    {
+      "id": "frost-heave",
+      "signal": 1,
+      "change": "world.js weathering: in Winter supported non-brick stacks also shed with p=0.25",
+      "status": "reverted",
+      "cycle": 154,
+      "note": "target metrics identical (window ends before Winter); bench gap 1996 -> 1971"
     }
   ]
 }

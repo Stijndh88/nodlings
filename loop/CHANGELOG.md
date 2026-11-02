@@ -1151,3 +1151,9 @@ STRUCTURAL: call-haul bonus (priority 1, plateau.js demanded structural): `nodli
 STRUCTURAL: build-streak bonus (priority 1, plateau.js demanded structural): `nodling.js` STREAK_BONUS 0.2 for an adjacent build within 40 ticks of the same Nodling's previous adjacent build.
 - Control vs treatment (8k ticks): largestCluster 204 -> 204, builtCells 4126 -> 4126, brickCells 3677 -> 3677, bench gap 1996 -> 1996, medianFitness 1120 -> 1120, commSeparation 0.2092 -> 0.2092, pop 499 -> 499. Guardrails pass; metrics identical, so the bonus never fires. Code discarded (null result).
 - Baseline batch ran 12500 ticks (25000 times out). Note: even non-call bonus on a repeat build never fires; reward-shaping on rare build chains looks exhausted, try an environmental pressure next.
+
+## Cycle 154 — day 1391 — `reverted`
+
+STRUCTURAL: frost heave (priority 1, plateau.js demanded structural): `world.js` weathering also sheds supported non-brick stacks with p=0.25 in Winter, so only brick endures.
+- Control vs treatment (8k ticks): largestCluster 189 -> 189, builtCells 4103 -> 4103, brickCells 3682 -> 3682, bench gap 1996 -> 1971, medianFitness 1010 -> 1010, commSeparation 0.0787 -> 0.0787, pop 500 -> 500. Guardrails pass; target identical because the 8k window (~5 days, day 1391-1396, autumn) never reaches Winter, so the effect is untestable at this length. Code discarded (null result).
+- Baseline batch ran 12500 ticks (25000 times out). Note: season-gated changes need the validation window to cover that season; pick year-round pressures next.
