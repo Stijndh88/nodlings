@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-02T12:48Z. Now: day 1406.53, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 419, 3695 brick cells, max generation 2810.
+Updated 2026-11-02T17:12Z. Now: day 1414.34, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 354, 3697 brick cells, max generation 2831.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-02T12:48Z. Now: day 1406.53, benchmark gap **1996** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 165 | 1414.34 | 1996 | 1132 | 354 | 3697 | 2831 | 0.0067 |
 | 164 | 1406.53 | 1996 | 896 | 419 | 3695 | 2810 | 0.1907 |
 | 163 | 1398.72 | 1996 | 1043 | 188 | 3691 | 2791 | 0.0509 |
 | 162 | 1390.91 | 1996 | 1179 | 202 | 3679 | 2772 | 0.2667 |
@@ -24,7 +25,6 @@ Updated 2026-11-02T12:48Z. Now: day 1406.53, benchmark gap **1996** (evolved gen
 | 153 | 1328.41 | 1963 | 958 | 321 | 3637 | 2608 | 0.0439 |
 | 152 | 1320.59 | 1963 | 1135 | 351 | 3624 | 2587 | 0.0031 |
 | 151 | 1316.69 | 1963 | 1004 | 446 | 3621 | 2575 | 0.1174 |
-| 150 | 1308.88 | 1963 | 1013 | 451 | 3620 | 2560 | 0.1734 |
 
 ## Hypotheses
 
@@ -186,6 +186,7 @@ Updated 2026-11-02T12:48Z. Now: day 1406.53, benchmark gap **1996** (evolved gen
 - **reverted**: nodling.js STREAK_BONUS 0.2 for an adjacent build within 40 ticks of the same Nodling's previous adjacent build (metrics identical to control; bonus never fires)
 - **reverted**: world.js weathering: in Winter supported non-brick stacks also shed with p=0.25 (target metrics identical (window ends before Winter); bench gap 1996 -> 1971)
 - **reverted**: world.js: isolated brick (no brick neighbour) crumbles p=0.05 per sample, year-round (cluster 204->190, brickCells 3693->3265, bench gap 1996->1800; worse on target)
+- **kept**: nodling.js VILLAGE_BONUS 0.03 (x8 every 8 ticks) for standing near >=12 durable cells within 3 (largestCluster 216 -> 354, bricks 3695 -> 3698, builtCells 4608 -> 4306, gap 1996 -> 1996; single 8k sample)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
