@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-02T00:30Z. Now: day 1383.09, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 205, 3675 brick cells, max generation 2755.
+Updated 2026-11-02T04:30Z. Now: day 1390.91, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 202, 3679 brick cells, max generation 2772.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-02T00:30Z. Now: day 1383.09, benchmark gap **1996** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 162 | 1390.91 | 1996 | 1179 | 202 | 3679 | 2772 | 0.2667 |
 | 161 | 1383.09 | 1996 | 1054 | 205 | 3675 | 2755 | 0.0217 |
 | 160 | 1375.28 | 1996 | 908 | 211 | 3672 | 2731 | 0.008 |
 | 159 | 1367.47 | 1996 | 1096 | 278 | 3666 | 2707 | 0.108 |
@@ -24,7 +25,6 @@ Updated 2026-11-02T00:30Z. Now: day 1383.09, benchmark gap **1996** (evolved gen
 | 150 | 1308.88 | 1963 | 1013 | 451 | 3620 | 2560 | 0.1734 |
 | 149 | 1301.06 | 1963 | 1068 | 432 | 3615 | 2543 | 0.1765 |
 | 148 | 1293.25 | 1963 | 1143 | 293 | 3607 | 2521 | 0.2955 |
-| 147 | 1285.44 | 1963 | 1143 | 320 | 3604 | 2498 | 0.2604 |
 
 ## Hypotheses
 
@@ -183,6 +183,7 @@ Updated 2026-11-02T00:30Z. Now: day 1383.09, benchmark gap **1996** (evolved gen
 - **kept**: nodling.js CALL_BRICK_BONUS 0.3: pick up a fired brick within 30 ticks of hearing a call (cluster 199 -> 404, builtCells 4038 -> 4118, brickCells 3663 -> 3661, gap 1996 identical; single 8k sample, within noise)
 - **reverted**: nodling.js CALL_TOWER_BONUS 0.3: stack onto durable material within 30 ticks of hearing a call (metrics identical to control (cluster 193, bricks 3670, gap 1996); bonus never fires)
 - **reverted**: nodling.js CALL_HAUL_BONUS 0.3: hauled adjacent build within 30 ticks of hearing a call (metrics identical to control (cluster 206, bricks 3674, gap 1996); bonus never fires)
+- **reverted**: nodling.js STREAK_BONUS 0.2 for an adjacent build within 40 ticks of the same Nodling's previous adjacent build (metrics identical to control; bonus never fires)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
