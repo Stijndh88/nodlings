@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-01T20:40Z. Now: day 1375.28, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 211, 3672 brick cells, max generation 2731.
+Updated 2026-11-02T00:30Z. Now: day 1383.09, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 205, 3675 brick cells, max generation 2755.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-01T20:40Z. Now: day 1375.28, benchmark gap **1996** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 161 | 1383.09 | 1996 | 1054 | 205 | 3675 | 2755 | 0.0217 |
 | 160 | 1375.28 | 1996 | 908 | 211 | 3672 | 2731 | 0.008 |
 | 159 | 1367.47 | 1996 | 1096 | 278 | 3666 | 2707 | 0.108 |
 | 158 | 1359.66 | 1996 | 1067 | 332 | 3653 | 2685 | 0.0146 |
@@ -24,7 +25,6 @@ Updated 2026-11-01T20:40Z. Now: day 1375.28, benchmark gap **1996** (evolved gen
 | 149 | 1301.06 | 1963 | 1068 | 432 | 3615 | 2543 | 0.1765 |
 | 148 | 1293.25 | 1963 | 1143 | 293 | 3607 | 2521 | 0.2955 |
 | 147 | 1285.44 | 1963 | 1143 | 320 | 3604 | 2498 | 0.2604 |
-| 146 | 1277.63 | 1963 | 1128 | 324 | 3602 | 2478 | 0.2597 |
 
 ## Hypotheses
 
@@ -182,6 +182,7 @@ Updated 2026-11-01T20:40Z. Now: day 1375.28, benchmark gap **1996** (evolved gen
 - **reverted**: nodling.js CALL_KILN_BONUS 0.3: feed a kiln (clay beside fire) within 30 ticks of hearing a call (metrics identical to control (cluster 331, bricks 3652, gap 1996); bonus never fires)
 - **kept**: nodling.js CALL_BRICK_BONUS 0.3: pick up a fired brick within 30 ticks of hearing a call (cluster 199 -> 404, builtCells 4038 -> 4118, brickCells 3663 -> 3661, gap 1996 identical; single 8k sample, within noise)
 - **reverted**: nodling.js CALL_TOWER_BONUS 0.3: stack onto durable material within 30 ticks of hearing a call (metrics identical to control (cluster 193, bricks 3670, gap 1996); bonus never fires)
+- **reverted**: nodling.js CALL_HAUL_BONUS 0.3: hauled adjacent build within 30 ticks of hearing a call (metrics identical to control (cluster 206, bricks 3674, gap 1996); bonus never fires)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
