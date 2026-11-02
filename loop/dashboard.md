@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-02T08:35Z. Now: day 1398.72, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 188, 3691 brick cells, max generation 2791.
+Updated 2026-11-02T12:48Z. Now: day 1406.53, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 419, 3695 brick cells, max generation 2810.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-02T08:35Z. Now: day 1398.72, benchmark gap **1996** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 164 | 1406.53 | 1996 | 896 | 419 | 3695 | 2810 | 0.1907 |
 | 163 | 1398.72 | 1996 | 1043 | 188 | 3691 | 2791 | 0.0509 |
 | 162 | 1390.91 | 1996 | 1179 | 202 | 3679 | 2772 | 0.2667 |
 | 161 | 1383.09 | 1996 | 1054 | 205 | 3675 | 2755 | 0.0217 |
@@ -24,7 +25,6 @@ Updated 2026-11-02T08:35Z. Now: day 1398.72, benchmark gap **1996** (evolved gen
 | 152 | 1320.59 | 1963 | 1135 | 351 | 3624 | 2587 | 0.0031 |
 | 151 | 1316.69 | 1963 | 1004 | 446 | 3621 | 2575 | 0.1174 |
 | 150 | 1308.88 | 1963 | 1013 | 451 | 3620 | 2560 | 0.1734 |
-| 149 | 1301.06 | 1963 | 1068 | 432 | 3615 | 2543 | 0.1765 |
 
 ## Hypotheses
 
@@ -185,6 +185,7 @@ Updated 2026-11-02T08:35Z. Now: day 1398.72, benchmark gap **1996** (evolved gen
 - **reverted**: nodling.js CALL_HAUL_BONUS 0.3: hauled adjacent build within 30 ticks of hearing a call (metrics identical to control (cluster 206, bricks 3674, gap 1996); bonus never fires)
 - **reverted**: nodling.js STREAK_BONUS 0.2 for an adjacent build within 40 ticks of the same Nodling's previous adjacent build (metrics identical to control; bonus never fires)
 - **reverted**: world.js weathering: in Winter supported non-brick stacks also shed with p=0.25 (target metrics identical (window ends before Winter); bench gap 1996 -> 1971)
+- **reverted**: world.js: isolated brick (no brick neighbour) crumbles p=0.05 per sample, year-round (cluster 204->190, brickCells 3693->3265, bench gap 1996->1800; worse on target)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
