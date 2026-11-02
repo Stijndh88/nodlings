@@ -1270,6 +1270,14 @@
       "status": "kept",
       "cycle": 156,
       "note": "largestCluster 216 -> 354, bricks 3695 -> 3698, builtCells 4608 -> 4306, gap 1996 -> 1996; single 8k sample"
+    },
+    {
+      "id": "village-density-tier",
+      "signal": 1,
+      "change": "second village tier: extra VILLAGE_BONUS*8 when >=24 durable cells within 3 cells",
+      "status": "reverted",
+      "cycle": 157,
+      "note": "cluster 499->323, builtCells 4388->4137; worse"
     }
   ]
 }

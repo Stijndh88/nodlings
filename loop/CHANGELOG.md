@@ -1169,3 +1169,9 @@ STRUCTURAL: isolated-brick erosion (priority 1, plateau.js demanded structural):
 STRUCTURAL: village residency payoff (priority 1, plateau.js demanded structural; a pull, not a penalty): `nodling.js` VILLAGE_BONUS reward (0.03 x8, sampled every 8 ticks) for standing with >=12 durable cells within 3 cells.
 - Control vs treatment (8k ticks): largestCluster 216 -> 354, builtCells 4608 -> 4306, brickCells 3695 -> 3698, bench gap 1996 -> 1996, medianFitness 972 -> 1058, commSeparation 0.0527 -> 0.0151, pop 502 -> 500. Guardrails pass; target improved, single 8k sample so partly noise.
 - Baseline batch ran 12500 ticks (25000 times out).
+
+## Cycle 157 — day 1414 — `reverted`
+
+STRUCTURAL: village density tier (priority 1, plateau.js demanded structural): `nodling.js` extra VILLAGE_BONUS x8 when >=24 durable cells within 3 cells.
+- Control vs treatment (8k ticks): largestCluster 499 -> 323, builtCells 4388 -> 4137, brickCells 3706 -> 3706, bench gap 1996 -> 1996, medianFitness 1031 -> 1048, commSeparation 0.0325 -> 0.0447, pop 503 -> 500. Guardrails pass; target worse. Code discarded.
+- Baseline batch ran 12500 ticks (25000 times out). Note: a stronger village pull did not grow the cluster; the first tier may already saturate it.
