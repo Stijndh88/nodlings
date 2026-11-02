@@ -1157,3 +1157,9 @@ STRUCTURAL: build-streak bonus (priority 1, plateau.js demanded structural): `no
 STRUCTURAL: frost heave (priority 1, plateau.js demanded structural): `world.js` weathering also sheds supported non-brick stacks with p=0.25 in Winter, so only brick endures.
 - Control vs treatment (8k ticks): largestCluster 189 -> 189, builtCells 4103 -> 4103, brickCells 3682 -> 3682, bench gap 1996 -> 1971, medianFitness 1010 -> 1010, commSeparation 0.0787 -> 0.0787, pop 500 -> 500. Guardrails pass; target identical because the 8k window (~5 days, day 1391-1396, autumn) never reaches Winter, so the effect is untestable at this length. Code discarded (null result).
 - Baseline batch ran 12500 ticks (25000 times out). Note: season-gated changes need the validation window to cover that season; pick year-round pressures next.
+
+## Cycle 155 — day 1403 — `reverted`
+
+STRUCTURAL: isolated-brick erosion (priority 1, plateau.js demanded structural): `world.js` lone brick with no brick neighbour crumbles (p=0.05 per sampled cell), a year-round pressure toward clustering.
+- Control vs treatment (8k ticks): largestCluster 204 -> 190, builtCells 4142 -> 3723, brickCells 3693 -> 3265, bench gap 1996 -> 1800, medianFitness 1180 -> 1100, commSeparation 0.2175 -> 0.162, pop 499 -> 500. Guardrails pass; target worse (loses bricks without growing the cluster). Code discarded.
+- Baseline batch ran 12500 ticks (25000 times out). Note: destroying material does not push toward villages; try a pull (payoff for clusters) rather than a penalty.

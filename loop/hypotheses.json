@@ -1254,6 +1254,14 @@
       "status": "reverted",
       "cycle": 154,
       "note": "target metrics identical (window ends before Winter); bench gap 1996 -> 1971"
+    },
+    {
+      "id": "brick-erosion-isolated",
+      "signal": 1,
+      "change": "world.js: isolated brick (no brick neighbour) crumbles p=0.05 per sample, year-round",
+      "status": "reverted",
+      "cycle": 155,
+      "note": "cluster 204->190, brickCells 3693->3265, bench gap 1996->1800; worse on target"
     }
   ]
 }
