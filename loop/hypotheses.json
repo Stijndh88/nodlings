@@ -1238,6 +1238,14 @@
       "status": "reverted",
       "cycle": 152,
       "note": "metrics identical to control (cluster 206, bricks 3674, gap 1996); bonus never fires"
+    },
+    {
+      "id": "build-streak-bonus",
+      "signal": 1,
+      "change": "nodling.js STREAK_BONUS 0.2 for an adjacent build within 40 ticks of the same Nodling's previous adjacent build",
+      "status": "reverted",
+      "cycle": 153,
+      "note": "metrics identical to control; bonus never fires"
     }
   ]
 }
