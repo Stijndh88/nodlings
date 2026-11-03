@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -1310,6 +1310,14 @@
       "status": "kept",
       "cycle": 161,
       "note": "cluster 296->296, bricks 3730->3728, gap 1923->2005; no measurable effect, within noise"
+    },
+    {
+      "id": "village-threshold-8",
+      "signal": 1,
+      "change": "nodling.js village residency threshold 12 -> 8 durable cells within 3",
+      "status": "reverted",
+      "cycle": 171,
+      "note": "cluster 489->380, bench gap 2005->1958; target worse"
     }
   ]
 }

@@ -1199,3 +1199,9 @@ STRUCTURAL: tidal clay supply x2 (priority 1, plateau.js demanded structural; ma
 STRUCTURAL: tidal clay deposit rate x2 (priority 1, plateau.js demanded structural; material supply lever): `world.js` tidal clay deposit probability 0.3 -> 0.6.
 - Control vs treatment (8k ticks): largestCluster 296 -> 296, builtCells n/a -> 4290, brickCells 3730 -> 3728, bench gap 1923 -> 2005, medianFitness 1258 -> 1161, commSeparation 0.1335 -> 0.127, pop 500 -> 500. Guardrails pass; target equal, so kept by the rule, but this is a null result within noise (supply is not the binding constraint).
 - Baseline batch ran 12500 ticks (25000 times out). Pushed with `git push origin HEAD:master` (local `master` branch is stale).
+
+## Cycle 171 — day 1461 — `reverted`
+
+Village residency threshold 12 -> 8 durable cells (priority 1; plateau.js said tuning still productive): `nodling.js`.
+- Control vs treatment (8k ticks): largestCluster 489 -> 380, builtCells 4359 -> 4185, brickCells 3732 -> 3737, bench gap 2005 -> 1958, medianFitness 1112 -> 1126, commSeparation 0.1499 -> 0.0762, pop 499 -> 500. Guardrails pass; target worse. Code discarded.
+- Baseline batch ran 12500 ticks (25000 times out). Looser village pull does not help; village-bonus levers look exhausted.
