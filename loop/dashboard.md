@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-03T00:31Z. Now: day 1437.78, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 207, 3717 brick cells, max generation 2899.
+Updated 2026-11-03T04:42Z. Now: day 1445.59, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 207, 3723 brick cells, max generation 2919.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-03T00:31Z. Now: day 1437.78, benchmark gap **1996** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 168 | 1445.59 | 1996 | 796 | 207 | 3723 | 2919 | 0.0787 |
 | 167 | 1437.78 | 1996 | 1026 | 207 | 3717 | 2899 | 0.154 |
 | 166 | 1422.16 | 1996 | 1134 | 382 | 3711 | 2855 | 0.0121 |
 | 165 | 1414.34 | 1996 | 1132 | 354 | 3697 | 2831 | 0.0067 |
@@ -24,7 +25,6 @@ Updated 2026-11-03T00:31Z. Now: day 1437.78, benchmark gap **1996** (evolved gen
 | 156 | 1347.94 | 1996 | 1061 | 343 | 3646 | 2662 | 0.0079 |
 | 155 | 1344.03 | 1996 | 1040 | 336 | 3648 | 2650 | 0.2409 |
 | 154 | 1336.22 | 1963 | 1111 | 322 | 3642 | 2632 | 0.0287 |
-| 153 | 1328.41 | 1963 | 958 | 321 | 3637 | 2608 | 0.0439 |
 
 ## Hypotheses
 
@@ -189,6 +189,7 @@ Updated 2026-11-03T00:31Z. Now: day 1437.78, benchmark gap **1996** (evolved gen
 - **kept**: nodling.js VILLAGE_BONUS 0.03 (x8 every 8 ticks) for standing near >=12 durable cells within 3 (largestCluster 216 -> 354, bricks 3695 -> 3698, builtCells 4608 -> 4306, gap 1996 -> 1996; single 8k sample)
 - **reverted**: second village tier: extra VILLAGE_BONUS*8 when >=24 durable cells within 3 cells (cluster 499->323, builtCells 4388->4137; worse)
 - **reverted**: predators.js: prey with >=10 durable cells within 2 cannot be struck (metrics identical to control (cluster 382->382); never fires)
+- **reverted**: nodling.js: village residency bonus x2 at night (cluster 210->207, builtCells 4580->4278, bench gap 1996->1996; target not better)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
