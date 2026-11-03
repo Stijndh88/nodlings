@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-03T12:31Z. Now: day 1461.22, benchmark gap **2005** (evolved gene pool minus random genomes), largest built cluster 381, 3731 brick cells, max generation 2959.
+Updated 2026-11-03T16:31Z. Now: day 1469.03, benchmark gap **2005** (evolved gene pool minus random genomes), largest built cluster 489, 3729 brick cells, max generation 2981.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-03T12:31Z. Now: day 1461.22, benchmark gap **2005** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 171 | 1469.03 | 2005 | 1141 | 489 | 3729 | 2981 | 0.0878 |
 | 170 | 1461.22 | 2005 | 1054 | 381 | 3731 | 2959 | 0.1614 |
 | 169 | 1453.41 | 1923 | 1109 | 382 | 3729 | 2938 | 0.0914 |
 | 168 | 1445.59 | 1996 | 796 | 207 | 3723 | 2919 | 0.0787 |
@@ -24,7 +25,6 @@ Updated 2026-11-03T12:31Z. Now: day 1461.22, benchmark gap **2005** (evolved gen
 | 159 | 1367.47 | 1996 | 1096 | 278 | 3666 | 2707 | 0.108 |
 | 158 | 1359.66 | 1996 | 1067 | 332 | 3653 | 2685 | 0.0146 |
 | 157 | 1351.84 | 1996 | 1208 | 247 | 3654 | 2670 | 0.1155 |
-| 156 | 1347.94 | 1996 | 1061 | 343 | 3646 | 2662 | 0.0079 |
 
 ## Hypotheses
 
@@ -192,6 +192,7 @@ Updated 2026-11-03T12:31Z. Now: day 1461.22, benchmark gap **2005** (evolved gen
 - **reverted**: nodling.js: village residency bonus x2 at night (cluster 210->207, builtCells 4580->4278, bench gap 1996->1996; target not better)
 - **kept**: world.js tidal clay draws 4 -> 8 per step (material supply) (cluster 210->381, bricks 3724->3727, gap 1996->1923; single 8k sample, partly noise)
 - **kept**: world.js tidal clay deposit probability 0.3 -> 0.6 (material supply) (cluster 296->296, bricks 3730->3728, gap 1923->2005; no measurable effect, within noise)
+- **reverted**: nodling.js village residency threshold 12 -> 8 durable cells within 3 (cluster 489->380, bench gap 2005->1958; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
