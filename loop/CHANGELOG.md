@@ -1211,3 +1211,9 @@ Village residency threshold 12 -> 8 durable cells (priority 1; plateau.js said t
 BRICK_WALL_BONUS 0.5 -> 0.8 (priority 1, brickCells plateau; plateau.js said tuning still productive): `nodling.js`.
 - Control vs treatment (8k ticks): every metric identical (largestCluster 408 -> 408, builtCells 4496 -> 4496, brickCells 3740 -> 3740, bench gap 2005 -> 2005, medianFitness 1108 -> 1108, commSeparation 0.0512 -> 0.0512, pop 501 -> 501). Guardrails pass; null result, code discarded.
 - Baseline batch ran 12500 ticks (25000 times out). Note: the brick-wall reward path seems dead in the resumed state; reward knobs on brick placement are not the lever.
+
+## Cycle 173 — day 1481 — `reverted`
+
+BRICK_GRAB_BONUS 0.3 -> 0.6 (priority 1, brickCells plateau; plateau.js said tuning still productive): `nodling.js`.
+- Control vs treatment (8k ticks): largestCluster 403 -> 402, builtCells 4446 -> 4458, brickCells 3757 -> 3756, bench gap 2005 -> 2005, medianFitness 1187 -> 1118, commSeparation 0.0122 -> 0.0416, pop 500 -> 501. Guardrails pass; target equal/slightly worse (noise). Code discarded.
+- Baseline batch ran 12500 ticks (25000 timed out). Brick reward knobs are exhausted; next try a structural lever (e.g. brick supply/decay or new affordance).

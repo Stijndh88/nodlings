@@ -1326,6 +1326,14 @@
       "status": "reverted",
       "cycle": 172,
       "note": "metrics identical to control (bonus path never fires in 8k ticks); null result, code discarded"
+    },
+    {
+      "id": "brick-grab-0.6",
+      "signal": 1,
+      "change": "BRICK_GRAB_BONUS 0.3 -> 0.6",
+      "status": "reverted",
+      "cycle": 173,
+      "note": "cluster 403->402, brickCells 3757->3756, gap 2005->2005; null, brick reward knobs are not the lever"
     }
   ]
 }
