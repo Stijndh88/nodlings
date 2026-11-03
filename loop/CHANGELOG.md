@@ -1205,3 +1205,9 @@ STRUCTURAL: tidal clay deposit rate x2 (priority 1, plateau.js demanded structur
 Village residency threshold 12 -> 8 durable cells (priority 1; plateau.js said tuning still productive): `nodling.js`.
 - Control vs treatment (8k ticks): largestCluster 489 -> 380, builtCells 4359 -> 4185, brickCells 3732 -> 3737, bench gap 2005 -> 1958, medianFitness 1112 -> 1126, commSeparation 0.1499 -> 0.0762, pop 499 -> 500. Guardrails pass; target worse. Code discarded.
 - Baseline batch ran 12500 ticks (25000 times out). Looser village pull does not help; village-bonus levers look exhausted.
+
+## Cycle 172 — day 1474 — `reverted`
+
+BRICK_WALL_BONUS 0.5 -> 0.8 (priority 1, brickCells plateau; plateau.js said tuning still productive): `nodling.js`.
+- Control vs treatment (8k ticks): every metric identical (largestCluster 408 -> 408, builtCells 4496 -> 4496, brickCells 3740 -> 3740, bench gap 2005 -> 2005, medianFitness 1108 -> 1108, commSeparation 0.0512 -> 0.0512, pop 501 -> 501). Guardrails pass; null result, code discarded.
+- Baseline batch ran 12500 ticks (25000 times out). Note: the brick-wall reward path seems dead in the resumed state; reward knobs on brick placement are not the lever.

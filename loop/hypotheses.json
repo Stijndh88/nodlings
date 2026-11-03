@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -1318,6 +1318,14 @@
       "status": "reverted",
       "cycle": 171,
       "note": "cluster 489->380, bench gap 2005->1958; target worse"
+    },
+    {
+      "id": "brick-wall-0.8",
+      "signal": 1,
+      "change": "BRICK_WALL_BONUS 0.5 -> 0.8",
+      "status": "reverted",
+      "cycle": 172,
+      "note": "metrics identical to control (bonus path never fires in 8k ticks); null result, code discarded"
     }
   ]
 }
