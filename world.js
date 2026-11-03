@@ -292,7 +292,7 @@ class World {
 
     // Tidal clay: shorelines slowly re-deposit clay so brick-making has a
     // renewable raw material instead of a finite starting stock.
-    for (let i = 0, n = (4*af)|0; i < n; i++){
+    for (let i = 0, n = (8*af)|0; i < n; i++){
       const c = this.at((this.rng()*GRID_W)|0, (this.rng()*GRID_H)|0);
       if (c && c.sand && !c.water && !c.stack.length && this.rng() < 0.3) c.stack.push('clay');
     }

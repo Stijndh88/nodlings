@@ -1187,3 +1187,9 @@ STRUCTURAL: village palisade (priority 1, plateau.js demanded structural): `pred
 STRUCTURAL: village night residency (priority 1, plateau.js demanded structural): `nodling.js` village residency bonus x2 at night.
 - Control vs treatment (8k ticks): largestCluster 210 -> 207, builtCells 4580 -> 4278, brickCells 3715 -> 3721, bench gap 1996 -> 1996, medianFitness 1037 -> 944, commSeparation 0.0989 -> 0.2262, pop 501 -> 502. Guardrails pass; target slightly worse (within noise, no gain). Code discarded.
 - Baseline batch ran 25000 ticks fine. Note: stronger village residency pulls (tier, night) have not grown the cluster; try a different lever (e.g. material supply) next.
+
+## Cycle 160 — day 1445 — `kept`
+
+STRUCTURAL: tidal clay supply x2 (priority 1, plateau.js demanded structural; material supply lever): `world.js` tidal clay draws 4 -> 8 per step.
+- Control vs treatment (8k ticks): largestCluster 210 -> 381, builtCells 4183 -> 4209, brickCells 3724 -> 3727, bench gap 1996 -> 1923, medianFitness 1116 -> 1268, commSeparation 0.0697 -> 0.0443, pop 501 -> 500. Guardrails pass; target improved, but single 8k sample (cluster swings 200-500 between runs) so mostly within noise; brickCells flat.
+- Baseline batch ran 12500 ticks (25000 times out).

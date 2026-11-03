@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -1294,6 +1294,14 @@
       "status": "reverted",
       "cycle": 159,
       "note": "cluster 210->207, builtCells 4580->4278, bench gap 1996->1996; target not better"
+    },
+    {
+      "id": "tidal-clay-x2",
+      "signal": 1,
+      "change": "world.js tidal clay draws 4 -> 8 per step (material supply)",
+      "status": "kept",
+      "cycle": 160,
+      "note": "cluster 210->381, bricks 3724->3727, gap 1996->1923; single 8k sample, partly noise"
     }
   ]
 }
