@@ -1181,3 +1181,9 @@ STRUCTURAL: village density tier (priority 1, plateau.js demanded structural): `
 STRUCTURAL: village palisade (priority 1, plateau.js demanded structural): `predators.js` prey with >=10 durable cells within 2 cells cannot be struck.
 - Control vs treatment (8k ticks): largestCluster 382 -> 382, builtCells 4340 -> 4340, brickCells 3716 -> 3716, bench gap 1996 -> 1996, medianFitness 1055 -> 1055, commSeparation 0.1421 -> 0.1421, pop 502 -> 502. Guardrails pass; metrics identical, so the shelter never fires (predators rarely strike inside villages). Code discarded (null result).
 - Baseline batch ran 12500 ticks (25000 times out). Note: survival payoffs gated on predator contact are too rare; try a pull on a common action next.
+
+## Cycle 159 — day 1437 — `reverted`
+
+STRUCTURAL: village night residency (priority 1, plateau.js demanded structural): `nodling.js` village residency bonus x2 at night.
+- Control vs treatment (8k ticks): largestCluster 210 -> 207, builtCells 4580 -> 4278, brickCells 3715 -> 3721, bench gap 1996 -> 1996, medianFitness 1037 -> 944, commSeparation 0.0989 -> 0.2262, pop 501 -> 502. Guardrails pass; target slightly worse (within noise, no gain). Code discarded.
+- Baseline batch ran 25000 ticks fine. Note: stronger village residency pulls (tier, night) have not grown the cluster; try a different lever (e.g. material supply) next.
