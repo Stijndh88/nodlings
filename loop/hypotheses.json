@@ -1302,6 +1302,14 @@
       "status": "kept",
       "cycle": 160,
       "note": "cluster 210->381, bricks 3724->3727, gap 1996->1923; single 8k sample, partly noise"
+    },
+    {
+      "id": "tidal-clay-p0.6",
+      "signal": 1,
+      "change": "world.js tidal clay deposit probability 0.3 -> 0.6 (material supply)",
+      "status": "kept",
+      "cycle": 161,
+      "note": "cluster 296->296, bricks 3730->3728, gap 1923->2005; no measurable effect, within noise"
     }
   ]
 }
