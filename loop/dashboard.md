@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-03T04:42Z. Now: day 1445.59, benchmark gap **1996** (evolved gene pool minus random genomes), largest built cluster 207, 3723 brick cells, max generation 2919.
+Updated 2026-11-03T08:31Z. Now: day 1453.41, benchmark gap **1923** (evolved gene pool minus random genomes), largest built cluster 382, 3729 brick cells, max generation 2938.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-03T04:42Z. Now: day 1445.59, benchmark gap **1996** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 169 | 1453.41 | 1923 | 1109 | 382 | 3729 | 2938 | 0.0914 |
 | 168 | 1445.59 | 1996 | 796 | 207 | 3723 | 2919 | 0.0787 |
 | 167 | 1437.78 | 1996 | 1026 | 207 | 3717 | 2899 | 0.154 |
 | 166 | 1422.16 | 1996 | 1134 | 382 | 3711 | 2855 | 0.0121 |
@@ -24,7 +25,6 @@ Updated 2026-11-03T04:42Z. Now: day 1445.59, benchmark gap **1996** (evolved gen
 | 157 | 1351.84 | 1996 | 1208 | 247 | 3654 | 2670 | 0.1155 |
 | 156 | 1347.94 | 1996 | 1061 | 343 | 3646 | 2662 | 0.0079 |
 | 155 | 1344.03 | 1996 | 1040 | 336 | 3648 | 2650 | 0.2409 |
-| 154 | 1336.22 | 1963 | 1111 | 322 | 3642 | 2632 | 0.0287 |
 
 ## Hypotheses
 
@@ -190,6 +190,7 @@ Updated 2026-11-03T04:42Z. Now: day 1445.59, benchmark gap **1996** (evolved gen
 - **reverted**: second village tier: extra VILLAGE_BONUS*8 when >=24 durable cells within 3 cells (cluster 499->323, builtCells 4388->4137; worse)
 - **reverted**: predators.js: prey with >=10 durable cells within 2 cannot be struck (metrics identical to control (cluster 382->382); never fires)
 - **reverted**: nodling.js: village residency bonus x2 at night (cluster 210->207, builtCells 4580->4278, bench gap 1996->1996; target not better)
+- **kept**: world.js tidal clay draws 4 -> 8 per step (material supply) (cluster 210->381, bricks 3724->3727, gap 1996->1923; single 8k sample, partly noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
