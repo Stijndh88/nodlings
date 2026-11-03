@@ -1,25 +1,27 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1469.0 · Winter
+Seed `20261007` · day 1476.8 · Spring
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (49 juvenile) |
-| max generation | 2979 |
+| population | 500 (51 juvenile) |
+| max generation | 2999 |
 | best fitness | 7002 |
-| avg brain (conns) | 91 |
-| lineage diversity | 4 colour-groups |
-| diet | 64% herbivore / 21% carnivore |
-| predators | 5, 41 kills, best 114012 |
-| structures (durable) | 9256 (4238) |
-| planks / bricks / bridges | 19 / 3368 / 2660 |
-| flora / cooked food | 5145 / 223 |
+| avg brain (conns) | 86 |
+| lineage diversity | 6 colour-groups |
+| diet | 76% herbivore / 8% carnivore |
+| predators | 6, 99 kills, best 114012 |
+| structures (durable) | 7822 (4284) |
+| planks / bricks / bridges | 27 / 3337 / 2660 |
+| flora / cooked food | 3888 / 233 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1471]** _(issue)_ Food (flora) fell 61% in ~6 days — likely a wildfire or overgrazing. If wildfires recur, lower fire spread further; water/stone lines act as firebreaks.
+- **[day 1471]** _(trend)_ Lineages are deepening — max generation 2981→2987. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1465.2]** _(trend)_ Brains are genuinely shrinking below capacity — selection favours simpler wiring right now.
 - **[day 1463.2]** _(trend)_ Lineages are deepening — max generation 2959→2964. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1462.2]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
