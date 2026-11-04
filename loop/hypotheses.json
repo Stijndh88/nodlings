@@ -1358,6 +1358,14 @@
       "status": "reverted",
       "cycle": 176,
       "note": "commSeparation 0.0091 -> 0.0072 (worse, noise); gap 2005 -> 2055, cluster 537 -> 398"
+    },
+    {
+      "id": "mild-winter-1.5",
+      "signal": 3,
+      "change": "STRUCTURAL: ambient() winter-only offset -1.5C",
+      "status": "reverted",
+      "cycle": 177,
+      "note": "bench gap 2005 -> 1827, other metrics identical"
     }
   ]
 }
