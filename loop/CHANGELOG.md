@@ -1217,3 +1217,9 @@ BRICK_WALL_BONUS 0.5 -> 0.8 (priority 1, brickCells plateau; plateau.js said tun
 BRICK_GRAB_BONUS 0.3 -> 0.6 (priority 1, brickCells plateau; plateau.js said tuning still productive): `nodling.js`.
 - Control vs treatment (8k ticks): largestCluster 403 -> 402, builtCells 4446 -> 4458, brickCells 3757 -> 3756, bench gap 2005 -> 2005, medianFitness 1187 -> 1118, commSeparation 0.0122 -> 0.0416, pop 500 -> 501. Guardrails pass; target equal/slightly worse (noise). Code discarded.
 - Baseline batch ran 12500 ticks (25000 timed out). Brick reward knobs are exhausted; next try a structural lever (e.g. brick supply/decay or new affordance).
+
+## Cycle 174 — day 1485 — `reverted`
+
+STRUCTURAL: village garden (priority 1, plateau.js demanded structural): `world.js` bare land beside a brick cell sprouts flora, so villages have local food.
+- Control vs treatment (8k ticks): largestCluster 434 -> 425, builtCells n/a -> 4208, brickCells 3775 -> 3787, bench gap 2005 -> 1900, medianFitness 1027 -> 1062, commSeparation n/a -> 0.1065, pop n/a -> 486. Guardrails pass; target slightly worse (noise), gap lower. Code discarded.
+- Baseline batch ran 12500 ticks (25000 times out). Local food at villages is not the binding constraint either.

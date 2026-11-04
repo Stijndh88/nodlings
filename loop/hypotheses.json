@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -1334,6 +1334,14 @@
       "status": "reverted",
       "cycle": 173,
       "note": "cluster 403->402, brickCells 3757->3756, gap 2005->2005; null, brick reward knobs are not the lever"
+    },
+    {
+      "id": "village-garden",
+      "signal": 1,
+      "change": "world.js: bare land beside a brick cell sprouts flora (p=0.3 x 30 samples/tick)",
+      "status": "reverted",
+      "cycle": 174,
+      "note": "cluster 434->425, brick 3775->3787, gap 2005->1900; no gain on target"
     }
   ]
 }
