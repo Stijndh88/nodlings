@@ -1223,3 +1223,9 @@ BRICK_GRAB_BONUS 0.3 -> 0.6 (priority 1, brickCells plateau; plateau.js said tun
 STRUCTURAL: village garden (priority 1, plateau.js demanded structural): `world.js` bare land beside a brick cell sprouts flora, so villages have local food.
 - Control vs treatment (8k ticks): largestCluster 434 -> 425, builtCells n/a -> 4208, brickCells 3775 -> 3787, bench gap 2005 -> 1900, medianFitness 1027 -> 1062, commSeparation n/a -> 0.1065, pop n/a -> 486. Guardrails pass; target slightly worse (noise), gap lower. Code discarded.
 - Baseline batch ran 12500 ticks (25000 times out). Local food at villages is not the binding constraint either.
+
+## Cycle 175 — day 1505 — `reverted`
+
+STRUCTURAL: hard winters (plateau.js demanded structural): `world.js` ambient() Winter baseline -5°.
+- Control vs treatment (8k ticks): largestCluster 542 -> 554, builtCells 4240 -> 4620, brickCells 3807 -> 3799, bench gap 2005 -> 80 (guardrail tripped, -96%), medianFitness 718 -> 771, commSeparation 0.0394 -> 0.0704, pop 500 -> 497, temp deaths 0 -> 76. Code discarded.
+- Baseline batch ran 25000 ticks. Cold pressure wrecks the benchmark cohort; if retried, use a much smaller offset (-1 to -2°).
