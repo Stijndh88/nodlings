@@ -1366,6 +1366,14 @@
       "status": "reverted",
       "cycle": 177,
       "note": "bench gap 2005 -> 1827, other metrics identical"
+    },
+    {
+      "id": "nest-birth-discount",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js birth energy cost 60 -> 40 inside a village (>=12 durable cells within 3)",
+      "status": "reverted",
+      "cycle": 178,
+      "note": "cluster 396->395, builtCells 4192->4261, brickCells 3820->3819, bench gap 2005->2005, medianFitness 814->1260, commSeparation 0.0904->0.0505, pop 500->502; target no gain (noise)"
     }
   ]
 }

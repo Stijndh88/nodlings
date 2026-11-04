@@ -1241,3 +1241,9 @@ STRUCTURAL: caller payoff (priority 2, plateau.js demanded structural): `nodling
 STRUCTURAL: mild winter (priority 3, plateau.js demanded structural): `world.js` ambient() winter-only offset -1.5° (retry of the -5° hard winter at a smaller size).
 - Control vs treatment (8k ticks): benchmark gap 2005 -> 1827 (evolved 2347 -> 2086), medianFitness 881 -> 881, largestCluster 394 -> 394, builtCells 4170 -> 4170, brickCells 3814 -> 3814, commSeparation 0.0272 -> 0.0272, pop 502 -> 502. Guardrails pass; target gap lower, so code discarded.
 - Baseline batch ran 12500 ticks (25000 times out). Cold pressure only affects the benchmark here; temperature is not the lever.
+
+## Cycle 178 — day 1520 — `reverted`
+
+STRUCTURAL: nest birth discount (priority 1, plateau.js demanded structural): `nodling.js` birth energy cost 60 -> 40 inside a village (>=12 durable cells within 3).
+- Control vs treatment (8k ticks): largestCluster 396 -> 395, builtCells 4192 -> 4261, brickCells 3820 -> 3819, bench gap 2005 -> 2005, medianFitness 814 -> 1260, commSeparation 0.0904 -> 0.0505, pop 500 -> 502. Guardrails pass; target flat (within noise), code discarded.
+- Baseline batch ran 6000 ticks (25000 timed out). Median fitness rose but is not the target; breeding incentives do not grow villages.
