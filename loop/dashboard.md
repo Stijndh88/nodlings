@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-03T20:41Z. Now: day 1476.84, benchmark gap **2005** (evolved gene pool minus random genomes), largest built cluster 409, 3741 brick cells, max generation 3003.
+Updated 2026-11-04T00:30Z. Now: day 1484.66, benchmark gap **2005** (evolved gene pool minus random genomes), largest built cluster 421, 3769 brick cells, max generation 3022.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-03T20:41Z. Now: day 1476.84, benchmark gap **2005** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 173 | 1484.66 | 2005 | 1201 | 421 | 3769 | 3022 | 0.0001 |
 | 172 | 1476.84 | 2005 | 1161 | 409 | 3741 | 3003 | 0.0475 |
 | 171 | 1469.03 | 2005 | 1141 | 489 | 3729 | 2981 | 0.0878 |
 | 170 | 1461.22 | 2005 | 1054 | 381 | 3731 | 2959 | 0.1614 |
@@ -24,7 +25,6 @@ Updated 2026-11-03T20:41Z. Now: day 1476.84, benchmark gap **2005** (evolved gen
 | 161 | 1383.09 | 1996 | 1054 | 205 | 3675 | 2755 | 0.0217 |
 | 160 | 1375.28 | 1996 | 908 | 211 | 3672 | 2731 | 0.008 |
 | 159 | 1367.47 | 1996 | 1096 | 278 | 3666 | 2707 | 0.108 |
-| 158 | 1359.66 | 1996 | 1067 | 332 | 3653 | 2685 | 0.0146 |
 
 ## Hypotheses
 
@@ -194,6 +194,7 @@ Updated 2026-11-03T20:41Z. Now: day 1476.84, benchmark gap **2005** (evolved gen
 - **kept**: world.js tidal clay deposit probability 0.3 -> 0.6 (material supply) (cluster 296->296, bricks 3730->3728, gap 1923->2005; no measurable effect, within noise)
 - **reverted**: nodling.js village residency threshold 12 -> 8 durable cells within 3 (cluster 489->380, bench gap 2005->1958; target worse)
 - **reverted**: BRICK_WALL_BONUS 0.5 -> 0.8 (metrics identical to control (bonus path never fires in 8k ticks); null result, code discarded)
+- **reverted**: BRICK_GRAB_BONUS 0.3 -> 0.6 (cluster 403->402, brickCells 3757->3756, gap 2005->2005; null, brick reward knobs are not the lever)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
