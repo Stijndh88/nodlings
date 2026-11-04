@@ -1374,6 +1374,14 @@
       "status": "reverted",
       "cycle": 178,
       "note": "cluster 396->395, builtCells 4192->4261, brickCells 3820->3819, bench gap 2005->2005, medianFitness 814->1260, commSeparation 0.0904->0.0505, pop 500->502; target no gain (noise)"
+    },
+    {
+      "id": "kiln-heat-0.4",
+      "signal": 1,
+      "change": "STRUCTURAL: world.js kiln heat clay->brick probability 0.2 -> 0.4 (brick supply)",
+      "status": "kept",
+      "cycle": 179,
+      "note": "cluster 608->609, brickCells 3825->3828, gap 2005->1987; within noise"
     }
   ]
 }

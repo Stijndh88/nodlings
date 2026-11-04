@@ -1247,3 +1247,9 @@ STRUCTURAL: mild winter (priority 3, plateau.js demanded structural): `world.js`
 STRUCTURAL: nest birth discount (priority 1, plateau.js demanded structural): `nodling.js` birth energy cost 60 -> 40 inside a village (>=12 durable cells within 3).
 - Control vs treatment (8k ticks): largestCluster 396 -> 395, builtCells 4192 -> 4261, brickCells 3820 -> 3819, bench gap 2005 -> 2005, medianFitness 814 -> 1260, commSeparation 0.0904 -> 0.0505, pop 500 -> 502. Guardrails pass; target flat (within noise), code discarded.
 - Baseline batch ran 6000 ticks (25000 timed out). Median fitness rose but is not the target; breeding incentives do not grow villages.
+
+## Cycle 179 — day 1524 — `kept`
+
+STRUCTURAL: kiln heat 0.2 -> 0.4 (priority 1, plateau.js demanded structural): `world.js` clay beside fire becomes brick twice as often (brick supply).
+- Control vs treatment (8k ticks): largestCluster 608 -> 609, builtCells 4419 -> 4312, brickCells 3825 -> 3828, bench gap 2005 -> 1987, medianFitness 1143 -> 1200, commSeparation 0.0477 -> 0.0361, pop 500 -> 500. Guardrails pass; target equal/marginally better, i.e. within noise.
+- Baseline batch ran 6000 ticks (25000 and 12500 timed out).

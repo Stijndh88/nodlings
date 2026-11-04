@@ -346,7 +346,7 @@ class World {
         const nc = this.at(x+dx, y+dy); if (!nc) continue;
         const nt = nc.stack[nc.stack.length-1];
         if (nt === 'meat' && this.rng() < 0.25) nc.stack[nc.stack.length-1] = 'cooked';
-        else if (nt === 'clay' && this.rng() < 0.2) nc.stack[nc.stack.length-1] = 'brick'; // kiln heat
+        else if (nt === 'clay' && this.rng() < 0.4) nc.stack[nc.stack.length-1] = 'brick'; // kiln heat
         if (nt && MATERIALS[nt].flammable && !nc.fire && this.rng() < FIRE_SPREAD_RATE)
           this.ignite((y+dy)*GRID_W + (x+dx));
       }
