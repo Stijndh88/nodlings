@@ -1350,6 +1350,14 @@
       "status": "reverted",
       "cycle": 175,
       "note": "gap 2005->80 (-96%, guardrail trip), cluster 542->554, brick 3807->3799, pop 500->497, temp deaths 0->76; code discarded"
+    },
+    {
+      "id": "caller-payoff",
+      "signal": 2,
+      "change": "STRUCTURAL: caller gets +0.5 when a listener who heard its call eats within 20 ticks (nodling.js CALLER_PAYOFF)",
+      "status": "reverted",
+      "cycle": 176,
+      "note": "commSeparation 0.0091 -> 0.0072 (worse, noise); gap 2005 -> 2055, cluster 537 -> 398"
     }
   ]
 }

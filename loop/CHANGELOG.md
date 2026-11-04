@@ -1229,3 +1229,9 @@ STRUCTURAL: village garden (priority 1, plateau.js demanded structural): `world.
 STRUCTURAL: hard winters (plateau.js demanded structural): `world.js` ambient() Winter baseline -5°.
 - Control vs treatment (8k ticks): largestCluster 542 -> 554, builtCells 4240 -> 4620, brickCells 3807 -> 3799, bench gap 2005 -> 80 (guardrail tripped, -96%), medianFitness 718 -> 771, commSeparation 0.0394 -> 0.0704, pop 500 -> 497, temp deaths 0 -> 76. Code discarded.
 - Baseline batch ran 25000 ticks. Cold pressure wrecks the benchmark cohort; if retried, use a much smaller offset (-1 to -2°).
+
+## Cycle 176 — day 1509 — `reverted`
+
+STRUCTURAL: caller payoff (priority 2, plateau.js demanded structural): `nodling.js` CALLER_PAYOFF 0.5 to the caller when a listener that heard its call eats within 20 ticks.
+- Control vs treatment (8k ticks): commSeparation 0.0091 -> 0.0072, largestCluster 537 -> 398, builtCells 4404 -> 4556, brickCells 3809 -> 3808, bench gap 2005 -> 2055, medianFitness 1097 -> 1119, pop 500 -> 501. Guardrails pass; target comm slightly worse (within noise), cluster lower, so reverted.
+- Baseline batch ran 6000 ticks (25000 and 12500 timed out on this slower container). Local master had diverged from origin; reset to origin/master (old local kept as branch backup-old-master).
