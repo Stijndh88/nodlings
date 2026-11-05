@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-05T16:42Z. Now: day 1542.47, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 496, 3851 brick cells, max generation 3166.
+Updated 2026-11-05T20:34Z. Now: day 1558.09, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 381, 3868 brick cells, max generation 3202.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-05T16:42Z. Now: day 1542.47, benchmark gap **1987** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 183 | 1558.09 | 1987 | 1081 | 381 | 3868 | 3202 | 0.0275 |
 | 182 | 1542.47 | 1987 | 1162 | 496 | 3851 | 3166 | 0.0264 |
 | 181 | 1534.66 | 1987 | 992 | 490 | 3838 | 3140 | 0.0567 |
 | 180 | 1526.84 | 1987 | 1125 | 480 | 3826 | 3119 | 0.0286 |
@@ -24,7 +25,6 @@ Updated 2026-11-05T16:42Z. Now: day 1542.47, benchmark gap **1987** (evolved gen
 | 171 | 1469.03 | 2005 | 1141 | 489 | 3729 | 2981 | 0.0878 |
 | 170 | 1461.22 | 2005 | 1054 | 381 | 3731 | 2959 | 0.1614 |
 | 169 | 1453.41 | 1923 | 1109 | 382 | 3729 | 2938 | 0.0914 |
-| 168 | 1445.59 | 1996 | 796 | 207 | 3723 | 2919 | 0.0787 |
 
 ## Hypotheses
 
@@ -204,6 +204,7 @@ Updated 2026-11-05T16:42Z. Now: day 1542.47, benchmark gap **1987** (evolved gen
 - **reverted**: nodling.js drop stack cap 3 -> 4 (taller towers) (cluster 381->369, brickCells 3829->3614, bench gap 1987->1892; no gain on target)
 - **kept**: world.js seeds beside a brick cell germinate 2x faster (largestCluster 383 -> 484, bench gap 1987 -> 1987; single 8k sample, likely noise)
 - **reverted**: STRUCTURAL: world.js kiln spark candidate cells 8 -> 24 (more kilns beside clay) (cluster 490->482, brick 3844->3845, gap 1987->1937, commSeparation 0.0061->0.1182 (noise); no gain on target)
+- **kept**: world.js perishables beside brick rot half as often (cluster 378->489, builtCells 4324->4458, brick 3853->3858, gap 1987->1987; single 8k sample, likely within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
