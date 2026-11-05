@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-05T04:28Z. Now: day 1523.09, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 603, 3824 brick cells, max generation 3108.
+Updated 2026-11-05T08:32Z. Now: day 1526.84, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 480, 3826 brick cells, max generation 3119.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-05T04:28Z. Now: day 1523.09, benchmark gap **1987** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 180 | 1526.84 | 1987 | 1125 | 480 | 3826 | 3119 | 0.0286 |
 | 179 | 1523.09 | 1987 | 1123 | 603 | 3824 | 3108 | 0.0323 |
 | 178 | 1519.34 | 2005 | 1187 | 292 | 3810 | 3100 | 0.0831 |
 | 177 | 1515.59 | 2005 | 1274 | 290 | 3811 | 3091 | 0.013 |
@@ -24,7 +25,6 @@ Updated 2026-11-05T04:28Z. Now: day 1523.09, benchmark gap **1987** (evolved gen
 | 168 | 1445.59 | 1996 | 796 | 207 | 3723 | 2919 | 0.0787 |
 | 167 | 1437.78 | 1996 | 1026 | 207 | 3717 | 2899 | 0.154 |
 | 166 | 1422.16 | 1996 | 1134 | 382 | 3711 | 2855 | 0.0121 |
-| 165 | 1414.34 | 1996 | 1132 | 354 | 3697 | 2831 | 0.0067 |
 
 ## Hypotheses
 
@@ -201,6 +201,7 @@ Updated 2026-11-05T04:28Z. Now: day 1523.09, benchmark gap **1987** (evolved gen
 - **reverted**: STRUCTURAL: ambient() winter-only offset -1.5C (bench gap 2005 -> 1827, other metrics identical)
 - **reverted**: STRUCTURAL: nodling.js birth energy cost 60 -> 40 inside a village (>=12 durable cells within 3) (cluster 396->395, builtCells 4192->4261, brickCells 3820->3819, bench gap 2005->2005, medianFitness 814->1260, commSeparation 0.0904->0.0505, pop 500->502; target no gain (noise))
 - **kept**: STRUCTURAL: world.js kiln heat clay->brick probability 0.2 -> 0.4 (brick supply) (cluster 608->609, brickCells 3825->3828, gap 2005->1987; within noise)
+- **reverted**: nodling.js drop stack cap 3 -> 4 (taller towers) (cluster 381->369, brickCells 3829->3614, bench gap 1987->1892; no gain on target)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
