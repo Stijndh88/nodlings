@@ -1,6 +1,7 @@
 {
   "_doc": "Ledger of loop hypotheses. Status: open | running | kept | reverted | untested (closed without a result). Check before picking one; set running (commit) when you start; set the final status with the cycle number.",
   "hypotheses": [
+    {"id":"brick-foundation-fireproof","signal":1,"change":"world.js: stacks containing brick cannot ignite","status":"kept","cycle":184,"note":"cluster 381->402, within noise"},
     {
       "id": "fire-spread-0.06",
       "signal": 1,

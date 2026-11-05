@@ -1277,3 +1277,9 @@ STRUCTURAL: more kilns (priority 1, plateau.js demanded structural): `world.js` 
 STRUCTURAL: granary (priority 1, plateau.js demanded structural): `world.js` meat/cooked beside a brick cell rot half as often.
 - Control vs treatment (8k ticks): largestCluster 378 -> 489, builtCells 4324 -> 4458, brickCells 3853 -> 3858, bench gap 1987 -> 1987, medianFitness 1061 -> 1245, commSeparation 0.0085 -> 0.0067, pop 500 -> 501. Guardrails pass; target better but a single 8k sample, so likely within noise.
 - Baseline batch ran 12500 ticks (25000 timed out). Local master is unrelated history, so worked on the session branch and pushed to master.
+
+## Cycle 184 — day 1563 — `kept`
+
+STRUCTURAL: brick foundation (priority 1, plateau.js demanded structural): `world.js` fire cannot ignite a stack that contains brick (fireproof villages).
+- Control vs treatment (8k ticks): largestCluster 381 -> 402, builtCells 4399 -> 4361, brickCells 3868 -> 3871, bench gap 1987 -> 1987, medianFitness 1063 -> 933, commSeparation 0.0359 -> 0.0378, pop 501 -> 502. Guardrails pass; target marginally better, within noise.
+- Baseline batch ran the full 25000 ticks. Local master had diverged (hard reset denied), so worked on a branch cut from origin/master and pushed to master.

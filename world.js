@@ -365,7 +365,7 @@ class World {
         const nt = nc.stack[nc.stack.length-1];
         if (nt === 'meat' && this.rng() < 0.25) nc.stack[nc.stack.length-1] = 'cooked';
         else if (nt === 'clay' && this.rng() < 0.4) nc.stack[nc.stack.length-1] = 'brick'; // kiln heat
-        if (nt && MATERIALS[nt].flammable && !nc.fire && this.rng() < FIRE_SPREAD_RATE)
+        if (nt && MATERIALS[nt].flammable && !nc.fire && !nc.stack.includes('brick') && this.rng() < FIRE_SPREAD_RATE)  // brick foundation: fireproof
           this.ignite((y+dy)*GRID_W + (x+dx));
       }
       if (--c.fire <= 0){
