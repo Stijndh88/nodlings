@@ -1265,3 +1265,9 @@ STRUCTURAL: taller towers (priority 1, plateau.js demanded structural): `nodling
 STRUCTURAL: orchard seeds (priority 1, plateau.js demanded structural): `world.js` seeds orthogonally adjacent to a brick cell germinate 2x as fast.
 - Control vs treatment (8k ticks): largestCluster 383 -> 484, builtCells 4395 -> 4343, brickCells 3832 -> 3837, bench gap 1987 -> 1987, medianFitness 1116 -> 1223, commSeparation 0.0186 -> 0.034, pop 499 -> 501. Guardrails pass; target better but a single 8k sample, so likely within noise.
 - Baseline batch ran 6000 ticks (25000 times out; ~8 min each run on this container).
+
+## Cycle 182 — day 1540 — `reverted`
+
+STRUCTURAL: more kilns (priority 1, plateau.js demanded structural): `world.js` kiln spark candidate cells 8 -> 24.
+- Control vs treatment (8k ticks): largestCluster 490 -> 482, builtCells 4608 -> 4441, brickCells 3844 -> 3845, bench gap 1987 -> 1937, medianFitness 1050 -> 1045, commSeparation 0.0061 -> 0.1182, pop 500 -> 499. Guardrails pass; target slightly worse (within noise), code discarded.
+- Baseline batch ran 12500 ticks successfully. Brick supply is not the bottleneck (brickCells flat ~3840).

@@ -98,7 +98,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -1398,6 +1398,14 @@
       "status": "kept",
       "cycle": 181,
       "note": "largestCluster 383 -> 484, bench gap 1987 -> 1987; single 8k sample, likely noise"
+    },
+    {
+      "id": "kiln-spark-24",
+      "signal": 1,
+      "change": "STRUCTURAL: world.js kiln spark candidate cells 8 -> 24 (more kilns beside clay)",
+      "status": "reverted",
+      "cycle": 182,
+      "note": "cluster 490->482, brick 3844->3845, gap 1987->1937, commSeparation 0.0061->0.1182 (noise); no gain on target"
     }
   ]
 }
