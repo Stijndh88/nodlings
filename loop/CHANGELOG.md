@@ -1259,3 +1259,9 @@ STRUCTURAL: kiln heat 0.2 -> 0.4 (priority 1, plateau.js demanded structural): `
 STRUCTURAL: taller towers (priority 1, plateau.js demanded structural): `nodling.js` drop stack cap 3 -> 4.
 - Control vs treatment (8k ticks): largestCluster 381 -> 369, builtCells 4369 -> 4075, brickCells 3829 -> 3614, bench gap 1987 -> 1892, medianFitness 1211 -> 1122, commSeparation 0.0147 -> 0.0175, pop 497 -> 499. Guardrails pass; target slightly worse (within noise), code discarded.
 - Baseline batch ran 6000 ticks (25000 times out). Local master had diverged from origin (hard reset denied), so worked on a branch cut from origin/master and pushed to master.
+
+## Cycle 181 — day 1532 — `kept`
+
+STRUCTURAL: orchard seeds (priority 1, plateau.js demanded structural): `world.js` seeds orthogonally adjacent to a brick cell germinate 2x as fast.
+- Control vs treatment (8k ticks): largestCluster 383 -> 484, builtCells 4395 -> 4343, brickCells 3832 -> 3837, bench gap 1987 -> 1987, medianFitness 1116 -> 1223, commSeparation 0.0186 -> 0.034, pop 499 -> 501. Guardrails pass; target better but a single 8k sample, so likely within noise.
+- Baseline batch ran 6000 ticks (25000 times out; ~8 min each run on this container).

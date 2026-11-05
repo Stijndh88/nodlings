@@ -1390,6 +1390,14 @@
       "status": "reverted",
       "cycle": 180,
       "note": "cluster 381->369, brickCells 3829->3614, bench gap 1987->1892; no gain on target"
+    },
+    {
+      "id": "orchard-seeds",
+      "signal": 1,
+      "change": "world.js seeds beside a brick cell germinate 2x faster",
+      "status": "kept",
+      "cycle": 181,
+      "note": "largestCluster 383 -> 484, bench gap 1987 -> 1987; single 8k sample, likely noise"
     }
   ]
 }

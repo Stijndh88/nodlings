@@ -265,10 +265,20 @@ class World {
 
     // Seeds germinate (faster when warm) and perishables (meat/cooked) rot away.
     for (let i = 0, n = (60*af)|0; i < n; i++){
-      const c = this.at((this.rng()*GRID_W)|0, (this.rng()*GRID_H)|0);
+      const gx = (this.rng()*GRID_W)|0, gy = (this.rng()*GRID_H)|0;
+      const c = this.at(gx, gy);
       if (!c || !c.stack.length || c.water) continue;
       const top = c.stack[c.stack.length-1];
-      if (top === 'seed' && this.rng() < 0.03 + warmth*0.07) c.stack[c.stack.length-1] = 'flora';
+      if (top === 'seed'){
+        // orchard: sheltered seeds beside a brick wall germinate twice as fast
+        const cx = gx, cy = gy;
+        let sheltered = false;
+        for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+          const nb = this.at(cx+ax, cy+ay);
+          if (nb && nb.stack.includes('brick')){ sheltered = true; break; }
+        }
+        if (this.rng() < (0.03 + warmth*0.07) * (sheltered ? 2 : 1)) c.stack[c.stack.length-1] = 'flora';
+      }
       else if (PERISHABLE[top] && this.rng() < PERISHABLE[top]) c.stack.pop();
     }
 
