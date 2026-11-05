@@ -1382,6 +1382,14 @@
       "status": "kept",
       "cycle": 179,
       "note": "cluster 608->609, brickCells 3825->3828, gap 2005->1987; within noise"
+    },
+    {
+      "id": "stack-height-4",
+      "signal": 1,
+      "change": "nodling.js drop stack cap 3 -> 4 (taller towers)",
+      "status": "reverted",
+      "cycle": 180,
+      "note": "cluster 381->369, brickCells 3829->3614, bench gap 1987->1892; no gain on target"
     }
   ]
 }
