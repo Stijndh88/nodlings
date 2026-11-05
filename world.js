@@ -297,6 +297,18 @@ class World {
       if (c && c.sand && !c.water && !c.stack.length && this.rng() < 0.6) c.stack.push('clay');
     }
 
+    // Clay seep: bare ground beside a brick cell slowly seeps clay, so
+    // villages have local raw material for the next kiln firing.
+    for (let i = 0, n = (8*af)|0; i < n; i++){
+      const x = (this.rng()*GRID_W)|0, y = (this.rng()*GRID_H)|0;
+      const c = this.at(x, y);
+      if (!c || c.water || c.stack.length || this.rng() >= 0.3) continue;
+      for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+        const nb = this.at(x+ax, y+ay);
+        if (nb && nb.stack[nb.stack.length-1] === 'brick'){ c.stack.push('clay'); break; }
+      }
+    }
+
     this.stepFire(warmth);
 
     // Wind-blown flora so the food supply can never permanently hit zero and

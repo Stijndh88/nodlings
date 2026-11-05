@@ -1382,6 +1382,14 @@
       "status": "kept",
       "cycle": 179,
       "note": "cluster 608->609, brickCells 3825->3828, gap 2005->1987; within noise"
+    },
+    {
+      "id": "clay-seep",
+      "signal": 1,
+      "change": "bare ground beside a brick cell seeps clay (world.js)",
+      "status": "kept",
+      "cycle": 180,
+      "note": "cluster 381->727, bricks 3829->5085, gap 1987->2011"
     }
   ]
 }

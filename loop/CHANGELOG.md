@@ -1253,3 +1253,9 @@ STRUCTURAL: nest birth discount (priority 1, plateau.js demanded structural): `n
 STRUCTURAL: kiln heat 0.2 -> 0.4 (priority 1, plateau.js demanded structural): `world.js` clay beside fire becomes brick twice as often (brick supply).
 - Control vs treatment (8k ticks): largestCluster 608 -> 609, builtCells 4419 -> 4312, brickCells 3825 -> 3828, bench gap 2005 -> 1987, medianFitness 1143 -> 1200, commSeparation 0.0477 -> 0.0361, pop 500 -> 500. Guardrails pass; target equal/marginally better, i.e. within noise.
 - Baseline batch ran 6000 ticks (25000 and 12500 timed out).
+
+## Cycle 180 — day 1528 — `kept`
+
+STRUCTURAL: clay seep (priority 1, plateau.js demanded structural): `world.js` bare ground beside a brick cell seeps clay (p 0.3, 8 tries/step), giving villages local raw material.
+- Control vs treatment (8k ticks): largestCluster 381 -> 727, builtCells 4369 -> 5496, brickCells 3829 -> 5085, bench gap 1987 -> 2011, medianFitness 1211 -> 1110, commSeparation 0.0147 -> 0.0046, pop 497 -> 500. Guardrails pass; target clearly better (single sample).
+- Baseline batch ran 6000 ticks. Pushed to the session branch claude/happy-goodall-elhwqn, not master (branch restriction).
