@@ -279,7 +279,15 @@ class World {
         }
         if (this.rng() < (0.03 + warmth*0.07) * (sheltered ? 2 : 1)) c.stack[c.stack.length-1] = 'flora';
       }
-      else if (PERISHABLE[top] && this.rng() < PERISHABLE[top]) c.stack.pop();
+      else if (PERISHABLE[top]){
+        // granary: perishables beside a brick wall keep twice as long
+        let store = false;
+        for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+          const nb = this.at(gx+ax, gy+ay);
+          if (nb && nb.stack.includes('brick')){ store = true; break; }
+        }
+        if (this.rng() < PERISHABLE[top] * (store ? 0.5 : 1)) c.stack.pop();
+      }
     }
 
     // Weathering: unmaintained tall stacks slowly shed a block, so the map

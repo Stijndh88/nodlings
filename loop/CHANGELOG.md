@@ -1271,3 +1271,9 @@ STRUCTURAL: orchard seeds (priority 1, plateau.js demanded structural): `world.j
 STRUCTURAL: more kilns (priority 1, plateau.js demanded structural): `world.js` kiln spark candidate cells 8 -> 24.
 - Control vs treatment (8k ticks): largestCluster 490 -> 482, builtCells 4608 -> 4441, brickCells 3844 -> 3845, bench gap 1987 -> 1937, medianFitness 1050 -> 1045, commSeparation 0.0061 -> 0.1182, pop 500 -> 499. Guardrails pass; target slightly worse (within noise), code discarded.
 - Baseline batch ran 12500 ticks successfully. Brick supply is not the bottleneck (brickCells flat ~3840).
+
+## Cycle 183 — day 1542 — `kept`
+
+STRUCTURAL: granary (priority 1, plateau.js demanded structural): `world.js` meat/cooked beside a brick cell rot half as often.
+- Control vs treatment (8k ticks): largestCluster 378 -> 489, builtCells 4324 -> 4458, brickCells 3853 -> 3858, bench gap 1987 -> 1987, medianFitness 1061 -> 1245, commSeparation 0.0085 -> 0.0067, pop 500 -> 501. Guardrails pass; target better but a single 8k sample, so likely within noise.
+- Baseline batch ran 12500 ticks (25000 timed out). Local master is unrelated history, so worked on the session branch and pushed to master.
