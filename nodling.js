@@ -401,7 +401,7 @@ class Nodling {
     this.energy -= 0.035 + this.brainSize*0.0001 + moving*0.04
                  + (cell.water ? 0.08 : 0) + (out.glitch ? 0.5 : 0)
                  + (this.age > SENESCENCE ? (this.age - SENESCENCE)*0.0004 : 0); // senescence
-    this.hydration -= 0.045 + (this.bodyTemp > 28 ? 0.05 : 0);
+    this.hydration -= (0.045 + (this.bodyTemp > 28 ? 0.05 : 0)) * (this.inVillage ? 0.5 : 1); // village cistern: half thirst drain
 
     // -- fire: standing in it burns; a real hazard to learn to avoid --
     if (cell.fire){ this.energy -= 4; if (w.rng() < 0.06){ this.die(cell); return null; } }
@@ -420,6 +420,7 @@ class Nodling {
         const vc = w.at(cx+vx, cy+vy);
         if (vc && vc.stack.some(m => DURABLE_BUILD.includes(m))) dn++;
       }
+      this.inVillage = dn >= 12;
       if (dn >= 12) this.bonus += VILLAGE_BONUS * 8;
     }
     if (this.lastBuild && w.isNight() && (this.lastBuild[0]-cx)**2 + (this.lastBuild[1]-cy)**2 <= 16) this.bonus += HOME_BONUS;

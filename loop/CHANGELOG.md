@@ -1289,3 +1289,9 @@ STRUCTURAL: brick foundation (priority 1, plateau.js demanded structural): `worl
 STRUCTURAL: clay mortar (priority 1, plateau.js demanded structural): `world.js` stacks containing clay no longer weather (like fiber-bound).
 - Control vs treatment (8k ticks): largestCluster 654 -> 618, builtCells 4716 -> 4637, brickCells 3873 -> 3875, bench gap 1987 -> 1890, medianFitness 1117 -> 1051, commSeparation 0.0136 -> 0.0031, pop 501 -> 503. Guardrails pass; target slightly worse (within noise), code discarded.
 - Baseline batch ran 12500 ticks (25000 timed out). Local master had diverged (hard reset denied), so worked on a branch cut from origin/master and pushed to master.
+
+## Cycle 186 — day 1570 — `kept`
+
+STRUCTURAL: village cistern (priority 1, plateau.js demanded structural): `nodling.js` thirst drain halved while inside a village (>=12 durable cells within 3).
+- Control vs treatment (8k ticks): largestCluster 454 -> 653, builtCells 4360 -> 4524, brickCells 3877 -> 3877, bench gap 1987 -> 1987, medianFitness 762 -> 1104, commSeparation 0.0134 -> 0.0029, pop 503 -> 501. Guardrails pass; target better but a single 8k sample, so likely within noise.
+- Baseline batch ran 6000 ticks (25000 timed out). Local master had diverged (hard reset denied), so worked on a branch cut from origin/master and pushed to master.

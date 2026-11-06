@@ -1430,6 +1430,14 @@
       "status": "reverted",
       "cycle": 185,
       "note": "cluster 654->618, brick 3873->3875, gap 1987->1890, medianFitness 1117->1051; no gain on target"
+    },
+    {
+      "id": "village-cistern",
+      "signal": 1,
+      "change": "nodling.js: thirst drain halved while in a village (>=12 durable cells within 3)",
+      "status": "kept",
+      "cycle": 186,
+      "note": "cluster 454->653, within noise"
     }
   ]
 }
