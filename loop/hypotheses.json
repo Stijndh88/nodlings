@@ -1446,6 +1446,14 @@
       "status": "reverted",
       "cycle": 187,
       "note": "cluster 734->631, builtCells 4422->4343, bench gap 1987->1987; target worse"
+    },
+    {
+      "id": "village-sanctuary",
+      "signal": 1,
+      "change": "predators.js: predators cannot kill prey standing inside a village",
+      "status": "reverted",
+      "cycle": 188,
+      "note": "cluster 753->731, medianFitness 1236->935 guardrail trip"
     }
   ]
 }

@@ -1301,3 +1301,9 @@ STRUCTURAL: village cistern (priority 1, plateau.js demanded structural): `nodli
 STRUCTURAL: village hearth (priority 1, plateau.js demanded structural): `nodling.js` base metabolic drain x0.75 while inVillage.
 - Control vs treatment (8k ticks): largestCluster 734 -> 631, builtCells 4422 -> 4343, brickCells 3882 -> 3882, bench gap 1987 -> 1987, medianFitness 1039 -> 1358, commSeparation 0.0659 -> 0.0418, pop 498 -> 501. Guardrails pass; target worse (within noise), code discarded.
 - Baseline batch ran 12500 ticks (25000 times out). Worked on the session branch cut from origin/master and pushed to master.
+
+## Cycle 188 — day 1585 — `reverted`
+
+STRUCTURAL: village sanctuary (priority 1, plateau.js demanded structural): `predators.js` predators cannot kill prey with `inVillage`.
+- Control vs treatment (8k ticks): largestCluster 753 -> 731, builtCells 4475 -> 4290, brickCells 3890 -> 3890, bench gap 1987 -> 1987, medianFitness (control meanFitness 1236) -> 935 (guardrail: median fitness dropped 25.6%), commSeparation 0.0601 -> 0.0643, pop 501 -> 502. Guardrail tripped and target worse; code discarded.
+- Baseline batch ran 12500 ticks (25000 times out). Local master was stale/unrelated, so worked on a branch cut from origin/master and pushed to master.
