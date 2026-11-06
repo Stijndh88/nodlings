@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-06T04:27Z. Now: day 1569.66, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 657, 3875 brick cells, max generation 3238.
+Updated 2026-11-06T08:30Z. Now: day 1577.47, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 653, 3878 brick cells, max generation 3256.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-06T04:27Z. Now: day 1569.66, benchmark gap **1987** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 186 | 1577.47 | 1987 | 1211 | 653 | 3878 | 3256 | 0.0017 |
 | 185 | 1569.66 | 1987 | 997 | 657 | 3875 | 3238 | 0.0211 |
 | 184 | 1565.91 | 1987 | 1135 | 647 | 3873 | 3226 | 0.0341 |
 | 183 | 1558.09 | 1987 | 1081 | 381 | 3868 | 3202 | 0.0275 |
@@ -24,7 +25,6 @@ Updated 2026-11-06T04:27Z. Now: day 1569.66, benchmark gap **1987** (evolved gen
 | 174 | 1500.28 | 2005 | 1036 | 559 | 3793 | 3066 | 0.0122 |
 | 173 | 1484.66 | 2005 | 1201 | 421 | 3769 | 3022 | 0.0001 |
 | 172 | 1476.84 | 2005 | 1161 | 409 | 3741 | 3003 | 0.0475 |
-| 171 | 1469.03 | 2005 | 1141 | 489 | 3729 | 2981 | 0.0878 |
 
 ## Hypotheses
 
@@ -207,6 +207,7 @@ Updated 2026-11-06T04:27Z. Now: day 1569.66, benchmark gap **1987** (evolved gen
 - **reverted**: STRUCTURAL: world.js kiln spark candidate cells 8 -> 24 (more kilns beside clay) (cluster 490->482, brick 3844->3845, gap 1987->1937, commSeparation 0.0061->0.1182 (noise); no gain on target)
 - **kept**: world.js perishables beside brick rot half as often (cluster 378->489, builtCells 4324->4458, brick 3853->3858, gap 1987->1987; single 8k sample, likely within noise)
 - **reverted**: STRUCTURAL: world.js stacks containing clay (mortar) do not weather, like fiber-bound (cluster 654->618, brick 3873->3875, gap 1987->1890, medianFitness 1117->1051; no gain on target)
+- **kept**: nodling.js: thirst drain halved while in a village (>=12 durable cells within 3) (cluster 454->653, within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
