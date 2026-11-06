@@ -1438,6 +1438,14 @@
       "status": "kept",
       "cycle": 186,
       "note": "cluster 454->653, within noise"
+    },
+    {
+      "id": "village-hearth",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js base metabolic drain x0.75 while inVillage",
+      "status": "reverted",
+      "cycle": 187,
+      "note": "cluster 734->631, builtCells 4422->4343, bench gap 1987->1987; target worse"
     }
   ]
 }

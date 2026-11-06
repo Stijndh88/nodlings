@@ -1295,3 +1295,9 @@ STRUCTURAL: clay mortar (priority 1, plateau.js demanded structural): `world.js`
 STRUCTURAL: village cistern (priority 1, plateau.js demanded structural): `nodling.js` thirst drain halved while inside a village (>=12 durable cells within 3).
 - Control vs treatment (8k ticks): largestCluster 454 -> 653, builtCells 4360 -> 4524, brickCells 3877 -> 3877, bench gap 1987 -> 1987, medianFitness 762 -> 1104, commSeparation 0.0134 -> 0.0029, pop 503 -> 501. Guardrails pass; target better but a single 8k sample, so likely within noise.
 - Baseline batch ran 6000 ticks (25000 timed out). Local master had diverged (hard reset denied), so worked on a branch cut from origin/master and pushed to master.
+
+## Cycle 187 — day 1577 — `reverted`
+
+STRUCTURAL: village hearth (priority 1, plateau.js demanded structural): `nodling.js` base metabolic drain x0.75 while inVillage.
+- Control vs treatment (8k ticks): largestCluster 734 -> 631, builtCells 4422 -> 4343, brickCells 3882 -> 3882, bench gap 1987 -> 1987, medianFitness 1039 -> 1358, commSeparation 0.0659 -> 0.0418, pop 498 -> 501. Guardrails pass; target worse (within noise), code discarded.
+- Baseline batch ran 12500 ticks (25000 times out). Worked on the session branch cut from origin/master and pushed to master.
