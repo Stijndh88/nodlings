@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-05T20:34Z. Now: day 1558.09, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 381, 3868 brick cells, max generation 3202.
+Updated 2026-11-06T00:40Z. Now: day 1565.91, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 647, 3873 brick cells, max generation 3226.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-05T20:34Z. Now: day 1558.09, benchmark gap **1987** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 184 | 1565.91 | 1987 | 1135 | 647 | 3873 | 3226 | 0.0341 |
 | 183 | 1558.09 | 1987 | 1081 | 381 | 3868 | 3202 | 0.0275 |
 | 182 | 1542.47 | 1987 | 1162 | 496 | 3851 | 3166 | 0.0264 |
 | 181 | 1534.66 | 1987 | 992 | 490 | 3838 | 3140 | 0.0567 |
@@ -24,10 +25,10 @@ Updated 2026-11-05T20:34Z. Now: day 1558.09, benchmark gap **1987** (evolved gen
 | 172 | 1476.84 | 2005 | 1161 | 409 | 3741 | 3003 | 0.0475 |
 | 171 | 1469.03 | 2005 | 1141 | 489 | 3729 | 2981 | 0.0878 |
 | 170 | 1461.22 | 2005 | 1054 | 381 | 3731 | 2959 | 0.1614 |
-| 169 | 1453.41 | 1923 | 1109 | 382 | 3729 | 2938 | 0.0914 |
 
 ## Hypotheses
 
+- **kept**: world.js: stacks containing brick cannot ignite (cluster 381->402, within noise)
 - **kept**: FIRE_SPREAD_RATE 0.04 -> 0.06 (bricks 1 -> 44; old metrics were not paired, effect size unverified)
 - **kept**: FIRE_SPREAD_RATE 0.06 -> 0.09 (peak fitness unchanged (6163); effect unverified under the old harness)
 - **untested**: reward hearing a sound while something salient is near (PR #4) (closed unmerged; never validated on a continuous world)
