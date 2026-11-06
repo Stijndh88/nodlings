@@ -1454,6 +1454,14 @@
       "status": "reverted",
       "cycle": 188,
       "note": "cluster 753->731, medianFitness 1236->935 guardrail trip"
+    },
+    {
+      "id": "village-windbreak",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js cold-energy drain x0.5 while inVillage",
+      "status": "reverted",
+      "cycle": 189,
+      "note": "cluster 644->632, builtCells 4466->4494, gap 1987->1987, medianFitness 1158->1160; target slightly worse (noise)"
     }
   ]
 }
