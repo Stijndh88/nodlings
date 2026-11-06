@@ -1,7 +1,14 @@
 {
   "_doc": "Ledger of loop hypotheses. Status: open | running | kept | reverted | untested (closed without a result). Check before picking one; set running (commit) when you start; set the final status with the cycle number.",
   "hypotheses": [
-    {"id":"brick-foundation-fireproof","signal":1,"change":"world.js: stacks containing brick cannot ignite","status":"kept","cycle":184,"note":"cluster 381->402, within noise"},
+    {
+      "id": "brick-foundation-fireproof",
+      "signal": 1,
+      "change": "world.js: stacks containing brick cannot ignite",
+      "status": "kept",
+      "cycle": 184,
+      "note": "cluster 381->402, within noise"
+    },
     {
       "id": "fire-spread-0.06",
       "signal": 1,
@@ -1415,6 +1422,14 @@
       "status": "kept",
       "cycle": 183,
       "note": "cluster 378->489, builtCells 4324->4458, brick 3853->3858, gap 1987->1987; single 8k sample, likely within noise"
+    },
+    {
+      "id": "clay-mortar",
+      "signal": 1,
+      "change": "STRUCTURAL: world.js stacks containing clay (mortar) do not weather, like fiber-bound",
+      "status": "reverted",
+      "cycle": 185,
+      "note": "cluster 654->618, brick 3873->3875, gap 1987->1890, medianFitness 1117->1051; no gain on target"
     }
   ]
 }

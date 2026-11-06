@@ -1283,3 +1283,9 @@ STRUCTURAL: granary (priority 1, plateau.js demanded structural): `world.js` mea
 STRUCTURAL: brick foundation (priority 1, plateau.js demanded structural): `world.js` fire cannot ignite a stack that contains brick (fireproof villages).
 - Control vs treatment (8k ticks): largestCluster 381 -> 402, builtCells 4399 -> 4361, brickCells 3868 -> 3871, bench gap 1987 -> 1987, medianFitness 1063 -> 933, commSeparation 0.0359 -> 0.0378, pop 501 -> 502. Guardrails pass; target marginally better, within noise.
 - Baseline batch ran the full 25000 ticks. Local master had diverged (hard reset denied), so worked on a branch cut from origin/master and pushed to master.
+
+## Cycle 185 — day 1566 — `reverted`
+
+STRUCTURAL: clay mortar (priority 1, plateau.js demanded structural): `world.js` stacks containing clay no longer weather (like fiber-bound).
+- Control vs treatment (8k ticks): largestCluster 654 -> 618, builtCells 4716 -> 4637, brickCells 3873 -> 3875, bench gap 1987 -> 1890, medianFitness 1117 -> 1051, commSeparation 0.0136 -> 0.0031, pop 501 -> 503. Guardrails pass; target slightly worse (within noise), code discarded.
+- Baseline batch ran 12500 ticks (25000 timed out). Local master had diverged (hard reset denied), so worked on a branch cut from origin/master and pushed to master.
