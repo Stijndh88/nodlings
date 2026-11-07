@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-07T04:28Z. Now: day 1608.72, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 634, 3893 brick cells, max generation 3331.
+Updated 2026-11-07T12:42Z. Now: day 1616.53, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 641, 3895 brick cells, max generation 3348.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-07T04:28Z. Now: day 1608.72, benchmark gap **1987** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 191 | 1616.53 | 1987 | 1072 | 641 | 3895 | 3348 | 0.0608 |
 | 190 | 1608.72 | 1987 | 1282 | 634 | 3893 | 3331 | 0.076 |
 | 189 | 1600.91 | 1987 | 970 | 643 | 3891 | 3312 | 0.0474 |
 | 188 | 1593.09 | 1987 | 1241 | 639 | 3891 | 3291 | 0.0642 |
@@ -24,7 +25,6 @@ Updated 2026-11-07T04:28Z. Now: day 1608.72, benchmark gap **1987** (evolved gen
 | 179 | 1523.09 | 1987 | 1123 | 603 | 3824 | 3108 | 0.0323 |
 | 178 | 1519.34 | 2005 | 1187 | 292 | 3810 | 3100 | 0.0831 |
 | 177 | 1515.59 | 2005 | 1274 | 290 | 3811 | 3091 | 0.013 |
-| 176 | 1511.84 | 2005 | 1102 | 429 | 3806 | 3092 | 0.0129 |
 
 ## Hypotheses
 
@@ -212,6 +212,7 @@ Updated 2026-11-07T04:28Z. Now: day 1608.72, benchmark gap **1987** (evolved gen
 - **reverted**: predators.js: predators cannot kill prey standing inside a village (cluster 753->731, medianFitness 1236->935 guardrail trip)
 - **reverted**: STRUCTURAL: nodling.js cold-energy drain x0.5 while inVillage (cluster 644->632, builtCells 4466->4494, gap 1987->1987, medianFitness 1158->1160; target slightly worse (noise))
 - **reverted**: STRUCTURAL: nodling.js +0.4 build reward when placing durable material beside a structure while inVillage (all metrics identical to control (cluster 735, built 4379, brick 3891, gap 1987); no measurable effect)
+- **reverted**: STRUCTURAL: nodling.js calls with no predator near and no food underfoot cost an extra 0.3 energy (commSeparation 0.1025->0.0237, medianFitness 1251->1081, bench gap 1987->1992; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
