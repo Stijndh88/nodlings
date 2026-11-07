@@ -1486,6 +1486,14 @@
       "status": "reverted",
       "note": "commSeparation 0.0602->0.0569 (within noise, not better); medianFitness 903->1248",
       "cycle": 192
+    },
+    {
+      "id": "village-larder",
+      "signal": 1,
+      "change": "nodling.js eat(): x1.25 nutrition while inVillage",
+      "status": "kept",
+      "cycle": 193,
+      "note": "cluster 627->736, builtCells 4386->4476; single 8k sample, likely within noise"
     }
   ]
 }
