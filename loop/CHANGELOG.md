@@ -1325,3 +1325,9 @@ STRUCTURAL: village mason (priority 1, plateau.js demanded structural): `nodling
 STRUCTURAL: idle-chatter tax (priority 2, plateau.js demanded structural): `nodling.js` calls with no predator near and no food underfoot cost +0.3 energy.
 - Control vs treatment (8k ticks): commSeparation 0.1025 -> 0.0237, largestCluster 637 -> 630, builtCells 4344 -> 4363, brickCells 3894 -> 3893, bench gap 1987 -> 1992, medianFitness 1251 -> 1081, pop 500 -> 501. Guardrails pass; target worse, code discarded.
 - Baseline batch ran 12500 ticks. Local master was stale (kept as `old-local-master`), so worked on a branch cut from origin/master and pushed to master.
+
+## Cycle 192 — day 1616 — `reverted`
+
+STRUCTURAL: alarm audience (priority 2, plateau.js demanded structural): `nodling.js` predator-near call earns +0.5 extra when another nodling is within 8 cells.
+- Control vs treatment (8k ticks): commSeparation 0.0602 -> 0.0569, largestCluster 629 -> 640, builtCells 4251 -> 4324, brickCells 3898 -> 3896, bench gap 1987 -> 1987, medianFitness 903 -> 1248, pop 501 -> 500. Guardrails pass; target slightly worse (within noise), code discarded.
+- Baseline batch ran 12500 ticks (25000 timed out). Worked on session branch, pushed to master.

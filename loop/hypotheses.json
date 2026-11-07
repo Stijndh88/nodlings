@@ -1478,6 +1478,14 @@
       "status": "reverted",
       "cycle": 191,
       "note": "commSeparation 0.1025->0.0237, medianFitness 1251->1081, bench gap 1987->1992; target worse"
+    },
+    {
+      "id": "alarm-audience",
+      "signal": 2,
+      "change": "nodling.js ALARM_AUDIENCE_BONUS 0.5: predator-near call earns extra when a nodling within 8 cells can hear",
+      "status": "reverted",
+      "note": "commSeparation 0.0602->0.0569 (within noise, not better); medianFitness 903->1248",
+      "cycle": 192
     }
   ]
 }
