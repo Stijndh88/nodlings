@@ -1494,6 +1494,14 @@
       "status": "kept",
       "cycle": 193,
       "note": "cluster 627->736, builtCells 4386->4476; single 8k sample, likely within noise"
+    },
+    {
+      "id": "village-infirmary",
+      "signal": 1,
+      "change": "nodling.js: senescence drain x0.5 while inVillage",
+      "status": "kept",
+      "cycle": 194,
+      "note": "cluster 715->716, within noise"
     }
   ]
 }

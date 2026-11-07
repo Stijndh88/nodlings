@@ -1337,3 +1337,9 @@ STRUCTURAL: alarm audience (priority 2, plateau.js demanded structural): `nodlin
 STRUCTURAL: village larder (priority 1, plateau.js demanded structural): `nodling.js` eat() gives x1.25 nutrition while inVillage.
 - Control vs treatment (8k ticks): largestCluster 627 -> 736, builtCells 4386 -> 4476, brickCells 3899 -> 3900, bench gap 1987 -> 1987, medianFitness 1010 -> 1024, commSeparation 0.0221 -> 0.0029, pop 501 -> 499. Guardrails pass; target better but a single 8k sample, likely within noise.
 - Baseline batch ran 12500 ticks (took ~5 min). Worked on session branch cut from origin/master, pushed to master.
+
+## Cycle 194 — day 1640 — `kept`
+
+STRUCTURAL: village infirmary (priority 1, plateau.js demanded structural): `nodling.js` senescence drain x0.5 while inVillage.
+- Control vs treatment (8k ticks): largestCluster 715 -> 716, builtCells 4256 -> 4330, brickCells 3906 -> 3905, bench gap 1987 -> 1987, medianFitness 1018 -> 1186, commSeparation 0.0782 -> 0.029, pop 500 -> 500. Guardrails pass; target equal/slightly better, within noise.
+- Baseline batch ran the full 25000 ticks.
