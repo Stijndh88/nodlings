@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-07T12:42Z. Now: day 1616.53, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 641, 3895 brick cells, max generation 3348.
+Updated 2026-11-07T16:29Z. Now: day 1624.34, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 631, 3898 brick cells, max generation 3367.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-07T12:42Z. Now: day 1616.53, benchmark gap **1987** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 192 | 1624.34 | 1987 | 1026 | 631 | 3898 | 3367 | 0.0569 |
 | 191 | 1616.53 | 1987 | 1072 | 641 | 3895 | 3348 | 0.0608 |
 | 190 | 1608.72 | 1987 | 1282 | 634 | 3893 | 3331 | 0.076 |
 | 189 | 1600.91 | 1987 | 970 | 643 | 3891 | 3312 | 0.0474 |
@@ -24,7 +25,6 @@ Updated 2026-11-07T12:42Z. Now: day 1616.53, benchmark gap **1987** (evolved gen
 | 180 | 1526.84 | 1987 | 1125 | 480 | 3826 | 3119 | 0.0286 |
 | 179 | 1523.09 | 1987 | 1123 | 603 | 3824 | 3108 | 0.0323 |
 | 178 | 1519.34 | 2005 | 1187 | 292 | 3810 | 3100 | 0.0831 |
-| 177 | 1515.59 | 2005 | 1274 | 290 | 3811 | 3091 | 0.013 |
 
 ## Hypotheses
 
@@ -213,6 +213,7 @@ Updated 2026-11-07T12:42Z. Now: day 1616.53, benchmark gap **1987** (evolved gen
 - **reverted**: STRUCTURAL: nodling.js cold-energy drain x0.5 while inVillage (cluster 644->632, builtCells 4466->4494, gap 1987->1987, medianFitness 1158->1160; target slightly worse (noise))
 - **reverted**: STRUCTURAL: nodling.js +0.4 build reward when placing durable material beside a structure while inVillage (all metrics identical to control (cluster 735, built 4379, brick 3891, gap 1987); no measurable effect)
 - **reverted**: STRUCTURAL: nodling.js calls with no predator near and no food underfoot cost an extra 0.3 energy (commSeparation 0.1025->0.0237, medianFitness 1251->1081, bench gap 1987->1992; target worse)
+- **reverted**: nodling.js ALARM_AUDIENCE_BONUS 0.5: predator-near call earns extra when a nodling within 8 cells can hear (commSeparation 0.0602->0.0569 (within noise, not better); medianFitness 903->1248)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
