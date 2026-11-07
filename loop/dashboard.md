@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-06T16:41Z. Now: day 1593.09, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 639, 3891 brick cells, max generation 3291.
+Updated 2026-11-07T00:40Z. Now: day 1600.91, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 643, 3891 brick cells, max generation 3312.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-06T16:41Z. Now: day 1593.09, benchmark gap **1987** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 189 | 1600.91 | 1987 | 970 | 643 | 3891 | 3312 | 0.0474 |
 | 188 | 1593.09 | 1987 | 1241 | 639 | 3891 | 3291 | 0.0642 |
 | 187 | 1585.28 | 1987 | 1158 | 648 | 3884 | 3278 | 0.0486 |
 | 186 | 1577.47 | 1987 | 1211 | 653 | 3878 | 3256 | 0.0017 |
@@ -24,7 +25,6 @@ Updated 2026-11-06T16:41Z. Now: day 1593.09, benchmark gap **1987** (evolved gen
 | 177 | 1515.59 | 2005 | 1274 | 290 | 3811 | 3091 | 0.013 |
 | 176 | 1511.84 | 2005 | 1102 | 429 | 3806 | 3092 | 0.0129 |
 | 175 | 1504.03 | 2005 | 1056 | 565 | 3796 | 3075 | 0.0479 |
-| 174 | 1500.28 | 2005 | 1036 | 559 | 3793 | 3066 | 0.0122 |
 
 ## Hypotheses
 
@@ -210,6 +210,7 @@ Updated 2026-11-06T16:41Z. Now: day 1593.09, benchmark gap **1987** (evolved gen
 - **kept**: nodling.js: thirst drain halved while in a village (>=12 durable cells within 3) (cluster 454->653, within noise)
 - **reverted**: STRUCTURAL: nodling.js base metabolic drain x0.75 while inVillage (cluster 734->631, builtCells 4422->4343, bench gap 1987->1987; target worse)
 - **reverted**: predators.js: predators cannot kill prey standing inside a village (cluster 753->731, medianFitness 1236->935 guardrail trip)
+- **reverted**: STRUCTURAL: nodling.js cold-energy drain x0.5 while inVillage (cluster 644->632, builtCells 4466->4494, gap 1987->1987, medianFitness 1158->1160; target slightly worse (noise))
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
