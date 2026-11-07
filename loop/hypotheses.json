@@ -1470,6 +1470,14 @@
       "status": "reverted",
       "cycle": 190,
       "note": "all metrics identical to control (cluster 735, built 4379, brick 3891, gap 1987); no measurable effect"
+    },
+    {
+      "id": "idle-chatter-tax",
+      "signal": 2,
+      "change": "STRUCTURAL: nodling.js calls with no predator near and no food underfoot cost an extra 0.3 energy",
+      "status": "reverted",
+      "cycle": 191,
+      "note": "commSeparation 0.1025->0.0237, medianFitness 1251->1081, bench gap 1987->1992; target worse"
     }
   ]
 }

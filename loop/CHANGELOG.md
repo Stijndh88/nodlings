@@ -1319,3 +1319,9 @@ STRUCTURAL: village windbreak (priority 1, plateau.js demanded structural): `nod
 STRUCTURAL: village mason (priority 1, plateau.js demanded structural): `nodling.js` +0.4 build reward for adjacent builds while inVillage.
 - Control vs treatment (8k ticks): largestCluster 735 -> 735, builtCells 4379 -> 4379, brickCells 3891 -> 3891, bench gap 1987 -> 1987, medianFitness 1073 -> 1073, commSeparation 0.0912 -> 0.0912, pop 503 -> 503. Guardrails pass; metrics identical (no effect), code discarded.
 - Baseline batch ran 12500 ticks (25000 timed out). Local master was stale, so reset to origin/master and pushed.
+
+## Cycle 191 — day 1608 — `reverted`
+
+STRUCTURAL: idle-chatter tax (priority 2, plateau.js demanded structural): `nodling.js` calls with no predator near and no food underfoot cost +0.3 energy.
+- Control vs treatment (8k ticks): commSeparation 0.1025 -> 0.0237, largestCluster 637 -> 630, builtCells 4344 -> 4363, brickCells 3894 -> 3893, bench gap 1987 -> 1992, medianFitness 1251 -> 1081, pop 500 -> 501. Guardrails pass; target worse, code discarded.
+- Baseline batch ran 12500 ticks. Local master was stale (kept as `old-local-master`), so worked on a branch cut from origin/master and pushed to master.
