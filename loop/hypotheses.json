@@ -1462,6 +1462,14 @@
       "status": "reverted",
       "cycle": 189,
       "note": "cluster 644->632, builtCells 4466->4494, gap 1987->1987, medianFitness 1158->1160; target slightly worse (noise)"
+    },
+    {
+      "id": "village-mason",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js +0.4 build reward when placing durable material beside a structure while inVillage",
+      "status": "reverted",
+      "cycle": 190,
+      "note": "all metrics identical to control (cluster 735, built 4379, brick 3891, gap 1987); no measurable effect"
     }
   ]
 }

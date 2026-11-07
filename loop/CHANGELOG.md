@@ -1313,3 +1313,9 @@ STRUCTURAL: village sanctuary (priority 1, plateau.js demanded structural): `pre
 STRUCTURAL: village windbreak (priority 1, plateau.js demanded structural): `nodling.js` cold-energy drain x0.5 while inVillage.
 - Control vs treatment (8k ticks): largestCluster 644 -> 632, builtCells 4466 -> 4494, brickCells 3891 -> 3892, bench gap 1987 -> 1987, medianFitness 1158 -> 1160, commSeparation 0.0311 -> 0.038, pop 501 -> 500. Guardrails pass; target slightly worse (within noise), code discarded.
 - Baseline batch ran 12500 ticks (25000 timed out). Local master was stale, so worked on a branch cut from origin/master and pushed to master.
+
+## Cycle 190 — day 1601 — `reverted`
+
+STRUCTURAL: village mason (priority 1, plateau.js demanded structural): `nodling.js` +0.4 build reward for adjacent builds while inVillage.
+- Control vs treatment (8k ticks): largestCluster 735 -> 735, builtCells 4379 -> 4379, brickCells 3891 -> 3891, bench gap 1987 -> 1987, medianFitness 1073 -> 1073, commSeparation 0.0912 -> 0.0912, pop 503 -> 503. Guardrails pass; metrics identical (no effect), code discarded.
+- Baseline batch ran 12500 ticks (25000 timed out). Local master was stale, so reset to origin/master and pushed.
