@@ -1518,6 +1518,14 @@
       "status": "kept",
       "cycle": 196,
       "note": "metrics bit-identical to control: no measurable effect (brick placement in villages never triggered in 8k ticks)"
+    },
+    {
+      "id": "village-nursery",
+      "signal": 1,
+      "change": "nodling.js breeding chance x1.5 while inVillage",
+      "status": "reverted",
+      "cycle": 197,
+      "note": "cluster 754->716, builtCells 4303->4282; target worse"
     }
   ]
 }

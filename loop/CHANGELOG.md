@@ -1355,3 +1355,9 @@ STRUCTURAL: village matchmaking (priority 1, plateau.js demanded structural): `n
 village brick bonus (priority 1, plateau.js said tuning still productive): `nodling.js` BRICK_WALL_BONUS x2 while inVillage.
 - Control vs treatment (8k ticks): metrics bit-identical (largestCluster 760 -> 760, builtCells 4276 -> 4276, brickCells 3920 -> 3920, bench gap 1987 -> 1987, medianFitness 1232 -> 1232, commSeparation 0.0623 -> 0.0623, pop 501 -> 501). Guardrails pass; null result, no measurable effect in this window.
 - Baseline batch ran the full 25000 ticks. Pushed to master from the session branch.
+
+## Cycle 197 — day 1684 — `reverted`
+
+STRUCTURAL: village nursery (priority 1, plateau.js demanded structural): `nodling.js` breeding chance x1.5 while inVillage.
+- Control vs treatment (8k ticks): largestCluster 754 -> 716, builtCells 4303 -> 4282, brickCells 3922 -> 3921, bench gap 1987 -> 1987, medianFitness 1156 -> 1174, commSeparation 0.0557 -> 0.0569, pop 500 -> 504. Guardrails pass; target worse, code discarded.
+- Baseline batch ran 12500 ticks (25000 timed out). Pushed to master from the session branch.
