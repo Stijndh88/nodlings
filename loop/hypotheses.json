@@ -1502,6 +1502,14 @@
       "status": "kept",
       "cycle": 194,
       "note": "cluster 715->716, within noise"
+    },
+    {
+      "id": "village-matchmaking",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js mate energy threshold 100 -> 80 while inVillage",
+      "status": "kept",
+      "cycle": 195,
+      "note": "cluster 712->713, builtCells 4324->4371, brickCells 3913->3914, bench gap 1987->1987; within noise"
     }
   ]
 }

@@ -1343,3 +1343,9 @@ STRUCTURAL: village larder (priority 1, plateau.js demanded structural): `nodlin
 STRUCTURAL: village infirmary (priority 1, plateau.js demanded structural): `nodling.js` senescence drain x0.5 while inVillage.
 - Control vs treatment (8k ticks): largestCluster 715 -> 716, builtCells 4256 -> 4330, brickCells 3906 -> 3905, bench gap 1987 -> 1987, medianFitness 1018 -> 1186, commSeparation 0.0782 -> 0.029, pop 500 -> 500. Guardrails pass; target equal/slightly better, within noise.
 - Baseline batch ran the full 25000 ticks.
+
+## Cycle 195 — day 1656 — `kept`
+
+STRUCTURAL: village matchmaking (priority 1, plateau.js demanded structural): `nodling.js` mate energy threshold 100 -> 80 while inVillage.
+- Control vs treatment (8k ticks): largestCluster 712 -> 713, builtCells 4324 -> 4371, brickCells 3913 -> 3914, bench gap 1987 -> 1987, medianFitness 1478 -> 1185, commSeparation 0.0388 -> 0.0996, pop 499 -> 502. Guardrails pass; target equal/slightly better, within noise.
+- Baseline batch ran the full 25000 ticks.

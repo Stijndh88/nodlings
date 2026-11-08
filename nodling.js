@@ -463,7 +463,7 @@ class Nodling {
       // mate choice: of the willing neighbours, pick the fittest (age + 250 x offspring)
       let bestFit = -1;
       for (const o of w.near(w.nIndex, this.x, this.y))
-        if (o !== this && !o.dead && o.energy > 100
+        if (o !== this && !o.dead && o.energy > (this.inVillage ? 80 : 100)
             && (o.x-this.x)**2 + (o.y-this.y)**2 < 4){
           const f = o.age + 250*o.offspring;
           if (f > bestFit){ bestFit = f; mate = o; }
