@@ -1349,3 +1349,9 @@ STRUCTURAL: village infirmary (priority 1, plateau.js demanded structural): `nod
 STRUCTURAL: village matchmaking (priority 1, plateau.js demanded structural): `nodling.js` mate energy threshold 100 -> 80 while inVillage.
 - Control vs treatment (8k ticks): largestCluster 712 -> 713, builtCells 4324 -> 4371, brickCells 3913 -> 3914, bench gap 1987 -> 1987, medianFitness 1478 -> 1185, commSeparation 0.0388 -> 0.0996, pop 499 -> 502. Guardrails pass; target equal/slightly better, within noise.
 - Baseline batch ran the full 25000 ticks.
+
+## Cycle 196 — day 1676 — `kept`
+
+village brick bonus (priority 1, plateau.js said tuning still productive): `nodling.js` BRICK_WALL_BONUS x2 while inVillage.
+- Control vs treatment (8k ticks): metrics bit-identical (largestCluster 760 -> 760, builtCells 4276 -> 4276, brickCells 3920 -> 3920, bench gap 1987 -> 1987, medianFitness 1232 -> 1232, commSeparation 0.0623 -> 0.0623, pop 501 -> 501). Guardrails pass; null result, no measurable effect in this window.
+- Baseline batch ran the full 25000 ticks. Pushed to master from the session branch.

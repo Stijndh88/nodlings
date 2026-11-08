@@ -1510,6 +1510,14 @@
       "status": "kept",
       "cycle": 195,
       "note": "cluster 712->713, builtCells 4324->4371, brickCells 3913->3914, bench gap 1987->1987; within noise"
+    },
+    {
+      "id": "village-brick-bonus",
+      "signal": 1,
+      "change": "nodling.js BRICK_WALL_BONUS x2 while inVillage",
+      "status": "kept",
+      "cycle": 196,
+      "note": "metrics bit-identical to control: no measurable effect (brick placement in villages never triggered in 8k ticks)"
     }
   ]
 }
