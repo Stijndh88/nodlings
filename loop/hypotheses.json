@@ -1542,6 +1542,14 @@
       "status": "kept",
       "cycle": 199,
       "note": "metrics bit-identical to control (cluster 998, built 4291); null result"
+    },
+    {
+      "id": "food-follow",
+      "signal": 2,
+      "change": "nodling.js eat(): +0.3 bonus when eating within 20 ticks of hearing a call with no predator near",
+      "status": "kept",
+      "cycle": 200,
+      "note": "commSeparation 0.0145 -> 0.0197, single 8k sample, within noise"
     }
   ]
 }

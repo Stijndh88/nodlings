@@ -1373,3 +1373,9 @@ STRUCTURAL: village workshop (priority 1, plateau.js demanded structural): `nodl
 STRUCTURAL: village caravan (priority 1, plateau.js demanded structural): `nodling.js` HAUL_BONUS x2 when delivering inside a village.
 - Control vs treatment (8k ticks): metrics bit-identical (largestCluster 998 -> 998, builtCells 4291 -> 4291, brickCells 3935 -> 3935, bench gap 1987 -> 1987, medianFitness 1388 -> 1388, commSeparation 0.125 -> 0.125, pop 500 -> 500). Guardrails pass; null result, no measurable effect in this window.
 - Baseline batch ran the full 25000 ticks (~9.8 min). Pushed to master from the session branch.
+
+## Cycle 200 — day 1731 — `kept`
+
+STRUCTURAL: food-follow (priority 2, plateau.js demanded structural): `nodling.js` eat() gives +0.3 bonus when eating within 20 ticks of hearing a call with no predator near (makes call->food correlation learnable).
+- Control vs treatment (8k ticks): largestCluster 864 -> 869, builtCells 4579 -> 4632, brickCells 3942 -> 3941, bench gap 1987 -> 1973, medianFitness 1153 -> 1192, commSeparation 0.0145 -> 0.0197, pop 501 -> 499. Guardrails pass; target slightly better, within noise (single 8k sample).
+- Baseline batch ran the full 25000 ticks.

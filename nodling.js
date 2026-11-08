@@ -493,6 +493,7 @@ class Nodling {
     const flesh = mat === 'meat' || mat === 'cooked';
     const mult = plant ? 1.3 - d*0.9 : flesh ? 0.5 + d*0.9 : 1;
     this.energy = Math.min(MAX_ENERGY, this.energy + MATERIALS[mat].nutrition*mult*(this.inVillage ? 1.25 : 1)); // village larder: meals inside a village are richer
+    if (this.heardCallAge !== undefined && this.age - this.heardCallAge <= 20) this.bonus += 0.3; // food-follow: a call led me to a meal
     if (mat === 'data') this.brain.boost = 6;   // plasticity surge: learn fast for a while
     const drops = MATERIALS[mat].drops;         // e.g. flora → a plantable seed
     if (drops) for (const d of drops)
