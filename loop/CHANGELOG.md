@@ -1367,3 +1367,9 @@ STRUCTURAL: village nursery (priority 1, plateau.js demanded structural): `nodli
 STRUCTURAL: village workshop (priority 1, plateau.js demanded structural): `nodling.js` BUILD_ADJACENT_BONUS x1.5 while inVillage.
 - Control vs treatment (8k ticks): metrics bit-identical (largestCluster 763 -> 763, builtCells 4358 -> 4358, brickCells 3927 -> 3927, bench gap 1987 -> 1987, medianFitness 1000 -> 1000, commSeparation 0.0495 -> 0.0495, pop 500 -> 500). Guardrails pass; null result, no measurable effect in this window.
 - Baseline batch ran the full 25000 ticks (~8.5 min).
+
+## Cycle 199 — day 1710 — `kept`
+
+STRUCTURAL: village caravan (priority 1, plateau.js demanded structural): `nodling.js` HAUL_BONUS x2 when delivering inside a village.
+- Control vs treatment (8k ticks): metrics bit-identical (largestCluster 998 -> 998, builtCells 4291 -> 4291, brickCells 3935 -> 3935, bench gap 1987 -> 1987, medianFitness 1388 -> 1388, commSeparation 0.125 -> 0.125, pop 500 -> 500). Guardrails pass; null result, no measurable effect in this window.
+- Baseline batch ran the full 25000 ticks (~9.8 min). Pushed to master from the session branch.

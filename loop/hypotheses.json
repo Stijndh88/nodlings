@@ -1534,6 +1534,14 @@
       "status": "kept",
       "cycle": 198,
       "note": "metrics bit-identical to control (cluster 763, built 4358); null result"
+    },
+    {
+      "id": "village-caravan",
+      "signal": 1,
+      "change": "nodling.js HAUL_BONUS x2 when delivering inside a village",
+      "status": "kept",
+      "cycle": 199,
+      "note": "metrics bit-identical to control (cluster 998, built 4291); null result"
     }
   ]
 }
