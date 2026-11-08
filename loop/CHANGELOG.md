@@ -1361,3 +1361,9 @@ village brick bonus (priority 1, plateau.js said tuning still productive): `nodl
 STRUCTURAL: village nursery (priority 1, plateau.js demanded structural): `nodling.js` breeding chance x1.5 while inVillage.
 - Control vs treatment (8k ticks): largestCluster 754 -> 716, builtCells 4303 -> 4282, brickCells 3922 -> 3921, bench gap 1987 -> 1987, medianFitness 1156 -> 1174, commSeparation 0.0557 -> 0.0569, pop 500 -> 504. Guardrails pass; target worse, code discarded.
 - Baseline batch ran 12500 ticks (25000 timed out). Pushed to master from the session branch.
+
+## Cycle 198 — day 1694 — `kept`
+
+STRUCTURAL: village workshop (priority 1, plateau.js demanded structural): `nodling.js` BUILD_ADJACENT_BONUS x1.5 while inVillage.
+- Control vs treatment (8k ticks): metrics bit-identical (largestCluster 763 -> 763, builtCells 4358 -> 4358, brickCells 3927 -> 3927, bench gap 1987 -> 1987, medianFitness 1000 -> 1000, commSeparation 0.0495 -> 0.0495, pop 500 -> 500). Guardrails pass; null result, no measurable effect in this window.
+- Baseline batch ran the full 25000 ticks (~8.5 min).

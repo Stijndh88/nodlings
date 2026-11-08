@@ -1526,6 +1526,14 @@
       "status": "reverted",
       "cycle": 197,
       "note": "cluster 754->716, builtCells 4303->4282; target worse"
+    },
+    {
+      "id": "village-workshop",
+      "signal": 1,
+      "change": "nodling.js BUILD_ADJACENT_BONUS x1.5 while inVillage",
+      "status": "kept",
+      "cycle": 198,
+      "note": "metrics bit-identical to control (cluster 763, built 4358); null result"
     }
   ]
 }
