@@ -1,25 +1,29 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1679.0 · Summer
+Seed `20261007` · day 1694.7 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 498 (43 juvenile) |
-| max generation | 3494 |
+| population | 502 (39 juvenile) |
+| max generation | 3530 |
 | best fitness | 7002 |
-| avg brain (conns) | 84 |
+| avg brain (conns) | 76 |
 | lineage diversity | 5 colour-groups |
-| diet | 74% herbivore / 10% carnivore |
-| predators | 3, 5 kills, best 114012 |
-| structures (durable) | 8811 (4215) |
-| planks / bricks / bridges | 25 / 2451 / 2660 |
-| flora / cooked food | 7355 / 536 |
+| diet | 70% herbivore / 20% carnivore |
+| predators | 2, 6 kills, best 114012 |
+| structures (durable) | 8324 (4235) |
+| planks / bricks / bridges | 26 / 2378 / 2660 |
+| flora / cooked food | 6086 / 497 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1690]** _(trend)_ Brains are genuinely shrinking below capacity — selection favours simpler wiring right now.
+- **[day 1689]** _(trend)_ Lineages are deepening — max generation 3510→3523. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1683]** _(trend)_ Lineages are deepening — max generation 3497→3510. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1679]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1676.2]** _(trend)_ Lineages are deepening — max generation 3477→3489. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1669.6]** _(trend)_ Lineages are deepening — max generation 3460→3474. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1663.6]** _(trend)_ Lineages are deepening — max generation 3445→3460. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
