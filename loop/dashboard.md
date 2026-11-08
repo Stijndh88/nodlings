@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-08T00:33Z. Now: day 1655.59, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 720, 3912 brick cells, max generation 3440.
+Updated 2026-11-08T04:32Z. Now: day 1671.22, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 715, 3917 brick cells, max generation 3477.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-08T00:33Z. Now: day 1655.59, benchmark gap **1987** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 195 | 1671.22 | 1987 | 1142 | 715 | 3917 | 3477 | 0.045 |
 | 194 | 1655.59 | 1987 | 1152 | 720 | 3912 | 3440 | 0.0061 |
 | 193 | 1639.97 | 1987 | 1139 | 1184 | 3902 | 3403 | 0.0048 |
 | 192 | 1624.34 | 1987 | 1026 | 631 | 3898 | 3367 | 0.0569 |
@@ -24,7 +25,6 @@ Updated 2026-11-08T00:33Z. Now: day 1655.59, benchmark gap **1987** (evolved gen
 | 183 | 1558.09 | 1987 | 1081 | 381 | 3868 | 3202 | 0.0275 |
 | 182 | 1542.47 | 1987 | 1162 | 496 | 3851 | 3166 | 0.0264 |
 | 181 | 1534.66 | 1987 | 992 | 490 | 3838 | 3140 | 0.0567 |
-| 180 | 1526.84 | 1987 | 1125 | 480 | 3826 | 3119 | 0.0286 |
 
 ## Hypotheses
 
@@ -216,6 +216,7 @@ Updated 2026-11-08T00:33Z. Now: day 1655.59, benchmark gap **1987** (evolved gen
 - **reverted**: nodling.js ALARM_AUDIENCE_BONUS 0.5: predator-near call earns extra when a nodling within 8 cells can hear (commSeparation 0.0602->0.0569 (within noise, not better); medianFitness 903->1248)
 - **kept**: nodling.js eat(): x1.25 nutrition while inVillage (cluster 627->736, builtCells 4386->4476; single 8k sample, likely within noise)
 - **kept**: nodling.js: senescence drain x0.5 while inVillage (cluster 715->716, within noise)
+- **kept**: STRUCTURAL: nodling.js mate energy threshold 100 -> 80 while inVillage (cluster 712->713, builtCells 4324->4371, brickCells 3913->3914, bench gap 1987->1987; within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 

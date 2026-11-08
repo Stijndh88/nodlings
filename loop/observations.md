@@ -1,25 +1,29 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1655.6 · Autumn
+Seed `20261007` · day 1671.2 · Spring
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 501 (48 juvenile) |
-| max generation | 3438 |
+| population | 502 (51 juvenile) |
+| max generation | 3475 |
 | best fitness | 7002 |
-| avg brain (conns) | 85 |
-| lineage diversity | 5 colour-groups |
-| diet | 54% herbivore / 49% carnivore |
-| predators | 3, 12 kills, best 114012 |
-| structures (durable) | 8397 (4171) |
-| planks / bricks / bridges | 24 / 2554 / 2660 |
-| flora / cooked food | 7076 / 491 |
+| avg brain (conns) | 87 |
+| lineage diversity | 6 colour-groups |
+| diet | 78% herbivore / 10% carnivore |
+| predators | 3, 4 kills, best 114012 |
+| structures (durable) | 9869 (4346) |
+| planks / bricks / bridges | 28 / 2489 / 2660 |
+| flora / cooked food | 7126 / 404 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1669.6]** _(trend)_ Lineages are deepening — max generation 3460→3474. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1663.6]** _(trend)_ Lineages are deepening — max generation 3445→3460. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1657.6]** _(trend)_ Lineages are deepening — max generation 3440→3445. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1656.6]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1651]** _(trend)_ Lineages are deepening — max generation 3415→3429. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1645]** _(trend)_ Lineages are deepening — max generation 3403→3415. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1642]** _(trend)_ Nodlings are grouping more tightly (mean spacing 2.7→1.7) — possible flocking / proto-tribe.
