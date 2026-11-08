@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-08T12:32Z. Now: day 1694.66, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 767, 3926 brick cells, max generation 3529.
+Updated 2026-11-08T16:33Z. Now: day 1710.28, benchmark gap **1987** (evolved gene pool minus random genomes), largest built cluster 760, 3933 brick cells, max generation 3564.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-08T12:32Z. Now: day 1694.66, benchmark gap **1987** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 198 | 1710.28 | 1987 | 1420 | 760 | 3933 | 3564 | 0.0141 |
 | 197 | 1694.66 | 1987 | 1202 | 767 | 3926 | 3529 | 0.014 |
 | 196 | 1679.03 | 1987 | 912 | 753 | 3921 | 3497 | 0.0707 |
 | 195 | 1671.22 | 1987 | 1142 | 715 | 3917 | 3477 | 0.045 |
@@ -24,7 +25,6 @@ Updated 2026-11-08T12:32Z. Now: day 1694.66, benchmark gap **1987** (evolved gen
 | 186 | 1577.47 | 1987 | 1211 | 653 | 3878 | 3256 | 0.0017 |
 | 185 | 1569.66 | 1987 | 997 | 657 | 3875 | 3238 | 0.0211 |
 | 184 | 1565.91 | 1987 | 1135 | 647 | 3873 | 3226 | 0.0341 |
-| 183 | 1558.09 | 1987 | 1081 | 381 | 3868 | 3202 | 0.0275 |
 
 ## Hypotheses
 
@@ -219,6 +219,7 @@ Updated 2026-11-08T12:32Z. Now: day 1694.66, benchmark gap **1987** (evolved gen
 - **kept**: STRUCTURAL: nodling.js mate energy threshold 100 -> 80 while inVillage (cluster 712->713, builtCells 4324->4371, brickCells 3913->3914, bench gap 1987->1987; within noise)
 - **kept**: nodling.js BRICK_WALL_BONUS x2 while inVillage (metrics bit-identical to control: no measurable effect (brick placement in villages never triggered in 8k ticks))
 - **reverted**: nodling.js breeding chance x1.5 while inVillage (cluster 754->716, builtCells 4303->4282; target worse)
+- **kept**: nodling.js BUILD_ADJACENT_BONUS x1.5 while inVillage (metrics bit-identical to control (cluster 763, built 4358); null result)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
