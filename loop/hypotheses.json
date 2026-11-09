@@ -1566,6 +1566,14 @@
       "status": "kept",
       "cycle": 202,
       "note": "null result: sim metrics bit-identical, bench gap 1953 -> 1933 (noise)"
+    },
+    {
+      "id": "call-hunt-bonus",
+      "signal": 2,
+      "change": "STRUCTURAL: nodling.js hunt kill +0.3 within 20 ticks of hearing a call",
+      "status": "reverted",
+      "cycle": 203,
+      "note": "commSeparation 0.1592->0.1133, largestCluster 845->787, bench gap 1933->1968; target worse"
     }
   ]
 }
