@@ -1574,6 +1574,14 @@
       "status": "reverted",
       "cycle": 203,
       "note": "commSeparation 0.1592->0.1133, largestCluster 845->787, bench gap 1933->1968; target worse"
+    },
+    {
+      "id": "brick-tower",
+      "signal": 1,
+      "change": "nodling.js BRICK_TOWER_BONUS +0.3 for brick stacked on brick-topped cell",
+      "status": "kept",
+      "cycle": 204,
+      "note": "bit-identical to control in 8k window; null result"
     }
   ]
 }

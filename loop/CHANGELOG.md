@@ -1397,3 +1397,9 @@ STRUCTURAL: water-follow (priority 2, plateau.js demanded structural): `nodling.
 STRUCTURAL: call-hunt-bonus (priority 2, plateau.js demanded structural): `nodling.js` hunt kill gives +0.3 within 20 ticks of hearing a call.
 - Control vs treatment (8k ticks): commSeparation 0.1592 -> 0.1133, largestCluster 845 -> 787, builtCells 4377 -> 4344, medianFitness 1248 -> 1298, bench gap 1933 -> 1968, pop 500 -> 500. Guardrails pass but target worse; reverted.
 - Baseline batch ran the full 25000 ticks.
+
+## Cycle 204 — day 1788 — `kept`
+
+STRUCTURAL: brick-tower (priority 1, plateau.js demanded structural): `nodling.js` BRICK_TOWER_BONUS +0.3 for stacking a brick on a cell already topped with brick.
+- Control vs treatment (8k ticks): metrics bit-identical (largestCluster 927 -> 927, builtCells 4489 -> 4489, brickCells 3947 -> 3947, bench gap 1933 -> 1933, medianFitness 1167 -> 1167, commSeparation 0.0051 -> 0.0051, pop 500 -> 500). Guardrails pass; null result, no measurable effect in this window.
+- Baseline batch ran the full 25000 ticks.
