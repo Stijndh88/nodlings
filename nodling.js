@@ -393,7 +393,12 @@ class Nodling {
       const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
       let predNear = false;
       for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
-      if (predNear) this.bonus += 1.0; else if (topNut) this.bonus += 0.25;
+      if (predNear) this.bonus += 1.0; else if (topNut){
+        this.bonus += 0.25;
+        for (const o of w.near(w.nIndex, this.x, this.y)){ // food-audience: a food-found call pays extra when a listener is within 8 cells
+          if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 64){ this.bonus += 0.3; break; }
+        }
+      }
     }
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --

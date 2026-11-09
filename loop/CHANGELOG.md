@@ -1379,3 +1379,9 @@ STRUCTURAL: village caravan (priority 1, plateau.js demanded structural): `nodli
 STRUCTURAL: food-follow (priority 2, plateau.js demanded structural): `nodling.js` eat() gives +0.3 bonus when eating within 20 ticks of hearing a call with no predator near (makes call->food correlation learnable).
 - Control vs treatment (8k ticks): largestCluster 864 -> 869, builtCells 4579 -> 4632, brickCells 3942 -> 3941, bench gap 1987 -> 1973, medianFitness 1153 -> 1192, commSeparation 0.0145 -> 0.0197, pop 501 -> 499. Guardrails pass; target slightly better, within noise (single 8k sample).
 - Baseline batch ran the full 25000 ticks.
+
+## Cycle 201 — day 1741 — `kept`
+
+STRUCTURAL: food-audience (priority 2, plateau.js demanded structural): `nodling.js` food-found call earns +0.3 extra when a nodling is within 8 cells to hear it.
+- Control vs treatment (8k ticks): commSeparation 0.019 -> 0.0435, largestCluster 830 -> 840, builtCells 4350 -> 4409, brickCells 3945 -> 3946, bench gap 1973 -> 1953, medianFitness 1305 -> 1124, pop 499 -> 500. Guardrails pass; target better, but a single 8k sample (commSeparation is noisy; gap/median differences within noise).
+- Baseline batch ran the full 25000 ticks. Pushed to master from the session branch.

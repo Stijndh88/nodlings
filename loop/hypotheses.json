@@ -1550,6 +1550,14 @@
       "status": "kept",
       "cycle": 200,
       "note": "commSeparation 0.0145 -> 0.0197, single 8k sample, within noise"
+    },
+    {
+      "id": "food-audience",
+      "signal": 2,
+      "change": "nodling.js: food-found call earns +0.3 extra when another nodling is within 8 cells",
+      "status": "kept",
+      "cycle": 201,
+      "note": "commSeparation 0.019 -> 0.0435, bench gap 1973 -> 1953 (noise); single 8k sample"
     }
   ]
 }
