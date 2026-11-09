@@ -1,25 +1,29 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1788.4 · Winter
+Seed `20261007` · day 1804.0 · Summer
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (30 juvenile) |
-| max generation | 3727 |
+| population | 501 (97 juvenile) |
+| max generation | 3761 |
 | best fitness | 7002 |
-| avg brain (conns) | 74 |
+| avg brain (conns) | 73 |
 | lineage diversity | 5 colour-groups |
-| diet | 64% herbivore / 25% carnivore |
-| predators | 2, 16 kills, best 114012 |
-| structures (durable) | 7900 (4240) |
-| planks / bricks / bridges | 30 / 2141 / 2660 |
-| flora / cooked food | 6658 / 517 |
+| diet | 68% herbivore / 15% carnivore |
+| predators | 3, 3 kills, best 114012 |
+| structures (durable) | 6416 (4182) |
+| planks / bricks / bridges | 35 / 2080 / 2660 |
+| flora / cooked food | 4683 / 609 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1803.4]** _(trend)_ Lineages are deepening — max generation 3745→3761. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1797.4]** _(trend)_ Lineages are deepening — max generation 3732→3745. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1791.4]** _(trend)_ Lineages are deepening — max generation 3728→3732. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1789.4]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1783.8]** _(trend)_ Lineages are deepening — max generation 3706→3718. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1777.8]** _(trend)_ Lineages are deepening — max generation 3694→3706. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1773.8]** _(trend)_ Nodlings are grouping more tightly (mean spacing 2.5→1.7) — possible flocking / proto-tribe.

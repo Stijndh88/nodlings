@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-09T12:32Z. Now: day 1788.41, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 938, 3948 brick cells, max generation 3728.
+Updated 2026-11-09T16:33Z. Now: day 1804.03, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 837, 3948 brick cells, max generation 3762.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-09T12:32Z. Now: day 1788.41, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 204 | 1804.03 | 1933 | 1240 | 837 | 3948 | 3762 | 0.0082 |
 | 203 | 1788.41 | 1933 | 1212 | 938 | 3948 | 3728 | 0.1437 |
 | 202 | 1772.78 | 1933 | 1297 | 851 | 3948 | 3694 | 0.181 |
 | 201 | 1757.16 | 1953 | 1283 | 837 | 3946 | 3661 | 0.0903 |
@@ -24,7 +25,6 @@ Updated 2026-11-09T12:32Z. Now: day 1788.41, benchmark gap **1933** (evolved gen
 | 192 | 1624.34 | 1987 | 1026 | 631 | 3898 | 3367 | 0.0569 |
 | 191 | 1616.53 | 1987 | 1072 | 641 | 3895 | 3348 | 0.0608 |
 | 190 | 1608.72 | 1987 | 1282 | 634 | 3893 | 3331 | 0.076 |
-| 189 | 1600.91 | 1987 | 970 | 643 | 3891 | 3312 | 0.0474 |
 
 ## Hypotheses
 
@@ -225,6 +225,7 @@ Updated 2026-11-09T12:32Z. Now: day 1788.41, benchmark gap **1933** (evolved gen
 - **kept**: nodling.js: food-found call earns +0.3 extra when another nodling is within 8 cells (commSeparation 0.019 -> 0.0435, bench gap 1973 -> 1953 (noise); single 8k sample)
 - **kept**: STRUCTURAL: nodling.js drink gives +0.3 when hydration<70 and a call was heard within 20 ticks (null result: sim metrics bit-identical, bench gap 1953 -> 1933 (noise))
 - **reverted**: STRUCTURAL: nodling.js hunt kill +0.3 within 20 ticks of hearing a call (commSeparation 0.1592->0.1133, largestCluster 845->787, bench gap 1933->1968; target worse)
+- **kept**: nodling.js BRICK_TOWER_BONUS +0.3 for brick stacked on brick-topped cell (bit-identical to control in 8k window; null result)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
