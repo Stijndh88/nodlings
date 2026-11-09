@@ -1590,6 +1590,14 @@
       "status": "kept",
       "cycle": 205,
       "note": "bit-identical to control in 8k window; null result"
+    },
+    {
+      "id": "village-bell",
+      "signal": 2,
+      "change": "STRUCTURAL: nodling.js LISTEN_BONUS x2 while inVillage",
+      "status": "reverted",
+      "cycle": 206,
+      "note": "commSeparation 0.0585->0.0244; target worse"
     }
   ]
 }
