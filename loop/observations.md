@@ -1,25 +1,29 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1757.2 · Winter
+Seed `20261007` · day 1772.8 · Summer
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 504 (47 juvenile) |
-| max generation | 3659 |
+| population | 498 (39 juvenile) |
+| max generation | 3693 |
 | best fitness | 7002 |
-| avg brain (conns) | 78 |
-| lineage diversity | 5 colour-groups |
-| diet | 54% herbivore / 40% carnivore |
-| predators | 1, 8 kills, best 114012 |
-| structures (durable) | 7912 (4229) |
-| planks / bricks / bridges | 27 / 2189 / 2660 |
-| flora / cooked food | 6285 / 567 |
+| avg brain (conns) | 76 |
+| lineage diversity | 4 colour-groups |
+| diet | 61% herbivore / 37% carnivore |
+| predators | 6, 32 kills, best 114012 |
+| structures (durable) | 6877 (4212) |
+| planks / bricks / bridges | 28 / 2190 / 2660 |
+| flora / cooked food | 6119 / 585 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1771.2]** _(trend)_ Lineages are deepening — max generation 3676→3691. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1767.2]** _(trend)_ Nodlings are grouping more tightly (mean spacing 2.7→1.9) — possible flocking / proto-tribe.
+- **[day 1765.2]** _(trend)_ Lineages are deepening — max generation 3666→3676. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1759.2]** _(trend)_ Lineages are deepening — max generation 3661→3666. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1752.5]** _(trend)_ Lineages are deepening — max generation 3637→3649. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1746.5]** _(trend)_ Lineages are deepening — max generation 3625→3637. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1742.5]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
