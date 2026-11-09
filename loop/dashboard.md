@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-09T00:32Z. Now: day 1741.53, benchmark gap **1973** (evolved gene pool minus random genomes), largest built cluster 829, 3943 brick cells, max generation 3625.
+Updated 2026-11-09T04:32Z. Now: day 1757.16, benchmark gap **1953** (evolved gene pool minus random genomes), largest built cluster 837, 3946 brick cells, max generation 3661.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-09T00:32Z. Now: day 1741.53, benchmark gap **1973** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 201 | 1757.16 | 1953 | 1283 | 837 | 3946 | 3661 | 0.0903 |
 | 200 | 1741.53 | 1973 | 1088 | 829 | 3943 | 3625 | 0.0109 |
 | 199 | 1725.91 | 1987 | 1249 | 856 | 3940 | 3599 | 0.0197 |
 | 198 | 1710.28 | 1987 | 1420 | 760 | 3933 | 3564 | 0.0141 |
@@ -24,7 +25,6 @@ Updated 2026-11-09T00:32Z. Now: day 1741.53, benchmark gap **1973** (evolved gen
 | 189 | 1600.91 | 1987 | 970 | 643 | 3891 | 3312 | 0.0474 |
 | 188 | 1593.09 | 1987 | 1241 | 639 | 3891 | 3291 | 0.0642 |
 | 187 | 1585.28 | 1987 | 1158 | 648 | 3884 | 3278 | 0.0486 |
-| 186 | 1577.47 | 1987 | 1211 | 653 | 3878 | 3256 | 0.0017 |
 
 ## Hypotheses
 
@@ -222,6 +222,7 @@ Updated 2026-11-09T00:32Z. Now: day 1741.53, benchmark gap **1973** (evolved gen
 - **kept**: nodling.js BUILD_ADJACENT_BONUS x1.5 while inVillage (metrics bit-identical to control (cluster 763, built 4358); null result)
 - **kept**: nodling.js HAUL_BONUS x2 when delivering inside a village (metrics bit-identical to control (cluster 998, built 4291); null result)
 - **kept**: nodling.js eat(): +0.3 bonus when eating within 20 ticks of hearing a call with no predator near (commSeparation 0.0145 -> 0.0197, single 8k sample, within noise)
+- **kept**: nodling.js: food-found call earns +0.3 extra when another nodling is within 8 cells (commSeparation 0.019 -> 0.0435, bench gap 1973 -> 1953 (noise); single 8k sample)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
