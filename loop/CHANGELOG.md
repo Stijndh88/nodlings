@@ -1385,3 +1385,9 @@ STRUCTURAL: food-follow (priority 2, plateau.js demanded structural): `nodling.j
 STRUCTURAL: food-audience (priority 2, plateau.js demanded structural): `nodling.js` food-found call earns +0.3 extra when a nodling is within 8 cells to hear it.
 - Control vs treatment (8k ticks): commSeparation 0.019 -> 0.0435, largestCluster 830 -> 840, builtCells 4350 -> 4409, brickCells 3945 -> 3946, bench gap 1973 -> 1953, medianFitness 1305 -> 1124, pop 499 -> 500. Guardrails pass; target better, but a single 8k sample (commSeparation is noisy; gap/median differences within noise).
 - Baseline batch ran the full 25000 ticks. Pushed to master from the session branch.
+
+## Cycle 202 — day 1762 — `kept`
+
+STRUCTURAL: water-follow (priority 2, plateau.js demanded structural): `nodling.js` drink gives +0.3 when hydration < 70 and a call was heard within 20 ticks (call -> water).
+- Control vs treatment (8k ticks): commSeparation 0.0375 -> 0.0375, largestCluster 854 -> 854, builtCells 4387 -> 4387, brickCells 3946 -> 3946, medianFitness 1164 -> 1164, pop 500 -> 500, bench gap 1953 -> 1933. Guardrails pass; null result in this window (gap difference within noise).
+- Baseline batch ran the full 25000 ticks.

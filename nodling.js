@@ -349,6 +349,7 @@ class Nodling {
         this.eat(cell.stack.pop());
       } else if (cell.water || w.adjacentWater(cx, cy)){
         if (this.hydration < 40) this.bonus += THIRST_DRINK_BONUS;
+        if (this.hydration < 70 && this.heardCallAge !== undefined && this.age - this.heardCallAge <= 20) this.bonus += 0.3; // water-follow: a call led me to water
         well: for (let sy = -4; sy <= 4; sy++) for (let sx = -4; sx <= 4; sx++){
           const sc = w.at(cx+sx, cy+sy);
           if (sc && sc.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += WELL_BONUS; break well; }

@@ -1558,6 +1558,14 @@
       "status": "kept",
       "cycle": 201,
       "note": "commSeparation 0.019 -> 0.0435, bench gap 1973 -> 1953 (noise); single 8k sample"
+    },
+    {
+      "id": "water-follow",
+      "signal": 2,
+      "change": "STRUCTURAL: nodling.js drink gives +0.3 when hydration<70 and a call was heard within 20 ticks",
+      "status": "kept",
+      "cycle": 202,
+      "note": "null result: sim metrics bit-identical, bench gap 1953 -> 1933 (noise)"
     }
   ]
 }
