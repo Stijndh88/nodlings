@@ -42,6 +42,7 @@ const WINTER_BUILD_BONUS = 0.2; // extra reward for an adjacent build during Win
 const WELL_BONUS = 0.2; // reward for drinking within 4 cells of a durable structure (villages near water)
 const FEAST_BONUS = 0.2; // extra reward for a cached meal (>=2 walls) eaten beside another Nodling (communal granaries)
 const GAP_BONUS = 0.2; // extra reward for an adjacent build that closes a gap between two opposite durable neighbours (joins separate wall segments)
+const TALL_STACK_BONUS = 0.2; // extra reward for an adjacent build on a cell already stacked >=2 high (vertical growth)
 const HAUL_BONUS = 0.2; // extra reward for an adjacent build >=8 cells from where the material was picked up (haul to the village, don't restack in place)
 const MIXED_BONUS = 0.2; // extra reward for an adjacent build whose material differs from a neighbouring structure's top material (mixed masonry: wood+stone+brick)
 const CALL_BUILD_BONUS = 0.3; // reward for an adjacent build within 30 ticks of hearing a call with no predator near (call -> gather and build)
@@ -305,6 +306,7 @@ class Nodling {
           }
           if (nbs && this.heardCallAge !== undefined && this.age - this.heardCallAge <= 30) this.bonus += CALL_BUILD_BONUS;
           if (nbs && w.season() === 'Winter') this.bonus += WINTER_BUILD_BONUS;
+          if (nbs && cell.stack.length >= 2) this.bonus += TALL_STACK_BONUS;
           if (nbs && this.pickup && (this.pickup[0]-cx)**2 + (this.pickup[1]-cy)**2 >= 64) this.bonus += HAUL_BONUS*(this.inVillage ? 2 : 1);
           if (nbs){
             for (const o of w.near(w.nIndex, this.x, this.y)){

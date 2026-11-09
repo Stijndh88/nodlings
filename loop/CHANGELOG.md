@@ -1403,3 +1403,9 @@ STRUCTURAL: call-hunt-bonus (priority 2, plateau.js demanded structural): `nodli
 STRUCTURAL: brick-tower (priority 1, plateau.js demanded structural): `nodling.js` BRICK_TOWER_BONUS +0.3 for stacking a brick on a cell already topped with brick.
 - Control vs treatment (8k ticks): metrics bit-identical (largestCluster 927 -> 927, builtCells 4489 -> 4489, brickCells 3947 -> 3947, bench gap 1933 -> 1933, medianFitness 1167 -> 1167, commSeparation 0.0051 -> 0.0051, pop 500 -> 500). Guardrails pass; null result, no measurable effect in this window.
 - Baseline batch ran the full 25000 ticks.
+
+## Cycle 205 — day 1804 — `kept`
+
+STRUCTURAL: tall-stack (priority 1, plateau.js demanded structural): `nodling.js` TALL_STACK_BONUS +0.2 for an adjacent build on a cell already stacked >=2 high.
+- Control vs treatment (8k ticks): metrics bit-identical (largestCluster 924 -> 924, builtCells 4344 -> 4344, brickCells 3948 -> 3948, bench gap 1933 -> 1933, medianFitness 1281 -> 1281, commSeparation 0.1637 -> 0.1637, pop 500 -> 500). Guardrails pass; null result, no measurable effect in this window.
+- Baseline batch ran the full 25000 ticks.

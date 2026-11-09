@@ -1582,6 +1582,14 @@
       "status": "kept",
       "cycle": 204,
       "note": "bit-identical to control in 8k window; null result"
+    },
+    {
+      "id": "tall-stack",
+      "signal": 1,
+      "change": "nodling.js TALL_STACK_BONUS +0.2 for adjacent build on cell already stacked >=2",
+      "status": "kept",
+      "cycle": 205,
+      "note": "bit-identical to control in 8k window; null result"
     }
   ]
 }
