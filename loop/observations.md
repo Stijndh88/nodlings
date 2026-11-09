@@ -1,25 +1,27 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1804.0 · Summer
+Seed `20261007` · day 1819.7 · Autumn
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 501 (97 juvenile) |
-| max generation | 3761 |
+| population | 500 (40 juvenile) |
+| max generation | 3794 |
 | best fitness | 7002 |
-| avg brain (conns) | 73 |
-| lineage diversity | 5 colour-groups |
-| diet | 68% herbivore / 15% carnivore |
-| predators | 3, 3 kills, best 114012 |
-| structures (durable) | 6416 (4182) |
-| planks / bricks / bridges | 35 / 2080 / 2660 |
-| flora / cooked food | 4683 / 609 |
+| avg brain (conns) | 81 |
+| lineage diversity | 6 colour-groups |
+| diet | 51% herbivore / 39% carnivore |
+| predators | 2, 1 kills, best 114012 |
+| structures (durable) | 8073 (4205) |
+| planks / bricks / bridges | 35 / 2046 / 2660 |
+| flora / cooked food | 6441 / 516 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1816]** _(trend)_ Lineages are deepening — max generation 3775→3787. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1810]** _(trend)_ Lineages are deepening — max generation 3762→3775. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1803.4]** _(trend)_ Lineages are deepening — max generation 3745→3761. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1797.4]** _(trend)_ Lineages are deepening — max generation 3732→3745. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1791.4]** _(trend)_ Lineages are deepening — max generation 3728→3732. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
