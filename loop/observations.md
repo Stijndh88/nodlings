@@ -1,25 +1,29 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1772.8 · Summer
+Seed `20261007` · day 1788.4 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 498 (39 juvenile) |
-| max generation | 3693 |
+| population | 500 (30 juvenile) |
+| max generation | 3727 |
 | best fitness | 7002 |
-| avg brain (conns) | 76 |
-| lineage diversity | 4 colour-groups |
-| diet | 61% herbivore / 37% carnivore |
-| predators | 6, 32 kills, best 114012 |
-| structures (durable) | 6877 (4212) |
-| planks / bricks / bridges | 28 / 2190 / 2660 |
-| flora / cooked food | 6119 / 585 |
+| avg brain (conns) | 74 |
+| lineage diversity | 5 colour-groups |
+| diet | 64% herbivore / 25% carnivore |
+| predators | 2, 16 kills, best 114012 |
+| structures (durable) | 7900 (4240) |
+| planks / bricks / bridges | 30 / 2141 / 2660 |
+| flora / cooked food | 6658 / 517 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1783.8]** _(trend)_ Lineages are deepening — max generation 3706→3718. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1777.8]** _(trend)_ Lineages are deepening — max generation 3694→3706. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1773.8]** _(trend)_ Nodlings are grouping more tightly (mean spacing 2.5→1.7) — possible flocking / proto-tribe.
+- **[day 1772.8]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1771.2]** _(trend)_ Lineages are deepening — max generation 3676→3691. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1767.2]** _(trend)_ Nodlings are grouping more tightly (mean spacing 2.7→1.9) — possible flocking / proto-tribe.
 - **[day 1765.2]** _(trend)_ Lineages are deepening — max generation 3666→3676. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.

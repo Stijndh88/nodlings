@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-09T08:32Z. Now: day 1772.78, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 851, 3948 brick cells, max generation 3694.
+Updated 2026-11-09T12:32Z. Now: day 1788.41, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 938, 3948 brick cells, max generation 3728.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-09T08:32Z. Now: day 1772.78, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 203 | 1788.41 | 1933 | 1212 | 938 | 3948 | 3728 | 0.1437 |
 | 202 | 1772.78 | 1933 | 1297 | 851 | 3948 | 3694 | 0.181 |
 | 201 | 1757.16 | 1953 | 1283 | 837 | 3946 | 3661 | 0.0903 |
 | 200 | 1741.53 | 1973 | 1088 | 829 | 3943 | 3625 | 0.0109 |
@@ -24,7 +25,6 @@ Updated 2026-11-09T08:32Z. Now: day 1772.78, benchmark gap **1933** (evolved gen
 | 191 | 1616.53 | 1987 | 1072 | 641 | 3895 | 3348 | 0.0608 |
 | 190 | 1608.72 | 1987 | 1282 | 634 | 3893 | 3331 | 0.076 |
 | 189 | 1600.91 | 1987 | 970 | 643 | 3891 | 3312 | 0.0474 |
-| 188 | 1593.09 | 1987 | 1241 | 639 | 3891 | 3291 | 0.0642 |
 
 ## Hypotheses
 
@@ -224,6 +224,7 @@ Updated 2026-11-09T08:32Z. Now: day 1772.78, benchmark gap **1933** (evolved gen
 - **kept**: nodling.js eat(): +0.3 bonus when eating within 20 ticks of hearing a call with no predator near (commSeparation 0.0145 -> 0.0197, single 8k sample, within noise)
 - **kept**: nodling.js: food-found call earns +0.3 extra when another nodling is within 8 cells (commSeparation 0.019 -> 0.0435, bench gap 1973 -> 1953 (noise); single 8k sample)
 - **kept**: STRUCTURAL: nodling.js drink gives +0.3 when hydration<70 and a call was heard within 20 ticks (null result: sim metrics bit-identical, bench gap 1953 -> 1933 (noise))
+- **reverted**: STRUCTURAL: nodling.js hunt kill +0.3 within 20 ticks of hearing a call (commSeparation 0.1592->0.1133, largestCluster 845->787, bench gap 1933->1968; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
