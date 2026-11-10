@@ -1630,6 +1630,14 @@
       "status": "kept",
       "cycle": 210,
       "note": "bit-identical to control (null result, no measurable effect in 8k window)"
+    },
+    {
+      "id": "village-firebreak",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js fire death roll x0.5 while inVillage",
+      "status": "reverted",
+      "cycle": 211,
+      "note": "largestCluster 1030 -> 1021, medianFitness 1227 -> 1182; not better"
     }
   ]
 }
