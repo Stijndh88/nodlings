@@ -1,25 +1,28 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1866.5 · Spring
+Seed `20261007` · day 1882.2 · Autumn
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (31 juvenile) |
-| max generation | 3910 |
+| population | 501 (36 juvenile) |
+| max generation | 3945 |
 | best fitness | 7002 |
-| avg brain (conns) | 95 |
-| lineage diversity | 5 colour-groups |
-| diet | 64% herbivore / 26% carnivore |
-| predators | 2, 5 kills, best 114012 |
-| structures (durable) | 8166 (4248) |
-| planks / bricks / bridges | 34 / 1993 / 2660 |
-| flora / cooked food | 7462 / 572 |
+| avg brain (conns) | 108 |
+| lineage diversity | 6 colour-groups |
+| diet | 77% herbivore / 7% carnivore |
+| predators | 2, 4 kills, best 114012 |
+| structures (durable) | 8375 (4226) |
+| planks / bricks / bridges | 28 / 1971 / 2660 |
+| flora / cooked food | 7779 / 576 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1878.5]** _(trend)_ Lineages are deepening — max generation 3924→3938. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1872.5]** _(trend)_ Lineages are deepening — max generation 3911→3924. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1866.5]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1865.9]** _(trend)_ Lineages are deepening — max generation 3894→3910. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1859.9]** _(trend)_ Lineages are deepening — max generation 3878→3894. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1853.9]** _(trend)_ Lineages are deepening — max generation 3869→3878. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
