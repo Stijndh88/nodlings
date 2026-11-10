@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-09T20:31Z. Now: day 1819.66, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 915, 3949 brick cells, max generation 3796.
+Updated 2026-11-10T00:33Z. Now: day 1835.28, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1007, 3950 brick cells, max generation 3833.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-09T20:31Z. Now: day 1819.66, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 206 | 1835.28 | 1933 | 1223 | 1007 | 3950 | 3833 | 0.053 |
 | 205 | 1819.66 | 1933 | 1126 | 915 | 3949 | 3796 | 0.0384 |
 | 204 | 1804.03 | 1933 | 1240 | 837 | 3948 | 3762 | 0.0082 |
 | 203 | 1788.41 | 1933 | 1212 | 938 | 3948 | 3728 | 0.1437 |
@@ -24,7 +25,6 @@ Updated 2026-11-09T20:31Z. Now: day 1819.66, benchmark gap **1933** (evolved gen
 | 194 | 1655.59 | 1987 | 1152 | 720 | 3912 | 3440 | 0.0061 |
 | 193 | 1639.97 | 1987 | 1139 | 1184 | 3902 | 3403 | 0.0048 |
 | 192 | 1624.34 | 1987 | 1026 | 631 | 3898 | 3367 | 0.0569 |
-| 191 | 1616.53 | 1987 | 1072 | 641 | 3895 | 3348 | 0.0608 |
 
 ## Hypotheses
 
@@ -227,6 +227,7 @@ Updated 2026-11-09T20:31Z. Now: day 1819.66, benchmark gap **1933** (evolved gen
 - **reverted**: STRUCTURAL: nodling.js hunt kill +0.3 within 20 ticks of hearing a call (commSeparation 0.1592->0.1133, largestCluster 845->787, bench gap 1933->1968; target worse)
 - **kept**: nodling.js BRICK_TOWER_BONUS +0.3 for brick stacked on brick-topped cell (bit-identical to control in 8k window; null result)
 - **kept**: nodling.js TALL_STACK_BONUS +0.2 for adjacent build on cell already stacked >=2 (bit-identical to control in 8k window; null result)
+- **reverted**: STRUCTURAL: nodling.js LISTEN_BONUS x2 while inVillage (commSeparation 0.0585->0.0244; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
