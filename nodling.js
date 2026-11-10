@@ -313,7 +313,7 @@ class Nodling {
               if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 9){ this.bonus += TEAM_BUILD_BONUS; break; }
             }
           }
-          if (nbs) this.bonus += BUILD_ADJACENT_BONUS*(this.inVillage ? 1.5 : 1) + (this.carrying === 'brick' ? BRICK_WALL_BONUS*(this.inVillage ? 2 : 1) : 0) + (nbs >= 2 ? ENCLOSE_BONUS : 0);
+          if (nbs) this.bonus += BUILD_ADJACENT_BONUS*(this.inVillage ? 1.5 : 1) + (this.carrying === 'brick' ? BRICK_WALL_BONUS*(this.inVillage ? 2 : 1) : 0) + (nbs >= 2 ? ENCLOSE_BONUS*(this.inVillage ? 2 : 1) : 0);
         }
         if (this.carrying === 'clay'){
           for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
