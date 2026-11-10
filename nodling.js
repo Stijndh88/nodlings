@@ -284,7 +284,7 @@ class Nodling {
           if (nbs && this.lastBuild && (this.lastBuild[0]-cx)**2 + (this.lastBuild[1]-cy)**2 <= 36) this.bonus += SITE_BONUS;
           if (nbs) this.lastBuild = [cx, cy];
           if (nbs && cell.stack.some(m => DURABLE_BUILD.includes(m))) this.bonus += TOWER_BONUS;
-          if (nbs && this.carrying === 'brick' && cell.stack.length && cell.stack[cell.stack.length-1] === 'brick') this.bonus += BRICK_TOWER_BONUS;
+          if (nbs && this.carrying === 'brick' && cell.stack.length && cell.stack[cell.stack.length-1] === 'brick') this.bonus += BRICK_TOWER_BONUS*(this.inVillage ? 2 : 1);
           if (nbs){
             for (const [ax, ay] of [[1,1],[-1,1],[1,-1],[-1,-1]]){
               const nb = w.at(cx+ax, cy+ay);

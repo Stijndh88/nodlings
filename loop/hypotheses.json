@@ -1606,6 +1606,14 @@
       "status": "reverted",
       "cycle": 207,
       "note": "largestCluster 1007 -> 999, within noise but not better"
+    },
+    {
+      "id": "village-watchtower",
+      "signal": 1,
+      "change": "nodling.js BRICK_TOWER_BONUS x2 while inVillage",
+      "status": "kept",
+      "cycle": 208,
+      "note": "bit-identical to control (null result, no measurable effect in 8k window)"
     }
   ]
 }
