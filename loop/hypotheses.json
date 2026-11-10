@@ -1598,6 +1598,14 @@
       "status": "reverted",
       "cycle": 206,
       "note": "commSeparation 0.0585->0.0244; target worse"
+    },
+    {
+      "id": "village-windbreak",
+      "signal": 1,
+      "change": "nodling.js: body temperature drift x0.5 while inVillage",
+      "status": "reverted",
+      "cycle": 207,
+      "note": "largestCluster 1007 -> 999, within noise but not better"
     }
   ]
 }

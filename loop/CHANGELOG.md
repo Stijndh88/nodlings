@@ -1415,3 +1415,9 @@ STRUCTURAL: tall-stack (priority 1, plateau.js demanded structural): `nodling.js
 STRUCTURAL: village-bell (priority 2, plateau.js demanded structural): `nodling.js` LISTEN_BONUS x2 while inVillage.
 - Control vs treatment (8k ticks): commSeparation 0.0585 -> 0.0244, largestCluster 924 -> 928, builtCells 4397 -> 4489, brickCells 3949 -> 3949, bench gap 1933 -> 1933, medianFitness (see run) 1217, pop 500 -> 499. Guardrails pass but target worse; reverted.
 - Baseline batch ran the full 25000 ticks.
+
+## Cycle 207 — day 1835 — `reverted`
+
+STRUCTURAL: village-windbreak (priority 1, plateau.js demanded structural): `nodling.js` body temperature drift x0.5 while inVillage.
+- Control vs treatment (8k ticks): largestCluster 1007 -> 999, builtCells 4331 -> 4354, brickCells 3950 -> 3950, bench gap 1933 -> 1933, medianFitness 1099 -> 1164, commSeparation 0.0244 -> 0.0858, pop 501 -> 500. Guardrails pass but target (largestCluster) slightly worse, within noise; reverted.
+- Baseline batch ran the full 25000 ticks.
