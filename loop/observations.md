@@ -1,25 +1,28 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1835.3 · Spring
+Seed `20261007` · day 1850.9 · Autumn
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (36 juvenile) |
-| max generation | 3831 |
+| population | 500 (42 juvenile) |
+| max generation | 3867 |
 | best fitness | 7002 |
-| avg brain (conns) | 88 |
+| avg brain (conns) | 94 |
 | lineage diversity | 5 colour-groups |
-| diet | 71% herbivore / 15% carnivore |
-| predators | 6, 32 kills, best 114012 |
-| structures (durable) | 7501 (4181) |
-| planks / bricks / bridges | 35 / 2034 / 2660 |
-| flora / cooked food | 8133 / 489 |
+| diet | 64% herbivore / 21% carnivore |
+| predators | 5, 39 kills, best 114012 |
+| structures (durable) | 7412 (4188) |
+| planks / bricks / bridges | 36 / 2001 / 2660 |
+| flora / cooked food | 6353 / 543 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1847.3]** _(trend)_ Lineages are deepening — max generation 3848→3862. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1841.3]** _(trend)_ Lineages are deepening — max generation 3833→3848. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1836.3]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1834.7]** _(trend)_ Lineages are deepening — max generation 3817→3831. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1828.7]** _(trend)_ Lineages are deepening — max generation 3805→3817. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1822.7]** _(trend)_ Lineages are deepening — max generation 3796→3805. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
