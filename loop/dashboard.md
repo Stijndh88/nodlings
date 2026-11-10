@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-10T16:33Z. Now: day 1882.16, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1020, 3952 brick cells, max generation 3945.
+Updated 2026-11-10T20:40Z. Now: day 1889.97, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1028, 3952 brick cells, max generation 3963.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-10T16:33Z. Now: day 1882.16, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 210 | 1889.97 | 1933 | 1335 | 1028 | 3952 | 3963 | 0.0475 |
 | 209 | 1882.16 | 1933 | 1262 | 1020 | 3952 | 3945 | 0.0127 |
 | 208 | 1866.53 | 1933 | 1067 | 1024 | 3952 | 3911 | 0.1064 |
 | 207 | 1850.91 | 1933 | 1348 | 1001 | 3952 | 3869 | 0.0871 |
@@ -24,7 +25,6 @@ Updated 2026-11-10T16:33Z. Now: day 1882.16, benchmark gap **1933** (evolved gen
 | 198 | 1710.28 | 1987 | 1420 | 760 | 3933 | 3564 | 0.0141 |
 | 197 | 1694.66 | 1987 | 1202 | 767 | 3926 | 3529 | 0.014 |
 | 196 | 1679.03 | 1987 | 912 | 753 | 3921 | 3497 | 0.0707 |
-| 195 | 1671.22 | 1987 | 1142 | 715 | 3917 | 3477 | 0.045 |
 
 ## Hypotheses
 
@@ -231,6 +231,7 @@ Updated 2026-11-10T16:33Z. Now: day 1882.16, benchmark gap **1933** (evolved gen
 - **reverted**: nodling.js: body temperature drift x0.5 while inVillage (largestCluster 1007 -> 999, within noise but not better)
 - **kept**: nodling.js BRICK_TOWER_BONUS x2 while inVillage (bit-identical to control (null result, no measurable effect in 8k window))
 - **kept**: STRUCTURAL: nodling.js movement energy cost x0.5 while inVillage (largestCluster 1029 -> 1037, builtCells 4405 -> 4429; small, within noise but not worse)
+- **kept**: STRUCTURAL: nodling.js ENCLOSE_BONUS x2 while inVillage (bit-identical to control (null result, no measurable effect in 8k window))
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
