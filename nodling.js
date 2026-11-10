@@ -408,7 +408,7 @@ class Nodling {
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
     const moving = Math.hypot(out.moveX, out.moveY);
-    this.energy -= 0.035 + this.brainSize*0.0001 + moving*0.04
+    this.energy -= 0.035 + this.brainSize*0.0001 + moving*0.04*(this.inVillage ? 0.5 : 1)
                  + (cell.water ? 0.08 : 0) + (out.glitch ? 0.5 : 0)
                  + (this.age > SENESCENCE ? (this.age - SENESCENCE)*0.0004*(this.inVillage ? 0.5 : 1) : 0); // senescence (village infirmary: halved)
     this.hydration -= (0.045 + (this.bodyTemp > 28 ? 0.05 : 0)) * (this.inVillage ? 0.5 : 1); // village cistern: half thirst drain

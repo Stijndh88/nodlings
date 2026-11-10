@@ -1427,3 +1427,9 @@ STRUCTURAL: village-windbreak (priority 1, plateau.js demanded structural): `nod
 STRUCTURAL: village-watchtower (priority 1, plateau.js demanded structural): `nodling.js` BRICK_TOWER_BONUS x2 while inVillage.
 - Control vs treatment (8k ticks): metrics bit-identical (largestCluster 1212 -> 1212, builtCells 4493 -> 4493, brickCells 3952 -> 3952, bench gap 1933 -> 1933, medianFitness 1235 -> 1235, commSeparation 0.1771 -> 0.1771, pop 499 -> 499). Guardrails pass; null result, no measurable effect in this window.
 - Baseline batch ran the full 25000 ticks.
+
+## Cycle 209 — day 1866 — `kept`
+
+STRUCTURAL: village-roads (priority 1, plateau.js demanded structural): `nodling.js` movement energy cost x0.5 while inVillage.
+- Control vs treatment (8k ticks): largestCluster 1029 -> 1037, builtCells 4405 -> 4429, brickCells 3952 -> 3952, medianFitness 1186 -> 1223, bench gap 1933 -> 1933, commSeparation 0.1039 -> 0.0076, pop 501 -> 501. Guardrails pass; target slightly better, within noise (commSeparation swings widely run to run).
+- Baseline batch ran the full 25000 ticks.

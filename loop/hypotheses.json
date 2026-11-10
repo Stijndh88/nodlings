@@ -1614,6 +1614,14 @@
       "status": "kept",
       "cycle": 208,
       "note": "bit-identical to control (null result, no measurable effect in 8k window)"
+    },
+    {
+      "id": "village-roads",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js movement energy cost x0.5 while inVillage",
+      "status": "kept",
+      "cycle": 209,
+      "note": "largestCluster 1029 -> 1037, builtCells 4405 -> 4429; small, within noise but not worse"
     }
   ]
 }
