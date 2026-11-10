@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-10T04:32Z. Now: day 1850.91, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1001, 3952 brick cells, max generation 3869.
+Updated 2026-11-10T08:33Z. Now: day 1866.53, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1024, 3952 brick cells, max generation 3911.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-10T04:32Z. Now: day 1850.91, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 208 | 1866.53 | 1933 | 1067 | 1024 | 3952 | 3911 | 0.1064 |
 | 207 | 1850.91 | 1933 | 1348 | 1001 | 3952 | 3869 | 0.0871 |
 | 206 | 1835.28 | 1933 | 1223 | 1007 | 3950 | 3833 | 0.053 |
 | 205 | 1819.66 | 1933 | 1126 | 915 | 3949 | 3796 | 0.0384 |
@@ -24,7 +25,6 @@ Updated 2026-11-10T04:32Z. Now: day 1850.91, benchmark gap **1933** (evolved gen
 | 196 | 1679.03 | 1987 | 912 | 753 | 3921 | 3497 | 0.0707 |
 | 195 | 1671.22 | 1987 | 1142 | 715 | 3917 | 3477 | 0.045 |
 | 194 | 1655.59 | 1987 | 1152 | 720 | 3912 | 3440 | 0.0061 |
-| 193 | 1639.97 | 1987 | 1139 | 1184 | 3902 | 3403 | 0.0048 |
 
 ## Hypotheses
 
@@ -229,6 +229,7 @@ Updated 2026-11-10T04:32Z. Now: day 1850.91, benchmark gap **1933** (evolved gen
 - **kept**: nodling.js TALL_STACK_BONUS +0.2 for adjacent build on cell already stacked >=2 (bit-identical to control in 8k window; null result)
 - **reverted**: STRUCTURAL: nodling.js LISTEN_BONUS x2 while inVillage (commSeparation 0.0585->0.0244; target worse)
 - **reverted**: nodling.js: body temperature drift x0.5 while inVillage (largestCluster 1007 -> 999, within noise but not better)
+- **kept**: nodling.js BRICK_TOWER_BONUS x2 while inVillage (bit-identical to control (null result, no measurable effect in 8k window))
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 

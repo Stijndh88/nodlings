@@ -1,25 +1,28 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1850.9 · Autumn
+Seed `20261007` · day 1866.5 · Spring
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (42 juvenile) |
-| max generation | 3867 |
+| population | 500 (31 juvenile) |
+| max generation | 3910 |
 | best fitness | 7002 |
-| avg brain (conns) | 94 |
+| avg brain (conns) | 95 |
 | lineage diversity | 5 colour-groups |
-| diet | 64% herbivore / 21% carnivore |
-| predators | 5, 39 kills, best 114012 |
-| structures (durable) | 7412 (4188) |
-| planks / bricks / bridges | 36 / 2001 / 2660 |
-| flora / cooked food | 6353 / 543 |
+| diet | 64% herbivore / 26% carnivore |
+| predators | 2, 5 kills, best 114012 |
+| structures (durable) | 8166 (4248) |
+| planks / bricks / bridges | 34 / 1993 / 2660 |
+| flora / cooked food | 7462 / 572 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1865.9]** _(trend)_ Lineages are deepening — max generation 3894→3910. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1859.9]** _(trend)_ Lineages are deepening — max generation 3878→3894. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1853.9]** _(trend)_ Lineages are deepening — max generation 3869→3878. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1847.3]** _(trend)_ Lineages are deepening — max generation 3848→3862. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1841.3]** _(trend)_ Lineages are deepening — max generation 3833→3848. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1836.3]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
