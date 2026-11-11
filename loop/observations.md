@@ -1,25 +1,28 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 1890.0 · Winter
+Seed `20261007` · day 1905.6 · Summer
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (70 juvenile) |
-| max generation | 3960 |
+| population | 500 (40 juvenile) |
+| max generation | 4000 |
 | best fitness | 7002 |
-| avg brain (conns) | 111 |
-| lineage diversity | 5 colour-groups |
-| diet | 79% herbivore / 3% carnivore |
-| predators | 4, 6 kills, best 114012 |
-| structures (durable) | 7409 (4238) |
-| planks / bricks / bridges | 29 / 1966 / 2660 |
-| flora / cooked food | 5103 / 635 |
-| active fires | 77 |
+| avg brain (conns) | 116 |
+| lineage diversity | 6 colour-groups |
+| diet | 62% herbivore / 33% carnivore |
+| predators | 2, 7 kills, best 114012 |
+| structures (durable) | 9213 (4274) |
+| planks / bricks / bridges | 32 / 1955 / 2660 |
+| flora / cooked food | 7681 / 546 |
+| active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 1904]** _(trend)_ Lineages are deepening — max generation 3981→3996. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1898]** _(trend)_ Lineages are deepening — max generation 3967→3981. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 1892]** _(trend)_ Lineages are deepening — max generation 3963→3967. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1885.2]** _(trend)_ Lineages are deepening — max generation 3945→3949. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 1883.2]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 1878.5]** _(trend)_ Lineages are deepening — max generation 3924→3938. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
