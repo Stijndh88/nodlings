@@ -1656,6 +1656,14 @@
       "note": "bit-identical to control; null result in 8k window"
     },
     {
+      "id": "village-call-follow",
+      "signal": 2,
+      "change": "nodling.js CALL_FOLLOW_BONUS x2 while inVillage",
+      "status": "reverted",
+      "cycle": 215,
+      "note": "commSeparation 0.0473->0.0400 (worse); cluster 1934->1955, bench gap 1933->1933"
+    },
+    {
       "id": "village-shared-meal",
       "signal": 2,
       "change": "STRUCTURAL: nodling.js SHARED_MEAL_BONUS x2 while inVillage",
