@@ -1445,3 +1445,9 @@ STRUCTURAL: village-enclosure (priority 1, plateau.js demanded structural): `nod
 STRUCTURAL: village-firebreak (priority 1, plateau.js demanded structural): `nodling.js` fire burn-death roll x0.5 while inVillage.
 - Control vs treatment (8k ticks): largestCluster 1030 -> 1021, builtCells 4333 -> 4335, brickCells 3952 -> 3953, medianFitness 1227 -> 1182, bench gap 1933 -> 1933, commSeparation 0.0886 -> 0.0871, pop 500 -> 503. Guardrails pass but target slightly worse (within noise); reverted per rules.
 - Baseline batch used 12500 ticks (25000 timed out at 600s).
+
+## Cycle 212 — day 1905 — `kept`
+
+STRUCTURAL: village-hunters (priority 1, plateau.js demanded structural): `nodling.js` HUNT_BONUS x2 while inVillage.
+- Control vs treatment (8k ticks): largestCluster 1971 -> 1981, builtCells 4381 -> 4374, brickCells 3953 -> 3953, medianFitness 1427 -> 1103, bench gap 1933 -> 1933, commSeparation 0.0862 -> 0.0664, pop 499 -> 503. Guardrails pass; target marginally better, within noise. Note medianFitness fell 23% (near the 25% guardrail) — watch next cycle.
+- Baseline batch ran the full 25000 ticks.

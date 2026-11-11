@@ -1638,6 +1638,14 @@
       "status": "reverted",
       "cycle": 211,
       "note": "largestCluster 1030 -> 1021, medianFitness 1227 -> 1182; not better"
+    },
+    {
+      "id": "village-hunters",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js HUNT_BONUS x2 while inVillage",
+      "status": "kept",
+      "cycle": 212,
+      "note": "largestCluster 1971 -> 1981, within noise but not worse; medianFitness 1427 -> 1103 (guardrail passes)"
     }
   ]
 }

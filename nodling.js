@@ -371,7 +371,7 @@ class Nodling {
         if (cr.dead) continue;
         if ((cr.x-(tx+0.5))**2 + (cr.y-(ty+0.5))**2 < 0.9){
           cr.dead = true;
-          this.bonus += HUNT_BONUS;
+          this.bonus += HUNT_BONUS*(this.inVillage ? 2 : 1);
           (t || cell).stack.push('meat');
           break;
         }
