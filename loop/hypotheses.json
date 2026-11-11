@@ -1654,6 +1654,14 @@
       "status": "kept",
       "cycle": 213,
       "note": "bit-identical to control; null result in 8k window"
+    },
+    {
+      "id": "village-shared-meal",
+      "signal": 2,
+      "change": "STRUCTURAL: nodling.js SHARED_MEAL_BONUS x2 while inVillage",
+      "status": "kept",
+      "cycle": 214,
+      "note": "commSeparation 0.0592 -> 0.0594, within noise; medianFitness 1143 -> 1506, gap 1933 unchanged"
     }
   ]
 }
