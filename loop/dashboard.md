@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-11T08:33Z. Now: day 1936.84, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1939, 3953 brick cells, max generation 4068.
+Updated 2026-11-11T12:40Z. Now: day 1944.66, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1941, 3953 brick cells, max generation 4086.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-11T08:33Z. Now: day 1936.84, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 214 | 1944.66 | 1933 | 1293 | 1941 | 3953 | 4086 | 0.022 |
 | 213 | 1936.84 | 1933 | 1260 | 1939 | 3953 | 4068 | 0.0489 |
 | 212 | 1921.22 | 1933 | 1234 | 1982 | 3953 | 4040 | 0.0106 |
 | 211 | 1905.59 | 1933 | 1121 | 1961 | 3953 | 4002 | 0.0827 |
@@ -24,7 +25,6 @@ Updated 2026-11-11T08:33Z. Now: day 1936.84, benchmark gap **1933** (evolved gen
 | 202 | 1772.78 | 1933 | 1297 | 851 | 3948 | 3694 | 0.181 |
 | 201 | 1757.16 | 1953 | 1283 | 837 | 3946 | 3661 | 0.0903 |
 | 200 | 1741.53 | 1973 | 1088 | 829 | 3943 | 3625 | 0.0109 |
-| 199 | 1725.91 | 1987 | 1249 | 856 | 3940 | 3599 | 0.0197 |
 
 ## Hypotheses
 
@@ -235,6 +235,7 @@ Updated 2026-11-11T08:33Z. Now: day 1936.84, benchmark gap **1933** (evolved gen
 - **reverted**: STRUCTURAL: nodling.js fire death roll x0.5 while inVillage (largestCluster 1030 -> 1021, medianFitness 1227 -> 1182; not better)
 - **kept**: STRUCTURAL: nodling.js HUNT_BONUS x2 while inVillage (largestCluster 1971 -> 1981, within noise but not worse; medianFitness 1427 -> 1103 (guardrail passes))
 - **kept**: STRUCTURAL: nodling.js KILN_BONUS x2 while inVillage (bit-identical to control; null result in 8k window)
+- **kept**: STRUCTURAL: nodling.js SHARED_MEAL_BONUS x2 while inVillage (commSeparation 0.0592 -> 0.0594, within noise; medianFitness 1143 -> 1506, gap 1933 unchanged)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
