@@ -1451,3 +1451,9 @@ STRUCTURAL: village-firebreak (priority 1, plateau.js demanded structural): `nod
 STRUCTURAL: village-hunters (priority 1, plateau.js demanded structural): `nodling.js` HUNT_BONUS x2 while inVillage.
 - Control vs treatment (8k ticks): largestCluster 1971 -> 1981, builtCells 4381 -> 4374, brickCells 3953 -> 3953, medianFitness 1427 -> 1103, bench gap 1933 -> 1933, commSeparation 0.0862 -> 0.0664, pop 499 -> 503. Guardrails pass; target marginally better, within noise. Note medianFitness fell 23% (near the 25% guardrail) — watch next cycle.
 - Baseline batch ran the full 25000 ticks.
+
+## Cycle 213 — day 1921 — `kept`
+
+STRUCTURAL: village-kilns (priority 1, plateau.js demanded structural): `nodling.js` KILN_BONUS x2 while inVillage.
+- Control vs treatment (8k ticks): metrics bit-identical (largestCluster 1975 -> 1975, builtCells 4427 -> 4427, brickCells 3953 -> 3953, medianFitness 1207 -> 1207, bench gap 1933 -> 1933, commSeparation 0.0619 -> 0.0619, pop 501 -> 501). Guardrails pass; null result, no measurable effect in this window.
+- Baseline batch ran the full 25000 ticks (~8 min).

@@ -1646,6 +1646,14 @@
       "status": "kept",
       "cycle": 212,
       "note": "largestCluster 1971 -> 1981, within noise but not worse; medianFitness 1427 -> 1103 (guardrail passes)"
+    },
+    {
+      "id": "village-kilns",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js KILN_BONUS x2 while inVillage",
+      "status": "kept",
+      "cycle": 213,
+      "note": "bit-identical to control; null result in 8k window"
     }
   ]
 }

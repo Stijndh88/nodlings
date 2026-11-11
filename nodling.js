@@ -319,7 +319,7 @@ class Nodling {
           for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
             const kc = w.at(cx+dx, cy+dy);
             if (kc && kc.fire){
-              this.bonus += KILN_BONUS;
+              this.bonus += KILN_BONUS*(this.inVillage ? 2 : 1);
               site: for (let sy = -3; sy <= 3; sy++) for (let sx = -3; sx <= 3; sx++){
                 const sc = w.at(cx+sx, cy+sy);
                 if (sc && sc.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += KILN_SITE_BONUS; break site; }
