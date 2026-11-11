@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-11T00:32Z. Now: day 1905.59, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1961, 3953 brick cells, max generation 4002.
+Updated 2026-11-11T04:31Z. Now: day 1921.22, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1982, 3953 brick cells, max generation 4040.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-11T00:32Z. Now: day 1905.59, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 212 | 1921.22 | 1933 | 1234 | 1982 | 3953 | 4040 | 0.0106 |
 | 211 | 1905.59 | 1933 | 1121 | 1961 | 3953 | 4002 | 0.0827 |
 | 210 | 1889.97 | 1933 | 1335 | 1028 | 3952 | 3963 | 0.0475 |
 | 209 | 1882.16 | 1933 | 1262 | 1020 | 3952 | 3945 | 0.0127 |
@@ -24,7 +25,6 @@ Updated 2026-11-11T00:32Z. Now: day 1905.59, benchmark gap **1933** (evolved gen
 | 200 | 1741.53 | 1973 | 1088 | 829 | 3943 | 3625 | 0.0109 |
 | 199 | 1725.91 | 1987 | 1249 | 856 | 3940 | 3599 | 0.0197 |
 | 198 | 1710.28 | 1987 | 1420 | 760 | 3933 | 3564 | 0.0141 |
-| 197 | 1694.66 | 1987 | 1202 | 767 | 3926 | 3529 | 0.014 |
 
 ## Hypotheses
 
@@ -233,6 +233,7 @@ Updated 2026-11-11T00:32Z. Now: day 1905.59, benchmark gap **1933** (evolved gen
 - **kept**: STRUCTURAL: nodling.js movement energy cost x0.5 while inVillage (largestCluster 1029 -> 1037, builtCells 4405 -> 4429; small, within noise but not worse)
 - **kept**: STRUCTURAL: nodling.js ENCLOSE_BONUS x2 while inVillage (bit-identical to control (null result, no measurable effect in 8k window))
 - **reverted**: STRUCTURAL: nodling.js fire death roll x0.5 while inVillage (largestCluster 1030 -> 1021, medianFitness 1227 -> 1182; not better)
+- **kept**: STRUCTURAL: nodling.js HUNT_BONUS x2 while inVillage (largestCluster 1971 -> 1981, within noise but not worse; medianFitness 1427 -> 1103 (guardrail passes))
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
