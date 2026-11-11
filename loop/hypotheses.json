@@ -1670,6 +1670,14 @@
       "status": "kept",
       "cycle": 214,
       "note": "commSeparation 0.0592 -> 0.0594, within noise; medianFitness 1143 -> 1506, gap 1933 unchanged"
+    },
+    {
+      "id": "village-team-build",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js TEAM_BUILD_BONUS x2 while inVillage",
+      "status": "kept",
+      "cycle": 216,
+      "note": "metrics bit-identical to control; null result"
     }
   ]
 }

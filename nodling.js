@@ -310,7 +310,7 @@ class Nodling {
           if (nbs && this.pickup && (this.pickup[0]-cx)**2 + (this.pickup[1]-cy)**2 >= 64) this.bonus += HAUL_BONUS*(this.inVillage ? 2 : 1);
           if (nbs){
             for (const o of w.near(w.nIndex, this.x, this.y)){
-              if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 9){ this.bonus += TEAM_BUILD_BONUS; break; }
+              if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 9){ this.bonus += TEAM_BUILD_BONUS*(this.inVillage ? 2 : 1); break; }
             }
           }
           if (nbs) this.bonus += BUILD_ADJACENT_BONUS*(this.inVillage ? 1.5 : 1) + (this.carrying === 'brick' ? BRICK_WALL_BONUS*(this.inVillage ? 2 : 1) : 0) + (nbs >= 2 ? ENCLOSE_BONUS*(this.inVillage ? 2 : 1) : 0);
