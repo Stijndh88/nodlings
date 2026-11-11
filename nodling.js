@@ -346,7 +346,7 @@ class Nodling {
         }
         if (walls >= 2) this.bonus += CACHE_BONUS;
         for (const o of w.near(w.nIndex, this.x, this.y)){
-          if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 9){ this.bonus += SHARED_MEAL_BONUS + (walls >= 2 ? FEAST_BONUS : 0); break; }
+          if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 9){ this.bonus += SHARED_MEAL_BONUS*(this.inVillage ? 2 : 1) + (walls >= 2 ? FEAST_BONUS : 0); break; }
         }
         if (this.energy < 60) this.bonus += HUNGRY_EAT_BONUS;
         if (this.heardCallAge !== undefined && this.age - this.heardCallAge <= 20) this.bonus += CALL_FOLLOW_BONUS;
