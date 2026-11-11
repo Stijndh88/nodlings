@@ -1475,3 +1475,9 @@ STRUCTURAL: village-call-follow (priority 2, plateau.js demanded structural): `n
 STRUCTURAL: village-team-build (priority 1, plateau.js demanded structural): `nodling.js` TEAM_BUILD_BONUS x2 while inVillage.
 - Control vs treatment (8k ticks): metrics bit-identical (largestCluster 1956 -> 1956, builtCells 4451 -> 4451, brickCells 3955 -> 3955, medianFitness 1190 -> 1190, bench gap 1933 -> 1933, commSeparation 0.1122 -> 0.1122, pop 502 -> 502). Guardrails pass; null result, no measurable effect in this window.
 - Baseline batch used 12500 ticks (25000 timed out at 600s).
+
+## Cycle 217 — day 1960 — `kept`
+
+STRUCTURAL: village-call-build (priority 2, plateau.js demanded structural): `nodling.js` CALL_BUILD_BONUS x2 while inVillage.
+- Control vs treatment (8k ticks): metrics bit-identical (commSeparation 0.0677 -> 0.0677, largestCluster 1946 -> 1946, builtCells 4410 -> 4410, brickCells 3957 -> 3957, medianFitness 1147 -> 1147, bench gap 1933 -> 1933, pop 500 -> 500). Guardrails pass; null result, no measurable effect in this window.
+- Baseline batch used 12500 ticks (25000 timed out at 600s).

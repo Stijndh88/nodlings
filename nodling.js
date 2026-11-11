@@ -304,7 +304,7 @@ class Nodling {
               if (top && DURABLE_BUILD.includes(top) && top !== this.carrying){ this.bonus += MIXED_BONUS; break; }
             }
           }
-          if (nbs && this.heardCallAge !== undefined && this.age - this.heardCallAge <= 30) this.bonus += CALL_BUILD_BONUS;
+          if (nbs && this.heardCallAge !== undefined && this.age - this.heardCallAge <= 30) this.bonus += CALL_BUILD_BONUS*(this.inVillage ? 2 : 1);
           if (nbs && w.season() === 'Winter') this.bonus += WINTER_BUILD_BONUS;
           if (nbs && cell.stack.length >= 2) this.bonus += TALL_STACK_BONUS;
           if (nbs && this.pickup && (this.pickup[0]-cx)**2 + (this.pickup[1]-cy)**2 >= 64) this.bonus += HAUL_BONUS*(this.inVillage ? 2 : 1);

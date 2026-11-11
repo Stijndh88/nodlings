@@ -1678,6 +1678,14 @@
       "status": "kept",
       "cycle": 216,
       "note": "metrics bit-identical to control; null result"
+    },
+    {
+      "id": "village-call-build",
+      "signal": 2,
+      "change": "nodling.js CALL_BUILD_BONUS x2 while inVillage",
+      "status": "kept",
+      "cycle": 217,
+      "note": "metrics bit-identical to control; null result"
     }
   ]
 }
