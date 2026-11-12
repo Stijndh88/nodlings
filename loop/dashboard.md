@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-12T00:28Z. Now: day 1968.09, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1936, 3957 brick cells, max generation 4135.
+Updated 2026-11-12T04:30Z. Now: day 1975.91, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1096, 3958 brick cells, max generation 4148.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-12T00:28Z. Now: day 1968.09, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 218 | 1975.91 | 1933 | 1228 | 1096 | 3958 | 4148 | 0.0374 |
 | 217 | 1968.09 | 1933 | 1138 | 1936 | 3957 | 4135 | 0.1208 |
 | 216 | 1960.28 | 1933 | 1172 | 1966 | 3956 | 4125 | 0.1185 |
 | 215 | 1952.47 | 1933 | 1068 | 1942 | 3955 | 4105 | 0.0813 |
@@ -24,7 +25,6 @@ Updated 2026-11-12T00:28Z. Now: day 1968.09, benchmark gap **1933** (evolved gen
 | 206 | 1835.28 | 1933 | 1223 | 1007 | 3950 | 3833 | 0.053 |
 | 205 | 1819.66 | 1933 | 1126 | 915 | 3949 | 3796 | 0.0384 |
 | 204 | 1804.03 | 1933 | 1240 | 837 | 3948 | 3762 | 0.0082 |
-| 203 | 1788.41 | 1933 | 1212 | 938 | 3948 | 3728 | 0.1437 |
 
 ## Hypotheses
 
@@ -239,6 +239,7 @@ Updated 2026-11-12T00:28Z. Now: day 1968.09, benchmark gap **1933** (evolved gen
 - **kept**: STRUCTURAL: nodling.js SHARED_MEAL_BONUS x2 while inVillage (commSeparation 0.0592 -> 0.0594, within noise; medianFitness 1143 -> 1506, gap 1933 unchanged)
 - **kept**: STRUCTURAL: nodling.js TEAM_BUILD_BONUS x2 while inVillage (metrics bit-identical to control; null result)
 - **kept**: nodling.js CALL_BUILD_BONUS x2 while inVillage (metrics bit-identical to control; null result)
+- **kept**: STRUCTURAL: nodling.js BRICK_GRAB_BONUS x2 while inVillage (metrics bit-identical to control; null result in this window)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
