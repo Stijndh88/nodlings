@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-12T04:30Z. Now: day 1975.91, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1096, 3958 brick cells, max generation 4148.
+Updated 2026-11-12T08:31Z. Now: day 1983.72, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1099, 3958 brick cells, max generation 4170.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-12T04:30Z. Now: day 1975.91, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 219 | 1983.72 | 1933 | 1131 | 1099 | 3958 | 4170 | 0.004 |
 | 218 | 1975.91 | 1933 | 1228 | 1096 | 3958 | 4148 | 0.0374 |
 | 217 | 1968.09 | 1933 | 1138 | 1936 | 3957 | 4135 | 0.1208 |
 | 216 | 1960.28 | 1933 | 1172 | 1966 | 3956 | 4125 | 0.1185 |
@@ -24,7 +25,6 @@ Updated 2026-11-12T04:30Z. Now: day 1975.91, benchmark gap **1933** (evolved gen
 | 207 | 1850.91 | 1933 | 1348 | 1001 | 3952 | 3869 | 0.0871 |
 | 206 | 1835.28 | 1933 | 1223 | 1007 | 3950 | 3833 | 0.053 |
 | 205 | 1819.66 | 1933 | 1126 | 915 | 3949 | 3796 | 0.0384 |
-| 204 | 1804.03 | 1933 | 1240 | 837 | 3948 | 3762 | 0.0082 |
 
 ## Hypotheses
 
@@ -240,6 +240,7 @@ Updated 2026-11-12T04:30Z. Now: day 1975.91, benchmark gap **1933** (evolved gen
 - **kept**: STRUCTURAL: nodling.js TEAM_BUILD_BONUS x2 while inVillage (metrics bit-identical to control; null result)
 - **kept**: nodling.js CALL_BUILD_BONUS x2 while inVillage (metrics bit-identical to control; null result)
 - **kept**: STRUCTURAL: nodling.js BRICK_GRAB_BONUS x2 while inVillage (metrics bit-identical to control; null result in this window)
+- **kept**: STRUCTURAL: nodling.js CALL_BRICK_BONUS x2 while inVillage (metrics bit-identical to control; null result in this window)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
