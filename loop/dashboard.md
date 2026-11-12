@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-12T16:31Z. Now: day 1999.34, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1094, 3958 brick cells, max generation 4207.
+Updated 2026-11-12T20:31Z. Now: day 2007.16, benchmark gap **1980** (evolved gene pool minus random genomes), largest built cluster 1105, 3959 brick cells, max generation 4223.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-12T16:31Z. Now: day 1999.34, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 222 | 2007.16 | 1980 | 1257 | 1105 | 3959 | 4223 | 0.0109 |
 | 221 | 1999.34 | 1933 | 1339 | 1094 | 3958 | 4207 | 0.0505 |
 | 220 | 1991.53 | 1933 | 1346 | 1103 | 3958 | 4185 | 0.0662 |
 | 219 | 1983.72 | 1933 | 1131 | 1099 | 3958 | 4170 | 0.004 |
@@ -24,7 +25,6 @@ Updated 2026-11-12T16:31Z. Now: day 1999.34, benchmark gap **1933** (evolved gen
 | 210 | 1889.97 | 1933 | 1335 | 1028 | 3952 | 3963 | 0.0475 |
 | 209 | 1882.16 | 1933 | 1262 | 1020 | 3952 | 3945 | 0.0127 |
 | 208 | 1866.53 | 1933 | 1067 | 1024 | 3952 | 3911 | 0.1064 |
-| 207 | 1850.91 | 1933 | 1348 | 1001 | 3952 | 3869 | 0.0871 |
 
 ## Hypotheses
 
@@ -243,6 +243,7 @@ Updated 2026-11-12T16:31Z. Now: day 1999.34, benchmark gap **1933** (evolved gen
 - **kept**: STRUCTURAL: nodling.js CALL_BRICK_BONUS x2 while inVillage (metrics bit-identical to control; null result in this window)
 - **reverted**: STRUCTURAL: nodling.js breeding chance x1.3 while inVillage (largestCluster 1113 -> 1088, builtCells 4643 -> 4525 (worse); medianFitness 1190 -> 1253, gap 1933 unchanged)
 - **reverted**: STRUCTURAL: nodling.js newborn +30 energy when parent inVillage (cluster 1107->1083, builtCells 4383->4307; target worse)
+- **kept**: world.js tidal clay deposit fires straight to brick when beside a brick-topped cell (brickCells 3958->3959, cluster 1107->1107, bench gap 1933->1980; within noise)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
