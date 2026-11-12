@@ -92,9 +92,11 @@ const metrics = context.loopMetrics();
 metrics.worldTick = vm.runInContext('world.tick', context);
 
 // ---- benchmark: fixed seeds, fresh sandbox per cohort, evolved vs random genomes ----
+// The evolved cohort is a fitness-stratified sample of the CURRENT living gene pool (not the
+// hall of fame, which is frozen by ancient high scores and made the gap flat for weeks).
 if (wantBench){
   const b = rules.benchmark;
-  const genomes = JSON.stringify(vm.runInContext('hallOfFame.slice(0, 20).map(h => h.genome)', context) || []);
+  const genomes = JSON.stringify(vm.runInContext(`(function(){ const L = nodlings.slice().sort((a,b)=>(a.age+250*a.offspring)-(b.age+250*b.offspring)); const K = Math.min(30, L.length), out = []; for (let i = 0; i < K; i++) out.push(L[Math.floor((i+0.5)*L.length/K)].genome); return out; })()`, context) || []);
   const score = (useGenomes, wseed) => {
     const c = makeContext({});
     return vm.runInContext(`(function(){

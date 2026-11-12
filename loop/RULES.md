@@ -31,8 +31,9 @@ code + same ticks gives identical metrics.
 ## Metrics (what to read)
 `loop/metrics.json`, and every cycle appended to `loop/history.jsonl` (charted
 in `loop/progress.svg`):
-- `benchmark.gap` — evolved gene pool minus random genomes, on 3 fixed seeds
-  (`benchmark` block above). The main "have Nodlings learned" number.
+- `benchmark.gap` — a fitness-stratified sample of the CURRENT living gene pool minus random genomes, on 3 fixed
+  seeds (`benchmark` block above). The main "have Nodlings learned" number. (Until cycle 223 it used the hall of
+  fame, which is frozen by ancient high scores, so the old gap (~1950) is not comparable with the new one (~1360).)
 - `medianFitness` / `meanFitness` — the *living* population (age + 250 x offspring).
 - `largestCluster` / `builtCells` / `brickCells` — construction (priority 1).
 - `commSeparation` — call-frequency gap with vs without a predator near (priority 2).
@@ -55,20 +56,20 @@ in `loop/progress.svg`):
 5. Update `loop/hypotheses.json` (status, cycle, note) in the same commit.
 
 ## Priority signals (push toward, in this order)
-1. **Multi-step construction / villages** — durable-structure clusters,
-   brick/kiln chains, bridges used for territory, not just scattered
-   stacking. Target: beat the current best (`largestCluster`, `brickCells`) by an
-   order of magnitude, sustained, not a one-off spike.
-2. **Communication** — the sound channel exists but carries no evolved
-   meaning yet. Track `commSeparation`; look for correlation between sound emission and nearby
-   Nodling behavior (alarm→flee, food-found→approach) as a signal it's
-   being used; bias reward/sensory wiring to make that correlation
-   learnable if it isn't showing up.
-3. **Sustained open-ended growth** — break the repeated fitness/generation
-   plateaus the observation log shows (day 235, day 413 pattern in
-   `nodlings-observations-day513.md`). Break plateaus in `benchmark.gap` and `medianFitness`, not `peakFitness`. Prefer changes that widen the fitness
-   landscape (new affordances, sensory inputs, reward shaping) over
-   re-tuning existing knobs once this pattern recurs.
+**The project goal is evolved intelligence: Nodlings that get measurably better at surviving and reproducing by
+learning and brain evolution.** Villages and communication are only interesting as tools toward that.
+1. **Evolved skill** — raise `benchmark.gap` and `medianFitness`, keep `avgBrain` healthy (collapse below ~100 means
+   selection no longer rewards cognition). Prefer changes that make brains matter: harder or more varied
+   environments, scarcity that rewards learning/memory, new senses/actions, better selection, mutation and
+   crossover (NEAT speciation, elitism, innovation protection), and brain/learning machinery.
+2. **Communication** — track `commSeparation`; make alarm/food calls learnable and useful for survival.
+3. **Construction / villages** — `largestCluster`, `brickCells`. These are already saturated.
+
+## Banned: selection shields
+Do NOT add survival perks (nutrition, thirst, metabolism, senescence, mating, predator immunity, newborn energy) for
+being in a village or building. They inflate cluster metrics while removing the selection pressure that evolves
+brains (`VILLAGE_SURVIVAL_PERKS` in `nodling.js` is deliberately off). Pure reward-shaping bonuses for a *new*
+behaviour are still fine, but not another x1.5/x2 multiplier on an existing bonus.
 
 ## Change policy
 - Run `node loop/plateau.js` at the start of a cycle. If it says a STRUCTURAL cycle is required (3+ metrics flat or falling over the last 4 cycles), the change this cycle must be structural (new affordance, environmental pressure, sense or reward shaping), not another knob tweak. Ideas: harder winters or a scarce material once clusters saturate, a second island, nest/shelter payoffs, a food-found call affordance.
