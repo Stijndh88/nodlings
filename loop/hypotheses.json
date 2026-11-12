@@ -1686,6 +1686,14 @@
       "status": "kept",
       "cycle": 217,
       "note": "metrics bit-identical to control; null result"
+    },
+    {
+      "id": "village-brick-grab",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js BRICK_GRAB_BONUS x2 while inVillage",
+      "status": "kept",
+      "cycle": 218,
+      "note": "metrics bit-identical to control; null result in this window"
     }
   ]
 }
