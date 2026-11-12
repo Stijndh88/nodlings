@@ -1710,6 +1710,14 @@
       "status": "reverted",
       "cycle": 220,
       "note": "largestCluster 1113 -> 1088, builtCells 4643 -> 4525 (worse); medianFitness 1190 -> 1253, gap 1933 unchanged"
+    },
+    {
+      "id": "village-nursery",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js newborn +30 energy when parent inVillage",
+      "status": "reverted",
+      "cycle": 221,
+      "note": "cluster 1107->1083, builtCells 4383->4307; target worse"
     }
   ]
 }

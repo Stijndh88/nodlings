@@ -1499,3 +1499,9 @@ STRUCTURAL: village-call-brick (priority 1, plateau.js demanded structural): `no
 STRUCTURAL: village-fertility (priority 1, plateau.js demanded structural): `nodling.js` breeding chance x1.3 while inVillage.
 - Control vs treatment (8k ticks): largestCluster 1113 -> 1088, builtCells 4643 -> 4525, brickCells 3958 -> 3958 (target worse); medianFitness 1190 -> 1253, bench gap 1933 -> 1933, pop 500 -> 500, commSeparation 0.0108 -> 0.0716 (noise). Guardrails pass, reverted on target metric.
 - Baseline batch used 12500 ticks (25000 timed out at 600s).
+
+## Cycle 221 — day 1991 — `reverted`
+
+STRUCTURAL: village-nursery (priority 1, plateau.js demanded structural): `nodling.js` newborn +30 energy when parent inVillage.
+- Control vs treatment (8k ticks): largestCluster 1107 -> 1083, builtCells 4383 -> 4307, brickCells 3958 -> 3958 (target worse); medianFitness 1113 -> 1329, bench gap 1933 -> 1933, pop 500 -> 499, commSeparation 0.0588 -> 0.0268 (noise). Guardrails pass, reverted on target metric.
+- Baseline batch used 12500 ticks (25000 timed out at 600s).
