@@ -1702,6 +1702,14 @@
       "status": "kept",
       "cycle": 219,
       "note": "metrics bit-identical to control; null result in this window"
+    },
+    {
+      "id": "village-fertility",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js breeding chance x1.3 while inVillage",
+      "status": "reverted",
+      "cycle": 220,
+      "note": "largestCluster 1113 -> 1088, builtCells 4643 -> 4525 (worse); medianFitness 1190 -> 1253, gap 1933 unchanged"
     }
   ]
 }
