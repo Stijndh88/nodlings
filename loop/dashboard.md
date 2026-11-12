@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-12T12:30Z. Now: day 1991.53, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1103, 3958 brick cells, max generation 4185.
+Updated 2026-11-12T16:31Z. Now: day 1999.34, benchmark gap **1933** (evolved gene pool minus random genomes), largest built cluster 1094, 3958 brick cells, max generation 4207.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-12T12:30Z. Now: day 1991.53, benchmark gap **1933** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 221 | 1999.34 | 1933 | 1339 | 1094 | 3958 | 4207 | 0.0505 |
 | 220 | 1991.53 | 1933 | 1346 | 1103 | 3958 | 4185 | 0.0662 |
 | 219 | 1983.72 | 1933 | 1131 | 1099 | 3958 | 4170 | 0.004 |
 | 218 | 1975.91 | 1933 | 1228 | 1096 | 3958 | 4148 | 0.0374 |
@@ -24,7 +25,6 @@ Updated 2026-11-12T12:30Z. Now: day 1991.53, benchmark gap **1933** (evolved gen
 | 209 | 1882.16 | 1933 | 1262 | 1020 | 3952 | 3945 | 0.0127 |
 | 208 | 1866.53 | 1933 | 1067 | 1024 | 3952 | 3911 | 0.1064 |
 | 207 | 1850.91 | 1933 | 1348 | 1001 | 3952 | 3869 | 0.0871 |
-| 206 | 1835.28 | 1933 | 1223 | 1007 | 3950 | 3833 | 0.053 |
 
 ## Hypotheses
 
@@ -242,6 +242,7 @@ Updated 2026-11-12T12:30Z. Now: day 1991.53, benchmark gap **1933** (evolved gen
 - **kept**: STRUCTURAL: nodling.js BRICK_GRAB_BONUS x2 while inVillage (metrics bit-identical to control; null result in this window)
 - **kept**: STRUCTURAL: nodling.js CALL_BRICK_BONUS x2 while inVillage (metrics bit-identical to control; null result in this window)
 - **reverted**: STRUCTURAL: nodling.js breeding chance x1.3 while inVillage (largestCluster 1113 -> 1088, builtCells 4643 -> 4525 (worse); medianFitness 1190 -> 1253, gap 1933 unchanged)
+- **reverted**: STRUCTURAL: nodling.js newborn +30 energy when parent inVillage (cluster 1107->1083, builtCells 4383->4307; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
