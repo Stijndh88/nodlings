@@ -1694,6 +1694,14 @@
       "status": "kept",
       "cycle": 218,
       "note": "metrics bit-identical to control; null result in this window"
+    },
+    {
+      "id": "village-call-brick",
+      "signal": 1,
+      "change": "STRUCTURAL: nodling.js CALL_BRICK_BONUS x2 while inVillage",
+      "status": "kept",
+      "cycle": 219,
+      "note": "metrics bit-identical to control; null result in this window"
     }
   ]
 }

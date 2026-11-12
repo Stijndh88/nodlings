@@ -247,7 +247,7 @@ class Nodling {
     {
       this.carrying = cell.stack.pop();
       this.pickup = [cx, cy];
-      if (this.carrying === 'brick'){ this.bonus += BRICK_GRAB_BONUS*(this.inVillage ? 2 : 1); if (this.heardCallAge !== undefined && this.age - this.heardCallAge <= 30) this.bonus += CALL_BRICK_BONUS; }
+      if (this.carrying === 'brick'){ this.bonus += BRICK_GRAB_BONUS*(this.inVillage ? 2 : 1); if (this.heardCallAge !== undefined && this.age - this.heardCallAge <= 30) this.bonus += CALL_BRICK_BONUS*(this.inVillage ? 2 : 1); }
       if (DURABLE_BUILD.includes(this.carrying) && this.carrying !== 'brick'){
         let nb = 0;
         for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){

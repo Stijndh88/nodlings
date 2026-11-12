@@ -1487,3 +1487,9 @@ STRUCTURAL: village-call-build (priority 2, plateau.js demanded structural): `no
 STRUCTURAL: village-brick-grab (priority 1, plateau.js demanded structural): `nodling.js` BRICK_GRAB_BONUS x2 while inVillage.
 - Control vs treatment (8k ticks): metrics bit-identical (largestCluster 1091 -> 1091, builtCells 4354 -> 4354, brickCells 3958 -> 3958, medianFitness 1431 -> 1431, bench gap 1933 -> 1933, commSeparation 0.0521 -> 0.0521, pop 503 -> 503). Guardrails pass; null result, no measurable effect in this window.
 - Baseline batch used 12500 ticks (25000 timed out at 600s).
+
+## Cycle 219 — day 1976 — `kept`
+
+STRUCTURAL: village-call-brick (priority 1, plateau.js demanded structural): `nodling.js` CALL_BRICK_BONUS x2 while inVillage.
+- Control vs treatment (8k ticks): metrics bit-identical (largestCluster 1096 -> 1096, builtCells 4346 -> 4346, brickCells 3958 -> 3958, medianFitness 977 -> 977, bench gap 1933 -> 1933, commSeparation 0.0015 -> 0.0015, pop 501 -> 501). Guardrails pass; null result, no measurable effect in this window. Bonus-doubling tweaks have now been null five cycles running; a genuinely new affordance is needed.
+- Baseline batch used 12500 ticks (25000 timed out at 600s).
