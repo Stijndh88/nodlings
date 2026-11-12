@@ -13,8 +13,7 @@ const hist = fs.existsSync(file) ? fs.readFileSync(file, 'utf8').trim().split('\
 const metrics = {
   'benchmark.gap': h => h.benchmark && h.benchmark.gap,
   medianFitness: h => h.medianFitness,
-  largestCluster: h => h.largestCluster,
-  brickCells: h => h.brickCells,
+  avgBrain: h => h.avgBrain,
   maxGen: h => h.maxGen,
 };
 const out = { cycles: hist.length, window: win, plateaued: [], rising: [], insufficientData: hist.length < win };
@@ -27,5 +26,5 @@ if (hist.length >= win){
     ((hi - lo) / base <= tol || v[v.length-1] <= v[0] ? out.plateaued : out.rising).push(name);
   }
 }
-out.advice = out.plateaued.length >= 3 ? 'STRUCTURAL cycle required: add a new affordance, pressure or sense instead of tuning.' : 'Tuning is still productive.';
+out.advice = out.plateaued.length >= 3 ? 'STRUCTURAL cycle required: target evolved skill (benchmark.gap, medianFitness, brain size) with a new environmental pressure, sense, action or selection/mutation mechanism. Not a village perk.' : 'Tuning is still productive.';
 console.log(JSON.stringify(out, null, 2));

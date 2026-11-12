@@ -3,6 +3,14 @@
 One entry per cycle: hypothesis, before/after metrics, `kept`/`reverted`/`INCIDENT`.
 Newest entries at the top.
 
+## Intelligence reset — day 2012 — `kept` — `STRUCTURAL:`
+
+Goal change: evolved intelligence is now the main target (see RULES.md priority signals).
+- Found: the benchmark's evolved cohort was `hallOfFame.slice(0,20)`, frozen by ancient 7002-point genomes, so `benchmark.gap` sat at ~1950 regardless of what happened to the living population. It now samples 30 fitness-stratified genomes of the current living pool. Honest gap at day 2012: 1362 (old method 1953). Baseline in `metrics.json` re-based; history before this cycle is not comparable.
+- Found: ~15 "village" perks (nutrition, thirst, metabolism, senescence, mating) shielded villagers from selection. `VILLAGE_SURVIVAL_PERKS = false` removes the five survival ones in `nodling.js` (metabolism, senescence, thirst, mate threshold, larder); reward bonuses stay.
+- Paired A/B (8k ticks, same snapshot, new benchmark): perks on bench gap 1252, medianFitness 1229, avgBrain 113.2; perks off bench gap 1490 (+19%), medianFitness 884 (life is harder, expected), avgBrain 114.4, pop 500 -> 501.
+- Loop guidance: RULES.md priorities reordered (skill first), village survival perks banned, plateau.js no longer counts cluster/brick metrics.
+
 ## Cycle 98 — day 914.34 + 3k ticks (batch ran 12k; 25k timed out) — `reverted` (no effect) — `STRUCTURAL:`
 
 Plateau: gap, medianFitness, brickCells flat. Hypothesis (priority 1): `BRICK_ROW_BONUS = 0.3`, extra build reward for laying a brick directly beside another brick. Baseline batch passed (gap 2258).

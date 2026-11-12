@@ -50,6 +50,7 @@ const CALL_BRICK_BONUS = 0.3; // reward for picking up a fired brick within 30 t
 const CALL_FOLLOW_BONUS = 0.3; // reward for eating found food within 20 ticks of hearing a call with no predator near (food-found call -> approach)
 const TEAM_BUILD_BONUS = 0.2; // extra reward for an adjacent build with another Nodling within 3 cells (barn-raising: build together)
 const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
+const VILLAGE_SURVIVAL_PERKS = false; // villages are a reward target, not a selection shield: metabolic/thirst/senescence/larder/mating perks removed so brains stay under pressure
 
 class Nodling {
   constructor(world, x, y, genome, gen = 0){
@@ -408,10 +409,10 @@ class Nodling {
 
     // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
     const moving = Math.hypot(out.moveX, out.moveY);
-    this.energy -= 0.035 + this.brainSize*0.0001 + moving*0.04*(this.inVillage ? 0.5 : 1)
+    this.energy -= 0.035 + this.brainSize*0.0001 + moving*0.04*(this.vPerk ? 0.5 : 1)
                  + (cell.water ? 0.08 : 0) + (out.glitch ? 0.5 : 0)
-                 + (this.age > SENESCENCE ? (this.age - SENESCENCE)*0.0004*(this.inVillage ? 0.5 : 1) : 0); // senescence (village infirmary: halved)
-    this.hydration -= (0.045 + (this.bodyTemp > 28 ? 0.05 : 0)) * (this.inVillage ? 0.5 : 1); // village cistern: half thirst drain
+                 + (this.age > SENESCENCE ? (this.age - SENESCENCE)*0.0004*(this.vPerk ? 0.5 : 1) : 0); // senescence (village infirmary: halved)
+    this.hydration -= (0.045 + (this.bodyTemp > 28 ? 0.05 : 0)) * (this.vPerk ? 0.5 : 1); // village cistern: half thirst drain
 
     // -- fire: standing in it burns; a real hazard to learn to avoid --
     if (cell.fire){ this.energy -= 4; if (w.rng() < 0.06){ this.die(cell); return null; } }
@@ -431,6 +432,7 @@ class Nodling {
         if (vc && vc.stack.some(m => DURABLE_BUILD.includes(m))) dn++;
       }
       this.inVillage = dn >= 12;
+      this.vPerk = VILLAGE_SURVIVAL_PERKS && this.inVillage;
       if (dn >= 12) this.bonus += VILLAGE_BONUS * 8;
     }
     if (this.lastBuild && w.isNight() && (this.lastBuild[0]-cx)**2 + (this.lastBuild[1]-cy)**2 <= 16) this.bonus += HOME_BONUS;
@@ -473,7 +475,7 @@ class Nodling {
       // mate choice: of the willing neighbours, pick the fittest (age + 250 x offspring)
       let bestFit = -1;
       for (const o of w.near(w.nIndex, this.x, this.y))
-        if (o !== this && !o.dead && o.energy > (this.inVillage ? 80 : 100)
+        if (o !== this && !o.dead && o.energy > (this.vPerk ? 80 : 100)
             && (o.x-this.x)**2 + (o.y-this.y)**2 < 4){
           const f = o.age + 250*o.offspring;
           if (f > bestFit){ bestFit = f; mate = o; }
@@ -502,7 +504,7 @@ class Nodling {
     const plant = mat === 'flora' || mat === 'seed';
     const flesh = mat === 'meat' || mat === 'cooked';
     const mult = plant ? 1.3 - d*0.9 : flesh ? 0.5 + d*0.9 : 1;
-    this.energy = Math.min(MAX_ENERGY, this.energy + MATERIALS[mat].nutrition*mult*(this.inVillage ? 1.25 : 1)); // village larder: meals inside a village are richer
+    this.energy = Math.min(MAX_ENERGY, this.energy + MATERIALS[mat].nutrition*mult*(this.vPerk ? 1.25 : 1)); // village larder: meals inside a village are richer
     if (this.heardCallAge !== undefined && this.age - this.heardCallAge <= 20) this.bonus += 0.3; // food-follow: a call led me to a meal
     if (mat === 'data') this.brain.boost = 6;   // plasticity surge: learn fast for a while
     const drops = MATERIALS[mat].drops;         // e.g. flora → a plantable seed

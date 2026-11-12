@@ -18,8 +18,8 @@
   "commSeparation": 0.0109,
   "worldTick": 3211450,
   "benchmark": {
-    "evolved": 2337,
-    "random": 357,
-    "gap": 1980
+    "evolved": 1657,
+    "random": 295,
+    "gap": 1362
   }
 }
