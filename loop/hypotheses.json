@@ -1718,6 +1718,14 @@
       "status": "reverted",
       "cycle": 221,
       "note": "cluster 1107->1083, builtCells 4383->4307; target worse"
+    },
+    {
+      "id": "residual-kiln-heat",
+      "signal": 1,
+      "change": "world.js tidal clay deposit fires straight to brick when beside a brick-topped cell",
+      "status": "kept",
+      "cycle": 222,
+      "note": "brickCells 3958->3959, cluster 1107->1107, bench gap 1933->1980; within noise"
     }
   ]
 }

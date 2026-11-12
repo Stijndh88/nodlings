@@ -1505,3 +1505,9 @@ STRUCTURAL: village-fertility (priority 1, plateau.js demanded structural): `nod
 STRUCTURAL: village-nursery (priority 1, plateau.js demanded structural): `nodling.js` newborn +30 energy when parent inVillage.
 - Control vs treatment (8k ticks): largestCluster 1107 -> 1083, builtCells 4383 -> 4307, brickCells 3958 -> 3958 (target worse); medianFitness 1113 -> 1329, bench gap 1933 -> 1933, pop 500 -> 499, commSeparation 0.0588 -> 0.0268 (noise). Guardrails pass, reverted on target metric.
 - Baseline batch used 12500 ticks (25000 timed out at 600s).
+
+## Cycle 222 — day 1999 — `kept`
+
+STRUCTURAL: residual-kiln-heat (priority 1, plateau.js demanded structural): `world.js` tidal clay deposited beside a brick-topped cell fires directly to brick (new affordance, not a bonus tweak).
+- Control vs treatment (8k ticks): largestCluster 1107 -> 1107, builtCells 4405 -> 4406, brickCells 3958 -> 3959, medianFitness 1243 -> 1243, bench gap 1933 -> 1980, commSeparation 0.0354 -> 0.0354, pop 500 -> 500. Guardrails pass; target equal/marginally better, within noise.
+- Baseline batch used 12500 ticks (25000 timed out at 600s). Local master was diverged, so worked on a branch from origin/master and pushed to master.

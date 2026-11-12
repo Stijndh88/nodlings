@@ -311,8 +311,17 @@ class World {
     // Tidal clay: shorelines slowly re-deposit clay so brick-making has a
     // renewable raw material instead of a finite starting stock.
     for (let i = 0, n = (8*af)|0; i < n; i++){
-      const c = this.at((this.rng()*GRID_W)|0, (this.rng()*GRID_H)|0);
-      if (c && c.sand && !c.water && !c.stack.length && this.rng() < 0.6) c.stack.push('clay');
+      const cx = (this.rng()*GRID_W)|0, cy = (this.rng()*GRID_H)|0;
+      const c = this.at(cx, cy);
+      if (c && c.sand && !c.water && !c.stack.length && this.rng() < 0.6){
+        // residual kiln heat: fresh clay beside a brick-topped cell fires on its own
+        let hot = false;
+        for (let dy = -1; dy <= 1 && !hot; dy++) for (let dx = -1; dx <= 1; dx++){
+          const nc = this.at(cx+dx, cy+dy);
+          if (nc && nc.stack[nc.stack.length-1] === 'brick'){ hot = true; break; }
+        }
+        c.stack.push(hot ? 'brick' : 'clay');
+      }
     }
 
     this.stepFire(warmth);
