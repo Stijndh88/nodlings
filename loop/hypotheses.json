@@ -1726,6 +1726,14 @@
       "status": "kept",
       "cycle": 222,
       "note": "brickCells 3958->3959, cluster 1107->1107, bench gap 1933->1980; within noise"
+    },
+    {
+      "id": "clay-seep",
+      "signal": 1,
+      "change": "world.js: empty inland land cells beside a brick-topped cell slowly yield clay (15% per tidal-clay roll)",
+      "status": "kept",
+      "cycle": 223,
+      "note": "cluster 1087->1138, brickCells 3960->4014, bench gap 1980->1953 (noise); single 8k sample"
     }
   ]
 }

@@ -1511,3 +1511,9 @@ STRUCTURAL: village-nursery (priority 1, plateau.js demanded structural): `nodli
 STRUCTURAL: residual-kiln-heat (priority 1, plateau.js demanded structural): `world.js` tidal clay deposited beside a brick-topped cell fires directly to brick (new affordance, not a bonus tweak).
 - Control vs treatment (8k ticks): largestCluster 1107 -> 1107, builtCells 4405 -> 4406, brickCells 3958 -> 3959, medianFitness 1243 -> 1243, bench gap 1933 -> 1980, commSeparation 0.0354 -> 0.0354, pop 500 -> 500. Guardrails pass; target equal/marginally better, within noise.
 - Baseline batch used 12500 ticks (25000 timed out at 600s). Local master was diverged, so worked on a branch from origin/master and pushed to master.
+
+## Cycle 223 — day 2007 — `kept`
+
+STRUCTURAL: clay-seep (priority 1, plateau.js demanded structural): `world.js` inland empty land cells beside a brick-topped cell slowly yield clay, giving villages a local raw-material supply (new affordance).
+- Control vs treatment (8k ticks): largestCluster 1087 -> 1138, builtCells 4379 -> 4408, brickCells 3960 -> 4014, medianFitness 1180 -> 1229, bench gap 1980 -> 1953 (noise), commSeparation 0.0299 -> 0.0183 (noise), pop 502 -> 500. Guardrails pass; target modestly better, single sample so possibly noise.
+- Baseline batch used 12500 ticks (25000 timed out at 600s).

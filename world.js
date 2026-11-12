@@ -324,6 +324,18 @@ class World {
       }
     }
 
+    // Clay seep: ground beside a brick wall slowly yields raw clay inland,
+    // so villages keep a local material supply rather than only shoreline clay.
+    for (let i = 0, n = (8*af)|0; i < n; i++){
+      const cx = (this.rng()*GRID_W)|0, cy = (this.rng()*GRID_H)|0;
+      const c = this.at(cx, cy);
+      if (!c || c.water || c.sand || c.stack.length || this.rng() >= 0.15) continue;
+      for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
+        const nb = this.at(cx+ax, cy+ay);
+        if (nb && nb.stack[nb.stack.length-1] === 'brick'){ c.stack.push('clay'); break; }
+      }
+    }
+
     this.stepFire(warmth);
 
     // Wind-blown flora so the food supply can never permanently hit zero and
