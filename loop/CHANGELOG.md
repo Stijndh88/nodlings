@@ -1531,3 +1531,9 @@ STRUCTURAL: clay-seep (priority 1, plateau.js demanded structural): `world.js` i
 STRUCTURAL: migrating-fallow (priority 1, plateau.js demanded structural): `world.js` a 1/5-width vertical band blocks flora regrowth and shifts every 8 days, so remembered food spots go stale.
 - Control vs treatment (8k ticks): bench gap 1815 -> 1758, medianFitness 1102 -> 1076, avgBrain 106 -> 108.2, largestCluster 1519 -> 1152, brickCells 4116 -> 4085, commSeparation 0.0209 -> 0.0001, pop 502 -> 500. Guardrails pass; target metrics worse (gap/median within noise but not better), reverted.
 - Baseline batch used 12500 ticks (25000 timed out at 600s).
+
+## Cycle 225 — day 2028 — `reverted`
+
+STRUCTURAL: weight-jump-mutation (priority 1, plateau.js demanded structural): `brain.js` 3% of connection weights resampled uniformly on mutation (heavy-tail jumps).
+- Control vs treatment (8k ticks): bench gap 1723 -> 1273 (guardrail fail, -26.1%), medianFitness 1126 -> 1053, avgBrain 99.6 -> 98.9, largestCluster 1511 -> 1234, brickCells 4258 -> 4318, pop 500 -> 501. Reverted.
+- Baseline batch used 12500 ticks (25000 timed out at 600s).

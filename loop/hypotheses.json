@@ -1742,6 +1742,14 @@
       "status": "reverted",
       "cycle": 224,
       "note": "bench gap 1815->1758, medianFitness 1102->1076; target worse"
+    },
+    {
+      "id": "weight-jump-mutation",
+      "signal": 1,
+      "change": "brain.js: 3% of connection weights resampled uniformly per mutation (heavy-tail jumps)",
+      "status": "reverted",
+      "cycle": 225,
+      "note": "bench gap 1723 -> 1273 (guardrail fail), median 1126 -> 1053"
     }
   ]
 }
