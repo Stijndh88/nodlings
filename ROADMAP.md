@@ -4,7 +4,9 @@
 plan and eventually cooperate, because the world makes those things pay off in offspring. Villages,
 bricks and calls only matter when they are the product of that intelligence.
 
-This file is the plan the autonomous loop follows (`loop/ROUTINE_PROMPT.md` points here). It replaces
+This file is the plan the autonomous loop follows (`loop/ROUTINE_PROMPT.md` points here).
+[`loop/PLAYBOOK.md`](loop/PLAYBOOK.md) explains the reasoning behind each phase, how to design and judge
+experiments, the known pitfalls and what to do when a phase stalls. It replaces
 the October 2026 audit plan, whose phases 0 to 3 (continuous world, benchmark, paired A/B, dashboard)
 were delivered and whose phase 4 (open-ended pressure) never started.
 

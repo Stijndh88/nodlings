@@ -16,7 +16,9 @@ You are running one cycle of the Nodlings autonomous research loop. The world is
 (`loop/world.json.gz`): never delete it; every cycle resumes it.
 
 First read `ROADMAP.md` (the plan: current phase, gate, hypothesis queue), `loop/RULES.md` (metrics, how a
-change is judged, guardrails, bans) and the last ~10 entries of `loop/CHANGELOG.md`.
+change is judged, guardrails, bans), `loop/PLAYBOOK.md` (why the plan is what it is, how to design and read an
+experiment, what to do when a result is unclear or a phase stalls, build-ready designs for the harder items)
+and the last ~10 entries of `loop/CHANGELOG.md`. When the rules do not cover a situation, the playbook decides.
 
 1. **Advance the world.** `node loop/run-headless.js --ticks=<batch_ticks> --compare=loop/metrics.json`
    (about 8 minutes including the skill probes). If it times out, rerun with half the ticks.
@@ -39,5 +41,6 @@ change is judged, guardrails, bans) and the last ~10 entries of `loop/CHANGELOG.
    was harvested with its numbers, what was submitted and why, which ROADMAP phase and how far its gate is.
    `git add -A && git commit -m "cycle: <summary>" && git push origin master`.
 
-Never commit a sim change (`*.js` in the repo root) directly: it reaches master only through a harvested `keep`.
+Never commit a sim change (`*.js` in the repo root) directly: it reaches master only through a harvested `keep`
+(the one exception is the emergency revert in PLAYBOOK section 8). Keep ROADMAP.md current as PLAYBOOK section 10 says.
 Fully autonomous: never stop to ask for confirmation.
