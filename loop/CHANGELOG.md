@@ -1549,3 +1549,9 @@ STRUCTURAL: variable-years (priority 1, plateau.js demanded structural): `world.
 learn-rate-0.028 (priority 1, plateau.js: tuning still productive): `brain.js` LEARN_RATE 0.025 -> 0.028.
 - Control vs treatment (8k ticks): bench gap 2013 -> 2061, medianFitness 903 -> 1462, avgBrain 106.9 -> 104.8, largestCluster 2745 -> 2708, brickCells 4771 -> 4753, pop 501 -> 500. Guardrails pass; gap difference is within noise, medianFitness gain larger but single sample.
 - Baseline batch used 12500 ticks.
+
+## Cycle 228 — day 2054 — `kept`
+
+learn-rate-0.031 (priority 1, plateau.js: tuning still productive): `brain.js` LEARN_RATE 0.028 -> 0.031.
+- Control vs treatment (8k ticks): bench gap 1212 -> 1709, medianFitness 1225 -> 987 (worse, within guardrail), avgBrain 112.6 -> 113.5, largestCluster 2861 -> 2860, brickCells 4981 -> 4943, commSeparation 0.078 -> 0.0327, pop 500 -> 500. Guardrails pass; gap gain is a single sample, possibly noise.
+- Baseline batch used 12500 ticks.
