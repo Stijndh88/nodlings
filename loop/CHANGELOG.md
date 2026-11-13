@@ -1555,3 +1555,10 @@ learn-rate-0.028 (priority 1, plateau.js: tuning still productive): `brain.js` L
 learn-rate-0.031 (priority 1, plateau.js: tuning still productive): `brain.js` LEARN_RATE 0.028 -> 0.031.
 - Control vs treatment (8k ticks): bench gap 1212 -> 1709, medianFitness 1225 -> 987 (worse, within guardrail), avgBrain 112.6 -> 113.5, largestCluster 2861 -> 2860, brickCells 4981 -> 4943, commSeparation 0.078 -> 0.0327, pop 500 -> 500. Guardrails pass; gap gain is a single sample, possibly noise.
 - Baseline batch used 12500 ticks.
+
+## Cycle 229 — day 2063 — batch only
+
+Baseline batch (15000 ticks) passed guardrails. probes.skill 985 (evolved 1288, random 303), learningGain -191, memoryGain +53 (base 2226, noLearning 2417, noMemory 2173).
+- Harvest: `era-thirst-3x` (0.5 h) and `reward-baseline` (0.4 h) are both still running; nothing kept or reverted, none overdue.
+- Submitted: nothing, 2 experiments already running.
+- ROADMAP: Phase 1 (switch selection back on). Gate not met: probes.skill 985 vs ~1790 target level; learningGain still negative (Phase 2 target).
