@@ -51,6 +51,8 @@ const keepT = R - 1 < T_CRIT.length ? (T_CRIT[R - 1] || Infinity) : 1.8;
 const base = arg('base', 'HEAD');
 const treatDir = path.resolve(arg('treatment-code', ROOT));
 const aa = flag('aa'), quick = flag('quick');
+// --simplify: for changes that REMOVE something (a reward bonus, a special case). Kept unless measurably worse.
+const simplify = flag('simplify');
 const targets = arg('target', 'probes.evolved').split(',');
 const jobs = +arg('jobs', Math.max(1, Math.min(os.cpus().length, 2 * R)));
 const PRIMARY = 'probes.evolved';
@@ -65,7 +67,7 @@ const ctrlSrc = SIM_FILES.map((f, i) => {
 });
 const changed = SIM_FILES.filter((f, i) => f !== 'metrics.js' && ctrlSrc[i] !== treatSrc[i]);
 const snapshot = fs.readFileSync(path.join(__dirname, 'world.json.gz'));
-const key = crypto.createHash('sha1').update(JSON.stringify([ctrlSrc, treatSrc, ticks, quick, aa, instant, read('loop/run-headless.js'), JSON.stringify(rules.probes)])).update(snapshot).digest('hex').slice(0, 12);
+const key = crypto.createHash('sha1').update(JSON.stringify([ctrlSrc, treatSrc, ticks, quick, aa, instant, cfg.probe_cohort, read('loop/run-headless.js'), JSON.stringify(rules.probes)])).update(snapshot).digest('hex').slice(0, 12);
 const work = path.resolve(arg('work', path.join(os.tmpdir(), 'nodlings-ab')), key);
 const ctrlDir = path.join(work, 'control-code');
 fs.mkdirSync(ctrlDir, { recursive: true });
@@ -87,6 +89,7 @@ function exec(run){
     const args = [path.join(__dirname, 'run-headless.js'), '--dry', '--bench', '--no-random', `--ticks=${ticks}`,
       instant ? `--seed-shift=${run.r}` : `--perturb=${run.perturb}`, `--code=${run.code}`, `--dir=${dir}`, `--out=${outOf(run)}.tmp`];
     if (quick) args.push('--quick');
+    else if (!instant && cfg.probe_cohort) args.push(`--probe-cohort=${cfg.probe_cohort}`); // long runs: a bigger sample, so the verdict is not sampling noise
     const t0 = Date.now();
     const child = spawn(process.execPath, args, { stdio: ['ignore', 'ignore', 'pipe'] });
     let err = '';
@@ -148,10 +151,12 @@ const METRICS = ['probes.evolved', 'probes.base', 'probes.scarce', 'probes.thirs
   const targetsBetter = !missing.length && targets.every(m => table[m].verdict === 'better');
   const primaryWorse = table[PRIMARY] && table[PRIMARY].verdict === 'worse';
   const pass = reasons.length === 0;
-  const decision = aa ? 'n/a (noise floor)' : (pass && targetsBetter && !primaryWorse ? 'keep' : 'revert');
+  const targetsWorse = targets.some(m => table[m] && table[m].verdict === 'worse');
+  const decision = aa ? 'n/a (noise floor)' : simplify ? (pass && !primaryWorse && !targetsWorse ? 'keep' : 'revert') : (pass && targetsBetter && !primaryWorse ? 'keep' : 'revert');
   const why = aa ? 'identical code on shifted streams: read the noise column' :
     !pass ? 'guardrail tripped' : missing.length ? `unknown target metric ${missing.join(', ')}` :
     primaryWorse ? `${PRIMARY} is measurably worse` :
+    simplify ? (targetsWorse ? 'the simplification measurably hurts the target' : 'simplification: nothing got measurably worse, so the simpler rules win') :
     targetsBetter ? `target ${targets.join(', ')} is measurably better (t >= ${keepT})` :
     `no measurable gain on ${targets.join(', ')}: a change that cannot show its effect is not kept`;
 

@@ -9,7 +9,7 @@
 //         --bench / --no-bench (skill probes; default on unless --dry)
 //         --perturb=N (shift the RNG stream after resume: replicate N of an A/B)
 //         --code=DIR (load the sim files from another checkout: the A/B control arm)
-//         --seed-shift=N (probe on seeds + N*1000)
+//         --seed-shift=N (probe on seeds + N*1000)  --probe-cohort=N (genomes sampled for the probes)
 //         --no-random (skip the random-genome reference cohorts)  --quick (tiny probes, CI only)
 'use strict';
 const fs = require('fs');
@@ -108,12 +108,15 @@ if (wantBench){
   const p = Object.assign({}, flag('quick') ? { ticks: 300, cohort: 8, seeds: [101] } : rules.probes);
   const shift = +arg('seed-shift', 0);            // instant A/B: replicate r sits the exam on its own seeds
   if (shift) p.seeds = p.seeds.map(s => s + shift * 1000);
+  if (arg('probe-cohort', null)) p.cohort = +arg('probe-cohort');
+  const RANDOM_COHORT = Math.min(40, p.cohort);   // random brains die fast and vary little: a small reference cohort is enough
   const genomes = JSON.stringify(vm.runInContext(`(function(){ const L = nodlings.slice().sort((a,b)=>(a.age+250*a.offspring)-(b.age+250*b.offspring)); const K = Math.min(${p.cohort}, L.length), out = []; for (let i = 0; i < K; i++) out.push(L[Math.floor((i+0.5)*L.length/K)].genome); return out; })()`, context) || []);
+  const cohortOf = useGenomes => (useGenomes ? p.cohort : RANDOM_COHORT);
   const score = (useGenomes, wseed, task) => {
     const c = makeContext({});
     return vm.runInContext(`(function(){
       ${useGenomes ? `const G = ${genomes}; reindexFromGenomes(G);` : 'const G = null;'}
-      return probeCohort(G, ${wseed}, ${p.ticks}, ${p.cohort}, '${task}');
+      return probeCohort(G, ${wseed}, ${p.ticks}, ${cohortOf(useGenomes)}, '${task}');
     })()`, c);
   };
   const avg = (useGenomes, task) => Math.round(p.seeds.reduce((s, seed) => s + score(useGenomes, seed, task), 0) / p.seeds.length);

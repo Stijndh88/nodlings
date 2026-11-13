@@ -11,8 +11,8 @@ const win = arg('window', 4), tol = arg('tol', 0.03);
 const file = path.join(__dirname, 'history.jsonl');
 const hist = fs.existsSync(file) ? fs.readFileSync(file, 'utf8').trim().split('\n').filter(Boolean).map(l => JSON.parse(l)) : [];
 const metrics = {
-  'benchmark.gap': h => h.benchmark && h.benchmark.gap,
-  medianFitness: h => h.medianFitness,
+  'probes.skill': h => h.probes && h.probes.skill,
+  'probes.learningGain': h => h.probes && h.probes.learningGain,
   avgBrain: h => h.avgBrain,
   maxGen: h => h.maxGen,
 };
@@ -26,5 +26,5 @@ if (hist.length >= win){
     ((hi - lo) / base <= tol || v[v.length-1] <= v[0] ? out.plateaued : out.rising).push(name);
   }
 }
-out.advice = out.plateaued.length >= 3 ? 'STRUCTURAL cycle required: target evolved skill (benchmark.gap, medianFitness, brain size) with a new environmental pressure, sense, action or selection/mutation mechanism. Not a village perk.' : 'Tuning is still productive.';
+out.advice = out.plateaued.length >= 3 ? 'STRUCTURAL cycle required: pick the next item from the current ROADMAP.md phase (selection pressure, learning machinery). Not a village perk, not a reward bonus.' : 'Tuning is still productive.';
 console.log(JSON.stringify(out, null, 2));

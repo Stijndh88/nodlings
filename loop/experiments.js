@@ -6,7 +6,7 @@
 //   loop/experiments/<id>/spec.json      target metric, replicates, ticks
 //   loop/experiments/<id>/result.json    copied in by `harvest` when it is done
 //
-//   submit <id> --target=M [--note=TEXT] [--ticks=N] [--replicates=N]
+//   submit <id> --target=M [--note=TEXT] [--ticks=N] [--replicates=N] [--simplify]
 //       Turn the uncommitted sim change in the working tree into an experiment and
 //       restore the working tree. Commit + push: the push starts the workflow.
 //   harvest
@@ -58,6 +58,7 @@ function submit(){
   const spec = { id, target: arg('target', 'probes.evolved'), note: arg('note', ''), created: new Date().toISOString(), baseCommit: git(['rev-parse', '--short', 'HEAD']).trim() };
   if (arg('ticks')) spec.ticks = +arg('ticks');
   if (arg('replicates')) spec.replicates = +arg('replicates');
+  if (flag('simplify')) spec.simplify = true;
   fs.writeFileSync(path.join(dir, 'spec.json'), JSON.stringify(spec, null, 2) + '\n');
   git(['checkout', 'HEAD', '--', ...SIM_FILES]);
   setHypothesis(id, { signal: spec.target, change: spec.note || id, status: 'running', note: `evolution experiment submitted at ${spec.baseCommit}` });
@@ -80,6 +81,7 @@ function runOne(id, outFile){
     const args = [path.join(__dirname, 'ab.js'), `--treatment-code=${tdir}`, '--base=HEAD', `--target=${spec.target}`, `--out=${outFile}`];
     if (spec.ticks) args.push(`--ticks=${spec.ticks}`);
     if (spec.replicates) args.push(`--replicates=${spec.replicates}`);
+    if (spec.simplify) args.push('--simplify');
     if (flag('quick')) args.push('--quick', '--ticks=300', '--replicates=2');
     const r = spawnSync(process.execPath, args, { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'], maxBuffer: 1 << 26 });
     result = readJSON(outFile, null) || { decision: 'revert', pass: false, why: 'A/B crashed', reasons: [String(r.stdout).trim().slice(-600)] };
