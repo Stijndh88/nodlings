@@ -1,25 +1,27 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 2038.4 · Autumn
+Seed `20261007` · day 2046.2 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (33 juvenile) |
-| max generation | 4278 |
+| population | 500 (36 juvenile) |
+| max generation | 4299 |
 | best fitness | 7002 |
-| avg brain (conns) | 95 |
-| lineage diversity | 5 colour-groups |
-| diet | 77% herbivore / 7% carnivore |
-| predators | 4, 10 kills, best 114012 |
-| structures (durable) | 8222 (4694) |
-| planks / bricks / bridges | 28 / 2081 / 2660 |
-| flora / cooked food | 7483 / 874 |
+| avg brain (conns) | 99 |
+| lineage diversity | 6 colour-groups |
+| diet | 73% herbivore / 10% carnivore |
+| predators | 2, 0 kills, best 114012 |
+| structures (durable) | 8951 (4872) |
+| planks / bricks / bridges | 30 / 2062 / 2660 |
+| flora / cooked food | 6380 / 754 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 2044.4]** _(trend)_ Lineages are deepening — max generation 4279→4297. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 2039.4]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 2037.8]** _(trend)_ Lineages are deepening — max generation 4263→4278. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 2031.8]** _(trend)_ Brains are genuinely shrinking below capacity — selection favours simpler wiring right now.
 - **[day 2031.8]** _(trend)_ Lineages are deepening — max generation 4248→4263. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
@@ -518,5 +520,3 @@ Seed `20261007` · day 2038.4 · Autumn
 - **[day 1.3]** _(milestone)_ Predators have started landing kills — hunting is being learned (co-evolution underway).
 - **[day 1.3]** _(milestone)_ A cluster of 25+ durable structures exists — a proto-settlement is taking shape.
 - **[day 1.3]** _(milestone)_ Several bridge tiles now span water — a deliberate crossing is forming.
-- **[day 1.3]** _(milestone)_ A bridge tile appeared over water — someone laid buoyant material on the sea. Watch for territory expansion / crossings.
-- **[day 1.3]** _(milestone)_ Nodlings are stacking durable materials (wood/stone/plank) into structures — deliberate building, not just corpse-flora.

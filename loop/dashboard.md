@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-13T08:32Z. Now: day 2038.41, benchmark gap **1903** (evolved gene pool minus random genomes), largest built cluster 1590, 4540 brick cells, max generation 4279.
+Updated 2026-11-13T12:29Z. Now: day 2046.22, benchmark gap **2020** (evolved gene pool minus random genomes), largest built cluster 2689, 4656 brick cells, max generation 4300.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-13T08:32Z. Now: day 2038.41, benchmark gap **1903** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 226 | 2046.22 | 2020 | 1071 | 2689 | 4656 | 4300 | 0.1297 |
 | 225 | 2038.41 | 1903 | 1213 | 1590 | 4540 | 4279 | 0.0131 |
 | 224 | 2022.78 | 1871 | 1040 | 1530 | 4119 | 4264 | 0.0372 |
 | 223 | 2014.97 | 1704 | 1064 | 1140 | 4045 | 4245 | 0.0601 |
@@ -24,7 +25,6 @@ Updated 2026-11-13T08:32Z. Now: day 2038.41, benchmark gap **1903** (evolved gen
 | 214 | 1944.66 | 1933 | 1293 | 1941 | 3953 | 4086 | 0.022 |
 | 213 | 1936.84 | 1933 | 1260 | 1939 | 3953 | 4068 | 0.0489 |
 | 212 | 1921.22 | 1933 | 1234 | 1982 | 3953 | 4040 | 0.0106 |
-| 211 | 1905.59 | 1933 | 1121 | 1961 | 3953 | 4002 | 0.0827 |
 
 ## Hypotheses
 
@@ -247,6 +247,7 @@ Updated 2026-11-13T08:32Z. Now: day 2038.41, benchmark gap **1903** (evolved gen
 - **kept**: world.js: empty inland land cells beside a brick-topped cell slowly yield clay (15% per tidal-clay roll) (cluster 1087->1138, brickCells 3960->4014, bench gap 1980->1953 (noise); single 8k sample)
 - **reverted**: STRUCTURAL: world.js a vertical 1/5-width band blocks flora regrowth, shifting every 8 days (stale food memory) (bench gap 1815->1758, medianFitness 1102->1076; target worse)
 - **reverted**: brain.js: 3% of connection weights resampled uniformly per mutation (heavy-tail jumps) (bench gap 1723 -> 1273 (guardrail fail), median 1126 -> 1053)
+- **reverted**: world.js per-year deterministic flora regrowth multiplier 0.8..1.15 (unpredictable good/lean years reward plasticity) (bench gap 1933 -> 1402 (-27.5%, guardrail fail))
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
