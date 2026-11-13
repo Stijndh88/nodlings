@@ -1543,3 +1543,9 @@ STRUCTURAL: weight-jump-mutation (priority 1, plateau.js demanded structural): `
 STRUCTURAL: variable-years (priority 1, plateau.js demanded structural): `world.js` deterministic per-year flora regrowth multiplier 0.8..1.15, so good/lean years are unpredictable.
 - Control vs treatment (8k ticks): bench gap 1933 -> 1402 (guardrail fail, -27.5%), medianFitness 1298 -> 1024, avgBrain 97.2 -> 94.9, largestCluster 2676 -> 1632, brickCells 4647 -> 4634, pop 500 -> 500. Reverted.
 - Baseline batch ran the full 25000 ticks (~8 min).
+
+## Cycle 227 — day 2046 — `kept`
+
+learn-rate-0.028 (priority 1, plateau.js: tuning still productive): `brain.js` LEARN_RATE 0.025 -> 0.028.
+- Control vs treatment (8k ticks): bench gap 2013 -> 2061, medianFitness 903 -> 1462, avgBrain 106.9 -> 104.8, largestCluster 2745 -> 2708, brickCells 4771 -> 4753, pop 501 -> 500. Guardrails pass; gap difference is within noise, medianFitness gain larger but single sample.
+- Baseline batch used 12500 ticks.

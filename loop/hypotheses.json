@@ -106,7 +106,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -1758,6 +1758,14 @@
       "status": "reverted",
       "cycle": 226,
       "note": "bench gap 1933 -> 1402 (-27.5%, guardrail fail)"
+    },
+    {
+      "id": "learn-rate-0.028",
+      "signal": 1,
+      "change": "brain.js LEARN_RATE 0.025 -> 0.028",
+      "status": "kept",
+      "cycle": 227,
+      "note": "bench gap 2013->2061, medianFitness 903->1462; single 8k sample, likely partly noise"
     }
   ]
 }
