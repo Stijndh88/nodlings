@@ -1525,3 +1525,9 @@ STRUCTURAL: residual-kiln-heat (priority 1, plateau.js demanded structural): `wo
 STRUCTURAL: clay-seep (priority 1, plateau.js demanded structural): `world.js` inland empty land cells beside a brick-topped cell slowly yield clay, giving villages a local raw-material supply (new affordance).
 - Control vs treatment (8k ticks): largestCluster 1087 -> 1138, builtCells 4379 -> 4408, brickCells 3960 -> 4014, medianFitness 1180 -> 1229, bench gap 1980 -> 1953 (noise), commSeparation 0.0299 -> 0.0183 (noise), pop 502 -> 500. Guardrails pass; target modestly better, single sample so possibly noise.
 - Baseline batch used 12500 ticks (25000 timed out at 600s).
+
+## Cycle 224 — day 2015 — `reverted`
+
+STRUCTURAL: migrating-fallow (priority 1, plateau.js demanded structural): `world.js` a 1/5-width vertical band blocks flora regrowth and shifts every 8 days, so remembered food spots go stale.
+- Control vs treatment (8k ticks): bench gap 1815 -> 1758, medianFitness 1102 -> 1076, avgBrain 106 -> 108.2, largestCluster 1519 -> 1152, brickCells 4116 -> 4085, commSeparation 0.0209 -> 0.0001, pop 502 -> 500. Guardrails pass; target metrics worse (gap/median within noise but not better), reverted.
+- Baseline batch used 12500 ticks (25000 timed out at 600s).

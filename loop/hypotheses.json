@@ -1734,6 +1734,14 @@
       "status": "kept",
       "cycle": 223,
       "note": "cluster 1087->1138, brickCells 3960->4014, bench gap 1980->1953 (noise); single 8k sample"
+    },
+    {
+      "id": "migrating-fallow",
+      "signal": 1,
+      "change": "STRUCTURAL: world.js a vertical 1/5-width band blocks flora regrowth, shifting every 8 days (stale food memory)",
+      "status": "reverted",
+      "cycle": 224,
+      "note": "bench gap 1815->1758, medianFitness 1102->1076; target worse"
     }
   ]
 }
