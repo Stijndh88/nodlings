@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is the **benchmark gap**: how much better the evolved Nodlings do than random ones (higher is better). The glossary at the bottom explains every number.
 
-Updated 2026-11-13T04:30Z. Now: day 2022.78, benchmark gap **1871** (evolved gene pool minus random genomes), largest built cluster 1530, 4119 brick cells, max generation 4264.
+Updated 2026-11-13T08:32Z. Now: day 2038.41, benchmark gap **1903** (evolved gene pool minus random genomes), largest built cluster 1590, 4540 brick cells, max generation 4279.
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-13T04:30Z. Now: day 2022.78, benchmark gap **1871** (evolved gen
 
 | cycle | day | bench gap | median fitness | cluster | bricks | max gen | comm |
 |---|---|---|---|---|---|---|---|
+| 225 | 2038.41 | 1903 | 1213 | 1590 | 4540 | 4279 | 0.0131 |
 | 224 | 2022.78 | 1871 | 1040 | 1530 | 4119 | 4264 | 0.0372 |
 | 223 | 2014.97 | 1704 | 1064 | 1140 | 4045 | 4245 | 0.0601 |
 | 222 | 2007.16 | 1980 | 1257 | 1105 | 3959 | 4223 | 0.0109 |
@@ -24,7 +25,6 @@ Updated 2026-11-13T04:30Z. Now: day 2022.78, benchmark gap **1871** (evolved gen
 | 213 | 1936.84 | 1933 | 1260 | 1939 | 3953 | 4068 | 0.0489 |
 | 212 | 1921.22 | 1933 | 1234 | 1982 | 3953 | 4040 | 0.0106 |
 | 211 | 1905.59 | 1933 | 1121 | 1961 | 3953 | 4002 | 0.0827 |
-| 210 | 1889.97 | 1933 | 1335 | 1028 | 3952 | 3963 | 0.0475 |
 
 ## Hypotheses
 
@@ -246,6 +246,7 @@ Updated 2026-11-13T04:30Z. Now: day 2022.78, benchmark gap **1871** (evolved gen
 - **kept**: world.js tidal clay deposit fires straight to brick when beside a brick-topped cell (brickCells 3958->3959, cluster 1107->1107, bench gap 1933->1980; within noise)
 - **kept**: world.js: empty inland land cells beside a brick-topped cell slowly yield clay (15% per tidal-clay roll) (cluster 1087->1138, brickCells 3960->4014, bench gap 1980->1953 (noise); single 8k sample)
 - **reverted**: STRUCTURAL: world.js a vertical 1/5-width band blocks flora regrowth, shifting every 8 days (stale food memory) (bench gap 1815->1758, medianFitness 1102->1076; target worse)
+- **reverted**: brain.js: 3% of connection weights resampled uniformly per mutation (heavy-tail jumps) (bench gap 1723 -> 1273 (guardrail fail), median 1126 -> 1053)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
