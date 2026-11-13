@@ -18,6 +18,15 @@ const PRED_SCHEMA    = { nIn:11, outputs:['moveX','moveY'], cosmetic:false };
 const HIDDEN_BASE = 100; // hidden node ids start here (above every schema's fixed ids)
 const MAX_CONNS = 300, MAX_HIDDEN = 80, W_CLAMP = 4, LEARN_RATE = 0.031;
 
+// World parameters. ENV holds the settings of the LIVE world (the current "era");
+// make the world harder or easier by changing these, not by editing constants.
+// The skill probes in metrics.js pin every key to EXAM values while they run, so
+// the exam stays the same exam however the live world changes, and can switch
+// faculties off (learning, memory senses) to measure what they are worth.
+const ENV = { plasticity:1, senseMask:null, thirst:1, flora:1, noBirths:false };
+const ENV_LIVE = Object.assign({}, ENV);   // restored after every probe
+const EXAM = Object.freeze({ plasticity:1, senseMask:null, thirst:1, flora:1, noBirths:true });
+
 const biasId   = sc => sc.nIn;
 const outStart = sc => sc.nIn + 1;
 const isHidden = id => id >= HIDDEN_BASE;
@@ -237,7 +246,7 @@ class Brain {
       tmp[j] = r ? r*a[comp[j]] + (1-r)*Math.tanh(s) : Math.tanh(s); // gated memory
     }
     if (reward){
-      const lr = LEARN_RATE * this.boost;
+      const lr = LEARN_RATE * this.boost * ENV.plasticity;
       for (let j = 0; j < comp.length; j++){
         const list = inc[j], post = tmp[j];
         for (let k = 0; k < list.length; k++){

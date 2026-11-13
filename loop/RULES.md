@@ -5,12 +5,13 @@
   "world_seed": 20261007,
   "batch_ticks": 25000,
   "validation_ticks": 8000,
-  "benchmark": {"ticks": 2500, "cohort": 30, "seeds": [101, 202, 303]},
+  "probes": {"ticks": 3000, "cohort": 40, "seeds": [101, 202, 303]},
+  "ab": {"instant_replicates": 4, "replicates": 5, "ticks": 60000, "min_effect_pct": 2},
   "guardrails": {
     "min_population": 15,
     "max_fitness_drop_pct": 25,
     "max_population_drop_pct": 40,
-    "max_benchmark_drop_pct": 25
+    "max_skill_drop_pct": 25
   },
   "tunable_params": [
     {"file": "nodling.js", "const": "REPRO_THRESHOLD", "range": [0.4, 0.9]},

@@ -106,7 +106,7 @@ function simTick(){
     hallOfFame.length = Math.min(hallOfFame.length, 40); // deeper, more diverse seed bank
   }
   births += born.length;
-  nodlings = nodlings.filter(n=>!n.dead).concat(born);
+  nodlings = nodlings.filter(n=>!n.dead).concat(ENV.noBirths ? [] : born); // probes score a fixed cohort
   critters = updateCritters(world, critters);
   // gentle life-support: trickle in one gene-bank Nodling at a time toward a
   // minimum, instead of dumping a crowd of clones — keeps a diverse standing
