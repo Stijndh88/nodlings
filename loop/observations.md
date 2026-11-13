@@ -1,25 +1,27 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261007` · day 2046.2 · Winter
+Seed `20261007` · day 2054.0 · Spring
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 500 (36 juvenile) |
-| max generation | 4299 |
+| population | 500 (34 juvenile) |
+| max generation | 4319 |
 | best fitness | 7002 |
-| avg brain (conns) | 99 |
-| lineage diversity | 6 colour-groups |
-| diet | 73% herbivore / 10% carnivore |
-| predators | 2, 0 kills, best 114012 |
-| structures (durable) | 8951 (4872) |
-| planks / bricks / bridges | 30 / 2062 / 2660 |
-| flora / cooked food | 6380 / 754 |
+| avg brain (conns) | 106 |
+| lineage diversity | 7 colour-groups |
+| diet | 71% herbivore / 19% carnivore |
+| predators | 3, 8 kills, best 114012 |
+| structures (durable) | 9482 (5049) |
+| planks / bricks / bridges | 30 / 2090 / 2660 |
+| flora / cooked food | 6434 / 681 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 2051.2]** _(trend)_ Lineages are deepening — max generation 4300→4313. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
+- **[day 2050.2]** _(trend)_ Nodlings are grouping more tightly (mean spacing 3.3→2.1) — possible flocking / proto-tribe.
 - **[day 2044.4]** _(trend)_ Lineages are deepening — max generation 4279→4297. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
 - **[day 2039.4]** _(issue)_ Fitness AND generation depth are both flat (~6 days) — evolution may genuinely be stalling; check population stability and gene-pool diversity.
 - **[day 2037.8]** _(trend)_ Lineages are deepening — max generation 4263→4278. Continuous selection is running in a stable population — the healthy state, even if the fitness number saturates.
@@ -518,5 +520,3 @@ Seed `20261007` · day 2046.2 · Winter
 - **[day 1.3]** _(milestone)_ Population reached 150.
 - **[day 1.3]** _(milestone)_ Population reached 100.
 - **[day 1.3]** _(milestone)_ Predators have started landing kills — hunting is being learned (co-evolution underway).
-- **[day 1.3]** _(milestone)_ A cluster of 25+ durable structures exists — a proto-settlement is taking shape.
-- **[day 1.3]** _(milestone)_ Several bridge tiles now span water — a deliberate crossing is forming.
