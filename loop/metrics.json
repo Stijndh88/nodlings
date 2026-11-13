@@ -1,25 +1,32 @@
 {
-  "day": 2054.03,
+  "day": 2063.41,
   "population": 500,
-  "medianFitness": 1245,
-  "meanFitness": 1233,
+  "medianFitness": 1023,
+  "meanFitness": 1097,
   "peakFitness": 7002,
-  "maxGen": 4320,
-  "avgBrain": 107,
-  "largestCluster": 2721,
-  "builtCells": 5358,
-  "brickCells": 4767,
-  "meanEnergy": 160,
-  "floraCount": 7656,
+  "maxGen": 4349,
+  "avgBrain": 114,
+  "largestCluster": 2884,
+  "builtCells": 5493,
+  "brickCells": 5027,
+  "meanEnergy": 159,
+  "floraCount": 8666,
   "deaths": {
-    "starved": 2588,
-    "thirst": 817
+    "starved": 2613,
+    "thirst": 1297
   },
-  "commSeparation": 0.0196,
-  "worldTick": 3286450,
-  "benchmark": {
-    "evolved": 2181,
-    "random": 345,
-    "gap": 1836
+  "commSeparation": 0.0051,
+  "worldTick": 3301450,
+  "probes": {
+    "base": 2226,
+    "scarce": 778,
+    "thirst": 860,
+    "noLearning": 2417,
+    "noMemory": 2173,
+    "evolved": 1288,
+    "random": 303,
+    "skill": 985,
+    "learningGain": -191,
+    "memoryGain": 53
   }
 }
