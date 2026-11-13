@@ -1537,3 +1537,9 @@ STRUCTURAL: migrating-fallow (priority 1, plateau.js demanded structural): `worl
 STRUCTURAL: weight-jump-mutation (priority 1, plateau.js demanded structural): `brain.js` 3% of connection weights resampled uniformly on mutation (heavy-tail jumps).
 - Control vs treatment (8k ticks): bench gap 1723 -> 1273 (guardrail fail, -26.1%), medianFitness 1126 -> 1053, avgBrain 99.6 -> 98.9, largestCluster 1511 -> 1234, brickCells 4258 -> 4318, pop 500 -> 501. Reverted.
 - Baseline batch used 12500 ticks (25000 timed out at 600s).
+
+## Cycle 226 — day 2038 — `reverted`
+
+STRUCTURAL: variable-years (priority 1, plateau.js demanded structural): `world.js` deterministic per-year flora regrowth multiplier 0.8..1.15, so good/lean years are unpredictable.
+- Control vs treatment (8k ticks): bench gap 1933 -> 1402 (guardrail fail, -27.5%), medianFitness 1298 -> 1024, avgBrain 97.2 -> 94.9, largestCluster 2676 -> 1632, brickCells 4647 -> 4634, pop 500 -> 500. Reverted.
+- Baseline batch ran the full 25000 ticks (~8 min).

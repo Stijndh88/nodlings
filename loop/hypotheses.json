@@ -1750,6 +1750,14 @@
       "status": "reverted",
       "cycle": 225,
       "note": "bench gap 1723 -> 1273 (guardrail fail), median 1126 -> 1053"
+    },
+    {
+      "id": "variable-years",
+      "signal": 1,
+      "change": "world.js per-year deterministic flora regrowth multiplier 0.8..1.15 (unpredictable good/lean years reward plasticity)",
+      "status": "reverted",
+      "cycle": 226,
+      "note": "bench gap 1933 -> 1402 (-27.5%, guardrail fail)"
     }
   ]
 }
