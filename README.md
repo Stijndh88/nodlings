@@ -89,6 +89,7 @@ log of an automated observer that records milestones and problems once per in-wo
 | `docs/world-notes.md` | Longer notes on the world's mechanics |
 | `ROADMAP.md` | The plan: findings, principles, phases with gates, hypothesis queues |
 | `loop/RULES.md`, `loop/ROUTINE_PROMPT.md` | What the autonomous loop must do each cycle |
+| `loop/PLAYBOOK.md` | Why the plan is what it is, how to design and read experiments, pitfalls, what to do when stuck |
 | `loop/run-headless.js` | Advance the saved world and measure it |
 | `loop/ab.js` | Replicated paired A/B test with a noise-aware verdict |
 | `loop/experiments.js`, `loop/experiments/` | Long evolution experiments that run on GitHub Actions |

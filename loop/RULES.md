@@ -24,6 +24,8 @@
 
 ## The plan
 `ROADMAP.md` is the plan: the current phase, its gate and its hypothesis queue. Read it every cycle.
+`loop/PLAYBOOK.md` explains the reasoning, the decision rules for unclear cases, the pitfalls and what to do
+when a phase stalls; it also holds build-ready designs for the harder queue items.
 **The goal is evolved intelligence**: Nodlings that get measurably better at an unchanging exam through brain
 evolution and learning.
 
