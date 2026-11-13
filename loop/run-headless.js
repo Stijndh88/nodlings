@@ -9,6 +9,7 @@
 //         --bench / --no-bench (skill probes; default on unless --dry)
 //         --perturb=N (shift the RNG stream after resume: replicate N of an A/B)
 //         --code=DIR (load the sim files from another checkout: the A/B control arm)
+//         --era (safety screen for a harder world: fitness may drop, the population must survive)
 //         --seed-shift=N (probe on seeds + N*1000)  --probe-cohort=N (genomes sampled for the probes)
 //         --no-random (skip the random-genome reference cohorts)  --quick (tiny probes, CI only)
 'use strict';
@@ -144,7 +145,7 @@ const dropPct = (before, after) => before > 0 ? 100 * (before - after) / before 
 if (baseline){
   // Median fitness of the living population is age-driven and swings with turnover,
   // so it is only a guardrail in paired --dry A/B runs (same snapshot), never across batches.
-  if (dry && baseline.medianFitness != null && dropPct(baseline.medianFitness, metrics.medianFitness) > g.max_fitness_drop_pct)
+  if (dry && !flag('era') && baseline.medianFitness != null && dropPct(baseline.medianFitness, metrics.medianFitness) > g.max_fitness_drop_pct)
     reasons.push(`median fitness dropped ${dropPct(baseline.medianFitness, metrics.medianFitness).toFixed(1)}% (max ${g.max_fitness_drop_pct}%)`);
   const bp = baseline.population;
   if (bp != null && dropPct(bp, metrics.population) > g.max_population_drop_pct)

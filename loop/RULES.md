@@ -54,8 +54,8 @@ One run against one run proves nothing (`node loop/ab.js --aa` shows the noise f
 1. **Instant test**, `node loop/ab.js --instant --target=<metric>` (about 4 minutes, resumable: if it is cut
    off, run the same command again). The same gene pool sits the exam under HEAD and under the working tree,
    4 replicates. Use it as a screen for brain, sense, action and reward changes. A world-parameter (`ENV`) change
-   cannot move the exam, so screen it with `node loop/run-headless.js --dry --no-bench --ticks=6000 --compare=loop/metrics.json` instead
-   (population must survive).
+   cannot move the exam, so screen it with `node loop/run-headless.js --dry --era --no-bench --ticks=6000 --compare=loop/metrics.json` instead
+   (fitness inside a harder world is allowed to drop; the population must survive).
 2. **Evolution experiment**, `node loop/experiments.js submit <id> --target=<metric> --note="<what and why>"`.
    This stores the working-tree change as `loop/experiments/<id>/change.patch`, restores the working tree, and
    (after commit and push) GitHub Actions evolves 5 replicate worlds with the change and 5 without for 60,000
