@@ -61,8 +61,11 @@ hypotheses from that phase's queue (top first), or invents one that serves the s
 Make survival and breeding depend on what a Nodling does.
 
 Queue:
-1. `era-thirst-3x`: `ENV.thirst` 1 to 3, so a newborn's water lasts about 740 ticks, less than a breeding
-   life. Target `probes.thirst`.
+1. `era-thirst-1.5x`: `ENV.thirst` 1 to 1.5, so a newborn's water lasts about 1480 ticks. The first attempt,
+   `era-thirst-3x`, was reverted on 13 November: after 60,000 ticks the Nodlings that evolved under it scored 37%
+   lower on every exam task (t = -9.3) and the population fell 11%. Killing a third of the population in one step
+   replaces selection with luck about being born near water. Raise pressure in small steps (1.5, then 2, then 3),
+   each as its own experiment. Target `probes.thirst`.
 2. `era-food-limited`: `ENV.flora` 1 to 0.6, so food rather than the cap limits the population. Target `probes.scarce`.
 3. `breed-by-surplus`: in `nodling.js` the breeding chance is a flat 0.008 per tick. Scale it with the energy
    surplus above the threshold (for example x0.5 at 115, x2 at 220), so better foragers have more offspring. Target `probes.evolved`.
@@ -71,8 +74,10 @@ Queue:
 5. `predators-matter`: 4 predators hunt 500 Nodlings. Scale `PRED_CAP` with the population (about 1 per 25). Target `probes.evolved`.
 6. `earlier-ageing`: `SENESCENCE` 900 to 600, which shortens the post-breeding tail and speeds up generations. Target `probes.evolved`.
 
-**Gate:** `probes.skill` is at least 15% above its November 2026 level (about 1790) for 5 cycles in a row,
-and fewer than 5% of deaths are "never drank" deaths.
+**Gate:** the 5-cycle average of `probes.skill` is at least 15% above the average of cycles 229 to 233 (the
+first five measured with the exam), and fewer than 5% of deaths are "never drank" deaths. Always use the
+5-cycle average: a single reading swings a lot (1789 at day 2054, 985 at day 2063, with no rule change in
+between), because a near-neutral population with heavy mutation drifts quickly.
 
 ### Phase 2: learning that pays
 
@@ -90,14 +95,17 @@ Queue:
    which one is nourishing and one is not, re-drawn every year, with a sense that tells them apart. Only learning
    can solve it. Add a matching exam task `relearn` to `PROBE_TASKS` in the same change.
 
-**Gate:** `probes.learningGain` is positive in 5 consecutive cycles and measurably above zero in an instant test.
+Status: `reward-baseline` passed its evolution experiment on 13 November (learning gain -230 to -17, t = 2.18)
+and lands with the next harvest. Learning went from harmful to neutral; the remaining items must make it useful.
+
+**Gate:** the 5-cycle average of `probes.learningGain` is positive and it is measurably above zero in an instant test.
 
 ### Phase 3: memory and planning
 
 Queue: patchy food far from water (commuting), seasonal food that moves so last year's spot matters, food that
 keeps in a cache, a longer exam horizon. Add exam tasks `commute` and `seasons`. Use more than two memory cells if the brains fill them.
 
-**Gate:** `probes.memoryGain` rises 25% above its November 2026 level, and the new tasks show evolved Nodlings beating random ones.
+**Gate:** the 5-cycle average of `probes.memoryGain` rises 25% above the average of cycles 229 to 233, and the new tasks show evolved Nodlings beating random ones.
 
 ### Phase 4: strip the scaffolding
 

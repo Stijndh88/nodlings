@@ -16,9 +16,9 @@ intelligence grow here, and can we prove it?
 | | November 2026 | What it means |
 |---|---|---|
 | World age | day 2054, generation 4320 | One continuous world, running since October 2026 |
-| **Skill** | about 1790 | Evolved Nodlings outscore random brains roughly 7x on a fixed exam |
-| **Memory gain** | about +1000 to +1400 | They rely on memory: blanking it costs 30 to 40% of the score |
-| **Learning gain** | below zero | Learning during a lifetime does not help them yet |
+| **Skill** | 1000 to 1800 | Evolved Nodlings outscore random brains 4x to 7x on a fixed exam. It swings from cycle to cycle, so read the trend |
+| **Memory gain** | +50 to +1400 | Blanking memory usually costs them a lot, but not in every reading |
+| **Learning gain** | below zero | Learning during a lifetime does not help them yet. The first proven fix lands in mid November |
 
 The honest summary: evolution taught the Nodlings to forage, breed and remember where things are, and then
 it stalled, because the world became too easy to select for anything more. The [roadmap](ROADMAP.md) explains
