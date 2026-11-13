@@ -1,0 +1,134 @@
+{
+  "key": "608c59142e43",
+  "mode": "evolution",
+  "base": "HEAD",
+  "changed": [
+    "nodling.js",
+    "sim.js"
+  ],
+  "replicates": 5,
+  "ticks": 60000,
+  "tCritical": 2.13,
+  "targets": [
+    "probes.learningGain"
+  ],
+  "decision": "keep",
+  "why": "target probes.learningGain is measurably better (t >= 2.13)",
+  "pass": true,
+  "reasons": [],
+  "metrics": {
+    "probes.evolved": {
+      "control": 1651.8,
+      "treatment": 1653.8,
+      "diff": 2,
+      "pct": 0.1,
+      "noise": 108.562,
+      "t": 0.01,
+      "verdict": "no-effect"
+    },
+    "probes.base": {
+      "control": 2802.4,
+      "treatment": 2812.6,
+      "diff": 10.2,
+      "pct": 0.4,
+      "noise": 230.0789,
+      "t": 0.04,
+      "verdict": "no-effect"
+    },
+    "probes.scarce": {
+      "control": 1020,
+      "treatment": 1013.4,
+      "diff": -6.6,
+      "pct": -0.6,
+      "noise": 111.7766,
+      "t": -0.04,
+      "verdict": "no-effect"
+    },
+    "probes.thirst": {
+      "control": 1132.8,
+      "treatment": 1135.2,
+      "diff": 2.4,
+      "pct": 0.2,
+      "noise": 72.7853,
+      "t": 0.02,
+      "verdict": "no-effect"
+    },
+    "probes.learningGain": {
+      "control": -230.4,
+      "treatment": -16.6,
+      "diff": 213.8,
+      "pct": 92.8,
+      "noise": 183.8921,
+      "t": 2.18,
+      "verdict": "better"
+    },
+    "probes.memoryGain": {
+      "control": 699.4,
+      "treatment": 1241.6,
+      "diff": 542.2,
+      "pct": 77.5,
+      "noise": 478.3569,
+      "t": 1.46,
+      "verdict": "no-effect"
+    },
+    "population": {
+      "control": 500.4,
+      "treatment": 499.4,
+      "diff": -1,
+      "pct": -0.2,
+      "noise": 0.8944,
+      "t": -1.12,
+      "verdict": "no-effect"
+    },
+    "medianFitness": {
+      "control": 1099,
+      "treatment": 1233.2,
+      "diff": 134.2,
+      "pct": 12.2,
+      "noise": 134.9426,
+      "t": 1.02,
+      "verdict": "no-effect"
+    },
+    "avgBrain": {
+      "control": 127.16,
+      "treatment": 112.8,
+      "diff": -14.36,
+      "pct": -11.3,
+      "noise": 8.4684,
+      "t": -2.4,
+      "verdict": "worse"
+    },
+    "largestCluster": {
+      "control": 3181.6,
+      "treatment": 3259.4,
+      "diff": 77.8,
+      "pct": 2.4,
+      "noise": 55.5545,
+      "t": 2.98,
+      "verdict": "better"
+    },
+    "brickCells": {
+      "control": 5608.4,
+      "treatment": 5629.8,
+      "diff": 21.4,
+      "pct": 0.4,
+      "noise": 31.7695,
+      "t": 1.03,
+      "verdict": "no-effect"
+    },
+    "commSeparation": {
+      "control": 0.0201,
+      "treatment": 0.0102,
+      "diff": -0.0099,
+      "pct": -49.3,
+      "noise": 0.0135,
+      "t": -1.87,
+      "verdict": "no-effect"
+    }
+  },
+  "id": "reward-baseline",
+  "target": "probes.learningGain",
+  "note": "Learn from reward minus its running average (prediction error) instead of raw reward, which is almost always positive (ROADMAP phase 2.1). Instant screen: no immediate effect (learningGain -73 -> -81, t=-0.05), no guardrail",
+  "ranAt": "83ab1ba",
+  "finished": "2026-11-13T22:29:02.991Z"
+}
