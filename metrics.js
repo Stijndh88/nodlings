@@ -87,3 +87,47 @@ function benchCohort(genomes, wseed, ticks, size){
   for (let t = 0; t < ticks; t++) simTick();
   return cohort.reduce((s,n)=>s+n.age+250*n.offspring, 0) / cohort.length;
 }
+
+// ---- skill probes: a fixed exam for the gene pool ----
+// Each probe drops a cohort into a fresh fixed-seed world with births switched
+// off, so the score is about the genomes being tested, not about how fast a
+// colony fills an empty map (and it costs O(cohort), not O(population cap)).
+// Score = mean lifetime fitness (age + 250 x offspring) at the horizon.
+//   base    the standard world
+//   scarce  little food: 30% of the starting flora, 15% regrowth
+//   thirst  water matters: hydration drains 5x faster (lasts ~440 ticks, not ~2200)
+// Ablations rerun `base` with one faculty removed; the drop is what that faculty is worth:
+//   noLearning  within-lifetime plasticity off      -> learningGain
+//   noMemory    recurrent + spatial-memory senses blanked -> memoryGain
+const MEMORY_SENSES = [25,26,32,33,34,35,36,37];
+const PROBE_TASKS = {
+  base:       {},
+  scarce:     { flora:0.15, thin:0.3 },
+  thirst:     { thirst:5 },
+  noLearning: { plasticity:0 },
+  noMemory:   { senseMask:MEMORY_SENSES },
+};
+function probeCohort(genomes, wseed, ticks, size, task){
+  const t = PROBE_TASKS[task] || {};
+  Object.assign(ENV, EXAM, t);
+  delete ENV.thin;
+  world = new World(wseed);
+  nodlings = []; critters = []; predators = [];
+  if (t.thin){ // thin the starting flora with a private RNG so the world stream is untouched
+    const r = makeRng(wseed ^ 0x5eed);
+    for (const c of world.cells) if (c.stack[0] === 'flora' && r() > t.thin) c.stack.pop();
+  }
+  spawnCritters(world, critters, START_CRITTERS);
+  spawnPredators(world, predators, START_PREDATORS);
+  const cohort = [];
+  for (let i = 0; i < size; i++){
+    let x, y, c;
+    do { x = (world.rng()*GRID_W)|0; y = (world.rng()*GRID_H)|0; c = world.at(x, y); } while (!c || c.water);
+    const g = genomes ? genomes[i % genomes.length] : randomGenome(world.rng);
+    const n = new Nodling(world, x+0.5, y+0.5, g, 0);
+    nodlings.push(n); cohort.push(n);
+  }
+  for (let k = 0; k < ticks && nodlings.length; k++) simTick();
+  delete ENV.thin; Object.assign(ENV, ENV_LIVE);
+  return cohort.reduce((s,n)=>s+n.age+250*n.offspring, 0) / cohort.length;
+}

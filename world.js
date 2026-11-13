@@ -255,7 +255,7 @@ class World {
     const af = (GRID_W*GRID_H)/12288;
     const warmth = Math.max(0, Math.min(1, (this.ambient() + 5)/30));
     const lean = this.season() === 'Winter' ? 0.5 : 1;   // lean winters: half the base regrowth, rewards stored food
-    const tries = ((16*lean + warmth*70)*af)|0;   // resilient regrowth so booms don't crash food
+    const tries = ((16*lean + warmth*70)*af*ENV.flora)|0;   // resilient regrowth so booms don't crash food
     for (let i = 0; i < tries; i++){
       const x = (this.rng()*GRID_W)|0, y = (this.rng()*GRID_H)|0;
       const c = this.at(x, y);

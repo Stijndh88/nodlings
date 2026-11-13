@@ -15,3 +15,5 @@ jobs:
         run: for f in *.js loop/*.js; do node --check "$f"; done
       - name: Self-test, headless run, resume, determinism
         run: node loop/ci-check.js
+      - name: Replicated A/B smoke test
+        run: node loop/ab.js --aa --quick --ticks=200 --replicates=2

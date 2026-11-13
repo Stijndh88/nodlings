@@ -1,0 +1,25 @@
+name: experiments
+# Long evolution experiments (see loop/experiments.js and ROADMAP.md). Pushing a new
+# loop/experiments/<id>/spec.json to master starts a run; each result is pushed to the
+# `experiment-results` branch, where the loop's next cycle harvests it.
+on:
+  push:
+    branches: [master]
+    paths: ['loop/experiments/*/spec.json']
+  workflow_dispatch:
+concurrency:
+  group: experiments
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run pending experiments
+        run: node loop/experiments.js run-pending

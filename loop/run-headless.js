@@ -6,7 +6,12 @@
 //
 // Flags:  --ticks=N  --dir=PATH (state dir, default loop/)  --dry (write nothing)
 //         --out=FILE (write metrics JSON)  --compare=FILE (guardrail baseline)
-//         --bench / --no-bench (benchmark; default on unless --dry)
+//         --bench / --no-bench (skill probes; default on unless --dry)
+//         --perturb=N (shift the RNG stream after resume: replicate N of an A/B)
+//         --code=DIR (load the sim files from another checkout: the A/B control arm)
+//         --era (safety screen for a harder world: fitness may drop, the population must survive)
+//         --seed-shift=N (probe on seeds + N*1000)  --probe-cohort=N (genomes sampled for the probes)
+//         --no-random (skip the random-genome reference cohorts)  --quick (tiny probes, CI only)
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -40,10 +45,12 @@ function makeContext(store){
     setItem: (k, v) => { store[k] = String(v); },
   };
   const context = vm.createContext({ console, localStorage, Date, Math, JSON });
-  for (const file of SIM_FILES) vm.runInContext(fs.readFileSync(path.join(ROOT, file), 'utf8'), context, { filename: file });
+  // metrics.js (the exam) always comes from this checkout, so both A/B arms sit the same exam
+  for (const file of SIM_FILES) vm.runInContext(fs.readFileSync(path.join(file === 'metrics.js' ? ROOT : CODE, file), 'utf8'), context, { filename: file });
   return context;
 }
 
+const CODE = path.resolve(arg('code', ROOT));
 const rules = loadRules();
 const dir = path.resolve(arg('dir', LOOP));
 fs.mkdirSync(dir, { recursive: true });
@@ -86,28 +93,47 @@ if (fs.existsSync(worldPath)){
   `, context, { filename: 'bootstrap' });
 }
 
+const perturb = +arg('perturb', 0);
+if (perturb) vm.runInContext(`world.rng.setState((world.rng.getState() + ${perturb} * 0x9E3779B9) >>> 0)`, context);
+
 for (let i = 0; i < ticks; i++) context.simTick();
 
 const metrics = context.loopMetrics();
 metrics.worldTick = vm.runInContext('world.tick', context);
 
-// ---- benchmark: fixed seeds, fresh sandbox per cohort, evolved vs random genomes ----
-// The evolved cohort is a fitness-stratified sample of the CURRENT living gene pool (not the
-// hall of fame, which is frozen by ancient high scores and made the gap flat for weeks).
+// ---- skill probes: fixed seeds, fresh sandbox per cohort (see metrics.js) ----
+// The evolved cohort is a fitness-stratified sample of the CURRENT living gene pool.
+// `skill` (evolved minus random, averaged over the exam tasks) is the headline;
+// learningGain / memoryGain say what plasticity and memory are worth to these brains.
 if (wantBench){
-  const b = rules.benchmark;
-  const genomes = JSON.stringify(vm.runInContext(`(function(){ const L = nodlings.slice().sort((a,b)=>(a.age+250*a.offspring)-(b.age+250*b.offspring)); const K = Math.min(30, L.length), out = []; for (let i = 0; i < K; i++) out.push(L[Math.floor((i+0.5)*L.length/K)].genome); return out; })()`, context) || []);
-  const score = (useGenomes, wseed) => {
+  const p = Object.assign({}, flag('quick') ? { ticks: 300, cohort: 8, seeds: [101] } : rules.probes);
+  const shift = +arg('seed-shift', 0);            // instant A/B: replicate r sits the exam on its own seeds
+  if (shift) p.seeds = p.seeds.map(s => s + shift * 1000);
+  if (arg('probe-cohort', null)) p.cohort = +arg('probe-cohort');
+  const RANDOM_COHORT = Math.min(40, p.cohort);   // random brains die fast and vary little: a small reference cohort is enough
+  const genomes = JSON.stringify(vm.runInContext(`(function(){ const L = nodlings.slice().sort((a,b)=>(a.age+250*a.offspring)-(b.age+250*b.offspring)); const K = Math.min(${p.cohort}, L.length), out = []; for (let i = 0; i < K; i++) out.push(L[Math.floor((i+0.5)*L.length/K)].genome); return out; })()`, context) || []);
+  const cohortOf = useGenomes => (useGenomes ? p.cohort : RANDOM_COHORT);
+  const score = (useGenomes, wseed, task) => {
     const c = makeContext({});
     return vm.runInContext(`(function(){
       ${useGenomes ? `const G = ${genomes}; reindexFromGenomes(G);` : 'const G = null;'}
-      return benchCohort(G, ${wseed}, ${b.ticks}, ${b.cohort});
+      return probeCohort(G, ${wseed}, ${p.ticks}, ${cohortOf(useGenomes)}, '${task}');
     })()`, c);
   };
-  let ev = 0, rd = 0;
-  for (const s of b.seeds){ ev += score(true, s); rd += score(false, s); }
-  ev /= b.seeds.length; rd /= b.seeds.length;
-  metrics.benchmark = { evolved: Math.round(ev), random: Math.round(rd), gap: Math.round(ev - rd) };
+  const avg = (useGenomes, task) => Math.round(p.seeds.reduce((s, seed) => s + score(useGenomes, seed, task), 0) / p.seeds.length);
+  const TASKS = ['base', 'scarce', 'thirst'], withRandom = !flag('no-random');
+  const pr = {};
+  for (const t of TASKS) pr[t] = avg(true, t);
+  pr.noLearning = avg(true, 'noLearning');
+  pr.noMemory = avg(true, 'noMemory');
+  pr.evolved = Math.round(TASKS.reduce((s, t) => s + pr[t], 0) / TASKS.length);
+  if (withRandom){
+    pr.random = Math.round(TASKS.reduce((s, t) => s + avg(false, t), 0) / TASKS.length);
+    pr.skill = pr.evolved - pr.random;
+  }
+  pr.learningGain = pr.base - pr.noLearning;
+  pr.memoryGain = pr.base - pr.noMemory;
+  metrics.probes = pr;
 }
 
 // ---- guardrails ----
@@ -119,13 +145,13 @@ const dropPct = (before, after) => before > 0 ? 100 * (before - after) / before 
 if (baseline){
   // Median fitness of the living population is age-driven and swings with turnover,
   // so it is only a guardrail in paired --dry A/B runs (same snapshot), never across batches.
-  if (dry && baseline.medianFitness != null && dropPct(baseline.medianFitness, metrics.medianFitness) > g.max_fitness_drop_pct)
+  if (dry && !flag('era') && baseline.medianFitness != null && dropPct(baseline.medianFitness, metrics.medianFitness) > g.max_fitness_drop_pct)
     reasons.push(`median fitness dropped ${dropPct(baseline.medianFitness, metrics.medianFitness).toFixed(1)}% (max ${g.max_fitness_drop_pct}%)`);
   const bp = baseline.population;
   if (bp != null && dropPct(bp, metrics.population) > g.max_population_drop_pct)
     reasons.push(`population dropped ${dropPct(bp, metrics.population).toFixed(1)}% (max ${g.max_population_drop_pct}%)`);
-  if (baseline.benchmark && metrics.benchmark && dropPct(baseline.benchmark.gap, metrics.benchmark.gap) > g.max_benchmark_drop_pct)
-    reasons.push(`benchmark gap dropped ${dropPct(baseline.benchmark.gap, metrics.benchmark.gap).toFixed(1)}% (max ${g.max_benchmark_drop_pct}%)`);
+  if (baseline.probes && metrics.probes && dropPct(baseline.probes.evolved, metrics.probes.evolved) > g.max_skill_drop_pct)
+    reasons.push(`probe score dropped ${dropPct(baseline.probes.evolved, metrics.probes.evolved).toFixed(1)}% (max ${g.max_skill_drop_pct}%)`);
 }
 
 const outFile = arg('out', null);

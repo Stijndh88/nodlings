@@ -1,0 +1,7 @@
+{
+  "id": "reward-baseline",
+  "target": "probes.learningGain",
+  "note": "Learn from reward minus its running average (prediction error) instead of raw reward, which is almost always positive (ROADMAP phase 2.1). Instant screen: no immediate effect (learningGain -73 -> -81, t=-0.05), no guardrail",
+  "created": "2026-11-13T20:07:41.455Z",
+  "baseCommit": "82b15da"
+}

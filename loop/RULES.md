@@ -3,14 +3,15 @@
 ```json
 {
   "world_seed": 20261007,
-  "batch_ticks": 25000,
+  "batch_ticks": 15000,
   "validation_ticks": 8000,
-  "benchmark": {"ticks": 2500, "cohort": 30, "seeds": [101, 202, 303]},
+  "probes": {"ticks": 3000, "cohort": 100, "seeds": [101, 202, 303]},
+  "ab": {"instant_replicates": 4, "replicates": 5, "ticks": 60000, "probe_cohort": 200, "min_effect_pct": 2},
   "guardrails": {
     "min_population": 15,
     "max_fitness_drop_pct": 25,
     "max_population_drop_pct": 40,
-    "max_benchmark_drop_pct": 25
+    "max_skill_drop_pct": 25
   },
   "tunable_params": [
     {"file": "nodling.js", "const": "REPRO_THRESHOLD", "range": [0.4, 0.9]},
@@ -21,75 +22,62 @@
 }
 ```
 
+## The plan
+`ROADMAP.md` is the plan: the current phase, its gate and its hypothesis queue. Read it every cycle.
+**The goal is evolved intelligence**: Nodlings that get measurably better at an unchanging exam through brain
+evolution and learning.
+
 ## The world is continuous
-`loop/world.json.gz` is the full world (terrain, structures, creatures, RNG
-stream); every batch resumes it, so structures, lineage depth and `maxGen`
-accumulate across cycles. Never delete it casually: deleting it starts a new
-world from `world_seed`. The run is deterministic: the same snapshot + same
-code + same ticks gives identical metrics.
+`loop/world.json.gz` is the full world (terrain, structures, creatures, RNG stream); every batch resumes it.
+Never delete it: deleting it starts a new world from `world_seed`. The run is deterministic: the same snapshot,
+code and ticks give identical metrics.
 
 ## Metrics (what to read)
-`loop/metrics.json`, and every cycle appended to `loop/history.jsonl` (charted
-in `loop/progress.svg`):
-- `benchmark.gap` — a fitness-stratified sample of the CURRENT living gene pool minus random genomes, on 3 fixed
-  seeds (`benchmark` block above). The main "have Nodlings learned" number. (Until cycle 223 it used the hall of
-  fame, which is frozen by ancient high scores, so the old gap (~1950) is not comparable with the new one (~1360).)
-- `medianFitness` / `meanFitness` — the *living* population (age + 250 x offspring).
-- `largestCluster` / `builtCells` / `brickCells` — construction (priority 1).
-- `commSeparation` — call-frequency gap with vs without a predator near (priority 2).
-- `peakFitness` — the old hall-of-fame peak. It cannot fall and saturates near
-  6000, so it is shown for reference only. Never use it as a signal.
+`loop/metrics.json`, appended every cycle to `loop/history.jsonl` and charted in `loop/progress.svg`:
+- `probes.skill`: the headline. A sample of the living gene pool sits a fixed exam (tasks `base`, `scarce`,
+  `thirst`; fresh fixed-seed worlds, births off) and is compared with random brains. `probes.evolved` is the
+  same number before subtracting the random reference; A/B tests use it.
+- `probes.learningGain`: `base` score minus the score with plasticity off. At or below 0 means learning does not help.
+- `probes.memoryGain`: `base` score minus the score with the memory senses blanked.
+- `avgBrain`, `medianFitness`, `maxGen`, `largestCluster`, `brickCells`, `commSeparation`: context only.
+  They swing 5 to 55% between identical runs, so never base a decision on a single value.
+- `peakFitness` and the old `benchmark.gap` are retired.
+
+## World parameters and the exam
+The live world's difficulty lives in `ENV` in `brain.js` (`thirst`, `flora`, `plasticity`). The probes pin
+their own `EXAM` values while they run, so making the live world harder does not change the exam. Do not edit
+`EXAM`, `PROBE_TASKS` or the probe seeds except to ADD a task that a roadmap phase asks for.
+
+## How a change is judged
+One run against one run proves nothing (`node loop/ab.js --aa` shows the noise floor). Two tests exist:
+
+1. **Instant test**, `node loop/ab.js --instant --target=<metric>` (about 4 minutes, resumable: if it is cut
+   off, run the same command again). The same gene pool sits the exam under HEAD and under the working tree,
+   4 replicates. Use it as a screen for brain, sense, action and reward changes. A world-parameter (`ENV`) change
+   cannot move the exam, so screen it with `node loop/run-headless.js --dry --era --no-bench --ticks=6000 --compare=loop/metrics.json` instead
+   (fitness inside a harder world is allowed to drop; the population must survive).
+2. **Evolution experiment**, `node loop/experiments.js submit <id> --target=<metric> --note="<what and why>"`.
+   This stores the working-tree change as `loop/experiments/<id>/change.patch`, restores the working tree, and
+   (after commit and push) GitHub Actions evolves 5 replicate worlds with the change and 5 without for 60,000
+   ticks, then publishes the verdict. `node loop/experiments.js harvest` on a later cycle applies the patch if
+   the verdict is `keep`. Add `--simplify` for a change that only removes something: it is kept unless measurably worse.
+
+A metric is `better`/`worse` only if the paired difference over the replicates clears a one-sided 5% t-test and
+is at least `min_effect_pct`. **Sim changes reach master only through a harvested `keep`.** The loop never
+commits a sim change directly.
 
 ## Guardrails (hard revert, no exceptions)
-- Population must not crash below `min_population`.
-- No NaN/non-finite metric.
-- `selfTest()` must still pass; CI (`loop/ci-check.js`) must be green.
-- Median fitness must not drop more than `max_fitness_drop_pct` vs the paired control (A/B `--dry` runs only: living-population median swings with turnover, so it is not compared across batches).
-- Population must not drop more than `max_population_drop_pct` vs the paired control.
-- Benchmark gap must not drop more than `max_benchmark_drop_pct` vs the paired control.
-
-## Validating a change: paired A/B (this replaces "run once, compare to the last batch")
-1. Run the baseline batch (`node loop/run-headless.js --ticks=25000 --compare=loop/metrics.json`; this guards against drift since the last batch) and commit it. That is the control snapshot.
-2. Before editing code, record the control: `node loop/run-headless.js --dry --bench --ticks=8000 --out=/tmp/control.json` (writes nothing to the repo).
-3. Make the ONE change, then run the treatment from the same snapshot: `node loop/run-headless.js --dry --bench --ticks=8000 --compare=/tmp/control.json`.
-4. Because both runs start from the identical snapshot and RNG stream, differences are caused by the change. Keep it only if guardrails pass AND the targeted metric (e.g. `largestCluster` for priority 1) is not worse; record the delta in the CHANGELOG, including when it is a null result.
-5. Update `loop/hypotheses.json` (status, cycle, note) in the same commit.
-
-## Priority signals (push toward, in this order)
-**The project goal is evolved intelligence: Nodlings that get measurably better at surviving and reproducing by
-learning and brain evolution.** Villages and communication are only interesting as tools toward that.
-1. **Evolved skill** — raise `benchmark.gap` and `medianFitness`, keep `avgBrain` healthy (collapse below ~100 means
-   selection no longer rewards cognition). Prefer changes that make brains matter: harder or more varied
-   environments, scarcity that rewards learning/memory, new senses/actions, better selection, mutation and
-   crossover (NEAT speciation, elitism, innovation protection), and brain/learning machinery.
-2. **Communication** — track `commSeparation`; make alarm/food calls learnable and useful for survival.
-3. **Construction / villages** — `largestCluster`, `brickCells`. These are already saturated.
-
-## Banned: selection shields
-Do NOT add survival perks (nutrition, thirst, metabolism, senescence, mating, predator immunity, newborn energy) for
-being in a village or building. They inflate cluster metrics while removing the selection pressure that evolves
-brains (`VILLAGE_SURVIVAL_PERKS` in `nodling.js` is deliberately off). Pure reward-shaping bonuses for a *new*
-behaviour are still fine, but not another x1.5/x2 multiplier on an existing bonus.
+- Population must not fall below `min_population`, or more than `max_population_drop_pct` below control.
+- No NaN or non-finite metric. `selfTest()` must pass; CI (`loop/ci-check.js`) must be green.
+- `probes.evolved` must not be measurably worse by more than `max_skill_drop_pct`.
 
 ## Change policy
-- Run `node loop/plateau.js` at the start of a cycle. If it says a STRUCTURAL cycle is required (3+ metrics flat or falling over the last 4 cycles), the change this cycle must be structural (new affordance, environmental pressure, sense or reward shaping), not another knob tweak. Ideas: harder winters or a scarce material once clusters saturate, a second island, nest/shelter payoffs, a food-found call affordance.
-- Exactly ONE change per cycle, small and falsifiable, tied to one priority
-  signal above.
-- Check `loop/CHANGELOG.md` and `loop/hypotheses.json` first — don't retry a
-  hypothesis already marked `reverted` (or `running` by another session) for the
-  same reason. `untested` ones were closed without a result and may be retried.
-- Every cycle writes a CHANGELOG entry, including INCIDENT and null-result cycles.
-- Anything in `tunable_params` needs no special flag. Anything else (new
-  mechanic, new sense/output, structural rewiring, new file) is still
-  applied autonomously but logged with a `STRUCTURAL:` prefix in
-  `CHANGELOG.md` for easy review.
-- Grow `tunable_params` over time as safe knobs are identified — edit this
-  file's JSON block directly when that happens (that edit is itself exempt
-  from the "one change per cycle" cap, since it's meta/policy, not sim
-  behavior).
-- If the *baseline* batch (before any new change) fails a guardrail, that
-  means an earlier cycle's "kept" change was actually bad and only showed it
-  now. Don't try to auto-locate and revert that old commit — commit the
-  batch output as-is, log an `INCIDENT:` entry in CHANGELOG with the
-  guardrail reasons, push, and skip making a new change this cycle. A human
-  reviewing CHANGELOG decides what to do about incidents.
+- Work on the lowest ROADMAP phase whose gate is not met. Take the top unsubmitted hypothesis of its queue, or
+  one of your own that serves the same gate.
+- Exactly ONE change per experiment, small and falsifiable. At most 2 experiments running at once.
+- Banned: new reward bonuses, multipliers on existing bonuses, survival perks for villages or builders
+  (`VILLAGE_SURVIVAL_PERKS` stays off), and anything already `reverted` in `loop/hypotheses.json` for the same reason.
+- `tunable_params` may be changed inside their range, but still only through an experiment.
+- Every cycle writes a CHANGELOG entry, including INCIDENT cycles and cycles that only harvest or only submit.
+- If the baseline batch fails a guardrail, commit it as-is, log an `INCIDENT:` entry, push, and make no change
+  that cycle. A human decides what to do about incidents.
