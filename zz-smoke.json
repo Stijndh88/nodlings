@@ -1,0 +1,124 @@
+{
+  "key": "1bd0e60627aa",
+  "mode": "evolution",
+  "base": "HEAD",
+  "changed": [
+    "brain.js"
+  ],
+  "replicates": 2,
+  "ticks": 300,
+  "tCritical": 6.31,
+  "targets": [
+    "probes.thirst"
+  ],
+  "decision": "revert",
+  "why": "no measurable gain on probes.thirst: a change that cannot show its effect is not kept",
+  "pass": true,
+  "reasons": [],
+  "metrics": {
+    "probes.evolved": {
+      "control": 412.5,
+      "treatment": 369,
+      "diff": -43.5,
+      "pct": -10.5,
+      "noise": 23.3345,
+      "t": -3.78,
+      "verdict": "no-effect"
+    },
+    "probes.base": {
+      "control": 463.5,
+      "treatment": 453.5,
+      "diff": -10,
+      "pct": -2.2,
+      "noise": 33.234,
+      "t": -0.19,
+      "verdict": "no-effect"
+    },
+    "probes.scarce": {
+      "control": 352.5,
+      "treatment": 296.5,
+      "diff": -56,
+      "pct": -15.9,
+      "noise": 78.4889,
+      "t": -1.37,
+      "verdict": "no-effect"
+    },
+    "probes.thirst": {
+      "control": 420.5,
+      "treatment": 356.5,
+      "diff": -64,
+      "pct": -15.2,
+      "noise": 41.7193,
+      "t": -1.08,
+      "verdict": "no-effect"
+    },
+    "probes.learningGain": {
+      "control": 16.5,
+      "treatment": 89.5,
+      "diff": 73,
+      "pct": 442.4,
+      "noise": 21.9203,
+      "t": 0.54,
+      "verdict": "no-effect"
+    },
+    "probes.memoryGain": {
+      "control": 71.5,
+      "treatment": 89.5,
+      "diff": 18,
+      "pct": 25.2,
+      "noise": 7.7782,
+      "t": 0.58,
+      "verdict": "no-effect"
+    },
+    "population": {
+      "control": 500,
+      "treatment": 497,
+      "diff": -3,
+      "pct": -0.6,
+      "noise": 1.4142,
+      "t": -1.5,
+      "verdict": "no-effect"
+    },
+    "medianFitness": {
+      "control": 1205,
+      "treatment": 764.5,
+      "diff": -440.5,
+      "pct": -36.6,
+      "noise": 21.2132,
+      "t": -21.49,
+      "verdict": "worse"
+    },
+    "avgBrain": {
+      "control": 107.15,
+      "treatment": 108.2,
+      "diff": 1.05,
+      "pct": 1,
+      "noise": 0.3536,
+      "t": 21,
+      "verdict": "no-effect"
+    },
+    "largestCluster": {
+      "control": 2721.5,
+      "treatment": 2726.5,
+      "diff": 5,
+      "pct": 0.2,
+      "noise": 0.7071,
+      "t": 1.67,
+      "verdict": "no-effect"
+    },
+    "brickCells": {
+      "control": 4767.5,
+      "treatment": 4768.5,
+      "diff": 1,
+      "pct": 0,
+      "noise": 0.7071,
+      "t": 99,
+      "verdict": "no-effect"
+    }
+  },
+  "id": "zz-smoke",
+  "target": "probes.thirst",
+  "note": "smoke",
+  "ranAt": "fc5b757",
+  "finished": "2026-11-13T19:42:25.550Z"
+}
