@@ -106,7 +106,7 @@
     {
       "id": "night-shelter-bonus",
       "signal": 1,
-      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5\u00b0 warmer than ambient at night",
+      "change": "nodling.js SHELTER_BONUS 0.05 per tick in a cell >=5° warmer than ambient at night",
       "status": "reverted",
       "cycle": 19,
       "note": "medianFitness 1504->903 (-40%, guardrail); cluster 2->2, builtCells 390->321; no gain on target"
@@ -1774,6 +1774,20 @@
       "status": "kept",
       "cycle": 228,
       "note": "bench gap 1212->1709, medianFitness 1225->987 (within guardrail); single 8k sample, likely partly noise"
+    },
+    {
+      "id": "era-thirst-3x",
+      "signal": "probes.thirst",
+      "change": "ENV.thirst 1 -> 3: a newborn's water lasts ~740 ticks instead of ~2200, so never drinking is fatal inside the breeding life (ROADMAP phase 1.1). Screen: population 499 after 6000 ticks, thirst deaths 3709",
+      "status": "running",
+      "note": "evolution experiment submitted at 82b15da"
+    },
+    {
+      "id": "reward-baseline",
+      "signal": "probes.learningGain",
+      "change": "Learn from reward minus its running average (prediction error) instead of raw reward, which is almost always positive (ROADMAP phase 2.1). Instant screen: no immediate effect (learningGain -73 -> -81, t=-0.05), no guardrail",
+      "status": "running",
+      "note": "evolution experiment submitted at 82b15da"
     }
   ]
 }

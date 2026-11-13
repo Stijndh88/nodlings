@@ -160,7 +160,11 @@ const METRICS = ['probes.evolved', 'probes.base', 'probes.scarce', 'probes.thirs
     targetsBetter ? `target ${targets.join(', ')} is measurably better (t >= ${keepT})` :
     `no measurable gain on ${targets.join(', ')}: a change that cannot show its effect is not kept`;
 
-  const result = { key, mode: instant ? 'instant' : 'evolution', base: aa ? 'A/A' : base, changed, replicates: R, ticks, tCritical: keepT, targets, decision, why, pass, reasons, metrics: table };
+  // An instant test is only a screen: evolution has had no time to exploit the change.
+  const screen = instant && !aa;
+  const finalDecision = screen ? (pass ? 'submit' : 'revert') : decision;
+  const finalWhy = screen ? (pass ? `screen passed (immediate effect on ${targets.join(', ')}: ${targets.map(m => table[m] ? table[m].verdict : 'n/a').join(', ')}); submit it as an evolution experiment` : 'guardrail tripped') : why;
+  const result = { key, mode: instant ? 'instant' : 'evolution', base: aa ? 'A/A' : base, changed, replicates: R, ticks, tCritical: keepT, targets, decision: finalDecision, why: finalWhy, pass, reasons, metrics: table };
   const outFile = arg('out', path.join(work, 'result.json'));
   fs.writeFileSync(outFile, JSON.stringify(result, null, 2));
 
@@ -169,5 +173,5 @@ const METRICS = ['probes.evolved', 'probes.base', 'probes.scarce', 'probes.thirs
   for (const [m, v] of Object.entries(table))
     console.log(`${pad(m, 22)}${pad(v.control, 11)}${pad(v.treatment, 11)}${pad(v.diff, 10)}${pad(v.pct ?? '', 8)}${pad(v.noise, 11)}${pad(v.t, 8)}${v.verdict}${targets.includes(m) ? '  <- target' : ''}`);
   console.log(`\nCHANGELOG line: ${Object.entries(table).filter(([m]) => targets.includes(m) || m === PRIMARY || m === 'probes.learningGain').map(([m, v]) => `${m} ${v.control} -> ${v.treatment} (${v.pct}%, t=${v.t}, ${v.verdict})`).join('; ')}; ${R} replicates x ${ticks} ticks.`);
-  console.log(JSON.stringify({ decision, why, pass, reasons, result: outFile }, null, 2));
+  console.log(JSON.stringify({ decision: finalDecision, why: finalWhy, pass, reasons, result: outFile }, null, 2));
 })();

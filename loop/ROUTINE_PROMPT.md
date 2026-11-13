@@ -31,7 +31,7 @@ change is judged, guardrails, bans) and the last ~10 entries of `loop/CHANGELOG.
 3. **Submit one new experiment**, unless 2 are already `running`.
    - Pick the hypothesis as RULES.md "Change policy" says and make that ONE change in the working tree.
    - Screen it as RULES.md "How a change is judged" says (instant test, or the dry safety run for an `ENV` change).
-     If the screen crashes or trips a guardrail: `git checkout HEAD -- *.js`, record the hypothesis as `reverted`
+     An instant test prints `"decision": "submit"` when the screen passes. If the screen crashes or trips a guardrail: `git checkout HEAD -- *.js`, record the hypothesis as `reverted`
      with the numbers, and go to step 4.
    - `node loop/experiments.js submit <id> --target=<metric> --note="<what and why>"` (add `--simplify` for
      removals). It restores the working tree. Then `git add -A && git commit -m "exp: submit <id>"`.

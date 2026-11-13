@@ -1,0 +1,29 @@
+diff --git a/nodling.js b/nodling.js
+index 0d58897..b25d3a8 100644
+--- a/nodling.js
++++ b/nodling.js
+@@ -213,7 +213,10 @@ class Nodling {
+       const reward = Math.max(-1, Math.min(1,
+         (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
+       this.lastWellbeing = wb; this.bonus = 0;
+-      out = this.brain.step(s, reward);
++      // learn from the reward prediction error (reward minus its running average), not from raw
++      // reward: a reward that is always there carries no information about what just worked
++      this.rewardAvg = (this.rewardAvg || 0)*0.97 + reward*0.03;
++      out = this.brain.step(s, reward - this.rewardAvg);
+       this.lastOut = out;
+       this.mem = [out.mem0, out.mem1];
+       // accumulate behaviour signature (what this individual actually does)
+diff --git a/sim.js b/sim.js
+index 640e3fc..7ff0e7a 100644
+--- a/sim.js
++++ b/sim.js
+@@ -140,7 +140,7 @@ function simTick(){
+ // resumes the same world instead of regenerating a new one each process.
+ // Per-life plastic weights are kept too (a Nodling mid-life stays mid-life).
+ const NODLING_SNAP = ['x','y','gen','energy','hydration','bodyTemp','age','offspring','carrying',
+-                      'mem','facing','phase','foodMem','waterMem','shelterMem'];
++                      'mem','facing','phase','foodMem','waterMem','shelterMem','rewardAvg'];
+ function snapNodling(n){
+   const o = { genome:n.genome };
+   for (const k of NODLING_SNAP) o[k] = n[k];
