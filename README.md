@@ -7,7 +7,7 @@ intelligence grow here, and can we prove it?
 
 [![The live world at day 2054](docs/world.jpg)](https://stijndh88.github.io/nodlings/)
 
-**[Watch the live world](https://stijndh88.github.io/nodlings/)** · **[Progress dashboard](loop/dashboard.md)** · **[Roadmap](ROADMAP.md)** · **[Changelog](loop/CHANGELOG.md)**
+**[Watch the live world](https://stijndh88.github.io/nodlings/)** · **[Progress dashboard](loop/dashboard.md)** · **[Roadmap](ROADMAP.md)** · **[Changelog](loop/CHANGELOG.md)** · **[Foundations audit](docs/AUDIT-2026-11.md)**
 
 ## Where it stands
 

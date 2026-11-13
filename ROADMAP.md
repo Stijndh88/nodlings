@@ -4,6 +4,11 @@
 plan and eventually cooperate, because the world makes those things pay off in offspring. Villages,
 bricks and calls only matter when they are the product of that intelligence.
 
+> **Status, 14 November 2026.** A foundations audit ([docs/AUDIT-2026-11.md](docs/AUDIT-2026-11.md)) found that the
+> live world is sealed off from water and that the bonuses, recipes and short lives cannot lead to invention.
+> It proposes a rebuild, **World 2** (last section of this file). World 2 starts only when Stijn approves it.
+> Until then the loop keeps working on the phases below, except the items marked BLOCKED.
+
 This file is the plan the autonomous loop follows (`loop/ROUTINE_PROMPT.md` points here).
 [`loop/PLAYBOOK.md`](loop/PLAYBOOK.md) explains the reasoning behind each phase, how to design and judge
 experiments, the known pitfalls and what to do when a phase stalls. It replaces
@@ -23,6 +28,19 @@ Everything below was measured on the live world, not assumed.
 | **The loop could not see any of this.** | Two runs of *identical* code from the same snapshot differ by 5 to 55% per metric after 6000 ticks, and every keep/revert decision was one run against one run. Of 229 changelog entries, 127 say "within noise", "null result" or "identical"; 102 changes were kept anyway. The old benchmark has been flat since day 357. |
 | **Harder worlds were rejected by design.** | "Variable years" and "migrating fallow" (the scarcity ideas) were reverted because fitness dropped in the harder world. That rule rejects every increase in difficulty, which is exactly what evolution needs. |
 | **Behaviour is scripted through rewards.** | `nodling.js` holds 45 hand-written reward bonuses (corner, notch, tower, shore, winter-build, haul...). The 2700-cell "village" is the product of reward shaping plus clay that seeps out of brick walls, not of cognition. |
+
+### Added by the audit of 14 November (day 2063)
+
+| Finding | Evidence |
+|---|---|
+| **No Nodling can reach water.** | 50% of land cells are walls (stacks of 3 or more), 92% of them held together by fiber, which never decays and cannot be knocked down. 0 of 500 Nodlings can walk to a shore cell; 0 drinks in 1.5 million Nodling-ticks. This corrects the row above: it is not a third that never drinks, it is everyone, and "thirst" is a lifespan limit of 2,223 ticks. `node loop/audit-world.js` shows it. |
+| **The reward is 89% bonus and curiosity.** | Per decision: body change 0.022, curiosity 0.043, bonuses 0.140. Positive on 97.8% of decisions. |
+| **The building bonus is farmed.** | 95% of rewarded builds are a brick picked up and put back on the same cell in the same tick. |
+| **Hands are worth nothing.** | Exam with grab, drop and strike switched off: 2,320 against 2,317 (t = -0.05, 8 worlds). With all material senses blanked: +7%. With all bonuses off: +3%. |
+| **Calling is a cost.** | Nodlings call on 59% of ticks. Exam with calling switched off: +25% (t = 5.8). |
+| **Nodlings are blind to most materials.** | The eyes report flora, water, wood, stone, data, structures and fire. Not clay, brick, plank, meat, seed, fiber or critters. |
+| **Lives are too short to learn.** | A life is 1,630 ticks, one in-world day, with a median of 18 meals. A year is 30 lifetimes. |
+| **Breeding favours being different.** | Breeding chance is multiplied by 0.40 to 0.95 for unlike neighbours (colour, diet, brain size) and by 1.13 to 1.36 for novel behaviour; offspring correlate only 0.21 with meals eaten. |
 
 In one sentence: **the world is solved and nothing selects for being smarter, so brains drift.** That is
 why brain size fell from 205 to 77 connections without a traceable cause, and why a month of cycles moved nothing.
@@ -63,7 +81,10 @@ hypotheses from that phase's queue (top first), or invents one that serves the s
 Make survival and breeding depend on what a Nodling does.
 
 Queue:
-1. `era-thirst-1.5x`: `ENV.thirst` 1 to 1.5, so a newborn's water lasts about 1480 ticks. The first attempt,
+1. **BLOCKED (14 November): do not submit any thirst experiment.** No Nodling in the live world can reach
+   water (see the audit rows above), so more thirst only shortens every life and cannot select for drinking.
+   Unblock only when `node loop/audit-world.js` reports `canReachWater` above 0.9.
+   `era-thirst-1.5x`: `ENV.thirst` 1 to 1.5, so a newborn's water lasts about 1480 ticks. The first attempt,
    `era-thirst-3x`, was reverted on 13 November: after 60,000 ticks the Nodlings that evolved under it scored 37%
    lower on every exam task (t = -9.3) and the population fell 11%. Killing a third of the population in one step
    replaces selection with luck about being born near water. Raise pressure in small steps (1.5, then 2, then 3),
@@ -77,7 +98,8 @@ Queue:
 6. `earlier-ageing`: `SENESCENCE` 900 to 600, which shortens the post-breeding tail and speeds up generations. Target `probes.evolved`.
 
 **Gate:** the 5-cycle average of `probes.skill` is at least 15% above the average of cycles 229 to 233 (the
-first five measured with the exam), and fewer than 5% of deaths are "never drank" deaths. Always use the
+first five measured with the exam), and fewer than 5% of deaths are "never drank" deaths (this second half
+cannot be met while the world is sealed; see the BLOCKED note). Always use the
 5-cycle average: a single reading swings a lot (1789 at day 2054, 985 at day 2063, with no rule change in
 between), because a near-neutral population with heavy mutation drifts quickly.
 
@@ -144,3 +166,53 @@ skill plateaus, a hall of champions replayable in the browser.
 - No keeping a change because "guardrails pass". No effect means revert.
 - No judging a harder world by fitness inside that world.
 - No more than 2 experiments running at once; no experiment that changes more than one thing.
+
+## World 2 (proposed 14 November 2026, starts when Stijn approves)
+
+The audit's conclusion: more cycles on the current world will not produce invention, because behaviours are
+paid for instead of being useful, the physics is a list of recipes, and lives are too short and solitary to
+learn or teach. World 2 is a rebuild of the world and the creature on the same research tooling. The full
+design and the reasons are in [docs/AUDIT-2026-11.md](docs/AUDIT-2026-11.md) sections 4 and 5; build notes
+are in `loop/PLAYBOOK.md` section 11.
+
+### Principles of World 2 (these replace principle 4 above and add to the rest)
+
+1. **One small rulebook over properties.** No rule in the physics names a material.
+2. **Nodlings see properties, not names.**
+3. **Only the body rewards.** Energy, water, temperature, pain. No bonuses, no curiosity term, no exceptions.
+4. **Lives long enough to learn, with a childhood beside adults.**
+5. **Nothing piles up forever.** Everything rots, burns, weathers or gets eaten.
+6. **Invention is counted, never paid.** The technique ledger and the exam measure it.
+
+### Stages
+
+S1 to S3 are one rebuild on a branch, done by a strong model, because they change everything at once and
+cannot be A/B tested against the old world. The loop does not attempt them. From S4 the loop takes over.
+
+| Stage | What | Done when |
+|---|---|---|
+| S0 | Tag the current master `v1-final`. Move `loop/world.json.gz`, `loop/storage.json` and `loop/history.jsonl` to `archive/v1/`. The loop runs batch-only (no experiments). | Tag pushed, files moved, ROUTINE_PROMPT says batch-only |
+| S1 | `src/materials.js` (property table), `src/physics.js` (carry, place, strike, heat, decay), `src/world.js`. Unit tests per rule. | Tests green. A world with no Nodlings keeps `wallShare` under 0.05 and `openShore` above 0.9 for 20,000 ticks |
+| S2 | `src/body.js`, `src/senses.js`, `src/actions.js`, learning rule with eligibility trace and the `learn` output, selection by food and energy surplus (no cap lottery, no kin or novelty multipliers) | A fresh world from random brains holds a population above 60 for 100,000 ticks. CI determinism green |
+| S3 | Exam version 2 (`base`, `scarce`, `thirst`, `winter`, `relearn`; ablations hands, learning, memory, social), technique ledger, dashboard, `--aa` noise floor | Evolved brains measurably beat random brains on `base` after 200,000 ticks |
+| S4 | The loop resumes with the World 2 phases below | |
+
+### World 2 phases (for the loop, after S3)
+
+Same method as today: lowest unmet gate first, one change per experiment, verdicts from replicated evolution experiments.
+
+- **W1 Survival is earned.** Tune food, winter and predators until skill separates who breeds. Gate: evolved
+  beats random by 3x on `base`, `thirst` and `winter`; `canReachWater` above 0.9; no death cause above 50%.
+- **W2 Learning pays.** The yearly flip of the nourishing and the poisonous plant is on. Gate: 5-cycle average
+  of `learningGain` on `relearn` is positive and clears an instant test.
+- **W3 Hands pay.** Gate: `handsGain` measurably above zero, and the ledger shows at least 3 technique types
+  used by 5% of adults that need an item in the hand or a placed item (for example strike with a stone, feed a fire, block a gap).
+- **W4 Copying.** Add the `imitate` gene and the `cultureGain` test (children raised with experienced adults
+  against children raised alone). Gate: `cultureGain` measurably above zero.
+- **W5 Open-ended.** New material rows and new places (islands, caves) are added one at a time, without new
+  rules. Gate per addition: a ledger type involving the new material appears and its users out-breed non-users.
+
+### What does not change in World 2
+
+The exam is fixed once S3 lands. No verdict without replicates. No reward bonuses. Small pressure steps.
+Determinism. The CHANGELOG ledger. Everything in "What not to do" above.

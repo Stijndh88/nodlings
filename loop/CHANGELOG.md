@@ -1562,3 +1562,11 @@ Baseline batch (15000 ticks) passed guardrails. probes.skill 985 (evolved 1288, 
 - Harvest: `era-thirst-3x` (0.5 h) and `reward-baseline` (0.4 h) are both still running; nothing kept or reverted, none overdue.
 - Submitted: nothing, 2 experiments already running.
 - ROADMAP: Phase 1 (switch selection back on). Gate not met: probes.skill 985 vs ~1790 target level; learningGain still negative (Phase 2 target).
+
+## 14 November 2026 — foundations audit (documentation only)
+
+Audit of the world, the creature and the reward on the live world at day 2063: `docs/AUDIT-2026-11.md`.
+- Findings: 50% of land is wall and 0 of 500 Nodlings can reach water (0 drinks in 1.5 million Nodling-ticks); the reward is 68% bonuses and 21% curiosity; 95% of rewarded builds are a brick picked up and put back in the same tick; exam with hands off 2320 vs 2317 (t = -0.05), with calling off +25% (t = 5.8), with bonuses off +3%.
+- ROADMAP: audit rows added, thirst experiments BLOCKED while `canReachWater` is 0, World 2 proposed (starts only on Stijn's approval).
+- PLAYBOOK: four pitfalls added, section 11 (World 2 build notes). ROUTINE_PROMPT: each cycle reports `wallShare` and `canReachWater`.
+- New read-only tool `loop/audit-world.js`. No sim file changed.

@@ -37,7 +37,8 @@ and the last ~10 entries of `loop/CHANGELOG.md`. When the rules do not cover a s
      with the numbers, and go to step 4.
    - `node loop/experiments.js submit <id> --target=<metric> --note="<what and why>"` (add `--simplify` for
      removals). It restores the working tree. Then `git add -A && git commit -m "exp: submit <id>"`.
-4. **CHANGELOG entry** for this cycle (a few lines): day, `probes.skill` / `learningGain` / `memoryGain`, what
+4. **CHANGELOG entry** for this cycle (a few lines): day, `probes.skill` / `learningGain` / `memoryGain`, the
+   `wallShare` and `canReachWater` values from `node loop/audit-world.js` (read-only, a few seconds), what
    was harvested with its numbers, what was submitted and why, which ROADMAP phase and how far its gate is.
    `git add -A && git commit -m "cycle: <summary>" && git push origin master`.
 

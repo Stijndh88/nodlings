@@ -95,6 +95,10 @@ then ticks (up to 120,000), with `--replicates=` and `--ticks=` on `submit`.
 *Why first:* without it nothing else can spread. Evidence: population on the cap 81% of the time, 45% eligible
 to breed at any moment, 1.3% die before adulthood, 35% of deaths are Nodlings that never drank.
 
+*Blocked on 14 November:* the thirst ladder. No Nodling in the live world can reach water (audit, ROADMAP), so
+thirst pressure cannot select for drinking there. Run `node loop/audit-world.js` first; submit a thirst step
+only if `canReachWater` is above 0.9.
+
 *Order inside the phase:* prefer changes that add selection **without** mass death. `breed-by-surplus` and
 `soft-cap` reward good foragers directly and kill nobody extra, so try them before more pressure steps.
 Pressures (thirst, food, predators) come as ladders (section 4).
@@ -163,6 +167,10 @@ average of skill has been flat for 10 cycles.
 | Commands cut off at 10 minutes | Batches lost | `ab.js` resumes: run the same command again. Halve `--ticks` for a batch |
 | Deleting or regenerating the world | Would erase 4,300 generations | Never delete `loop/world.json.gz` |
 | Force push | Blocked by the ruleset on purpose | Never |
+| Reading a death cause as a behaviour | "35% die of thirst" was read as "a third never drinks". In fact no Nodling could reach water at all | Before designing a pressure, count the behaviour itself (drinks, meals, grabs), not its consequence |
+| A material that never goes away | Fiber never decays, binds stacks against strikes and stops weathering. Eating made walls; after 2,000 days half the land was wall and the shore was sealed | Every item must rot, burn, weather or be eaten. Run `node loop/audit-world.js` every cycle and write an `INCIDENT:` entry if `canReachWater` falls below 0.9 |
+| Counting a rewarded event as the behaviour | 95% of rewarded "builds" were a brick picked up and put back in the same tick | A behaviour exists only if switching it off lowers the exam score |
+| A faculty nobody measured | Calling cost 25% of the exam score for months; hands were worth 0% | Every output and every sense group gets a switched-off test before anything is built on it |
 
 ## 8. Technical notes that save time
 
@@ -230,3 +238,80 @@ it must relearn every year. Exam task `relearn`: the same world with the bit fli
 - Changes to ROADMAP, RULES, this playbook and the routine prompt are documentation: they may be committed
   directly, in a commit of their own, with a CHANGELOG line that says what changed and why.
 - When in doubt between a clever option and a boring one, take the boring one and measure it.
+
+## 11. World 2: why, and how to build and extend it
+
+Read `docs/AUDIT-2026-11.md` first. It holds the measurements behind every statement here. World 2 starts
+only when ROADMAP says Stijn approved it.
+
+### 11.1 The idea in five sentences
+
+1. A behaviour that is paid for by a bonus is not a discovery; the audit showed the bonuses were 68% of what a
+   Nodling felt and were worth nothing on the exam.
+2. Invention needs a world where things combine: what happens depends on the properties of what is in the
+   hand and what it meets, through a few rules, so that useful combinations exist that nobody listed.
+3. A Nodling can only use what it can perceive, so it senses properties (hard, fuel, heat, food-smell, mass,
+   sharp) of what is in its hand, ahead of it and under it, and any new material is visible at once.
+4. Learning needs repetition and something genes cannot know, so lives span several years and the world draws
+   some facts fresh each year.
+5. We never reward an invention; we count it (technique ledger) and we measure what it is worth (switched-off tests).
+
+### 11.2 Hard rules for anyone writing World 2 code
+
+- **No material name in a rule.** `physics.js` may read `item.fuel`, never `item.name === 'wood'`. A test greps
+  `src/physics.js`, `src/actions.js` and `src/body.js` for quoted material names and fails if it finds one.
+- **No reward except body change.** The only inputs to the learning signal are the changes in energy, water,
+  temperature comfort and pain, weighted by the four drive genes. If you want Nodlings to do something, make it
+  useful to their bodies or their offspring, or accept that they will not do it.
+- **Everything decays.** A new material row must have a `rots` value, or be a mineral that weathers out of
+  stacks. The empty-world test (20,000 ticks, no Nodlings) must keep `wallShare` under 0.05.
+- **One sense table.** `src/senses.js` holds one array of `{index, name, meaning}`. Append only. The sense
+  count is part of the genome format: changing it mid-run needs a migration (section 8).
+- **Determinism** as before: the world RNG is the only source of randomness.
+- **A new verb or rule is a design change**, not a loop experiment. Propose it in ROADMAP and wait for Stijn.
+  New material rows and new values are loop experiments.
+
+### 11.3 Build order and acceptance tests (stages S1 to S3)
+
+S1, physics. Write `materials.js` from the table in the audit (section 4.1). Write the five rules as pure
+functions and one unit test file per rule, for example:
+- carry: energy cost per step rises with `mass`
+- place: an item with `floats` on water makes the cell walkable; a stack of 3 blocks a walker and a predator
+- strike: bare hand (force 1) cannot break hardness 2; with a stone in hand (force 26) it can; `sharp` doubles
+  force against hardness 0 to 2; hard on hard gives a spark at the configured rate and the spark lights fuel
+- heat: a burning item lasts `fuel` ticks; fuel dropped beside it catches; an item with a heated form changes
+- decay: an item with `rots` is gone after its expected time; an unsupported stack loses its top
+
+Then the empty-world test. If walls or fires grow without bound, fix the rates before going on.
+
+S2, creature. Senses as in the audit (section 4.2). Outputs: moveX, moveY, grab, drop, use, strike, sound,
+mem0 to mem3, learn. Learning rule per plastic connection, every think:
+`trace = 0.9*trace + pre*post`, then `w += LEARN_RATE * pl * learnOut * (reward - rewardAvg) * trace`, where
+`learnOut` is the `learn` output mapped to 0..1 and `rewardAvg` is a running average (rate 0.02).
+Selection: remove the cap lottery, the kin factor and the novelty factor. Breeding chance scales with energy
+surplus; crowding costs energy. Then run a fresh world from random brains for 100,000 ticks. If it dies out,
+the world is too hard for random brains: raise flora or lower metabolism until a population holds, and write
+down the values. Do not add a bonus to bootstrap it.
+
+S3, instruments. Port `probeCohort` and `loop/ab.js` unchanged in method. Add `ENV.outMask` (outputs forced to
+0) next to `ENV.senseMask` for the hands test. Ledger: `actions.js` calls
+`ledger(verb, classOf(held), classOf(target), result)` where `classOf` buckets an item by properties (edible,
+fuel, hard, sharp, soft, animal, Nodling, water, fire, nothing). `metrics.js` reports the distinct types used
+by at least 5% of adults in the batch and the first-seen day per type.
+
+### 11.4 Tuning World 2 (what the loop does from S4)
+
+- The first job is always **W1**: a world where random brains survive a little and good brains survive a lot.
+  Check `evolved` is at least 3x `random` per task before trusting any other number.
+- If nothing is ever picked up: check the senses first (can they perceive it?), then whether the use pays
+  inside one lifetime, then whether the first step toward the use pays on its own. A use that needs three
+  unrewarded steps before any benefit will not be found; shorten the chain in the physics, never with a bonus.
+- If a technique appears in the ledger but its users do not out-breed the rest, it is play, not invention.
+  Leave it alone. Do not help it.
+- Expect weeks per phase. A flat ledger for 30 cycles is a reason to make an existing use more worthwhile (a
+  colder winter makes fire and shelter worth more), not a reason to add rewards.
+
+### 11.5 What to tell Stijn, honestly
+
+Small inventions and learned habits are a realistic goal. Consciousness is not. A village is not a goal;
+if one appears because it keeps Nodlings alive, that is the result we want, and the exam will show it first.
