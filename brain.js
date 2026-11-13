@@ -23,7 +23,13 @@ const MAX_CONNS = 300, MAX_HIDDEN = 80, W_CLAMP = 4, LEARN_RATE = 0.031;
 // The skill probes in metrics.js pin every key to EXAM values while they run, so
 // the exam stays the same exam however the live world changes, and can switch
 // faculties off (learning, memory senses) to measure what they are worth.
-const ENV = { plasticity:1, senseMask:null, thirst:1, flora:1, noBirths:false };
+const ENV = {
+  plasticity: 1,     // multiplier on within-lifetime learning (0 = off)
+  thirst: 1,         // multiplier on hydration drain (1 = a drink lasts ~2200 ticks)
+  flora: 1,          // multiplier on flora regrowth (lower = scarcer food)
+  senseMask: null,   // sense indices to blank (ablation probes only)
+  noBirths: false,   // probes score a fixed cohort (births counted, children not added)
+};
 const ENV_LIVE = Object.assign({}, ENV);   // restored after every probe
 const EXAM = Object.freeze({ plasticity:1, senseMask:null, thirst:1, flora:1, noBirths:true });
 
