@@ -4,6 +4,21 @@ One entry per cycle: what was measured, harvested and submitted, and where the c
 **Newest entries at the top**, directly under this header. The changelog of the first world is in
 `archive/v1/CHANGELOG.md`.
 
+## 14 November 2026, cycles 20-21: batches to year 78, winter-relief reverted, thirst ladder submitted
+
+- Batches: year 75 (cycle 20) and year 78.75 (cycle 21; I ran a second batch by mistake with `--help`, which the
+  runner ignores, and then a stray `--ticks=0` that appended a bogus cycle-22 line; I removed it and rebuilt
+  `metrics.json`/`state.json` from the cycle-21 record. Both real batches passed.) Cycle 21: `probes.skill` 2,314
+  (`evolved` 2,973, `random` 659), `learningGain` -490, `handsGain` -389, `memoryGain` +379, `badMealShare` 0.369,
+  `wallShare` 0, `canReachWater` 1. Population 208 (94 in cycle 19, noisy). Deaths since start: cold 545, starved
+  305, thirst 92, predator 11, age 4 (cold about 57%). Ledger unchanged (same 13 techniques, 3 with tools).
+- Harvested `w2-winter-relief`: reverted. `probes.evolved` 2637 -> 2688 (1.9%, t=0.38, no-effect); `learningGain`
+  -12 -> -168 (no-effect); `memoryGain` 244 -> 253; 5 replicates x 60000 ticks. Easing winter does not raise skill.
+- Submitted `w2-thirst-ladder` (ENV.thirst 1 -> 1.125, target `probes.thirst`). The 1.25 step failed the step-size
+  screen (pop 158 vs 208, cold 61%), so I halved it; 1.125 screened at pop 181, no guardrail tripped.
+- Phase W1: `evolved`/`random` about 4.5x (met); `canReachWater`/`wallShare` fine; cold share about 57% (under 60%,
+  but only just). Remaining queue: predator ladder, mutation rate.
+
 ## 14 November 2026, cycle 19: batch to year 71, noise floor, winter experiment submitted
 
 - Batch: year 71.25, `probes.skill` 2,300 (`evolved` 2,959, `random` 659), `learningGain` +34, `handsGain` +49,
