@@ -1578,3 +1578,10 @@ Baseline batch (15000 ticks) passed guardrails. probes.skill 692 (evolved 995, r
 - Harvest: reward-baseline: kept (applied, ci-check OK). probes.learningGain -230 -> -17 (92.8%, t=2.18, better); probes.evolved 1652 -> 1654 (no-effect); probes.memoryGain 699 -> 1242 (t=1.46, no-effect).
 - Submitted: era-thirst-1-5x (ENV.thirst 1 -> 1.5, the small first step after the 3x revert; target probes.thirst). Dry safety run passed (pop 500). The id uses a dash because the tool rejects dots.
 - ROADMAP: Phase 1. Gate not met (skill 692 vs ~1790 target, single reading; learningGain now +250 after reward-baseline, which is a Phase 2 signal).
+
+## Cycle 231 — day 2082 — batch + harvest + submit
+
+Baseline batch (15000 ticks) passed guardrails. probes.skill 1043 (evolved 1326, random 283), learningGain -170, memoryGain +72 (base 2400, noLearning 2570, noMemory 2328). audit-world: wallShare 0.454, canReachWater 0.968.
+- Harvest: era-thirst-1-5x: reverted. no measurable gain on probes.thirst; probes.evolved 1332 -> 1415 (t=0.91, no-effect); probes.thirst 911 -> 989 (t=1.78, no-effect); learningGain 31 -> 60 (no-effect); memoryGain 403 -> 152 (no-effect); 5 replicates x 60000 ticks. Nothing overdue.
+- Submitted: era-food-limited (ENV.flora 1 -> 0.6; target probes.scarce). Dry safety run passed (pop 494 after 6000 ticks).
+- ROADMAP: Phase 1. Gate not met (skill 1043 vs ~1790 target, single reading). Thirst steps alone show no effect; food pressure is next in the queue.
