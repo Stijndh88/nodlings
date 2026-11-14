@@ -12,7 +12,9 @@ jobs:
         with:
           node-version: 20
       - name: Syntax check
-        run: for f in *.js loop/*.js; do node --check "$f"; done
+        run: for f in *.js loop/*.js test/*.js; do node --check "$f"; done
+      - name: Rule tests (physics, no material names in rules, body-only reward, learning)
+        run: for t in test/*.test.js; do node "$t"; done
       - name: Self-test, headless run, resume, determinism
         run: node loop/ci-check.js
       - name: Replicated A/B smoke test

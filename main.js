@@ -133,20 +133,19 @@ function updateStats(){
   const pop = nodlings.length;
   const maxGen = nodlings.reduce((m,n)=>Math.max(m,n.gen), 0);
   const avgBrain = pop ? (nodlings.reduce((t,n)=>t+n.brainSize,0)/pop)|0 : 0;
-  const juv = nodlings.reduce((t,n)=>t+(n.age<160?1:0), 0);
-  let structures = 0, flora = 0, planks = 0, bricks = 0, bridges = 0;
+  const juv = nodlings.reduce((t,n)=>t+(n.age<MATURITY?1:0), 0);
+  let structures = 0, flora = 0, bridges = 0;
   for (const c of world.cells){
     if (c.stack.length >= 2) structures++;
     if (c.water && c.stack.length) bridges++;
     const top = c.stack[c.stack.length-1];
-    if (top === 'flora' || top === 'seed') flora++;
-    else if (top === 'plank') planks++;
-    else if (top === 'brick') bricks++;
+    if (top && MATERIALS[top].spreads) flora++;
   }
   const kills = predators.reduce((t,p)=>t+p.kills, 0);
   const predBrain = predators.length ? (predators.reduce((t,p)=>t+genomeSize(p.genome),0)/predators.length)|0 : 0;
   const hueDiv = new Set(nodlings.map(n=>(n.genome.hue/30)|0)).size;
-  const carnPct = pop ? Math.round(100*nodlings.filter(n=>(n.genome.diet ?? 0.5) > 0.55).length/pop) : 0;
+  const meals = nodlings.reduce((t,n)=>t+n.meals,0), bad = nodlings.reduce((t,n)=>t+n.badMeals,0);
+  const led = ledgerSummary();
   stat('s-day').textContent    = (world.tick/DAY_LEN).toFixed(1);
   stat('s-clock').textContent  = clockStr() + (world.isNight() ? ' 🌙' : ' ☀️');
   stat('s-season').textContent = world.season();
@@ -157,7 +156,7 @@ function updateStats(){
   stat('s-brain').textContent  = avgBrain + ' conns';
   stat('s-fit').textContent    = hallOfFame[0] ? hallOfFame[0].score|0 : 0;
   stat('s-div').textContent    = hueDiv + ' lineages';
-  stat('s-diet').textContent   = `${100-carnPct}%h / ${carnPct}%c`;
+  stat('s-diet').textContent   = meals ? Math.round(100*bad/meals) + '%' : '—';
   stat('s-births').textContent = births;
   stat('s-deaths').textContent = deaths;
   stat('s-pred').textContent   = predators.length;
@@ -165,7 +164,7 @@ function updateStats(){
   stat('s-pfit').textContent   = predFame[0] ? predFame[0].score|0 : 0;
   stat('s-pbrain').textContent = predBrain + ' conns';
   stat('s-struct').textContent = structures;
-  stat('s-build').textContent  = `${planks}p ${bricks}b`;
+  stat('s-build').textContent  = `${world.ledger.size} (${led.tools} tool)`;
   stat('s-bridge').textContent = bridges;
   stat('s-fire').textContent   = world.fires.length;
   stat('s-flora').textContent  = flora;

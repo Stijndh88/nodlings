@@ -13,7 +13,8 @@ const hist = fs.existsSync(file) ? fs.readFileSync(file, 'utf8').trim().split('\
 const metrics = {
   'probes.skill': h => h.probes && h.probes.skill,
   'probes.learningGain': h => h.probes && h.probes.learningGain,
-  avgBrain: h => h.avgBrain,
+  'probes.handsGain': h => h.probes && h.probes.handsGain,
+  techniques: h => h.techniques,
   maxGen: h => h.maxGen,
 };
 const out = { cycles: hist.length, window: win, plateaued: [], rising: [], insufficientData: hist.length < win };
@@ -26,5 +27,5 @@ if (hist.length >= win){
     ((hi - lo) / base <= tol || v[v.length-1] <= v[0] ? out.plateaued : out.rising).push(name);
   }
 }
-out.advice = out.plateaued.length >= 3 ? 'STRUCTURAL cycle required: pick the next item from the current ROADMAP.md phase (selection pressure, learning machinery). Not a village perk, not a reward bonus.' : 'Tuning is still productive.';
+out.advice = out.plateaued.length >= 3 ? 'Flat: take the next item of the current ROADMAP.md phase, or use its "if the phase stalls" list in the playbook. Never a reward.' : 'Tuning is still productive.';
 console.log(JSON.stringify(out, null, 2));

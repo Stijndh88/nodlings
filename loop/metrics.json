@@ -1,32 +1,176 @@
 {
-  "day": 2082.16,
-  "population": 502,
-  "medianFitness": 887,
-  "meanFitness": 1019,
-  "peakFitness": 7002,
-  "maxGen": 4399,
-  "avgBrain": 123.9,
-  "largestCluster": 3084,
-  "builtCells": 5920,
-  "brickCells": 5379,
-  "meanEnergy": 134,
-  "floraCount": 7062,
+  "day": 90,
+  "year": 11.25,
+  "population": 132,
+  "medianFitness": 1552,
+  "meanFitness": 1866,
+  "medianAge": 1197,
+  "maxGen": 25,
+  "avgBrain": 64.6,
+  "meanEnergy": 124,
+  "plantCount": 1516,
+  "badMealShare": 0.296,
+  "carrying": 0.083,
+  "critters": 91,
+  "predators": 6,
+  "fires": 0,
   "deaths": {
-    "starved": 4240,
-    "thirst": 607
+    "predator": 58,
+    "starved": 475,
+    "thirst": 124,
+    "age": 16,
+    "cold": 697,
+    "burned": 2
   },
-  "commSeparation": 0.0288,
-  "worldTick": 3331450,
+  "commSeparation": 0.0295,
+  "techniques": 13,
+  "toolTechniques": 3,
+  "techniqueTypes": 66,
+  "ledger": {
+    "use|none|food|eat": {
+      "share": 0.888,
+      "perUser": 10.8
+    },
+    "use|none|plant|eat-bad": {
+      "share": 0.876,
+      "perUser": 12.3
+    },
+    "grab|none|food|take": {
+      "share": 0.867,
+      "perUser": 16.9
+    },
+    "use|none|plant|eat": {
+      "share": 0.823,
+      "perUser": 13.4
+    },
+    "grab|none|fuel|take": {
+      "share": 0.723,
+      "perUser": 24.4
+    },
+    "drop|fuel|none|place": {
+      "share": 0.633,
+      "perUser": 12.2
+    },
+    "use|none|water|drink": {
+      "share": 0.474,
+      "perUser": 2
+    },
+    "grab|none|hard|take": {
+      "share": 0.427,
+      "perUser": 7.5
+    },
+    "drop|hard|none|place": {
+      "share": 0.355,
+      "perUser": 6.2
+    },
+    "use|none|flesh|eat": {
+      "share": 0.313,
+      "perUser": 1.6
+    },
+    "drop|fuel|food|stack": {
+      "share": 0.304,
+      "perUser": 4.2
+    },
+    "drop|fuel|fuel|stack": {
+      "share": 0.203,
+      "perUser": 9
+    },
+    "drop|fuel|water|bridge": {
+      "share": 0.201,
+      "perUser": 20.4
+    },
+    "use|fuel|water|drink": {
+      "share": 0.196,
+      "perUser": 1.4
+    },
+    "drop|fuel|pile|stack": {
+      "share": 0.193,
+      "perUser": 11.8
+    },
+    "grab|none|soft|take": {
+      "share": 0.183,
+      "perUser": 5.2
+    },
+    "drop|hard|food|stack": {
+      "share": 0.158,
+      "perUser": 2.3
+    },
+    "drop|food|none|place": {
+      "share": 0.146,
+      "perUser": 8.9
+    },
+    "drop|soft|none|place": {
+      "share": 0.137,
+      "perUser": 4.4
+    },
+    "drop|food|food|stack": {
+      "share": 0.086,
+      "perUser": 3.7
+    },
+    "use|hard|water|drink": {
+      "share": 0.076,
+      "perUser": 1.3
+    },
+    "drop|hard|pile|stack": {
+      "share": 0.069,
+      "perUser": 4.8
+    },
+    "drop|fuel|hard|stack": {
+      "share": 0.057,
+      "perUser": 3.9
+    },
+    "drop|hard|fuel|stack": {
+      "share": 0.057,
+      "perUser": 2.6
+    },
+    "drop|soft|food|stack": {
+      "share": 0.045,
+      "perUser": 2.2
+    },
+    "grab|none|sharp|take": {
+      "share": 0.039,
+      "perUser": 4
+    },
+    "drop|food|water|bridge": {
+      "share": 0.036,
+      "perUser": 9.7
+    },
+    "drop|sharp|none|place": {
+      "share": 0.034,
+      "perUser": 3
+    },
+    "drop|hard|water|sink": {
+      "share": 0.033,
+      "perUser": 1
+    },
+    "drop|fuel|soft|stack": {
+      "share": 0.032,
+      "perUser": 1.6
+    }
+  },
+  "wallShare": 0.002,
+  "emptyLandShare": 0.85,
+  "itemsPerLandCell": 0.163,
+  "openShore": 0.987,
+  "canReachWater": 0.924,
+  "worldTick": 36000,
   "probes": {
-    "base": 2400,
-    "scarce": 699,
-    "thirst": 879,
-    "noLearning": 2570,
-    "noMemory": 2328,
-    "evolved": 1326,
-    "random": 283,
-    "skill": 1043,
-    "learningGain": -170,
-    "memoryGain": 72
+    "base": 3399,
+    "scarce": 1310,
+    "thirst": 1411,
+    "evolved": 2040,
+    "noLearning": 3483,
+    "learningGain": -84,
+    "noMemory": 3292,
+    "memoryGain": 107,
+    "noHands": 3236,
+    "handsGain": 163,
+    "noSocial": 2779,
+    "socialGain": 620,
+    "alive": 0.111,
+    "badMealShare": 0.396,
+    "drinks": 2.167,
+    "random": 659,
+    "skill": 1381
   }
 }

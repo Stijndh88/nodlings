@@ -25,7 +25,7 @@ const { execFileSync, spawnSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const EXP = path.join(__dirname, 'experiments');
-const SIM_FILES = ['brain.js', 'world.js', 'selftest.js', 'nodling.js', 'critters.js', 'predators.js', 'observer.js', 'sim.js'];
+const SIM_FILES = require('./sim-files').PATCHABLE;
 const RESULTS_BRANCH = 'experiment-results';
 const [cmd, ...rest] = process.argv.slice(2);
 const arg = (name, fallback) => { const m = rest.find(a => a.startsWith(`--${name}=`)); return m ? m.slice(name.length + 3) : fallback; };

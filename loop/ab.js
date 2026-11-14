@@ -35,7 +35,7 @@ const crypto = require('crypto');
 const { spawn, execFileSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
-const SIM_FILES = ['brain.js', 'world.js', 'selftest.js', 'nodling.js', 'critters.js', 'predators.js', 'observer.js', 'sim.js', 'metrics.js'];
+const { SIM_FILES } = require('./sim-files');
 const arg = (name, fallback) => { const m = process.argv.find(a => a.startsWith(`--${name}=`)); return m ? m.slice(name.length + 3) : fallback; };
 const flag = name => process.argv.includes(`--${name}`);
 
@@ -108,7 +108,8 @@ const get = (o, k) => k.split('.').reduce((v, p) => (v == null ? v : v[p]), o);
 const mean = a => a.reduce((s, x) => s + x, 0) / a.length;
 const sd = a => { if (a.length < 2) return 0; const m = mean(a); return Math.sqrt(a.reduce((s, x) => s + (x - m) ** 2, 0) / (a.length - 1)); };
 const METRICS = ['probes.evolved', 'probes.base', 'probes.scarce', 'probes.thirst', 'probes.learningGain', 'probes.memoryGain',
-  'population', 'medianFitness', 'avgBrain', 'largestCluster', 'brickCells', 'commSeparation'];
+  'probes.handsGain', 'probes.socialGain', 'probes.alive', 'probes.badMealShare',
+  'population', 'medianFitness', 'avgBrain', 'badMealShare', 'techniques', 'toolTechniques', 'wallShare', 'canReachWater'];
 
 (async () => {
   const todo = runs.filter(run => !fs.existsSync(outOf(run)));

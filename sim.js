@@ -7,8 +7,9 @@ let world = new World();
 let nodlings = [];
 let critters = [];
 let predators = [];
-const START_POP = 70, START_CRITTERS = 60, START_PREDATORS = 4;
-const LIFE_SUPPORT = 60;  // gently top up toward this from the diverse gene bank
+const START_POP = 120, START_CRITTERS = 60, START_PREDATORS = 3;
+const LIFE_SUPPORT = 40;  // extinction guard only: below this, one Nodling at a time trickles in from the gene bank
+const fitnessOf = n => n.age + 500*n.offspring;   // lifetime score: survival plus offspring
 const hallOfFame = []; // best genomes ever, by lifetime fitness — the "progress"
 let births = 0, deaths = 0;
 const popHist = [];
@@ -16,30 +17,8 @@ const popHist = [];
 // UI hook — main.js overrides this in the browser; no-op in the headless harness.
 function flashSaved(){}
 
-// ---------- novelty search ----------
-// A rolling archive of behaviour signatures; novelty = distance to the nearest
-// stored behaviours. Rewarding novel behaviour keeps the world exploring.
-const behaviorArchive = [];
-const ARCHIVE_MAX = 200;
-function archiveBehavior(sig){
-  behaviorArchive.push(sig);
-  if (behaviorArchive.length > ARCHIVE_MAX)
-    behaviorArchive.splice((world.rng()*ARCHIVE_MAX)|0, 1); // seeded random eviction keeps it varied and reproducible
-}
-function behaviorNovelty(sig){
-  const A = behaviorArchive;
-  if (A.length < 10) return 0.5; // early on, everything is novel
-  const best = [1e9,1e9,1e9];    // 3 nearest sq-distances
-  for (let i = 0; i < A.length; i++){
-    const a = A[i]; let d = 0;
-    for (let k = 0; k < 6; k++){ const e = sig[k]-a[k]; d += e*e; }
-    if (d < best[2]){ best[2] = d; best.sort((x,y)=>x-y); }
-  }
-  return Math.min(1, Math.sqrt((best[0]+best[1]+best[2])/3));
-}
-
 // ---------- persistence ----------
-const SAVE_KEY = 'nodlings.save.v6'; // v6: speciation + novelty + bigger world (fresh start)
+const SAVE_KEY = 'nodlings.save.w2'; // World 2 genomes (new senses and outputs: old saves do not fit)
 
 function serialize(){
   return JSON.stringify({
@@ -101,7 +80,7 @@ function simTick(){
   for (const n of nodlings){
     if (!n.dead) continue;
     deaths++;
-    hallOfFame.push({genome:n.genome, score:n.age + 250*n.offspring, gen:n.gen});
+    hallOfFame.push({genome:n.genome, score:fitnessOf(n), gen:n.gen});
     hallOfFame.sort((a,b)=>b.score-a.score);
     hallOfFame.length = Math.min(hallOfFame.length, 40); // deeper, more diverse seed bank
   }
@@ -111,12 +90,12 @@ function simTick(){
   // gentle life-support: trickle in one gene-bank Nodling at a time toward a
   // minimum, instead of dumping a crowd of clones — keeps a diverse standing
   // population without the reseed treadmill that reset the gene pool.
-  if (nodlings.length < LIFE_SUPPORT && world.rng() < 0.04) seed(1);
+  if (!ENV.noBirths && nodlings.length < LIFE_SUPPORT && world.rng() < 0.04) seed(1);
   // Also enrol the best *living* Nodling periodically — in a stable population
   // the elite may never die, so death-only fame would lag and understate progress.
   if (world.tick % 300 === 0 && nodlings.length){
     let best = null, bs = -1;
-    for (const n of nodlings){ const f = n.age + 250*n.offspring; if (f > bs){ bs = f; best = n; } }
+    for (const n of nodlings){ const f = fitnessOf(n); if (f > bs){ bs = f; best = n; } }
     if (best){
       hallOfFame.push({genome:best.genome, score:bs, gen:best.gen});
       hallOfFame.sort((a,b)=>b.score-a.score);
@@ -139,8 +118,8 @@ function simTick(){
 // terrain, structures, living creatures, RNG stream — so a headless batch
 // resumes the same world instead of regenerating a new one each process.
 // Per-life plastic weights are kept too (a Nodling mid-life stays mid-life).
-const NODLING_SNAP = ['x','y','gen','energy','hydration','bodyTemp','age','offspring','carrying',
-                      'mem','facing','phase','foodMem','waterMem','shelterMem','rewardAvg'];
+const NODLING_SNAP = ['id','x','y','gen','energy','hydration','bodyTemp','pain','age','offspring','carrying',
+                      'mem','facing','phase','foodMem','waterMem','rewardAvg','meals','badMeals','drinks'];
 function snapNodling(n){
   const o = { genome:n.genome };
   for (const k of NODLING_SNAP) o[k] = n[k];
@@ -153,18 +132,18 @@ function snapshotWorld(){
     return (flags || c.fire || c.stack.length) ? [flags, c.fire|0, c.stack] : 0;
   });
   return JSON.stringify({
-    v:1, seed:world.seed, tick:world.tick, rng:world.rng.getState(),
+    v:2, seed:world.seed, tick:world.tick, rng:world.rng.getState(), goodKind:world.goodKind, nextId:world.nextId,
     cells, fires:world.fires,
     nodlings: nodlings.map(snapNodling),
     critters: critters.map(c => ({x:c.x,y:c.y,energy:c.energy,age:c.age,dir:c.dir,kind:c.kind,phase:c.phase})),
-    predators: predators.map(p => ({genome:p.genome,x:p.x,y:p.y,energy:p.energy,age:p.age,kills:p.kills})),
-    archive: behaviorArchive,
+    predators: predators.map(p => ({genome:p.genome,x:p.x,y:p.y,energy:p.energy,age:p.age,kills:p.kills,biteWait:p.biteWait})),
   });
 }
 function restoreWorld(json){
   const d = typeof json === 'string' ? JSON.parse(json) : json;
   world = new World(d.seed);
-  world.tick = d.tick;
+  if (d.v !== 2) throw new Error('this is not a World 2 snapshot');
+  world.tick = d.tick; world.goodKind = d.goodKind|0;
   d.cells.forEach((v, i) => {
     const c = world.cells[i];
     if (!v){ c.water = false; c.sand = false; c.fire = 0; c.stack = []; return; }
@@ -180,6 +159,6 @@ function restoreWorld(json){
   });
   critters = d.critters.map(o => { const c = new Critter(world, o.x, o.y); Object.assign(c, o); return c; });
   predators = d.predators.map(o => { const p = new Predator(world, o.x, o.y, o.genome); Object.assign(p, o); return p; });
-  behaviorArchive.length = 0; behaviorArchive.push(...(d.archive || []));
+  world.nextId = d.nextId || nodlings.length + 1;
   world.rng.setState(d.rng);
 }

@@ -1,132 +1,105 @@
-// A Nodling: biological needs + an evolved AST brain. This class only wires
-// senses to the brain and the brain's outputs to physics. It contains zero
-// behavioral rules — what a Nodling *does* lives entirely in its genome.
+// A Nodling: a body with needs and an evolved brain. This file wires senses to
+// the brain, hands the brain's outputs to actions.js, and runs the body
+// (metabolism, temperature, death, breeding). It contains no behaviour and no
+// reward except the change in the body's own state.
 'use strict';
 
-const VISION = 6;      // vision disc radius — the per-tick sensing cost driver
+const VISION = 6;        // vision disc radius
 const EARSHOT = 12;
-const POP_CAP = 500;   // food isn't limiting until ~800+ (see CHANGELOG cycle 12); runtime scales ~linearly with this
-const MATURITY = 160;  // age below which a Nodling is a juvenile (can't breed, sees less)
-const SENESCENCE = 900;// age past which upkeep rises (aging)
-const DURABLE_BUILD = ['wood','plank','stone','brick'];
-const FLEE_HEARD_BONUS = 0.2; // reward gaining distance from a predator while hearing a call (makes alarm->flee learnable)
-const LISTEN_BONUS = 0.15; // reward for hearing a call while a predator is near
-const CACHE_BONUS = 0.5; // reward for eating food stored in a cell enclosed by >=2 durable neighbours
-const KILN_BONUS = 0.5; // reward for dropping clay next to an active fire (feeds the kiln)
-const BRICK_WALL_BONUS = 0.5; // extra reward for adding a fired brick to an existing structure
-const CLAY_GATHER_BONUS = 0.3; // reward for picking up clay while a fire burns within 6 cells (stocking the kiln)
-const BRICK_GRAB_BONUS = 0.3; // reward for picking up a fired brick (salvaging kiln output for walls)
-const BRIDGE_BONUS = 0.4; // reward for extending a bridge: laying a tile on water next to an existing bridge tile
-const SHARED_MEAL_BONUS = 0.3; // reward for eating found food with another Nodling within 3 cells (group foraging)
-const HUNT_BONUS = 0.4; // reward for striking down a critter (hunting as a learnable food source)
-const THIRST_DRINK_BONUS = 0.3; // reward for drinking while hydration is low (<40): learn to manage thirst
-const BUILD_ADJACENT_BONUS = 0.85; // reward for placing durable material next to an existing structure
-const NEST_BREED_BONUS = 0.5; // extra reward to a parent that breeds inside a cluster of structures (settling pays)
-const BRIDGE_CROSS_BONUS = 0.2; // reward for stepping from land onto a bridge tile (bridges get used, not just laid)
-const HEARTH_BONUS = 0.05; // per-tick reward for warming up (body < comfort) beside a fire without standing in it
-const VILLAGE_BONUS = 0.03; // per-tick (sampled every 8 ticks, x8) reward for standing in a dense village: >=12 durable cells within 3 cells
-const HOME_BONUS = 0.02; // per-tick reward for being within 4 cells of own last build site at night (return home to the village)
-const FATTEN_BONUS = 0.01; // per-tick reward for holding energy > 180 in Autumn (store fat before the lean winter)
-const SITE_BONUS = 0.3; // extra reward for an adjacent build within 6 cells of this Nodling's previous build (stay on one site)
-const ENCLOSE_BONUS = 0.4; // extra reward for placing durable material in a gap with >=2 durable neighbours (dense villages, not lines)
-const HUNGRY_EAT_BONUS = 0.3; // reward for eating found food while energy is low (<60): learn to forage before starving
-const QUARRY_BONUS = 0.2; // reward for grabbing durable material from a cell with no durable neighbours (harvest raw material, don't dismantle villages)
-const KILN_SITE_BONUS = 0.3; // extra reward for feeding a kiln (clay beside fire) within 3 cells of an existing structure (kilns inside villages)
-const COOL_BONUS = 0.05; // per-tick reward for cooling down (body > comfort-high and falling): seek shade/water in the heat
-const BRICK_TOWER_BONUS = 0.3; // extra reward for stacking a fired brick on a cell already topped with brick (brick towers)
-const TOWER_BONUS = 0.2; // extra reward for dropping durable material onto a cell that already holds durable material (height, not just footprint)
-const CORNER_BONUS = 0.2; // extra reward for an adjacent build that also touches a durable diagonal neighbour (filled blocks, not thin lines)
-const NOTCH_BONUS = 0.2; // extra reward for an adjacent build that fills a notch (>=3 durable orthogonal neighbours), sealing walls into solid blocks
-const SHORE_BONUS = 0.2; // extra reward for an adjacent build on a cell beside water (waterfront villages, quays)
-const WINTER_BUILD_BONUS = 0.2; // extra reward for an adjacent build during Winter (keep building through the lean season)
-const WELL_BONUS = 0.2; // reward for drinking within 4 cells of a durable structure (villages near water)
-const FEAST_BONUS = 0.2; // extra reward for a cached meal (>=2 walls) eaten beside another Nodling (communal granaries)
-const GAP_BONUS = 0.2; // extra reward for an adjacent build that closes a gap between two opposite durable neighbours (joins separate wall segments)
-const TALL_STACK_BONUS = 0.2; // extra reward for an adjacent build on a cell already stacked >=2 high (vertical growth)
-const HAUL_BONUS = 0.2; // extra reward for an adjacent build >=8 cells from where the material was picked up (haul to the village, don't restack in place)
-const MIXED_BONUS = 0.2; // extra reward for an adjacent build whose material differs from a neighbouring structure's top material (mixed masonry: wood+stone+brick)
-const CALL_BUILD_BONUS = 0.3; // reward for an adjacent build within 30 ticks of hearing a call with no predator near (call -> gather and build)
-const CALL_BRICK_BONUS = 0.3; // reward for picking up a fired brick within 30 ticks of hearing a call (call -> gather bricks)
-const CALL_FOLLOW_BONUS = 0.3; // reward for eating found food within 20 ticks of hearing a call with no predator near (food-found call -> approach)
-const TEAM_BUILD_BONUS = 0.2; // extra reward for an adjacent build with another Nodling within 3 cells (barn-raising: build together)
-const MAX_ENERGY = 240;// higher ceiling → Nodlings can fatten up to buffer winter
-const VILLAGE_SURVIVAL_PERKS = false; // villages are a reward target, not a selection shield: metabolic/thirst/senescence/larder/mating perks removed so brains stay under pressure
+const POP_CAP = 250;     // crowding starts to cost energy at 80% of this; hard stop at 130%
+const MATURITY = 400;    // one day: below this a Nodling is a child (cannot breed, sees less far)
+const SENESCENCE = 6400; // two years: past this upkeep rises
+const MAX_ENERGY = 240;
+const START_ENERGY = 100;
+const BREED_ENERGY = 130, BREED_COST = 80, BREED_RATE = 0.0015;   // slow breeding: long lives, generations of about a year
+const THIRST_RATE = 0.06;   // hydration lost per tick: a drink lasts about 1650 ticks (4 days)
+const THINK_EVERY = 2;      // the brain decides every other tick; the body acts every tick
 
 class Nodling {
   constructor(world, x, y, genome, gen = 0){
     this.world = world;
+    this.id = world.nextId++;
     this.x = x; this.y = y;
     this.genome = genome || randomGenome(world.rng);
     this.gen = gen;
-    this.energy = 120;         // dies at 0 (max 200)
-    this.hydration = 100;      // dies at 0
-    this.bodyTemp = 15;
+    this.energy = START_ENERGY;   // dies at 0
+    this.hydration = 100;         // dies at 0
+    this.bodyTemp = COMFORT;
+    this.pain = 0;                // recent damage (burns, bites), fades
     this.age = 0;
     this.offspring = 0;
     this.dead = false;
-    this.carrying = null;      // material name or null
-    this.mem = [0, 0];         // recurrent memory, written by the brain itself
+    this.carrying = null;         // material name or null
+    this.mem = [0, 0, 0, 0];      // memory outputs, fed back as senses
     this.facing = [1, 0];
-    this.brain = new Brain(this.genome);         // owns per-life plastic weights
+    this.brain = new Brain(this.genome);         // owns this life's learned weights
     this.brainSize = genomeSize(this.genome);
-    this.phase = (world.rng()*2)|0;  // staggers brain re-evaluation across ticks
+    this.drive = this.genome.drive || [1, 1, 1, 1];
+    this.phase = (world.rng()*THINK_EVERY)|0;    // staggers thinking across ticks
     this.lastOut = null;
-    this.senseBuf = new Array(N_SENSES).fill(0); // reused each eval (no per-tick alloc)
+    this.senseBuf = new Array(N_SENSES).fill(0);
     this.lastWellbeing = this.wellbeing();
-    this.bonus = 0;                              // one-shot reward (e.g. reproduction)
-    this.foodMem = null;                         // remembered [x,y] of food/water/shelter
-    this.waterMem = null;
-    this.shelterMem = null;
-    this.senseEMA = new Array(N_SENSES).fill(0);  // running sense average → curiosity
-    this.behav = new Float64Array(6);             // lifetime behaviour tallies → novelty
-    this.behavN = 0;
+    this.rewardAvg = 0;           // what this body has come to expect
+    this.lastGain = 0;            // last change in wellbeing (others can see it)
+    this.waterMem = null;         // where it last drank
+    this.foodMem = null;          // where it last ate something good
+    this.meals = 0; this.badMeals = 0; this.drinks = 0;   // life tallies (metrics only)
   }
 
-  // Normalised behaviour signature: rates of move/eat/manipulate/strike/call/swim-edge.
-  // Novelty search compares these across the population to reward doing something new.
-  signature(){
-    const n = this.behavN || 1, s = this.behav;
-    return [s[0]/n, s[1]/n, s[2]/n, s[3]/n, s[4]/n, s[5]/n];
-  }
-
-  // Scalar "how well am I doing" — its per-tick *change* is the learning signal.
+  // How good the body feels. Its CHANGE is the only learning signal there is.
+  // The four drive genes set how much energy, water, comfort and pain count.
   wellbeing(){
-    const comfort = 1 - Math.min(1, Math.abs(this.bodyTemp - COMFORT)/20);
-    return this.energy/MAX_ENERGY*0.5 + this.hydration/100*0.3 + comfort*0.2;
+    const comfort = 1 - Math.min(1, Math.abs(this.bodyTemp - COMFORT)/20), d = this.drive;
+    return d[0]*this.energy/MAX_ENERGY*0.5 + d[1]*this.hydration/100*0.3 + d[2]*comfort*0.2 - d[3]*this.pain*0.3;
   }
 
-  // Sense index map (N_SENSES = 43):
-  //  0 bias | 1 energy | 2 hydration | 3 body temp
-  //  4-5 flora | 6-7 water | 8-9 wood | 10-11 stone | 12-13 data   (nearest dx,dy in view)
-  //  14-15 nearest nodling | 16 carrying? | 17 carried insulation | 18 stack height here
-  //  19 local warmth vs ambient (shelter signal) | 20-21 nearest structure
-  //  22 heard freq | 23-24 heard sound dir | 25-26 recurrent memory
-  //  27 coldness | 28 noise
-  //  -- proprioception --   29-30 facing | 31 maturity(age)
-  //  -- spatial memory --   32-33 remembered food dir | 34-35 water dir | 36-37 shelter dir
-  //  -- threat --           38-39 nearest predator dir | 40 predator proximity(threat)
-  //  -- social --           41 neighbour energy | 42 kinship
-  //  -- imitation --        43-44 neighbour's last move | 45 neighbour's last action
-  //  -- fire --             46-47 nearest fire dir | 48 on fire / heat here
+  // Fill the sense vector. Index names are in senses.js.
   sense(){
     const w = this.world, cx = this.x|0, cy = this.y|0;
     const s = this.senseBuf; s.fill(0);
-    const vis = this.age < MATURITY ? 4 : VISION;   // juveniles see less far
+    const vis = this.age < MATURITY ? 4 : VISION;
     const scan = w.senseScan(cx, cy, vis);
     const put = (i, off) => { if (off){ s[i] = off[0]/VISION; s[i+1] = off[1]/VISION; } };
-    const memDir = (i, m) => { if (m){ s[i] = Math.max(-1, Math.min(1, (m[0]-this.x)/30));
-                                       s[i+1] = Math.max(-1, Math.min(1, (m[1]-this.y)/30)); } };
-    s[0] = 1;
-    s[1] = this.energy/MAX_ENERGY;
-    s[2] = this.hydration/100;
-    s[3] = (this.bodyTemp - 15)/20;
-    put(4, scan.flora); put(6, scan.water); put(8, scan.wood);
-    put(10, scan.stone); put(12, scan.data);
+    const far = (i, m) => { if (m){ s[i] = Math.max(-1, Math.min(1, (m[0]-this.x)/30));
+                                    s[i+1] = Math.max(-1, Math.min(1, (m[1]-this.y)/30)); } };
+    s[S.bias] = 1;
+    s[S.energy] = this.energy/MAX_ENERGY;
+    s[S.hydration] = this.hydration/100;
+    s[S.bodyTemp] = (this.bodyTemp - COMFORT)/20;
+    s[S.pain] = this.pain;
+    s[S.age] = Math.min(1, this.age/SENESCENCE);
+    s[S.cold] = Math.max(0, (TEMP_COMFORT_LO - this.bodyTemp)/10);
 
-    // update spatial memory from anything currently in view (remember where it was)
-    if (scan.flora)     this.foodMem    = [cx + scan.flora[0],     cy + scan.flora[1]];
-    if (scan.water)     this.waterMem   = [cx + scan.water[0],     cy + scan.water[1]];
-    if (scan.structure) this.shelterMem = [cx + scan.structure[0], cy + scan.structure[1]];
+    const held = propsOf(this.carrying);
+    if (held){
+      s[S.heldMass] = held.mass/5;
+      s[S.handHard] = held.hard/5; s[S.handFuel] = held.fuel/40; s[S.handSmell] = held.smell;
+      s[S.handLook] = held.look; s[S.handSharp] = held.sharp;
+    }
+    const ahead = w.at(cx + this.facing[0], cy + this.facing[1]), under = w.at(cx, cy);
+    if (ahead){
+      const m = propsOf(topOf(ahead));
+      if (m){ s[S.aheadHard] = m.hard/5; s[S.aheadFuel] = m.fuel/40; s[S.aheadSmell] = m.smell; s[S.aheadLook] = m.look; }
+      s[S.aheadHeat] = ahead.fire ? 1 : 0;
+      s[S.aheadHeight] = ahead.stack.length/MAX_HEIGHT;
+      s[S.aheadWater] = ahead.water ? 1 : 0;
+    } else s[S.aheadHeight] = 1;      // the edge of the world reads as a wall
+    const um = propsOf(topOf(under));
+    if (um){ s[S.underHard] = um.hard/5; s[S.underFuel] = um.fuel/40; s[S.underSmell] = um.smell; s[S.underLook] = um.look; }
+    s[S.underHeat] = under.fire ? 1 : 0;
+    s[S.underHeight] = under.stack.length/MAX_HEIGHT;
+
+    put(S.waterX, scan.water); put(S.heatX, scan.heat);
+    put(S.plantAX, scan.plantA); put(S.plantBX, scan.plantB);
+    put(S.fleshX, scan.flesh); put(S.hardX, scan.hard); put(S.fuelX, scan.fuel); put(S.wallX, scan.wall);
+
+    let bc = null, bcd = vis*vis;
+    for (const cr of w.near(w.cIndex, this.x, this.y)){
+      if (cr.dead) continue;
+      const d = (cr.x-this.x)**2 + (cr.y-this.y)**2;
+      if (d < bcd){ bcd = d; bc = cr; }
+    }
+    if (bc){ s[S.animalX] = (bc.x-this.x)/VISION; s[S.animalY] = (bc.y-this.y)/VISION; }
 
     let bn = null, bd = VISION*VISION;
     for (const o of w.near(w.nIndex, this.x, this.y)){
@@ -134,60 +107,42 @@ class Nodling {
       const d = (o.x-this.x)**2 + (o.y-this.y)**2;
       if (d < bd){ bd = d; bn = o; }
     }
-    if (bn){ s[14] = (bn.x-this.x)/VISION; s[15] = (bn.y-this.y)/VISION; }
-
-    s[16] = this.carrying ? 1 : 0;
-    s[17] = this.carrying ? MATERIALS[this.carrying].insulation : 0;
-    const here = w.at(cx, cy);
-    s[18] = here ? here.stack.length/4 : 0;
-    s[19] = (w.cellTemp(cx, cy) - w.ambient())/20;
-    put(20, scan.structure);
-
-    let bs = null, bsd = EARSHOT*EARSHOT;
-    for (const snd of w.near(w.sIndex, this.x, this.y)){
-      const d = (snd.x-this.x)**2 + (snd.y-this.y)**2;
-      if (d < bsd){ bsd = d; bs = snd; }
+    if (bn){
+      s[S.nodlingX] = (bn.x-this.x)/VISION; s[S.nodlingY] = (bn.y-this.y)/VISION;
+      const bo = bn.lastOut;
+      if (bo){ s[S.otherMoveX] = bo.moveX; s[S.otherMoveY] = bo.moveY;
+               s[S.otherAct] = Math.max(bo.use, bo.grab, bo.strike, bo.drop); }
+      s[S.otherGain] = Math.max(-1, Math.min(1, bn.lastGain*4));
+      s[S.otherAdult] = bn.age >= MATURITY ? 1 : -1;
+      const hd = Math.abs(((bn.genome.hue - this.genome.hue + 540) % 360) - 180);
+      s[S.kinship] = 1 - Math.min(1, hd/120);
+      const oh = propsOf(bn.carrying);
+      if (oh){ s[S.otherHoldsFood] = oh.smell; s[S.otherHoldsHard] = oh.hard/5; }
     }
-    if (bs){ s[22] = bs.f; s[23] = (bs.x-this.x)/EARSHOT; s[24] = (bs.y-this.y)/EARSHOT; }
 
-    s[25] = this.mem[0]; s[26] = this.mem[1];
-    s[27] = Math.max(0, (COMFORT - this.bodyTemp)/20);
-    s[28] = w.rng()*2 - 1;
-
-    s[29] = this.facing[0]; s[30] = this.facing[1];
-    s[31] = Math.min(1, this.age/1000);
-    memDir(32, this.foodMem); memDir(34, this.waterMem); memDir(36, this.shelterMem);
-
-    // nearest predator (few of them) — direction + how close/threatening
     let bp = null, bpd = 12*12;
     for (const p of w.predators){
       if (p.dead) continue;
       const d = (p.x-this.x)**2 + (p.y-this.y)**2;
       if (d < bpd){ bpd = d; bp = p; }
     }
-    if (bp){ s[38] = (bp.x-this.x)/12; s[39] = (bp.y-this.y)/12; s[40] = 1 - Math.sqrt(bpd)/12; }
-    // listening pays when it matters: hearing a call with a predator close makes sound informative to the listener
-    if (bp && bs){
-      this.bonus += LISTEN_BONUS;
-      if (this.prevPredD2 !== undefined && bpd > this.prevPredD2) this.bonus += FLEE_HEARD_BONUS;
-    }
-    this.prevPredD2 = bp ? bpd : undefined;
-    if (bs && !bp) this.heardCallAge = this.age;
+    if (bp){ s[S.predatorX] = (bp.x-this.x)/12; s[S.predatorY] = (bp.y-this.y)/12; s[S.threat] = 1 - Math.sqrt(bpd)/12; }
 
-    // social: neighbour's health, kinship (hue ≈ lineage), and its last action
-    // (so imitation can be *learned* — the brain may choose to copy it)
-    if (bn){
-      s[41] = bn.energy/MAX_ENERGY;
-      const hd = Math.abs(((bn.genome.hue - this.genome.hue + 540) % 360) - 180);
-      s[42] = 1 - Math.min(1, hd/120);
-      const bo = bn.lastOut;
-      if (bo){ s[43] = bo.moveX; s[44] = bo.moveY;
-               s[45] = Math.max(Math.abs(bo.strike), Math.abs(bo.interact), Math.abs(bo.grab)); }
+    let bs = null, bsd = EARSHOT*EARSHOT;
+    for (const snd of w.near(w.sIndex, this.x, this.y)){
+      const d = (snd.x-this.x)**2 + (snd.y-this.y)**2;
+      if (d < bsd && d > 0.01){ bsd = d; bs = snd; }     // not its own call
     }
+    if (bs){ s[S.heardPitch] = bs.f; s[S.heardX] = (bs.x-this.x)/EARSHOT; s[S.heardY] = (bs.y-this.y)/EARSHOT; }
 
-    memDir(46, scan.fire ? [cx + scan.fire[0], cy + scan.fire[1]] : null);
-    s[48] = (here && here.fire) ? 1 : (scan.fire ? 0.4 : 0);
-    if (ENV.senseMask) for (const i of ENV.senseMask) s[i] = 0; // ablation probes only
+    s[S.mem0] = this.mem[0]; s[S.mem1] = this.mem[1]; s[S.mem2] = this.mem[2]; s[S.mem3] = this.mem[3];
+    s[S.noise] = w.rng()*2 - 1;
+    s[S.facingX] = this.facing[0]; s[S.facingY] = this.facing[1];
+    s[S.daylight] = Math.sin(w.dayFrac()*Math.PI*2 - Math.PI/2);
+    s[S.season] = -Math.cos(w.yearPhase()*Math.PI*2);          // -1 midwinter .. +1 midsummer
+    s[S.shelter] = (w.cellTemp(cx, cy) - w.ambient())/20;
+    far(S.knownWaterX, this.waterMem); far(S.knownFoodX, this.foodMem);
+    if (ENV.senseMask) for (const i of ENV.senseMask) s[i] = 0; // switched-off tests only
     return s;
   }
 
@@ -195,331 +150,92 @@ class Nodling {
   tick(){
     const w = this.world;
     this.age++;
-    // Think every other tick (a ~2-tick reaction time), but still act every
-    // tick with the last decision — halves the dominant sensing cost. On each
-    // think, feed the brain a reward (change in well-being + any bonus) so its
-    // plastic synapses learn within this lifetime.
+    this.pain *= 0.9;
+
+    // -- think: senses in, outputs out, and learn from how the body's state changed --
     let out = this.lastOut;
-    if (!out || !((w.tick + this.phase) & 1)){
+    if (!out || (w.tick + this.phase) % THINK_EVERY === 0){
       const s = this.sense();
-      // curiosity: reward for how novel the current situation is vs. its running
-      // average — an intrinsic drive to explore, which speeds up discovery
-      let nov = 0;
-      for (let i = 0; i < N_SENSES; i++){
-        nov += Math.abs(s[i] - this.senseEMA[i]);
-        this.senseEMA[i] = this.senseEMA[i]*0.98 + s[i]*0.02;
-      }
       const wb = this.wellbeing();
-      const reward = Math.max(-1, Math.min(1,
-        (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
-      this.lastWellbeing = wb; this.bonus = 0;
-      // learn from the reward prediction error (reward minus its running average), not from raw
-      // reward: a reward that is always there carries no information about what just worked
-      this.rewardAvg = (this.rewardAvg || 0)*0.97 + reward*0.03;
-      out = this.brain.step(s, reward - this.rewardAvg);
+      const gain = Math.max(-1, Math.min(1, (wb - this.lastWellbeing)*8));
+      this.lastWellbeing = wb;
+      const surprise = gain - this.rewardAvg;            // better or worse than expected
+      this.rewardAvg += 0.02*(gain - this.rewardAvg);
+      this.lastGain = gain;
+      out = this.brain.step(s, surprise);
+      if (ENV.outMask) for (const k of ENV.outMask) out[k] = 0;
       this.lastOut = out;
-      this.mem = [out.mem0, out.mem1];
-      // accumulate behaviour signature (what this individual actually does)
-      const b = this.behav;
-      b[0] += Math.hypot(out.moveX, out.moveY);
-      b[1] += out.interact > 0.5 ? 1 : 0;
-      b[2] += (out.grab > 0.5 || out.drop > 0.5) ? 1 : 0;
-      b[3] += out.strike > 0.5 ? 1 : 0;
-      b[4] += Math.abs(out.sound) > 0.15 ? 1 : 0;
-      b[5] += w.at(this.x|0, this.y|0)?.water ? 1 : 0;
-      this.behavN++;
+      this.mem = [out.mem0, out.mem1, out.mem2, out.mem3];
     }
 
-    // -- move: water is a hard barrier (no swimming) unless it's been bridged
-    //    (a water cell carrying dropped material is walkable). Stacks of 3+ are
-    //    solid walls. --
-    const nx = Math.max(0, Math.min(GRID_W - 0.01, this.x + out.moveX*0.25));
-    const ny = Math.max(0, Math.min(GRID_H - 0.01, this.y + out.moveY*0.25));
-    const dest = w.at(nx|0, ny|0);
-    if (dest && dest.stack.length < 3 && (!dest.water || dest.stack.length > 0)){
-      if (dest.water && !w.at(this.x|0, this.y|0).water) this.bonus += BRIDGE_CROSS_BONUS;
-      this.x = nx; this.y = ny;
-    }
-    const fx = out.moveX > 0.3 ? 1 : out.moveX < -0.3 ? -1 : 0;
-    const fy = out.moveY > 0.3 ? 1 : out.moveY < -0.3 ? -1 : 0;
-    if (fx || fy) this.facing = [fx, fy];
+    act(this, out);
 
-    const cx = this.x|0, cy = this.y|0;
-    const cell = w.at(cx, cy);
+    const cx = this.x|0, cy = this.y|0, cell = w.at(cx, cy);
 
-    // -- grab / drop --
-    if (out.grab > 0.5 && !this.carrying && cell.stack.length)
-    {
-      this.carrying = cell.stack.pop();
-      this.pickup = [cx, cy];
-      if (this.carrying === 'brick'){ this.bonus += BRICK_GRAB_BONUS*(this.inVillage ? 2 : 1); if (this.heardCallAge !== undefined && this.age - this.heardCallAge <= 30) this.bonus += CALL_BRICK_BONUS*(this.inVillage ? 2 : 1); }
-      if (DURABLE_BUILD.includes(this.carrying) && this.carrying !== 'brick'){
-        let nb = 0;
-        for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
-          const q = w.at(cx+ax, cy+ay);
-          if (q && q.stack.some(m => DURABLE_BUILD.includes(m))) nb++;
-        }
-        if (!nb) this.bonus += QUARRY_BONUS;
-      }
-      else if (this.carrying === 'clay'){
-        scan: for (let dy = -6; dy <= 6; dy++) for (let dx = -6; dx <= 6; dx++){
-          const fc = w.at(cx+dx, cy+dy);
-          if (fc && fc.fire){ this.bonus += CLAY_GATHER_BONUS; break scan; }
-        }
-      }
-    }
-    // -- drop: onto a faced water cell with buoyant cargo, it lays a bridge
-    //    tile (walkable); otherwise it drops on the current cell as usual --
-    if (out.drop > 0.5 && this.carrying){
-      const fc = w.at(cx + this.facing[0], cy + this.facing[1]);
-      if (fc && fc.water && !fc.stack.length && MATERIALS[this.carrying].buoyant){
-        for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
-          const bc = w.at(cx + this.facing[0] + ax, cy + this.facing[1] + ay);
-          if (bc && bc.water && bc.stack.length){ this.bonus += BRIDGE_BONUS; break; }
-        }
-        fc.stack.push(this.carrying); // bridge
-      } else {
-        // building onto an existing durable structure is rewarded (clusters, not scatter)
-        if (DURABLE_BUILD.includes(this.carrying)){
-          let nbs = 0;
-          for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
-            const nb = w.at(cx+ax, cy+ay);
-            if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))) nbs++;
-          }
-          if (nbs && this.lastBuild && (this.lastBuild[0]-cx)**2 + (this.lastBuild[1]-cy)**2 <= 36) this.bonus += SITE_BONUS;
-          if (nbs) this.lastBuild = [cx, cy];
-          if (nbs && cell.stack.some(m => DURABLE_BUILD.includes(m))) this.bonus += TOWER_BONUS;
-          if (nbs && this.carrying === 'brick' && cell.stack.length && cell.stack[cell.stack.length-1] === 'brick') this.bonus += BRICK_TOWER_BONUS*(this.inVillage ? 2 : 1);
-          if (nbs){
-            for (const [ax, ay] of [[1,1],[-1,1],[1,-1],[-1,-1]]){
-              const nb = w.at(cx+ax, cy+ay);
-              if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += CORNER_BONUS; break; }
-            }
-          }
-          if (nbs >= 2){
-            const dur = (ax, ay) => { const nb = w.at(cx+ax, cy+ay); return nb && nb.stack.some(m => DURABLE_BUILD.includes(m)); };
-            if ((dur(1,0) && dur(-1,0)) || (dur(0,1) && dur(0,-1))) this.bonus += GAP_BONUS;
-          }
-          if (nbs >= 3) this.bonus += NOTCH_BONUS;
-          if (nbs && w.adjacentWater(cx, cy)) this.bonus += SHORE_BONUS;
-          if (nbs){
-            for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
-              const nb = w.at(cx+ax, cy+ay);
-              const top = nb && nb.stack.length ? nb.stack[nb.stack.length-1] : null;
-              if (top && DURABLE_BUILD.includes(top) && top !== this.carrying){ this.bonus += MIXED_BONUS; break; }
-            }
-          }
-          if (nbs && this.heardCallAge !== undefined && this.age - this.heardCallAge <= 30) this.bonus += CALL_BUILD_BONUS*(this.inVillage ? 2 : 1);
-          if (nbs && w.season() === 'Winter') this.bonus += WINTER_BUILD_BONUS;
-          if (nbs && cell.stack.length >= 2) this.bonus += TALL_STACK_BONUS;
-          if (nbs && this.pickup && (this.pickup[0]-cx)**2 + (this.pickup[1]-cy)**2 >= 64) this.bonus += HAUL_BONUS*(this.inVillage ? 2 : 1);
-          if (nbs){
-            for (const o of w.near(w.nIndex, this.x, this.y)){
-              if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 9){ this.bonus += TEAM_BUILD_BONUS*(this.inVillage ? 2 : 1); break; }
-            }
-          }
-          if (nbs) this.bonus += BUILD_ADJACENT_BONUS*(this.inVillage ? 1.5 : 1) + (this.carrying === 'brick' ? BRICK_WALL_BONUS*(this.inVillage ? 2 : 1) : 0) + (nbs >= 2 ? ENCLOSE_BONUS*(this.inVillage ? 2 : 1) : 0);
-        }
-        if (this.carrying === 'clay'){
-          for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
-            const kc = w.at(cx+dx, cy+dy);
-            if (kc && kc.fire){
-              this.bonus += KILN_BONUS*(this.inVillage ? 2 : 1);
-              site: for (let sy = -3; sy <= 3; sy++) for (let sx = -3; sx <= 3; sx++){
-                const sc = w.at(cx+sx, cy+sy);
-                if (sc && sc.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += KILN_SITE_BONUS; break site; }
-              }
-              dy = 2; break;
-            }
-          }
-        }
-        cell.stack.push(this.carrying);
-      }
-      this.carrying = null;
-    }
-
-    // -- interact: outcome depends on what's actually here, not on a verb menu --
-    if (out.interact > 0.5){
-      const top = cell.stack[cell.stack.length-1];
-      if (this.carrying && MATERIALS[this.carrying].nutrition){
-        this.eat(this.carrying); this.carrying = null;
-      } else if (top && MATERIALS[top].nutrition){
-        let walls = 0;
-        for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
-          const nb = w.at(cx+ax, cy+ay);
-          if (nb && nb.stack.some(m => DURABLE_BUILD.includes(m))) walls++;
-        }
-        if (walls >= 2) this.bonus += CACHE_BONUS;
-        for (const o of w.near(w.nIndex, this.x, this.y)){
-          if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 9){ this.bonus += SHARED_MEAL_BONUS*(this.inVillage ? 2 : 1) + (walls >= 2 ? FEAST_BONUS : 0); break; }
-        }
-        if (this.energy < 60) this.bonus += HUNGRY_EAT_BONUS;
-        if (this.heardCallAge !== undefined && this.age - this.heardCallAge <= 20) this.bonus += CALL_FOLLOW_BONUS;
-        this.eat(cell.stack.pop());
-      } else if (cell.water || w.adjacentWater(cx, cy)){
-        if (this.hydration < 40) this.bonus += THIRST_DRINK_BONUS;
-        if (this.hydration < 70 && this.heardCallAge !== undefined && this.age - this.heardCallAge <= 20) this.bonus += 0.3; // water-follow: a call led me to water
-        well: for (let sy = -4; sy <= 4; sy++) for (let sx = -4; sx <= 4; sx++){
-          const sc = w.at(cx+sx, cy+sy);
-          if (sc && sc.stack.some(m => DURABLE_BUILD.includes(m))){ this.bonus += WELL_BONUS; break well; }
-        }
-        this.hydration = 100;
-      }
-    }
-
-    // -- strike: hunt a critter in the faced cell (drops meat), or knock the
-    //    top material off it. Hunting is a learnable food source: face + strike. --
-    if (out.strike > 0.5 && (this.facing[0] || this.facing[1])){
-      const tx = cx + this.facing[0], ty = cy + this.facing[1];
-      const t = w.at(tx, ty);
-      for (const cr of w.near(w.cIndex, tx + 0.5, ty + 0.5)){
-        if (cr.dead) continue;
-        if ((cr.x-(tx+0.5))**2 + (cr.y-(ty+0.5))**2 < 0.9){
-          cr.dead = true;
-          this.bonus += HUNT_BONUS*(this.inVillage ? 2 : 1);
-          (t || cell).stack.push('meat');
-          break;
-        }
-      }
-      if (t && t.stack.length && !t.stack.includes('fiber')){ // fiber binds a stack vs. strikes
-        const top = t.stack[t.stack.length-1];
-        if (top === 'wood' && w.rng() < 0.25){
-          t.stack[t.stack.length-1] = 'plank';   // working the wood hardens it
-        } else {
-          t.stack.pop();
-          const n = w.at(cx + ((w.rng()*3)|0) - 1, cy + ((w.rng()*3)|0) - 1);
-          (n || cell).stack.push(top);
-        }
-      }
-      this.energy -= 1;
-    }
-
-    // -- sound: a frequency in [0,1]; meaning, if any, must be evolved. Calling
-    //    *while something matters nearby* (food underfoot, or a predator close)
-    //    earns a small reward, so informative signalling can bootstrap. --
-    if (Math.abs(out.sound) > 0.15){
-      w.nextSounds.push({x:this.x, y:this.y, f:(out.sound+1)/2});
-      this.energy -= 0.1;
-      const topNut = cell.stack.length && MATERIALS[cell.stack[cell.stack.length-1]].nutrition;
-      let predNear = false;
-      for (const p of w.predators) if (!p.dead && (p.x-this.x)**2+(p.y-this.y)**2 < 36){ predNear = true; break; }
-      if (predNear) this.bonus += 1.0; else if (topNut){
-        this.bonus += 0.25;
-        for (const o of w.near(w.nIndex, this.x, this.y)){ // food-audience: a food-found call pays extra when a listener is within 8 cells
-          if (o !== this && !o.dead && (o.x-this.x)**2 + (o.y-this.y)**2 < 64){ this.bonus += 0.3; break; }
-        }
-      }
-    }
-
-    // -- metabolism: thinking, moving, swimming, aging, and buggy code cost energy --
+    // -- metabolism: living, thinking, moving (more with a load), ageing, crowding --
     const moving = Math.hypot(out.moveX, out.moveY);
-    this.energy -= 0.035 + this.brainSize*0.0001 + moving*0.04*(this.vPerk ? 0.5 : 1)
-                 + (cell.water ? 0.08 : 0) + (out.glitch ? 0.5 : 0)
-                 + (this.age > SENESCENCE ? (this.age - SENESCENCE)*0.0004*(this.vPerk ? 0.5 : 1) : 0); // senescence (village infirmary: halved)
-    this.hydration -= (0.045 + (this.bodyTemp > 28 ? 0.05 : 0)) * (this.vPerk ? 0.5 : 1) * ENV.thirst; // village cistern: half thirst drain
+    const crowd = Math.max(0, w.pop - POP_CAP*0.8)/(POP_CAP*0.2);
+    this.energy -= 0.04 + this.brainSize*0.0001 + moving*0.04*carryFactor(this.carrying)
+                 + crowd*0.03 + (out.glitch ? 0.5 : 0)
+                 + (this.age > SENESCENCE ? (this.age - SENESCENCE)*0.00008 : 0);
+    this.hydration -= THIRST_RATE*(this.bodyTemp > 28 ? 1.5 : 1)*ENV.thirst;
 
-    // -- fire: standing in it burns; a real hazard to learn to avoid --
-    if (cell.fire){ this.energy -= 4; if (w.rng() < 0.06){ this.die(cell); return null; } }
+    // -- fire burns --
+    if (cell.fire){ this.energy -= 4; this.pain = 1; }
 
-    // -- temperature: body drifts toward local temp. Ideal is COMFORT (18°).
-    //    Outside the comfort band energy drains; past the lethal band a per-tick
-    //    death roll grows with how far past the limit you are (shelter mitigates). --
-    const prevTemp = this.bodyTemp;
+    // -- temperature: the body drifts toward the temperature of its cell --
     this.bodyTemp += (w.cellTemp(cx, cy) - this.bodyTemp)*0.03;
-    if (!cell.fire && this.bodyTemp < TEMP_COMFORT_LO && this.bodyTemp > prevTemp && w.cellTemp(cx, cy) > 30) this.bonus += HEARTH_BONUS;
-    if (this.bodyTemp > TEMP_COMFORT_HI && this.bodyTemp < prevTemp) this.bonus += COOL_BONUS;
-    if (this.energy > 180 && w.season() === 'Autumn') this.bonus += FATTEN_BONUS;
-    if (this.age % 8 === 0){
-      let dn = 0;
-      for (let vy = -3; vy <= 3; vy++) for (let vx = -3; vx <= 3; vx++){
-        const vc = w.at(cx+vx, cy+vy);
-        if (vc && vc.stack.some(m => DURABLE_BUILD.includes(m))) dn++;
-      }
-      this.inVillage = dn >= 12;
-      this.vPerk = VILLAGE_SURVIVAL_PERKS && this.inVillage;
-      if (dn >= 12) this.bonus += VILLAGE_BONUS * 8;
-    }
-    if (this.lastBuild && w.isNight() && (this.lastBuild[0]-cx)**2 + (this.lastBuild[1]-cy)**2 <= 16) this.bonus += HOME_BONUS;
-    if (this.bodyTemp < TEMP_COMFORT_LO) this.energy -= (TEMP_COMFORT_LO - this.bodyTemp)*0.05;
-    if (this.bodyTemp > TEMP_COMFORT_HI) this.energy -= (this.bodyTemp - TEMP_COMFORT_HI)*0.04;
+    if (this.bodyTemp < TEMP_COMFORT_LO) this.energy -= (TEMP_COMFORT_LO - this.bodyTemp)*0.03*ENV.cold;
+    if (this.bodyTemp > TEMP_COMFORT_HI) this.energy -= (this.bodyTemp - TEMP_COMFORT_HI)*0.03*ENV.cold;
     let mortal = 0;
     if (this.bodyTemp < TEMP_LETHAL_LO) mortal = (TEMP_LETHAL_LO - this.bodyTemp)*0.004;
     else if (this.bodyTemp > TEMP_LETHAL_HI) mortal = (this.bodyTemp - TEMP_LETHAL_HI)*0.004;
 
     if (this.energy <= 0 || this.hydration <= 0 || (mortal > 0 && w.rng() < mortal)){
-      const cause = this.energy <= 0 ? 'starved' : this.hydration <= 0 ? 'thirst' : 'temp';
-      w.deathCauses[cause] = (w.deathCauses[cause] || 0) + 1;
-      this.die(cell); return null;
+      this.die(this.hydration <= 0 ? 'thirst' : this.energy > 0 ? 'temp' : cell.fire ? 'burned'
+               : this.age > SENESCENCE ? 'age' : this.bodyTemp < TEMP_COMFORT_LO ? 'cold' : 'starved');
+      return null;
     }
 
-    // -- reproduction: thrive long enough and the genome propagates. Crowding
-    //    suppresses it (density dependence damps the boom-bust swings). The
-    //    crowd scan only runs for breeding-eligible Nodlings — a big saving. --
-    const eligible = this.energy > 115 && this.hydration > 50 && this.age > 110 && w.pop < POP_CAP;
-    // Speciation via fitness sharing: you compete for breeding mostly with your
-    // OWN kind (similar colour, diet, brain size), so a novel or rare lineage
-    // isn't smothered by the dominant one — this preserves diversity.
-    let crowd = 0;
-    if (eligible)
-      for (const o of w.near(w.nIndex, this.x, this.y)){
-        if (o === this || o.dead || (o.x-this.x)**2 + (o.y-this.y)**2 >= 25) continue;
-        const hd = Math.abs(((o.genome.hue - this.genome.hue + 540) % 360) - 180)/180;
-        const dd = Math.abs((o.genome.diet ?? 0.5) - (this.genome.diet ?? 0.5));
-        const db = Math.abs(o.brainSize - this.brainSize)/120;
-        crowd += Math.max(0, 1 - (hd + dd + db)*1.5); // ~1 for kin, ~0 for a different species
-      }
-    // Novelty search: behaving differently from the population earns extra
-    // breeding chance, pushing the world to keep discovering instead of converging.
-    const nov = eligible ? behaviorNovelty(this.signature()) : 0;
-    if (eligible && w.rng() < 0.008*(1 - Math.min(0.92, crowd*0.16))*(1 + nov*1.5)){
-      this.energy -= 60;
-      this.offspring++;
-      this.bonus = 1;   // reproduction is strongly rewarding to the learner
-      let mate = null;
-      // mate choice: of the willing neighbours, pick the fittest (age + 250 x offspring)
-      let bestFit = -1;
-      for (const o of w.near(w.nIndex, this.x, this.y))
-        if (o !== this && !o.dead && o.energy > (this.vPerk ? 80 : 100)
-            && (o.x-this.x)**2 + (o.y-this.y)**2 < 4){
-          const f = o.age + 250*o.offspring;
-          if (f > bestFit){ bestFit = f; mate = o; }
+    // -- breeding: a well-fed adult breeds, and the better fed, the more often --
+    if (this.age > MATURITY && this.energy > BREED_ENERGY && this.hydration > 40 && w.pop < POP_CAP*1.3){
+      const surplus = 0.5 + 1.5*Math.min(1, (this.energy - BREED_ENERGY)/(MAX_ENERGY - BREED_ENERGY - 20));
+      if (w.rng() < BREED_RATE*surplus){
+        this.energy -= BREED_COST;
+        this.offspring++;
+        this.lastWellbeing = this.wellbeing();   // the cost of a child is not felt as a loss
+        let mate = null, md = 4;
+        for (const o of w.near(w.nIndex, this.x, this.y)){
+          if (o === this || o.dead || o.age <= MATURITY || o.energy <= 100) continue;
+          const d = (o.x-this.x)**2 + (o.y-this.y)**2;
+          if (d < md){ md = d; mate = o; }
         }
-      const g = mutateGenome(
-        mate ? crossoverGenome(this.genome, mate.genome, w.rng) : this.genome, w.rng);
-      const child = new Nodling(w, this.x, this.y, g, this.gen + 1);
-      // nest bonus: breeding inside a cluster of structures gives the newborn a
-      // head start, so settling and building together pays off (drives villages)
-      let nest = 0;
-      for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++){
-        const nc = w.at(cx+dx, cy+dy); if (nc && nc.stack.length >= 2) nest++;
+        const g = mutateGenome(mate ? crossoverGenome(this.genome, mate.genome, w.rng) : this.genome, w.rng);
+        const child = new Nodling(w, this.x, this.y, g, this.gen + 1);
+        child.energy = START_ENERGY;
+        child.bodyTemp = this.bodyTemp;
+        return child;
       }
-      if (nest >= 4){ child.energy += 45; this.bonus += NEST_BREED_BONUS; }
-      archiveBehavior(this.signature()); // record what a *successful* breeder did
-      return child;
     }
     return null;
   }
 
-  eat(mat){
-    // Diet niche (evolved gene, 0 herbivore .. 1 carnivore): herbivores get more
-    // from plants, carnivores more from meat. This splits the population into
-    // niches that exploit different foods — more diversity, higher total capacity.
-    const d = this.genome.diet ?? 0.5;
-    const plant = mat === 'flora' || mat === 'seed';
-    const flesh = mat === 'meat' || mat === 'cooked';
-    const mult = plant ? 1.3 - d*0.9 : flesh ? 0.5 + d*0.9 : 1;
-    this.energy = Math.min(MAX_ENERGY, this.energy + MATERIALS[mat].nutrition*mult*(this.vPerk ? 1.25 : 1)); // village larder: meals inside a village are richer
-    if (this.heardCallAge !== undefined && this.age - this.heardCallAge <= 20) this.bonus += 0.3; // food-follow: a call led me to a meal
-    if (mat === 'data') this.brain.boost = 6;   // plasticity surge: learn fast for a while
-    const drops = MATERIALS[mat].drops;         // e.g. flora → a plantable seed
-    if (drops) for (const d of drops)
-      if (this.world.rng() < d.chance) this.world.scatterItem(this.x|0, this.y|0, d.item);
+  eat(item){
+    const w = this.world, v = foodValue(w, item), m = MATERIALS[item];
+    this.energy = Math.min(MAX_ENERGY, this.energy + v);
+    this.meals++;
+    if (v < 0) this.badMeals++; else this.foodMem = [this.x, this.y];
+    ledger(w, this, 'use', 'none', m.smell >= 1 ? 'flesh' : m.kind !== null ? 'plant' : 'food', v < 0 ? 'eat-bad' : 'eat');
+    if (m.drops) for (const d of m.drops)
+      if (w.rng() < d.chance) w.scatterItem(this.x|0, this.y|0, d.item);
   }
 
-  die(cell){
+  die(cause){
+    if (this.dead) return;
+    const w = this.world, cell = w.at(this.x|0, this.y|0);
     this.dead = true;
-    if (this.carrying){ cell.stack.push(this.carrying); this.carrying = null; }
-    // Leave a corpse: mostly meat (so scavenging can emerge), sometimes biomass.
-    if (cell.stack.length < 3) cell.stack.push(this.world.rng() < 0.6 ? 'meat' : 'flora');
+    w.deathCauses[cause] = (w.deathCauses[cause] || 0) + 1;
+    if (this.carrying){ w.scatterItem(this.x|0, this.y|0, this.carrying); this.carrying = null; }
+    if (cell.stack.length < NATURAL_HEIGHT && !cell.water) cell.stack.push(CARCASS);
   }
 }

@@ -1,41 +1,83 @@
-# World notes
+# World notes (World 2)
 
-Background on the simulation's mechanics, kept from the original README. Some of it describes intentions rather than measured behaviour; [ROADMAP.md](../ROADMAP.md) has the measured state.
+How the world works, in plain words. The exact numbers are in `materials.js` (one row per material) and at the
+top of `world.js`, `nodling.js` and `brain.js`. The notes on the first world are in `archive/v1/`.
 
-## How emergence works here
+## The one idea
 
-- **No behavior is scripted.** A Nodling's brain is an evolving neural network (49 sensory inputs → 9 motor outputs) with NEAT-style topology growth, reward-modulated plasticity, **gated memory neurons** (longer-horizon state), a **curiosity** drive (intrinsic reward for novelty, to speed discovery), and a **plasticity surge** when it eats `data` (fast learning for a while). The base reward is survival + reproduction.
-- **Predators evolve too.** Predators run their own smaller evolving brains with their own hall of fame, so an **arms race** develops — they learn to hunt while Nodlings learn to evade. Predation also creates safety-in-numbers pressure (a driver toward flocking/tribes).
-- **Senses include** vision, proprioception, spatial memory (where food/water/shelter/fire was), predator threat, a neighbour's health + kinship + **last action** (so imitation can be learned), and fire.
-- **Emergence via affordances, not recipes.** New behaviors are only discoverable if the *physics* make them possible — never a crafting menu. Examples: striking wood works it into a **plank**; **fire** (dry-season ignition) spreads, cooks meat into higher-energy food, fires **clay into brick** (a kiln), and is a heat source to shelter beside; **fiber** (from flora) binds a stack so it resists being knocked down; breeding inside a **nest** (structure cluster) gives newborns a head start.
-- **Life cycle:** juveniles see less and can't breed; old age raises upkeep (senescence).
-- **Diet niches:** an evolved gene runs herbivore↔carnivore. Herbivores get more from plants, carnivores from meat — so the population splits into a food web that raises carrying capacity and diversity.
-- **A stable ecology, on purpose.** Winter is a lean cool season rather than a mass-killer, so the population is limited by *food competition* (carrying capacity), not seasonal die-offs. This matters: a stable population near capacity rewards being smarter than your neighbour (K-selection), whereas boom-bust cycles just reward breeding fast (r-selection) and stall evolution. Instead of dumping clones at near-extinction, a gentle "life-support" trickles in diverse gene-bank Nodlings that keep their lineage depth — so generations accumulate (100s deep) instead of resetting.
-- **A continent, not a grid.** The world is a landmass ringed by ocean. Nodlings **can't swim** — water is a hard barrier — so they expand by **building bridges** (dropping buoyant wood/plank onto adjacent water makes a walkable tile). Predators and critters can't cross water at all, so islands and bridged areas are refuges.
-- **Fire** is tuned subcritical: it burns a patch and dies out rather than wiping the map, and **water/stone act as firebreaks**. It's a real hazard (and heat source, and kiln) without being a reset.
+Nothing a Nodling does is scripted or paid for. Things have properties, a handful of rules act on those
+properties, and a Nodling feels only its own body. If something useful can be done with a thing, a Nodling can
+stumble on it, feel that its body is better off, and do it again.
 
-## The Observer
+## Materials
 
-An automated analyst (`observer.js`) does the "watch and report" job for you. Once per in-world day it reads the whole world and appends **milestones** (first brick, first bridge, generation/fitness thresholds, predators learning to hunt), **issues** (near-extinction, fire damage, no construction), and **trends** (fitness climbing, brains shrinking, Nodlings grouping into proto-tribes) to a log. Open it with the **Observations** button; download it as markdown for later. It has caught real emergent events in testing — e.g. flocking (mean spacing collapsing) as a response to predators.
-- **They also learn within a lifetime.** Synapses flagged plastic update by a reward-modulated Hebbian rule (reward = change in well-being + reproduction), so a Nodling is born with evolved instincts *and* adapts to its own experience. Recurrent connections give it evolvable memory.
-- **Progress is auto-saved.** The hall of fame (the evolved genomes) is written to `localStorage` every 8 seconds and on close, and restored on load — so evolution resumes across reloads. Export/Import buttons make a portable JSON backup.
-- **Physics, not recipes.** Materials are property bags (`weight`, `buoyant`, `insulation`, `nutrition`, optional `drops`). Stacked materials insulate nearby cells toward a comfortable 18°; height ≥ 3 blocks movement. "Shelter" is discoverable, not defined.
-- **Seasons create the pressure.** A 32-day year swings from ~28° summer to below-freezing winter. Cold outside 0–38° carries a rising per-tick death chance, so shelter has real survival value — the fitness gradient that *could* drive building.
-- **Food loop.** Eating flora can drop a **seed**; seeds germinate into new flora (plant it and you farm). Critters convert flora into **meat** when hunted; corpses drop meat too (scavenging). A wind-blown-flora safety net means food can't permanently hit zero.
-- **Broken mutations don't crash** — a tree returning NaN "glitches" and drains energy, so buggy genomes select themselves out.
-- **Data nodes** trigger `selfRewrite()`: a hard in-place mutation of one output tree during the Nodling's lifetime.
-- **Sound** is a raw frequency channel in/out ("glowing" halos on-screen). Any meaning must be evolved.
-- Near-extinction reseeds from a hall of fame of the best genomes ever, so evolution ratchets across die-offs.
+Each material is a row of numbers: how heavy, how hard, how long it burns, how nourishing, how it smells and
+looks, whether it floats, whether it is sharp, how fast it rots, what it turns into when heated or broken.
 
-## Vitals
+| Material | Worth knowing |
+|---|---|
+| wood | burns long, floats, breaks into two sticks |
+| stick | light fuel, floats |
+| stone | heavy and hard, breaks into two flakes |
+| flake | hard and sharp, light |
+| clay | found on the shore, bakes into brick next to a fire |
+| brick | hard, insulates best |
+| the two plants | look different (the eye reports +1 or -1). Each year one kind nourishes and the other is mildly poisonous, and at new year they swap |
+| seed | a small bite, or a new plant if left lying |
+| meat | from a killed animal; rots fast; cooks next to a fire |
+| cooked meat | the best food there is, keeps longer |
 
-Ideal body temp 18°. Comfortable 10–26° (outside drains energy); below 0° or above 38° has a rising per-tick death chance. Energy or hydration hitting 0 is fatal. Body temp tracks the local cell, which shelter warms.
+## The rules
 
-## Interacting
+- **Carry.** A heavier load makes every step cost more energy.
+- **Place.** Dropped on water, a floating thing becomes a bridge and a heavy thing sinks. Dropped on a fire,
+  fuel feeds it. Dropped on a pile, it stacks. Three high is a wall that blocks Nodlings and predators; four is the limit.
+- **Strike.** The force of a blow is the hardness and weight of what is in the hand (a bare hand is weak). A blow
+  harder than its target breaks it or kills it. A sharp thing counts double against soft targets. Two hard
+  things struck together may spark, and a spark lights fuel. A blow that cannot break a pile knocks its top off.
+- **Heat.** Fire burns through its fuel, may spread to fuel next to it, warms the cells around it, cooks and
+  bakes what lies beside it, and hurts whoever stands in it.
+- **Decay.** Everything rots at its own rate. Plants spread next to their own kind and near water. The untouched
+  world keeps a stock of wood, stone and clay and never stacks anything above 2.
 
-Drag to pan, scroll to zoom, click a Nodling to follow it (click again to release), click empty ground to drop the selected material. The minimap recenters the camera; hover anything for a tooltip; every sidebar metric has a `?`. Reset spins up a fresh world.
+## The creature
 
-## Known ceiling
+- **Body.** Energy (food), water, body temperature and pain. Empty energy or water is death; so is long cold.
+- **Senses.** 74 numbers, all properties: its own body, the thing in its hand, the cell ahead and the cell
+  underfoot (hard, fuel, smell, look, heat, height), directions to the nearest water, heat, each plant kind,
+  flesh, hard things, fuel, walls, animals, predators and Nodlings, what the nearest Nodling is doing and how it
+  fares, sounds, its own four memory cells, daylight and season, and where it last drank and ate well.
+- **Actions.** Move, grab, drop, use (eat or drink), strike, make a sound, write its memory cells, and `learn`:
+  how strongly to learn right now.
+- **Brain.** A neural network that grows by mutation over generations (new connections, new neurons, memory
+  neurons). The body acts every tick; the brain decides every other tick.
+- **Learning in one life.** Some connections are plastic. Each keeps a short fading trace of having been active.
+  When the body then feels better or worse than it has come to expect, the traced connections are strengthened
+  or weakened. Four inherited "drive" numbers set how much energy, water, comfort and pain count. That is all:
+  there is no reward for any particular act.
+- **Life.** A year is 8 days (3,200 ticks). A Nodling is a child for one day, and grows old after two years.
+  A well-fed adult breeds with the nearest adult; the better fed, the more often. Crowding costs energy, so the
+  land sets the population, not a cap.
 
-Genuine multi-step construction (visible villages) is still a long evolutionary climb — but the pieces that make it *possible* are now in place: the environment rewards shelter, brains can grow arbitrary structure (NEAT) and adapt within life (plasticity), and progress persists so runs can accumulate over days of wall-clock time. Leave it running (or at 40×) and watch `best fitness` and `avg brain` climb. The `simTick()` boundary is clean for moving brains onto a Web Worker if you later want hundreds of Nodlings.
+## Other animals
 
+Critters graze and can be killed for meat with something solid in the hand (a bare hand or a stick is too weak). Predators have their own
+small evolving brains, bite rather than kill outright, cannot cross walls or water, and can themselves be killed
+by a very hard blow.
+
+## What we watch
+
+- **The exam.** Adults from the living world are copied into fixed test worlds for a year and a half, without
+  births. The score is how long they live plus their children. Random brains sit the same exam for comparison.
+- **Switched-off tests.** The same exam with learning off, memory blanked, hands tied, or other Nodlings made
+  invisible. The drop in score is what that faculty is worth.
+- **The technique ledger.** Every outcome of every action is counted as (action, kind of thing in hand, kind of
+  target, result), with the share of Nodlings that did it. Nothing is rewarded for appearing there.
+- **World health.** How much land is wall and whether every Nodling can still walk to water.
+
+## The browser view
+
+Drag to pan, scroll to zoom, click a Nodling to follow it, click empty ground to drop the selected material.
+Every sidebar number has a `?`. The Observations button opens the log of an automated observer that notes
+milestones (the first time each technique is seen) and problems once per in-world day. "Loop world" loads the
+world the research loop is running.
