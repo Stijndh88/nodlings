@@ -145,7 +145,9 @@ will not be found. Shorten the chain in the physics (a number in `materials.js`)
 Leave it alone. Do not help it.
 
 ### W4 and W5
-See ROADMAP. Both change the creature or the world's structure and need Stijn's go-ahead on a design note first.
+See ROADMAP. Copying (`w2-imitate`) and the second yearly secret (`w2-second-secret`) were approved by Stijn on
+14 November 2026 and are specified under "Approved designs" in ROADMAP: build them exactly as written. Anything
+else that changes the creature or the world's structure still needs a design note and Stijn's go-ahead first.
 
 *General:* expect weeks per phase. A flat ledger for 30 cycles is a reason to make an existing use more
 worthwhile, not a reason to add rewards.
