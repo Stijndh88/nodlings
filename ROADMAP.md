@@ -59,7 +59,25 @@ pitfalls and what to do when a phase stalls.
 
 ### Baseline (first 204,000 ticks of the new world)
 
-BASELINE_PLACEHOLDER
+Measured every 12,000 ticks on the live world (`loop/history.jsonl`, cycles 1 to 18, 216,000 ticks, 67 years,
+138 generations). Averages of cycles 14 to 18:
+
+| Number | Value | Reading |
+|---|---|---|
+| `probes.evolved` against `probes.random` | 2,840 against 659 | Evolved brains score 4.3x random ones. They were at 1.7x after the first cycle. The S3 gate is met |
+| `base` / `scarce` / `thirst` | 3,987 / 2,055 / 2,479 | Out of a possible 4,800 on survival alone |
+| Exam cohort alive at the end | 16% | Most adults still die within the year and a half. Plenty of room |
+| `learningGain` | -289 | Learning still hurts a little. Evolution has not found the wiring that the learning test proves exists |
+| Exam `badMealShare` | 0.37 | Slightly better than eating both kinds alike (0.5), and flat since cycle 1. Phase W2 |
+| `handsGain` | -437 | Handling things costs more than it brings so far. Phase W3 |
+| `memoryGain`, `socialGain` | -28, +32 | Noise around zero |
+| Population | 162 on average (100 to 240), never below life support after cycle 1 | Set by food and winter, not by a cap |
+| Deaths in the last cycle | cold 60%, starved 30%, thirst 7%, predators 2%, age 1% | Winter is the main killer. See W1 |
+| `wallShare`, `canReachWater` | 0.001, 1.0 | The world stays open |
+| Ledger | 13 common technique types, 3 with an item in the hand or placed | 36% of Nodlings lay floating wood on water, about 40 times each. Nobody pays them for it. Whether it helps them (for example to get away from predators) is not yet known |
+
+Until cycle 17 `canReachWater` was undercounted (0.88 to 0.98): a Nodling standing in water because its bridge
+had rotted counted as cut off. The measure was corrected on 14 November; such a Nodling can drink and walk out.
 
 ## Phases
 
@@ -74,8 +92,9 @@ swamping the rest.
 Queue:
 1. `w2-noise-floor` (engineering, no experiment): run `node loop/ab.js --aa` once and write the per-metric
    noise into PLAYBOOK section 2. Until then treat any single-cycle change under 30% as noise.
-2. `w2-winter-ladder`: `ENV.cold` 1 to 1.25. Winter should make warmth (fire, shelter, a stack beside you)
-   worth something without mass death. Target `probes.evolved`. Screen with the era screen first.
+2. `w2-winter-relief`: cold is 60% of deaths at the baseline, which is at the limit of the gate below. Before
+   any other pressure, step `ENV.cold` DOWN from 1 to 0.8 and see whether skill then separates breeders better.
+   Target `probes.evolved`. Do not raise `ENV.cold` while cold is above 40% of deaths.
 3. `w2-thirst-ladder`: `ENV.thirst` 1 to 1.25 (a drink lasts 1,320 ticks). Target `probes.thirst`.
 4. `w2-predator-ladder`: `ENV.predators` 2.5 to 3.5 per 100 Nodlings. Target `probes.evolved`.
 5. `w2-mutation-rate`: weight mutation chance 0.3 to 0.2 per connection (`mutateGenome` in `brain.js`). With
@@ -107,7 +126,8 @@ Queue:
 1. Read the ledger first. Which hand techniques have a share above 5%, and do their users out-breed the rest?
 2. `w2-hunt-pays`: critters are worth more or are easier to find, so striking with a stone in hand pays within
    one life. One number at a time (`food` of meat, critter count).
-3. `w2-fire-pays`: colder winter nights (via the `ENV.cold` ladder) so a fed fire keeps a Nodling alive.
+3. `w2-fire-pays`: winter already kills most Nodlings, so warmth is worth a lot. Check the ledger for fires being
+   fed (`drop / fuel / fire / feed`); if nobody ever stands by a fire, raise how far a fire warms, one step.
 4. `w2-spark-rate`: `SPARK_CHANCE` 0.25 to 0.4, if fires are never lit on purpose.
 
 **Gate:** `probes.handsGain` measurably above zero (5-cycle average, and an instant test), and at least 3 tool

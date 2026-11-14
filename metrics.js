@@ -52,7 +52,19 @@ function worldHealth(){
     touches.push(touch);
   }
   let reach = 0;
-  for (const n of nodlings){ const id = region[(n.y|0)*GRID_W + (n.x|0)]; if (id >= 0 && touches[id]) reach++; }
+  // A Nodling standing in water (its bridge rotted or was taken) or on a pile counts by the
+  // cells it can step onto: it can walk off, it only cannot be walked onto.
+  for (const n of nodlings){
+    const nx = n.x|0, ny = n.y|0, here = world.at(nx, ny);
+    let ok = here.water || world.adjacentWater(nx, ny);
+    for (let dy = -1; dy <= 1 && !ok; dy++) for (let dx = -1; dx <= 1 && !ok; dx++){
+      const x = nx+dx, y = ny+dy;
+      if (x < 0 || y < 0 || x >= GRID_W || y >= GRID_H) continue;
+      const id = region[y*GRID_W + x];
+      if (id >= 0 && touches[id]) ok = true;
+    }
+    if (ok) reach++;
+  }
   const r3 = v => +v.toFixed(3);
   return { wallShare: r3(walls/land), emptyLandShare: r3(empty/land), itemsPerLandCell: r3(items/land),
            openShore: r3(shore ? shoreOpen/shore : 0), canReachWater: r3(nodlings.length ? reach/nodlings.length : 1) };

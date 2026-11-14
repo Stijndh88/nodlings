@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is **skill**: how much better the evolved Nodlings score on a fixed exam than Nodlings with random brains (higher is better). **Learning gain**, **hands gain** and **memory gain** show whether they actually use learning, their hands and memory. The glossary at the bottom explains every number.
 
-Updated 2026-11-14T07:29Z. Now: day 90, skill **1381**, learning gain -84, memory gain 107, brain size 64.6, max generation 25. The plan is in [ROADMAP.md](../ROADMAP.md).
+Updated 2026-11-14T09:23Z. Now: day 540, skill **2251**, learning gain -139, memory gain 179, brain size 91, max generation 138. The plan is in [ROADMAP.md](../ROADMAP.md).
 
 ![progress](progress.svg)
 
@@ -10,9 +10,21 @@ Updated 2026-11-14T07:29Z. Now: day 90, skill **1381**, learning gain -84, memor
 
 | cycle | day | skill | learning gain | hands gain | memory gain | techniques | brain | max gen |
 |---|---|---|---|---|---|---|---|---|
-| 3 | 90 | 1381 | -84 | 163 | 107 | 13 | 64.6 | 25 |
-| 2 | 60 | 1318 | 126 | 72 | 217 | 16 | 62.7 | 16 |
-| 1 | 30 | 439 | 3 | -62 | 14 | 6 | 61.5 | 6 |
+| 18 | 540 | 2251 | -139 | -172 | 179 | 13 | 91 | 138 |
+| 17 | 510 | 2293 | -16 | -17 | 407 | 13 | 88.3 | 132 |
+| 16 | 480 | 2352 | -296 | -90 | -62 | 13 | 86.4 | 123 |
+| 15 | 450 | 2097 | -308 | -880 | -348 | 13 | 83.8 | 117 |
+| 14 | 420 | 1913 | -687 | -1027 | -315 | 10 | 83.5 | 107 |
+| 13 | 390 | 2082 | -426 | 2 | 442 | 10 | 83.7 | 101 |
+| 12 | 360 | 2193 | 369 | -138 | 201 | 9 | 83.2 | 91 |
+| 11 | 330 | 2245 | -108 | 493 | 330 | 10 | 81.8 | 85 |
+| 10 | 300 | 2153 | -232 | -220 | 498 | 13 | 79.7 | 78 |
+| 9 | 270 | 2275 | -521 | -405 | 284 | 9 | 79.2 | 73 |
+| 8 | 240 | 2060 | -317 | -332 | 49 | 9 | 76.3 | 66 |
+| 7 | 210 | 2024 | -53 | -91 | 204 | 9 | 72.4 | 56 |
+| 6 | 180 | 1823 | 178 | -448 | -84 | 11 | 72.2 | 46 |
+| 5 | 150 | 1673 | -417 | -10 | -53 | 14 | 69.6 | 41 |
+| 4 | 120 | 1517 | -145 | -397 | -84 | 13 | 67.3 | 33 |
 
 ## Latest hypotheses
 

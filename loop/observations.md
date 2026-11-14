@@ -1,24 +1,114 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261114` · day 90.0 · Summer
+Seed `20261114` · day 540.0 · Autumn
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 172 (34 juvenile) |
-| max generation | 24 |
+| population | 95 (28 juvenile) |
+| max generation | 137 |
 | best fitness | 17901 |
-| avg brain (conns) | 65 |
-| lineage diversity | 4 colour-groups |
-| predators | 6, 58 kills, best 15898 |
-| stacks (2+) / walls (3+) / bridges | 170 / 39 / 99 |
-| plants / bad meals | 779 / 29% |
-| technique types seen | 66 |
+| avg brain (conns) | 90 |
+| lineage diversity | 2 colour-groups |
+| predators | 3, 12 kills, best 54821 |
+| stacks (2+) / walls (3+) / bridges | 132 / 37 / 237 |
+| plants / bad meals | 953 / 29% |
+| technique types seen | 54 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 538]** _(issue)_ Gene pool is a near-monoculture (only 2 lineage colours).
+- **[day 538]** _(trend)_ Lineages are deepening: max generation 133 to 137.
+- **[day 536]** _(issue)_ Plants fell 62% in ~6 days (winter, fire or overgrazing).
+- **[day 528]** _(issue)_ Plants fell 70% in ~6 days (winter, fire or overgrazing).
+- **[day 526]** _(trend)_ Nodlings are grouping more tightly (mean spacing 6.8 to 4.2).
+- **[day 508]** _(trend)_ Lineages are deepening: max generation 127 to 131.
+- **[day 504]** _(issue)_ Plants fell 72% in ~6 days (winter, fire or overgrazing).
+- **[day 502]** _(trend)_ Nodlings are grouping more tightly (mean spacing 7.3 to 3.3).
+- **[day 494]** _(trend)_ Lineages are deepening: max generation 121 to 127.
+- **[day 472]** _(issue)_ Plants fell 75% in ~6 days (winter, fire or overgrazing).
+- **[day 470]** _(trend)_ Nodlings are grouping more tightly (mean spacing 6.6 to 3.6).
+- **[day 460]** _(trend)_ Lineages are deepening: max generation 117 to 121.
+- **[day 456]** _(issue)_ Plants fell 61% in ~6 days (winter, fire or overgrazing).
+- **[day 440]** _(issue)_ Plants fell 71% in ~6 days (winter, fire or overgrazing).
+- **[day 438]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.1 to 3.3).
+- **[day 438]** _(trend)_ Lineages are deepening: max generation 108 to 112.
+- **[day 424]** _(issue)_ Plants fell 69% in ~6 days (winter, fire or overgrazing).
+- **[day 416]** _(issue)_ Plants fell 70% in ~6 days (winter, fire or overgrazing).
+- **[day 408]** _(issue)_ Plants fell 61% in ~6 days (winter, fire or overgrazing).
+- **[day 408]** _(milestone)_ First time: strike / sharp / sharp / spark (verb / in hand / target / result).
+- **[day 408]** _(milestone)_ First time: strike / sharp / hard / spark (verb / in hand / target / result).
+- **[day 404]** _(trend)_ Nodlings are grouping more tightly (mean spacing 6.2 to 3.2).
+- **[day 404]** _(trend)_ Lineages are deepening: max generation 100 to 104.
+- **[day 388]** _(trend)_ Lineages are deepening: max generation 95 to 100.
+- **[day 388]** _(milestone)_ Reached generation 100.
+- **[day 384]** _(issue)_ Plants fell 61% in ~6 days (winter, fire or overgrazing).
+- **[day 376]** _(issue)_ Plants fell 71% in ~6 days (winter, fire or overgrazing).
+- **[day 374]** _(trend)_ Nodlings are grouping more tightly (mean spacing 4.6 to 3.0).
+- **[day 370]** _(trend)_ Lineages are deepening: max generation 91 to 95.
+- **[day 358]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.3 to 3.2).
+- **[day 354]** _(milestone)_ First time: strike / sharp / soft / knock (verb / in hand / target / result).
+- **[day 350]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.6 to 3.1).
+- **[day 344]** _(issue)_ Plants fell 73% in ~6 days (winter, fire or overgrazing).
+- **[day 342]** _(trend)_ Nodlings are grouping more tightly (mean spacing 4.5 to 3.0).
+- **[day 342]** _(trend)_ Lineages are deepening: max generation 85 to 89.
+- **[day 326]** _(trend)_ Lineages are deepening: max generation 79 to 83.
+- **[day 320]** _(issue)_ Plants fell 76% in ~6 days (winter, fire or overgrazing).
+- **[day 316]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.8 to 3.5).
+- **[day 312]** _(issue)_ Plants fell 76% in ~6 days (winter, fire or overgrazing).
+- **[day 308]** _(trend)_ Lineages are deepening: max generation 78 to 82.
+- **[day 304]** _(issue)_ Plants fell 70% in ~6 days (winter, fire or overgrazing).
+- **[day 296]** _(issue)_ Plants fell 73% in ~6 days (winter, fire or overgrazing).
+- **[day 288]** _(issue)_ Plants fell 64% in ~6 days (winter, fire or overgrazing).
+- **[day 286]** _(trend)_ Nodlings are grouping more tightly (mean spacing 4.5 to 2.4).
+- **[day 264]** _(issue)_ Plants fell 73% in ~6 days (winter, fire or overgrazing).
+- **[day 256]** _(issue)_ Plants fell 65% in ~6 days (winter, fire or overgrazing).
+- **[day 254]** _(trend)_ Lineages are deepening: max generation 66 to 70.
+- **[day 236]** _(milestone)_ First time: strike / hard / animal / kill (verb / in hand / target / result).
+- **[day 234]** _(trend)_ Lineages are deepening: max generation 61 to 65.
+- **[day 224]** _(issue)_ Plants fell 69% in ~6 days (winter, fire or overgrazing).
+- **[day 222]** _(trend)_ Lineages are deepening: max generation 56 to 61.
+- **[day 220]** _(trend)_ Nodlings are grouping more tightly (mean spacing 4.8 to 2.9).
+- **[day 208]** _(issue)_ Plants fell 72% in ~6 days (winter, fire or overgrazing).
+- **[day 204]** _(trend)_ Lineages are deepening: max generation 49 to 53.
+- **[day 200]** _(issue)_ Plants fell 78% in ~6 days (winter, fire or overgrazing).
+- **[day 198]** _(milestone)_ First time: strike / sharp / pile / knock (verb / in hand / target / result).
+- **[day 196]** _(trend)_ Nodlings are grouping more tightly (mean spacing 4.2 to 2.5).
+- **[day 196]** _(milestone)_ Reached generation 50.
+- **[day 188]** _(milestone)_ First time: strike / sharp / animal / kill (verb / in hand / target / result).
+- **[day 184]** _(issue)_ Plants fell 68% in ~6 days (winter, fire or overgrazing).
+- **[day 174]** _(trend)_ Nodlings are grouping more tightly (mean spacing 3.8 to 2.6).
+- **[day 174]** _(trend)_ Lineages are deepening: max generation 44 to 48.
+- **[day 168]** _(issue)_ Plants fell 70% in ~6 days (winter, fire or overgrazing).
+- **[day 168]** _(milestone)_ First time: strike / sharp / fuel / knock (verb / in hand / target / result).
+- **[day 152]** _(milestone)_ First time: strike / sharp / pile / break (verb / in hand / target / result).
+- **[day 144]** _(issue)_ Plants fell 71% in ~6 days (winter, fire or overgrazing).
+- **[day 142]** _(trend)_ Nodlings are grouping more tightly (mean spacing 4.6 to 2.1).
+- **[day 142]** _(trend)_ Lineages are deepening: max generation 35 to 39.
+- **[day 136]** _(issue)_ Plants fell 64% in ~6 days (winter, fire or overgrazing).
+- **[day 134]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.4 to 3.2).
+- **[day 132]** _(milestone)_ First time: strike / soft / soft / knock (verb / in hand / target / result).
+- **[day 132]** _(milestone)_ First time: strike / soft / fuel / break (verb / in hand / target / result).
+- **[day 132]** _(milestone)_ First time: strike / soft / animal / kill (verb / in hand / target / result).
+- **[day 132]** _(milestone)_ First time: strike / sharp / food / knock (verb / in hand / target / result).
+- **[day 128]** _(milestone)_ First time: drop / sharp / sharp / stack (verb / in hand / target / result).
+- **[day 126]** _(milestone)_ First time: strike / hard / sharp / knock (verb / in hand / target / result).
+- **[day 124]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.4 to 3.1).
+- **[day 124]** _(milestone)_ First time: strike / soft / fuel / knock (verb / in hand / target / result).
+- **[day 124]** _(milestone)_ First time: strike / soft / pile / knock (verb / in hand / target / result).
+- **[day 124]** _(milestone)_ First time: strike / soft / pile / break (verb / in hand / target / result).
+- **[day 116]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.4 to 3.7).
+- **[day 104]** _(issue)_ Plants fell 73% in ~6 days (winter, fire or overgrazing).
+- **[day 104]** _(milestone)_ First time: strike / sharp / sharp / knock (verb / in hand / target / result).
+- **[day 102]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.0 to 3.4).
+- **[day 100]** _(milestone)_ First time: strike / fuel / pile / break (verb / in hand / target / result).
+- **[day 98]** _(trend)_ Lineages are deepening: max generation 25 to 29.
+- **[day 96]** _(milestone)_ First time: strike / hard / hard / break (verb / in hand / target / result).
+- **[day 96]** _(milestone)_ First time: strike / fuel / animal / kill (verb / in hand / target / result).
+- **[day 94]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.0 to 3.0).
+- **[day 90]** _(milestone)_ Reached generation 25.
 - **[day 88]** _(issue)_ Plants fell 72% in ~6 days (winter, fire or overgrazing).
 - **[day 86]** _(milestone)_ First time: strike / soft / food / knock (verb / in hand / target / result).
 - **[day 82]** _(milestone)_ First time: strike / hard / fire / spark (verb / in hand / target / result).

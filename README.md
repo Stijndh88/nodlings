@@ -18,7 +18,17 @@ Nodlings were paid by 45 hand-written bonuses for things that were worth nothing
 lived too briefly to learn, and had walled themselves off from water. It is kept in [`archive/v1/`](archive/v1/README.md).
 World 2 was rebuilt around one idea: **never pay for a behaviour; make things useful and let them find out.**
 
-README_TABLE_PLACEHOLDER
+| | After the first 67 in-world years | What it means |
+|---|---|---|
+| **Skill** | 2,840 against 659 for random brains | Evolved Nodlings do 4.3x better than random ones on a fixed exam, up from 1.7x at the start |
+| **Learning gain** | about -290 | Learning during a lifetime does not help them yet. A test proves the learning rule can tell the good plant from the poisonous one; evolution has not found that wiring yet |
+| **Hands gain** | about -440 | Handling things costs them more than it brings so far |
+| **Bad meals** | 37% | A little better than eating both plant kinds alike (50%) |
+| **World health** | 0.1% wall, 100% can reach water | The world stays open |
+| **Seen in the ledger** | 36% of Nodlings lay floating wood on water | Nobody pays them for it. Whether it is useful or just play is the next thing to find out |
+
+The honest summary: the new world works and evolution is climbing in it, but nothing that looks like invention
+has been shown yet. The [roadmap](ROADMAP.md) says how that will be measured and what comes next.
 
 ## How it works
 
