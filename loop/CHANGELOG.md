@@ -1585,3 +1585,7 @@ Baseline batch (15000 ticks) passed guardrails. probes.skill 1043 (evolved 1326,
 - Harvest: era-thirst-1-5x: reverted. no measurable gain on probes.thirst; probes.evolved 1332 -> 1415 (t=0.91, no-effect); probes.thirst 911 -> 989 (t=1.78, no-effect); learningGain 31 -> 60 (no-effect); memoryGain 403 -> 152 (no-effect); 5 replicates x 60000 ticks. Nothing overdue.
 - Submitted: era-food-limited (ENV.flora 1 -> 0.6; target probes.scarce). Dry safety run passed (pop 494 after 6000 ticks).
 - ROADMAP: Phase 1. Gate not met (skill 1043 vs ~1790 target, single reading). Thirst steps alone show no effect; food pressure is next in the queue.
+
+## 14 November 2026 — loop paused for World 2 (documentation only)
+
+Stijn approved the World 2 rebuild. The last old-world state is kept on branch `v1-final`. ROUTINE_PROMPT now tells the loop to do nothing until the rebuild lands.
