@@ -5,8 +5,15 @@
       "id": "w2-winter-relief",
       "signal": "probes.evolved",
       "change": "ENV.cold 1 -> 0.8: cold is ~60% of deaths (679 of 1103 in the last batch), so who dies is decided by winter luck. Predict less cold-death noise, so skill separates breeders better and probes.evolved rises.",
+      "status": "reverted",
+      "note": "probes.evolved 2637 -> 2688 (1.9%, t=0.38, no-effect); probes.learningGain -12 -> -168 (-1256.5%, t=-0.99, no-effect); probes.memoryGain 244 -> 253 (3.8%, t=0.05, no-effect); 5 replicates x 60000 ticks"
+    },
+    {
+      "id": "w2-thirst-ladder",
+      "signal": "probes.thirst",
+      "change": "ENV.thirst 1 -> 1.125 (first rung; 1.25 screened too big: pop 158 vs 208, cold 61%). Thirst is 8% of deaths, so drinking skill is barely selected; a slightly shorter drink should reward remembering water.",
       "status": "running",
-      "note": "evolution experiment submitted at 98911b1"
+      "note": "evolution experiment submitted at 07993a7"
     }
   ]
 }

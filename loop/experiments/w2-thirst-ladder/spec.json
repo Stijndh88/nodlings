@@ -1,0 +1,7 @@
+{
+  "id": "w2-thirst-ladder",
+  "target": "probes.thirst",
+  "note": "ENV.thirst 1 -> 1.125 (first rung; 1.25 screened too big: pop 158 vs 208, cold 61%). Thirst is 8% of deaths, so drinking skill is barely selected; a slightly shorter drink should reward remembering water.",
+  "created": "2026-11-14T12:30:12.068Z",
+  "baseCommit": "07993a7"
+}

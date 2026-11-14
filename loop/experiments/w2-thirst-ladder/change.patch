@@ -1,0 +1,13 @@
+diff --git a/brain.js b/brain.js
+index 2da807c..19cb768 100644
+--- a/brain.js
++++ b/brain.js
+@@ -29,7 +29,7 @@ const MAX_CONNS = 300, MAX_HIDDEN = 80, W_CLAMP = 4, LEARN_RATE = 0.2, TRACE_DEC
+ // faculties off (learning, memory senses) to measure what they are worth.
+ const ENV = {
+   plasticity: 1,     // multiplier on within-lifetime learning (0 = off)
+-  thirst: 1,         // multiplier on hydration drain (1 = a drink lasts ~1650 ticks, about 4 days)
++  thirst: 1.125,     // multiplier on hydration drain (1 = a drink lasts ~1650 ticks, about 4 days)
+   flora: 1,          // multiplier on plant regrowth (lower = scarcer food)
+   cold: 1,           // multiplier on the energy cost of being too cold or too hot
+   flip: true,        // each year the nourishing and the poisonous plant kind swap
