@@ -1,0 +1,7 @@
+{
+  "id": "era-thirst-1-5x",
+  "target": "probes.thirst",
+  "note": "ENV.thirst 1 -> 1.5 (small step; canReachWater 0.96 so thirst block lifted). Newborn water lasts ~1480 ticks.",
+  "created": "2026-11-14T00:36:02.315Z",
+  "baseCommit": "d452472"
+}

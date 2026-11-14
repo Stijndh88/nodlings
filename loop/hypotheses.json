@@ -1779,15 +1779,29 @@
       "id": "era-thirst-3x",
       "signal": "probes.thirst",
       "change": "ENV.thirst 1 -> 3: a newborn's water lasts ~740 ticks instead of ~2200, so never drinking is fatal inside the breeding life (ROADMAP phase 1.1). Screen: population 499 after 6000 ticks, thirst deaths 3709",
-      "status": "running",
-      "note": "evolution experiment submitted at 82b15da"
+      "status": "reverted",
+      "note": "probes.evolved 1652 -> 1037 (-37.2%, t=-9.26, worse); probes.thirst 1133 -> 793 (-30%, t=-9.53, worse); probes.learningGain -230 -> -54 (76.7%, t=1.52, no-effect); probes.memoryGain 699 -> 288 (-58.8%, t=-1.96, no-effect); 5 replicates x 60000 ticks"
     },
     {
       "id": "reward-baseline",
       "signal": "probes.learningGain",
       "change": "Learn from reward minus its running average (prediction error) instead of raw reward, which is almost always positive (ROADMAP phase 2.1). Instant screen: no immediate effect (learningGain -73 -> -81, t=-0.05), no guardrail",
+      "status": "kept",
+      "note": "probes.evolved 1652 -> 1654 (0.1%, t=0.01, no-effect); probes.learningGain -230 -> -17 (92.8%, t=2.18, better); probes.memoryGain 699 -> 1242 (77.5%, t=1.46, no-effect); 5 replicates x 60000 ticks"
+    },
+    {
+      "id": "era-thirst-1-5x",
+      "signal": "probes.thirst",
+      "change": "ENV.thirst 1 -> 1.5 (small step; canReachWater 0.96 so thirst block lifted). Newborn water lasts ~1480 ticks.",
+      "status": "reverted",
+      "note": "probes.evolved 1332 -> 1415 (6.2%, t=0.91, no-effect); probes.thirst 911 -> 989 (8.6%, t=1.78, no-effect); probes.learningGain 31 -> 60 (92.3%, t=0.53, no-effect); probes.memoryGain 403 -> 152 (-62.4%, t=-1.25, no-effect); 5 replicates x 60000 ticks"
+    },
+    {
+      "id": "era-food-limited",
+      "signal": "probes.scarce",
+      "change": "ENV.flora 1 -> 0.6 so food rather than the cap limits the population (ROADMAP phase 1.2). Dry run: pop 494 after 6000 ticks, pass.",
       "status": "running",
-      "note": "evolution experiment submitted at 82b15da"
+      "note": "evolution experiment submitted at c81c792"
     }
   ]
 }

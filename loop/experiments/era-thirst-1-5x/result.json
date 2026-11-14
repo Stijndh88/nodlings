@@ -1,0 +1,133 @@
+{
+  "key": "bb01dc36aba7",
+  "mode": "evolution",
+  "base": "HEAD",
+  "changed": [
+    "brain.js"
+  ],
+  "replicates": 5,
+  "ticks": 60000,
+  "tCritical": 2.13,
+  "targets": [
+    "probes.thirst"
+  ],
+  "decision": "revert",
+  "why": "no measurable gain on probes.thirst: a change that cannot show its effect is not kept",
+  "pass": true,
+  "reasons": [],
+  "metrics": {
+    "probes.evolved": {
+      "control": 1332,
+      "treatment": 1415.2,
+      "diff": 83.2,
+      "pct": 6.2,
+      "noise": 213.9848,
+      "t": 0.91,
+      "verdict": "no-effect"
+    },
+    "probes.base": {
+      "control": 2324.6,
+      "treatment": 2424.4,
+      "diff": 99.8,
+      "pct": 4.3,
+      "noise": 422.5438,
+      "t": 0.47,
+      "verdict": "no-effect"
+    },
+    "probes.scarce": {
+      "control": 760.6,
+      "treatment": 832.6,
+      "diff": 72,
+      "pct": 9.5,
+      "noise": 116.4315,
+      "t": 1.65,
+      "verdict": "no-effect"
+    },
+    "probes.thirst": {
+      "control": 910.6,
+      "treatment": 988.6,
+      "diff": 78,
+      "pct": 8.6,
+      "noise": 133.3428,
+      "t": 1.78,
+      "verdict": "no-effect"
+    },
+    "probes.learningGain": {
+      "control": 31,
+      "treatment": 59.6,
+      "diff": 28.6,
+      "pct": 92.3,
+      "noise": 65.4026,
+      "t": 0.53,
+      "verdict": "no-effect"
+    },
+    "probes.memoryGain": {
+      "control": 402.8,
+      "treatment": 151.6,
+      "diff": -251.2,
+      "pct": -62.4,
+      "noise": 264.4772,
+      "t": -1.25,
+      "verdict": "no-effect"
+    },
+    "population": {
+      "control": 499.8,
+      "treatment": 498.8,
+      "diff": -1,
+      "pct": -0.2,
+      "noise": 1.0954,
+      "t": -2.24,
+      "verdict": "no-effect"
+    },
+    "medianFitness": {
+      "control": 856.4,
+      "treatment": 812.4,
+      "diff": -44,
+      "pct": -5.1,
+      "noise": 12.9345,
+      "t": -2.73,
+      "verdict": "worse"
+    },
+    "avgBrain": {
+      "control": 134,
+      "treatment": 145.78,
+      "diff": 11.78,
+      "pct": 8.8,
+      "noise": 7.9278,
+      "t": 2.57,
+      "verdict": "better"
+    },
+    "largestCluster": {
+      "control": 3387.8,
+      "treatment": 3392.2,
+      "diff": 4.4,
+      "pct": 0.1,
+      "noise": 90.5246,
+      "t": 0.09,
+      "verdict": "no-effect"
+    },
+    "brickCells": {
+      "control": 5957.6,
+      "treatment": 5966,
+      "diff": 8.4,
+      "pct": 0.1,
+      "noise": 66.553,
+      "t": 0.25,
+      "verdict": "no-effect"
+    },
+    "commSeparation": {
+      "control": 0.0149,
+      "treatment": 0.0122,
+      "diff": -0.0027,
+      "pct": -18,
+      "noise": 0.0121,
+      "t": -0.5,
+      "verdict": "no-effect"
+    }
+  },
+  "id": "era-thirst-1-5x",
+  "target": "probes.thirst",
+  "note": "ENV.thirst 1 -> 1.5 (small step; canReachWater 0.96 so thirst block lifted). Newborn water lasts ~1480 ticks.",
+  "ranAt": "1ecb9e1",
+  "finished": "2026-11-14T02:25:38.317Z"
+}

@@ -140,7 +140,7 @@ function simTick(){
 // resumes the same world instead of regenerating a new one each process.
 // Per-life plastic weights are kept too (a Nodling mid-life stays mid-life).
 const NODLING_SNAP = ['x','y','gen','energy','hydration','bodyTemp','age','offspring','carrying',
-                      'mem','facing','phase','foodMem','waterMem','shelterMem'];
+                      'mem','facing','phase','foodMem','waterMem','shelterMem','rewardAvg'];
 function snapNodling(n){
   const o = { genome:n.genome };
   for (const k of NODLING_SNAP) o[k] = n[k];

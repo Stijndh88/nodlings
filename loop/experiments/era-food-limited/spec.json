@@ -1,0 +1,7 @@
+{
+  "id": "era-food-limited",
+  "target": "probes.scarce",
+  "note": "ENV.flora 1 -> 0.6 so food rather than the cap limits the population (ROADMAP phase 1.2). Dry run: pop 494 after 6000 ticks, pass.",
+  "created": "2026-11-14T04:33:45.168Z",
+  "baseCommit": "c81c792"
+}

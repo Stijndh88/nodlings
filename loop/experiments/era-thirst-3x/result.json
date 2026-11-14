@@ -1,0 +1,135 @@
+{
+  "key": "07d95fbea85c",
+  "mode": "evolution",
+  "base": "HEAD",
+  "changed": [
+    "brain.js"
+  ],
+  "replicates": 5,
+  "ticks": 60000,
+  "tCritical": 2.13,
+  "targets": [
+    "probes.thirst"
+  ],
+  "decision": "revert",
+  "why": "guardrail tripped",
+  "pass": false,
+  "reasons": [
+    "probe score dropped 37.2% (max 25%)"
+  ],
+  "metrics": {
+    "probes.evolved": {
+      "control": 1651.8,
+      "treatment": 1037.2,
+      "diff": -614.6,
+      "pct": -37.2,
+      "noise": 108.562,
+      "t": -9.26,
+      "verdict": "worse"
+    },
+    "probes.base": {
+      "control": 2802.4,
+      "treatment": 1668.6,
+      "diff": -1133.8,
+      "pct": -40.5,
+      "noise": 230.0789,
+      "t": -7.83,
+      "verdict": "worse"
+    },
+    "probes.scarce": {
+      "control": 1020,
+      "treatment": 649.4,
+      "diff": -370.6,
+      "pct": -36.3,
+      "noise": 111.7766,
+      "t": -5.71,
+      "verdict": "worse"
+    },
+    "probes.thirst": {
+      "control": 1132.8,
+      "treatment": 793.4,
+      "diff": -339.4,
+      "pct": -30,
+      "noise": 72.7853,
+      "t": -9.53,
+      "verdict": "worse"
+    },
+    "probes.learningGain": {
+      "control": -230.4,
+      "treatment": -53.6,
+      "diff": 176.8,
+      "pct": 76.7,
+      "noise": 183.8921,
+      "t": 1.52,
+      "verdict": "no-effect"
+    },
+    "probes.memoryGain": {
+      "control": 699.4,
+      "treatment": 288.4,
+      "diff": -411,
+      "pct": -58.8,
+      "noise": 478.3569,
+      "t": -1.96,
+      "verdict": "no-effect"
+    },
+    "population": {
+      "control": 500.4,
+      "treatment": 445.4,
+      "diff": -55,
+      "pct": -11,
+      "noise": 0.8944,
+      "t": -2.88,
+      "verdict": "worse"
+    },
+    "medianFitness": {
+      "control": 1099,
+      "treatment": 548.2,
+      "diff": -550.8,
+      "pct": -50.1,
+      "noise": 134.9426,
+      "t": -9.07,
+      "verdict": "worse"
+    },
+    "avgBrain": {
+      "control": 127.16,
+      "treatment": 151.08,
+      "diff": 23.92,
+      "pct": 18.8,
+      "noise": 8.4684,
+      "t": 2.46,
+      "verdict": "better"
+    },
+    "largestCluster": {
+      "control": 3181.6,
+      "treatment": 2781.2,
+      "diff": -400.4,
+      "pct": -12.6,
+      "noise": 55.5545,
+      "t": -1.44,
+      "verdict": "no-effect"
+    },
+    "brickCells": {
+      "control": 5608.4,
+      "treatment": 5436.4,
+      "diff": -172,
+      "pct": -3.1,
+      "noise": 31.7695,
+      "t": -5.08,
+      "verdict": "worse"
+    },
+    "commSeparation": {
+      "control": 0.0201,
+      "treatment": 0.0212,
+      "diff": 0.0011,
+      "pct": 5.4,
+      "noise": 0.0135,
+      "t": 0.1,
+      "verdict": "no-effect"
+    }
+  },
+  "id": "era-thirst-3x",
+  "target": "probes.thirst",
+  "note": "ENV.thirst 1 -> 3: a newborn's water lasts ~740 ticks instead of ~2200, so never drinking is fatal inside the breeding life (ROADMAP phase 1.1). Screen: population 499 after 6000 ticks, thirst deaths 3709",
+  "ranAt": "83ab1ba",
+  "finished": "2026-11-13T21:19:40.354Z"
+}

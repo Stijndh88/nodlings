@@ -213,7 +213,10 @@ class Nodling {
       const reward = Math.max(-1, Math.min(1,
         (wb - this.lastWellbeing)*8 + this.bonus + (nov/N_SENSES)*0.3));
       this.lastWellbeing = wb; this.bonus = 0;
-      out = this.brain.step(s, reward);
+      // learn from the reward prediction error (reward minus its running average), not from raw
+      // reward: a reward that is always there carries no information about what just worked
+      this.rewardAvg = (this.rewardAvg || 0)*0.97 + reward*0.03;
+      out = this.brain.step(s, reward - this.rewardAvg);
       this.lastOut = out;
       this.mem = [out.mem0, out.mem1];
       // accumulate behaviour signature (what this individual actually does)
