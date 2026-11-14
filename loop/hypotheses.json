@@ -1788,6 +1788,13 @@
       "change": "Learn from reward minus its running average (prediction error) instead of raw reward, which is almost always positive (ROADMAP phase 2.1). Instant screen: no immediate effect (learningGain -73 -> -81, t=-0.05), no guardrail",
       "status": "kept",
       "note": "probes.evolved 1652 -> 1654 (0.1%, t=0.01, no-effect); probes.learningGain -230 -> -17 (92.8%, t=2.18, better); probes.memoryGain 699 -> 1242 (77.5%, t=1.46, no-effect); 5 replicates x 60000 ticks"
+    },
+    {
+      "id": "era-thirst-1-5x",
+      "signal": "probes.thirst",
+      "change": "ENV.thirst 1 -> 1.5 (small step; canReachWater 0.96 so thirst block lifted). Newborn water lasts ~1480 ticks.",
+      "status": "running",
+      "note": "evolution experiment submitted at d452472"
     }
   ]
 }

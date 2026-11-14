@@ -1,0 +1,13 @@
+diff --git a/brain.js b/brain.js
+index 7e9ab42..fe06084 100644
+--- a/brain.js
++++ b/brain.js
+@@ -25,7 +25,7 @@ const MAX_CONNS = 300, MAX_HIDDEN = 80, W_CLAMP = 4, LEARN_RATE = 0.031;
+ // faculties off (learning, memory senses) to measure what they are worth.
+ const ENV = {
+   plasticity: 1,     // multiplier on within-lifetime learning (0 = off)
+-  thirst: 1,         // multiplier on hydration drain (1 = a drink lasts ~2200 ticks)
++  thirst: 1.5,        // multiplier on hydration drain (1 = a drink lasts ~2200 ticks)
+   flora: 1,          // multiplier on flora regrowth (lower = scarcer food)
+   senseMask: null,   // sense indices to blank (ablation probes only)
+   noBirths: false,   // probes score a fixed cohort (births counted, children not added)
