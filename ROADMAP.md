@@ -6,8 +6,9 @@ bricks and calls only matter when they are the product of that intelligence.
 
 > **Status, 14 November 2026.** A foundations audit ([docs/AUDIT-2026-11.md](docs/AUDIT-2026-11.md)) found that the
 > live world is sealed off from water and that the bonuses, recipes and short lives cannot lead to invention.
-> It proposes a rebuild, **World 2** (last section of this file). World 2 starts only when Stijn approves it.
-> Until then the loop keeps working on the phases below, except the items marked BLOCKED.
+> It proposes a rebuild, **World 2** (last section of this file). **Stijn approved World 2 on 14 November 2026.**
+> The loop is paused (`loop/ROUTINE_PROMPT.md`) while stages S1 to S3 are built. The last state of the old world is
+> kept on the branch `v1-final`. The phases below describe the old world and are history once World 2 lands.
 
 This file is the plan the autonomous loop follows (`loop/ROUTINE_PROMPT.md` points here).
 [`loop/PLAYBOOK.md`](loop/PLAYBOOK.md) explains the reasoning behind each phase, how to design and judge
@@ -167,7 +168,7 @@ skill plateaus, a hall of champions replayable in the browser.
 - No judging a harder world by fitness inside that world.
 - No more than 2 experiments running at once; no experiment that changes more than one thing.
 
-## World 2 (proposed 14 November 2026, starts when Stijn approves)
+## World 2 (approved by Stijn on 14 November 2026)
 
 The audit's conclusion: more cycles on the current world will not produce invention, because behaviours are
 paid for instead of being useful, the physics is a list of recipes, and lives are too short and solitary to
@@ -191,7 +192,7 @@ cannot be A/B tested against the old world. The loop does not attempt them. From
 
 | Stage | What | Done when |
 |---|---|---|
-| S0 | Tag the current master `v1-final`. Move `loop/world.json.gz`, `loop/storage.json` and `loop/history.jsonl` to `archive/v1/`. The loop runs batch-only (no experiments). | Tag pushed, files moved, ROUTINE_PROMPT says batch-only |
+| S0 | Keep the last old-world state on the branch `v1-final`. Pause the loop. (The old state files move to `archive/v1/` together with S1 to S3.) | Done 14 November: branch `v1-final` exists, ROUTINE_PROMPT says PAUSED |
 | S1 | `src/materials.js` (property table), `src/physics.js` (carry, place, strike, heat, decay), `src/world.js`. Unit tests per rule. | Tests green. A world with no Nodlings keeps `wallShare` under 0.05 and `openShore` above 0.9 for 20,000 ticks |
 | S2 | `src/body.js`, `src/senses.js`, `src/actions.js`, learning rule with eligibility trace and the `learn` output, selection by food and energy surplus (no cap lottery, no kin or novelty multipliers) | A fresh world from random brains holds a population above 60 for 100,000 ticks. CI determinism green |
 | S3 | Exam version 2 (`base`, `scarce`, `thirst`, `winter`, `relearn`; ablations hands, learning, memory, social), technique ledger, dashboard, `--aa` noise floor | Evolved brains measurably beat random brains on `base` after 200,000 ticks |
