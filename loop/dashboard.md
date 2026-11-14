@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is **skill**: how much better the evolved Nodlings score on a fixed exam than Nodlings with random brains (higher is better). **Learning gain** and **memory gain** show whether they actually use learning and memory. The glossary at the bottom explains every number.
 
-Updated 2026-11-14T00:31Z. Now: day 2072.78, skill **692**, learning gain 250, memory gain -3, brain size 118.2, max generation 4371. The plan is in [ROADMAP.md](../ROADMAP.md).
+Updated 2026-11-14T04:31Z. Now: day 2082.16, skill **1043**, learning gain -170, memory gain 72, brain size 123.9, max generation 4399. The plan is in [ROADMAP.md](../ROADMAP.md).
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-14T00:31Z. Now: day 2072.78, skill **692**, learning gain 250, m
 
 | cycle | day | skill | learning gain | memory gain | brain | median fitness | max gen |
 |---|---|---|---|---|---|---|---|
+| 230 | 2082.16 | 1043 | -170 | 72 | 123.9 | 887 | 4399 |
 | 229 | 2072.78 | 692 | 250 | -3 | 118.2 | 1003 | 4371 |
 | 228 | 2063.41 | 985 | -191 | 53 | 114 | 1023 | 4349 |
 | 227 | 2054.03 |  |  |  | 107 | 1245 | 4320 |
@@ -24,12 +25,12 @@ Updated 2026-11-14T00:31Z. Now: day 2072.78, skill **692**, learning gain 250, m
 | 218 | 1975.91 |  |  |  | 119.9 | 1228 | 4148 |
 | 217 | 1968.09 |  |  |  | 122.7 | 1138 | 4135 |
 | 216 | 1960.28 |  |  |  | 122.3 | 1172 | 4125 |
-| 215 | 1952.47 |  |  |  | 126.1 | 1068 | 4105 |
 
 ## Latest hypotheses
 
-- **running**: Learn from reward minus its running average (prediction error) instead of raw reward, which is almost always positive (ROADMAP phase 2.1). Instant screen: no immediate effect (learningGain -73 -> -81, t=-0.05), no guardrail (evolution experiment submitted at 82b15da)
-- **running**: ENV.thirst 1 -> 3: a newborn's water lasts ~740 ticks instead of ~2200, so never drinking is fatal inside the breeding life (ROADMAP phase 1.1). Screen: population 499 after 6000 ticks, thirst deaths 3709 (evolution experiment submitted at 82b15da)
+- **running**: ENV.thirst 1 -> 1.5 (small step; canReachWater 0.96 so thirst block lifted). Newborn water lasts ~1480 ticks. (evolution experiment submitted at d452472)
+- **kept**: Learn from reward minus its running average (prediction error) instead of raw reward, which is almost always positive (ROADMAP phase 2.1). Instant screen: no immediate effect (learningGain -73 -> -81, t=-0.05), no guardrail (probes.evolved 1652 -> 1654 (0.1%, t=0.01, no-effect); probes.learningGain -230 -> -17 (92.8%, t=2.18, better); probes.memoryGain 699 -> 1242 (77.5%, t=1.46, no-effect); 5 replicates x 60000 ticks)
+- **reverted**: ENV.thirst 1 -> 3: a newborn's water lasts ~740 ticks instead of ~2200, so never drinking is fatal inside the breeding life (ROADMAP phase 1.1). Screen: population 499 after 6000 ticks, thirst deaths 3709 (probes.evolved 1652 -> 1037 (-37.2%, t=-9.26, worse); probes.thirst 1133 -> 793 (-30%, t=-9.53, worse); probes.learningGain -230 -> -54 (76.7%, t=1.52, no-effect); probes.memoryGain 699 -> 288 (-58.8%, t=-1.96, no-effect); 5 replicates x 60000 ticks)
 - **kept**: brain.js LEARN_RATE 0.028 -> 0.031 (bench gap 1212->1709, medianFitness 1225->987 (within guardrail); single 8k sample, likely partly noise)
 - **kept**: brain.js LEARN_RATE 0.025 -> 0.028 (bench gap 2013->2061, medianFitness 903->1462; single 8k sample, likely partly noise)
 - **reverted**: world.js per-year deterministic flora regrowth multiplier 0.8..1.15 (unpredictable good/lean years reward plasticity) (bench gap 1933 -> 1402 (-27.5%, guardrail fail))
@@ -52,7 +53,6 @@ Updated 2026-11-14T00:31Z. Now: day 2072.78, skill **692**, learning gain 250, m
 - **kept**: STRUCTURAL: nodling.js movement energy cost x0.5 while inVillage (largestCluster 1029 -> 1037, builtCells 4405 -> 4429; small, within noise but not worse)
 - **kept**: nodling.js BRICK_TOWER_BONUS x2 while inVillage (bit-identical to control (null result, no measurable effect in 8k window))
 - **reverted**: nodling.js: body temperature drift x0.5 while inVillage (largestCluster 1007 -> 999, within noise but not better)
-- **reverted**: STRUCTURAL: nodling.js LISTEN_BONUS x2 while inVillage (commSeparation 0.0585->0.0244; target worse)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
