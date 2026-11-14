@@ -1,0 +1,187 @@
+{
+  "key": "9a29b47c804e",
+  "mode": "evolution",
+  "base": "HEAD",
+  "changed": [
+    "brain.js"
+  ],
+  "replicates": 5,
+  "ticks": 60000,
+  "tCritical": 2.13,
+  "targets": [
+    "probes.evolved"
+  ],
+  "decision": "revert",
+  "why": "no measurable gain on probes.evolved: a change that cannot show its effect is not kept",
+  "pass": true,
+  "reasons": [],
+  "metrics": {
+    "probes.evolved": {
+      "control": 2636.8,
+      "treatment": 2688,
+      "diff": 51.2,
+      "pct": 1.9,
+      "noise": 149.7087,
+      "t": 0.38,
+      "verdict": "no-effect"
+    },
+    "probes.base": {
+      "control": 3892.8,
+      "treatment": 3871.4,
+      "diff": -21.4,
+      "pct": -0.5,
+      "noise": 261.6442,
+      "t": -0.12,
+      "verdict": "no-effect"
+    },
+    "probes.scarce": {
+      "control": 1895.4,
+      "treatment": 1925.4,
+      "diff": 30,
+      "pct": 1.6,
+      "noise": 187.8385,
+      "t": 0.26,
+      "verdict": "no-effect"
+    },
+    "probes.thirst": {
+      "control": 2121.6,
+      "treatment": 2267,
+      "diff": 145.4,
+      "pct": 6.9,
+      "noise": 134.3607,
+      "t": 0.96,
+      "verdict": "no-effect"
+    },
+    "probes.learningGain": {
+      "control": -12.4,
+      "treatment": -168.2,
+      "diff": -155.8,
+      "pct": -1256.5,
+      "noise": 184.2859,
+      "t": -0.99,
+      "verdict": "no-effect"
+    },
+    "probes.memoryGain": {
+      "control": 243.6,
+      "treatment": 252.8,
+      "diff": 9.2,
+      "pct": 3.8,
+      "noise": 218.3021,
+      "t": 0.05,
+      "verdict": "no-effect"
+    },
+    "probes.handsGain": {
+      "control": -162.8,
+      "treatment": -247.4,
+      "diff": -84.6,
+      "pct": -52,
+      "noise": 320.3829,
+      "t": -0.46,
+      "verdict": "no-effect"
+    },
+    "probes.socialGain": {
+      "control": -44,
+      "treatment": -17.2,
+      "diff": 26.8,
+      "pct": 60.9,
+      "noise": 140.4938,
+      "t": 0.23,
+      "verdict": "no-effect"
+    },
+    "probes.alive": {
+      "control": 0.172,
+      "treatment": 0.1776,
+      "diff": 0.0056,
+      "pct": 3.3,
+      "noise": 0.0411,
+      "t": 0.25,
+      "verdict": "no-effect"
+    },
+    "probes.badMealShare": {
+      "control": 0.3572,
+      "treatment": 0.3596,
+      "diff": 0.0024,
+      "pct": 0.7,
+      "noise": 0.0056,
+      "t": 0.55,
+      "verdict": "no-effect"
+    },
+    "population": {
+      "control": 110.6,
+      "treatment": 114.6,
+      "diff": 4,
+      "pct": 3.6,
+      "noise": 10.0648,
+      "t": 0.52,
+      "verdict": "no-effect"
+    },
+    "medianFitness": {
+      "control": 1416.2,
+      "treatment": 1525.4,
+      "diff": 109.2,
+      "pct": 7.7,
+      "noise": 167.5207,
+      "t": 0.72,
+      "verdict": "no-effect"
+    },
+    "avgBrain": {
+      "control": 98.36,
+      "treatment": 99,
+      "diff": 0.64,
+      "pct": 0.7,
+      "noise": 4.4145,
+      "t": 1.11,
+      "verdict": "no-effect"
+    },
+    "badMealShare": {
+      "control": 0.2986,
+      "treatment": 0.281,
+      "diff": -0.0176,
+      "pct": -5.9,
+      "noise": 0.0106,
+      "t": -2.12,
+      "verdict": "no-effect"
+    },
+    "techniques": {
+      "control": 13,
+      "treatment": 13,
+      "diff": 0,
+      "pct": 0,
+      "noise": 0,
+      "t": 0,
+      "verdict": "no-effect"
+    },
+    "toolTechniques": {
+      "control": 3,
+      "treatment": 3,
+      "diff": 0,
+      "pct": 0,
+      "noise": 0,
+      "t": 0,
+      "verdict": "no-effect"
+    },
+    "wallShare": {
+      "control": 0,
+      "treatment": 0,
+      "diff": 0,
+      "pct": null,
+      "noise": 0,
+      "t": 0,
+      "verdict": "no-effect"
+    },
+    "canReachWater": {
+      "control": 1,
+      "treatment": 1,
+      "diff": 0,
+      "pct": 0,
+      "noise": 0,
+      "t": 0,
+      "verdict": "no-effect"
+    }
+  },
+  "id": "w2-winter-relief",
+  "target": "probes.evolved",
+  "note": "ENV.cold 1 -> 0.8: cold is ~60% of deaths (679 of 1103 in the last batch), so who dies is decided by winter luck. Predict less cold-death noise, so skill separates breeders better and probes.evolved rises.",
+  "ranAt": "fa7e4de",
+  "finished": "2026-11-14T10:19:46.447Z"
+}
