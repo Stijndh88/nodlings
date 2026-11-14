@@ -1,0 +1,133 @@
+{
+  "key": "169bfb9961b9",
+  "mode": "evolution",
+  "base": "HEAD",
+  "changed": [
+    "brain.js"
+  ],
+  "replicates": 5,
+  "ticks": 60000,
+  "tCritical": 2.13,
+  "targets": [
+    "probes.scarce"
+  ],
+  "decision": "revert",
+  "why": "no measurable gain on probes.scarce: a change that cannot show its effect is not kept",
+  "pass": true,
+  "reasons": [],
+  "metrics": {
+    "probes.evolved": {
+      "control": 1350.4,
+      "treatment": 1360.6,
+      "diff": 10.2,
+      "pct": 0.8,
+      "noise": 122.928,
+      "t": 0.09,
+      "verdict": "no-effect"
+    },
+    "probes.base": {
+      "control": 2378.2,
+      "treatment": 2318.8,
+      "diff": -59.4,
+      "pct": -2.5,
+      "noise": 206.1667,
+      "t": -0.33,
+      "verdict": "no-effect"
+    },
+    "probes.scarce": {
+      "control": 776,
+      "treatment": 794.8,
+      "diff": 18.8,
+      "pct": 2.4,
+      "noise": 113.0951,
+      "t": 0.2,
+      "verdict": "no-effect"
+    },
+    "probes.thirst": {
+      "control": 896.8,
+      "treatment": 968.4,
+      "diff": 71.6,
+      "pct": 8,
+      "noise": 92.7777,
+      "t": 0.74,
+      "verdict": "no-effect"
+    },
+    "probes.learningGain": {
+      "control": -39.4,
+      "treatment": -51.6,
+      "diff": -12.2,
+      "pct": -31,
+      "noise": 118.7278,
+      "t": -0.21,
+      "verdict": "no-effect"
+    },
+    "probes.memoryGain": {
+      "control": 118,
+      "treatment": 337,
+      "diff": 219,
+      "pct": 185.6,
+      "noise": 229.0928,
+      "t": 1.1,
+      "verdict": "no-effect"
+    },
+    "population": {
+      "control": 499.8,
+      "treatment": 500.8,
+      "diff": 1,
+      "pct": 0.2,
+      "noise": 1.0954,
+      "t": 1.41,
+      "verdict": "no-effect"
+    },
+    "medianFitness": {
+      "control": 973.4,
+      "treatment": 965.6,
+      "diff": -7.8,
+      "pct": -0.8,
+      "noise": 139.4679,
+      "t": -0.11,
+      "verdict": "no-effect"
+    },
+    "avgBrain": {
+      "control": 134.78,
+      "treatment": 134.7,
+      "diff": -0.08,
+      "pct": -0.1,
+      "noise": 4.6954,
+      "t": -0.02,
+      "verdict": "no-effect"
+    },
+    "largestCluster": {
+      "control": 3377.8,
+      "treatment": 3588,
+      "diff": 210.2,
+      "pct": 6.2,
+      "noise": 932.4909,
+      "t": 0.51,
+      "verdict": "no-effect"
+    },
+    "brickCells": {
+      "control": 6134.4,
+      "treatment": 6132.2,
+      "diff": -2.2,
+      "pct": 0,
+      "noise": 81.3099,
+      "t": -0.07,
+      "verdict": "no-effect"
+    },
+    "commSeparation": {
+      "control": 0.0124,
+      "treatment": 0.0182,
+      "diff": 0.0057,
+      "pct": 46.2,
+      "noise": 0.0048,
+      "t": 1,
+      "verdict": "no-effect"
+    }
+  },
+  "id": "era-food-limited",
+  "target": "probes.scarce",
+  "note": "ENV.flora 1 -> 0.6 so food rather than the cap limits the population (ROADMAP phase 1.2). Dry run: pop 494 after 6000 ticks, pass.",
+  "ranAt": "c90baea",
+  "finished": "2026-11-14T05:45:24.325Z"
+}
