@@ -1,0 +1,13 @@
+diff --git a/brain.js b/brain.js
+index 2da807c..35235e1 100644
+--- a/brain.js
++++ b/brain.js
+@@ -31,7 +31,7 @@ const ENV = {
+   plasticity: 1,     // multiplier on within-lifetime learning (0 = off)
+   thirst: 1,         // multiplier on hydration drain (1 = a drink lasts ~1650 ticks, about 4 days)
+   flora: 1,          // multiplier on plant regrowth (lower = scarcer food)
+-  cold: 1,           // multiplier on the energy cost of being too cold or too hot
++  cold: 0.8,           // multiplier on the energy cost of being too cold or too hot
+   flip: true,        // each year the nourishing and the poisonous plant kind swap
+   predators: 2.5,    // predators the world sustains per 100 Nodlings
+   senseMask: null,   // sense indices to blank (switched-off tests only)

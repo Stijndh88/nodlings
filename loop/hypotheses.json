@@ -1,4 +1,12 @@
 {
   "_doc": "Ledger of loop hypotheses for World 2. Status: open | running | kept | reverted | untested (closed without a result). Check before picking one; set running (commit) when you start; set the final status with the cycle number. The World 1 ledger is in archive/v1/hypotheses.json.",
-  "hypotheses": []
+  "hypotheses": [
+    {
+      "id": "w2-winter-relief",
+      "signal": "probes.evolved",
+      "change": "ENV.cold 1 -> 0.8: cold is ~60% of deaths (679 of 1103 in the last batch), so who dies is decided by winter luck. Predict less cold-death noise, so skill separates breeders better and probes.evolved rises.",
+      "status": "running",
+      "note": "evolution experiment submitted at 98911b1"
+    }
+  ]
 }

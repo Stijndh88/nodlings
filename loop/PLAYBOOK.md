@@ -46,6 +46,10 @@ Rules of thumb:
   5-cycle average or from an instant test.
 - About 1 kept result in 20 is luck. Before building on a kept change, check that the live 5-cycle average
   moved the same way within about 10 cycles.
+- **Noise floor (A/A, 14 Nov 2026, world at 228,000 ticks, 5 replicates x 60,000 ticks; sd of a paired difference):**
+  `probes.evolved` 150 (about 5.5% of 2,650), `base` 262, `scarce` 188, `thirst` 134, `learningGain` 184,
+  `memoryGain` 218, `handsGain` 320, `socialGain` 140, `badMealShare` (exam) 0.006, population 10, medianFitness 168.
+  The gains have noise larger than any value seen so far: only trust them as 5-cycle averages or A/B verdicts.
 - `node loop/ab.js --aa` shows today's noise floor. Run it whenever a result surprises you.
 
 ## 3. Which test for which change

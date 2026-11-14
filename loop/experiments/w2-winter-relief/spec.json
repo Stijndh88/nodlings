@@ -1,0 +1,7 @@
+{
+  "id": "w2-winter-relief",
+  "target": "probes.evolved",
+  "note": "ENV.cold 1 -> 0.8: cold is ~60% of deaths (679 of 1103 in the last batch), so who dies is decided by winter luck. Predict less cold-death noise, so skill separates breeders better and probes.evolved rises.",
+  "created": "2026-11-14T10:05:30.244Z",
+  "baseCommit": "98911b1"
+}

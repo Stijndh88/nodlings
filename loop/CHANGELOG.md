@@ -4,6 +4,22 @@ One entry per cycle: what was measured, harvested and submitted, and where the c
 **Newest entries at the top**, directly under this header. The changelog of the first world is in
 `archive/v1/CHANGELOG.md`.
 
+## 14 November 2026, cycle 19: batch to year 71, noise floor, winter experiment submitted
+
+- Batch: year 71.25, `probes.skill` 2,300 (`evolved` 2,959, `random` 659), `learningGain` +34, `handsGain` +49,
+  `memoryGain` +267, `socialGain` +16, `badMealShare` 0.369 (exam) / 0.318 (live); `wallShare` 0, `canReachWater` 1.
+  Population 94. Deaths in the world since the start: cold 679, starved 305, thirst 95, predator 13, age 11
+  (cold 61%, just over the 60% gate limit). Ledger types stayed the same 13 common techniques, 3 with tools.
+- Harvest: nothing finished, none running. (Slip: I ran `run-headless --ticks=0` once by mistake; it appended a
+  bogus cycle line and overwrote `metrics.json`. I removed the line and rebuilt `metrics.json` and `state.json`
+  from the real cycle-19 history record.)
+- Done `w2-noise-floor` (A/A, 5 x 60,000 ticks): sd of `probes.evolved` 150 (about 5.5%), `learningGain` 184,
+  `handsGain` 320; all verdicts no-effect as they should be. Written into PLAYBOOK section 2.
+- Submitted `w2-winter-relief` (ENV.cold 1 -> 0.8, target `probes.evolved`). Era screen passed (population 116,
+  cold 305 of about 510 deaths).
+- Phase W1: `evolved`/`random` is 4.5x (gate 3x met); `canReachWater` and `wallShare` fine; the cold share above 60%
+  is the remaining gate item, which the experiment targets.
+
 ## 14 November 2026: two designs approved (documentation only)
 
 Stijn gave his go-ahead for copying (`w2-imitate`, phase W4) and for a second yearly secret (`w2-second-secret`,
