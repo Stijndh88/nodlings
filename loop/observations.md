@@ -1,24 +1,37 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261114` · day 570.0 · Summer
+Seed `20261114` · day 630.0 · Winter
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 94 (23 juvenile) |
-| max generation | 141 |
+| population | 208 (51 juvenile) |
+| max generation | 157 |
 | best fitness | 17901 |
-| avg brain (conns) | 91 |
+| avg brain (conns) | 95 |
 | lineage diversity | 4 colour-groups |
-| predators | 5, 11 kills, best 54821 |
-| stacks (2+) / walls (3+) / bridges | 111 / 35 / 236 |
-| plants / bad meals | 882 / 32% |
+| predators | 3, 3 kills, best 54821 |
+| stacks (2+) / walls (3+) / bridges | 124 / 29 / 246 |
+| plants / bad meals | 592 / 29% |
 | technique types seen | 0 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 626]** _(trend)_ Lineages are deepening: max generation 152 to 156.
+- **[day 624]** _(issue)_ Plants fell 65% in ~6 days (winter, fire or overgrazing).
+- **[day 622]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.8 to 3.7).
+- **[day 614]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.5 to 3.7).
+- **[day 614]** _(trend)_ Lineages are deepening: max generation 148 to 152.
+- **[day 606]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.3 to 2.8).
+- **[day 598]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.1 to 3.5).
+- **[day 592]** _(issue)_ Plants fell 74% in ~6 days (winter, fire or overgrazing).
+- **[day 590]** _(trend)_ Nodlings are grouping more tightly (mean spacing 5.6 to 3.5).
+- **[day 584]** _(issue)_ Plants fell 64% in ~6 days (winter, fire or overgrazing).
+- **[day 582]** _(trend)_ Nodlings are grouping more tightly (mean spacing 6.0 to 3.3).
+- **[day 578]** _(trend)_ Lineages are deepening: max generation 141 to 145.
+- **[day 574]** _(trend)_ Nodlings are grouping more tightly (mean spacing 6.0 to 3.9).
 - **[day 566]** _(issue)_ Plants fell 61% in ~6 days (winter, fire or overgrazing).
 - **[day 544]** _(issue)_ Plants fell 61% in ~6 days (winter, fire or overgrazing).
 - **[day 538]** _(issue)_ Gene pool is a near-monoculture (only 2 lineage colours).

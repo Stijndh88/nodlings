@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is **skill**: how much better the evolved Nodlings score on a fixed exam than Nodlings with random brains (higher is better). **Learning gain**, **hands gain** and **memory gain** show whether they actually use learning, their hands and memory. The glossary at the bottom explains every number.
 
-Updated 2026-11-14T09:54Z. Now: day 570, skill **2300**, learning gain 34, memory gain 267, brain size 91.2, max generation 141. The plan is in [ROADMAP.md](../ROADMAP.md).
+Updated 2026-11-14T12:28Z. Now: day 630, skill **2314**, learning gain -490, memory gain 379, brain size 94.7, max generation 157. The plan is in [ROADMAP.md](../ROADMAP.md).
 
 ![progress](progress.svg)
 
@@ -10,7 +10,9 @@ Updated 2026-11-14T09:54Z. Now: day 570, skill **2300**, learning gain 34, memor
 
 | cycle | day | skill | learning gain | hands gain | memory gain | techniques | brain | max gen |
 |---|---|---|---|---|---|---|---|---|
-| 20 | 570 | 2300 | 34 | 49 | 267 | 0 | 91.2 | 141 |
+| 22 | 630 | 2314 | -490 | -389 | 379 | 0 | 94.7 | 157 |
+| 21 | 630 | 2314 | -490 | -389 | 379 | 13 | 94.7 | 157 |
+| 20 | 600 | 2156 | 26 | 0 | 33 | 13 | 92.1 | 148 |
 | 19 | 570 | 2300 | 34 | 49 | 267 | 13 | 91.2 | 141 |
 | 18 | 540 | 2251 | -139 | -172 | 179 | 13 | 91 | 138 |
 | 17 | 510 | 2293 | -16 | -17 | 407 | 13 | 88.3 | 132 |
@@ -23,12 +25,10 @@ Updated 2026-11-14T09:54Z. Now: day 570, skill **2300**, learning gain 34, memor
 | 10 | 300 | 2153 | -232 | -220 | 498 | 13 | 79.7 | 78 |
 | 9 | 270 | 2275 | -521 | -405 | 284 | 9 | 79.2 | 73 |
 | 8 | 240 | 2060 | -317 | -332 | 49 | 9 | 76.3 | 66 |
-| 7 | 210 | 2024 | -53 | -91 | 204 | 9 | 72.4 | 56 |
-| 6 | 180 | 1823 | 178 | -448 | -84 | 11 | 72.2 | 46 |
 
 ## Latest hypotheses
 
-
+- **running**: ENV.cold 1 -> 0.8: cold is ~60% of deaths (679 of 1103 in the last batch), so who dies is decided by winter luck. Predict less cold-death noise, so skill separates breeders better and probes.evolved rises. (evolution experiment submitted at 98911b1)
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
