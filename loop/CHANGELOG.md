@@ -4,6 +4,11 @@ One entry per cycle: what was measured, harvested and submitted, and where the c
 **Newest entries at the top**, directly under this header. The changelog of the first world is in
 `archive/v1/CHANGELOG.md`.
 
+## 14 November 2026: two designs approved (documentation only)
+
+Stijn gave his go-ahead for copying (`w2-imitate`, phase W4) and for a second yearly secret (`w2-second-secret`,
+phase W2). Both are specified build-ready under "Approved designs" in ROADMAP. No sim change in this entry.
+
 ## 14 November 2026: World 2 starts (rebuild, approved by Stijn)
 
 The first world was archived (`archive/v1/`, code on branch `v1-final`) after the audit in `docs/AUDIT-2026-11.md`.

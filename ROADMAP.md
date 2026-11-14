@@ -114,8 +114,8 @@ Queue:
 2. `w2-plasticity-mutation`: the chance that a child's connection changes its plasticity, 0.2 to 0.4
    (`mutateGenome` in `brain.js`), so evolution searches the learning wiring faster. Target `probes.learningGain`.
 3. `w2-trace-length`: `TRACE_DECAY` 0.9 to 0.8 or 0.95 (two experiments). Target `probes.learningGain`.
-4. `w2-second-secret`: a second fact genes cannot know, for example which of two shore materials bakes into
-   the harder brick this year. Needs a design note in this file and Stijn's go-ahead (it adds world state).
+4. `w2-second-secret`: a second fact genes cannot know. **Approved by Stijn on 14 November 2026**; the
+   design is in "Approved designs" below. Submit it only after items 1 to 3 have a verdict.
 
 **Gate:** 5-cycle average of `probes.learningGain` above zero and "better" in an instant test with learning
 off as the control; exam `badMealShare` below 0.35 (0.5 is eating both kinds alike).
@@ -135,16 +135,60 @@ techniques (`toolTechniques`) with a share of 20% or more.
 
 ### W4: copying
 
-Add an `imitate` gene (how strongly a Nodling's own trace is also written by what its neighbour does and how
-the neighbour fares) and the `cultureGain` test: children raised beside experienced adults against children
-raised alone. This changes the creature, so it needs a design note here and Stijn's go-ahead before the loop builds it.
+**Approved by Stijn on 14 November 2026.** Build `w2-imitate` exactly as written in "Approved designs" below,
+as one evolution experiment. It may be submitted as soon as the W1 gate is met; it does not have to wait for W3.
 
-**Gate:** `cultureGain` measurably above zero.
+**Gate:** `cultureGain` measurably above zero (5-cycle average, and an instant test).
 
 ### W5: open-ended
 
 New material rows and new places (islands, caves), one at a time, without new rules. Gate per addition: a
 ledger type involving the new material appears and its users out-breed non-users.
+
+### Approved designs (Stijn's go-ahead of 14 November 2026)
+
+These two change the creature or the world's state, which the loop may normally not do. Stijn approved both,
+so the loop builds them as ordinary evolution experiments, exactly as specified. Anything beyond what is
+written here is a new design change and needs a new go-ahead.
+
+**`w2-imitate` (phase W4): learning from how a neighbour fares.**
+- Gene: `genome.imitate`, a number from 0 to 1. Random genomes and genomes without the field have 0
+  (`g.imitate ?? 0`). Mutate it like a drive gene (chance 0.2, step up to 0.15, clamp 0 to 1); crossover takes
+  one parent's value. Because it starts at 0, nothing changes until evolution turns it up.
+- Effect, in `Nodling.tick` right after `surprise` is computed and only when a nearest Nodling `bn` was sensed
+  this think and `bn.lastOut` exists:
+  `match = 1 - (|use - bn.use| + |grab - bn.grab| + |drop - bn.drop| + |strike - bn.strike|)/4`, using this
+  Nodling's previous outputs (`this.lastOut`) and each output mapped to 0 or 1 by its 0.5 threshold, so `match`
+  runs from 0 (doing the opposite) to 1 (doing the same);
+  `vicarious = imitate * ENV.imitate * clamp(bn.lastGain, -1, 1) * (2*match - 1)`;
+  pass `surprise + vicarious` to `brain.step`. In words: when a neighbour is doing well, what I do like it is
+  strengthened and what I do unlike it is weakened; when it is doing badly, the reverse.
+- The line `const gain = ...` stays untouched (`test/rules.test.js` checks it). `vicarious` is the one approved
+  addition to the learning signal. It is not a bonus: it carries another body's change, weighted by a gene.
+- `ENV.imitate: 1` in `ENV` and `EXAM`. New switched-off test in `PROBE_TASKS`: `noImitate: { imitate: 0 }`,
+  reported as `probes.cultureGain = base - noImitate` (add it to `ABLATIONS` in `loop/run-headless.js`, to the
+  metric list in `loop/ab.js` and to the dashboard table). Report the population mean of `imitate` in `loopMetrics`.
+- Save and restore: genomes are saved whole, so nothing to migrate. Add one case to `test/learning.test.js`:
+  with `imitate = 1` and a neighbour whose `lastGain` is positive and whose outputs match, the plastic weight
+  grows without the Nodling eating anything.
+- Target `probes.evolved`. Read `cultureGain` and the mean `imitate` gene: if evolution drives the gene to 0,
+  copying does not pay yet and the answer is in the world (W3), not in a bigger number here.
+
+**`w2-second-secret` (phase W2): a second yearly unknown.**
+- Two new rows in `materials.js`, both plants found only on the shore: same numbers as the two existing
+  plants except `look: 0.5` and `look: -0.5`, `shore: true`, and a new property `secret: 1` (the existing two
+  plants get `secret: 0`; add `secret: 0` to `MATERIAL_DEFAULTS`). Give each a tile in `sprites.js`.
+- World state: `world.goodKinds = [bit, bit]`, one bit per secret. Keep `world.goodKind` as a getter for
+  `goodKinds[0]` so nothing else changes. At each new year, secret 0 swaps as today, and secret 1 is drawn
+  fresh from the world RNG (so it swaps in about half the years and cannot be predicted from secret 0).
+- Rule: in `foodValue`, compare `m.kind` with `world.goodKinds[m.secret]`. No material name appears.
+- Senses: none added. The eye already reports `look` (0.5 and -0.5 are new values of an existing sense), and
+  the direction senses for the two plant looks pick the shore plants up as well.
+- Snapshot: save `goodKinds`; on restore, a snapshot without it gets `[goodKind, 0]`.
+- Tests: one case in `test/physics.test.js` (the two secrets are independent) and one in
+  `test/learning.test.js` (the one-connection brain learns the shore plants separately when given a second
+  plastic connection; if one connection cannot separate four looks, say so in the result instead of bending the test).
+- Target `probes.learningGain`. The exam world gets the new plants too; that is accepted (RULES, "World parameters").
 
 ### Engineering track (any cycle may take one of these instead of a hypothesis when nothing is ready)
 
@@ -159,6 +203,7 @@ ledger type involving the new material appears and its users out-breed non-users
 - No keeping a change because "guardrails pass". No effect means revert.
 - No judging a harder world by fitness inside that world.
 - No more than 2 experiments running at once; no experiment that changes more than one thing.
-- No new verb, sense, output or kind of world state without a design note here and Stijn's go-ahead. New
+- No new verb, sense, output or kind of world state without a design note here and Stijn's go-ahead (the two
+  entries under "Approved designs" have it). New
   material rows and new values of existing numbers are ordinary loop experiments.
 - Do not reuse an experiment id from World 1 (`archive/v1/experiments/`): start every new id with `w2-`.

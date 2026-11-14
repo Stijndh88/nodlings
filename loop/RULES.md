@@ -83,7 +83,7 @@ commits a sim change directly.
   material name inside a rule, any item that never rots, survival perks of any kind, and anything already
   `reverted` in `loop/hypotheses.json` for the same reason.
 - New senses, outputs, verbs, rules or kinds of world state are design changes: write a note in ROADMAP and
-  wait for Stijn. New material rows and new values of existing numbers are ordinary experiments.
+  wait for Stijn. The entries under "Approved designs" in ROADMAP already have his go-ahead. New material rows and new values of existing numbers are ordinary experiments.
 - Every cycle writes a CHANGELOG entry, including INCIDENT cycles and cycles that only harvest or only submit.
 - If the baseline batch fails a guardrail, commit it as-is, log an `INCIDENT:` entry, push, and make no change
   that cycle. A human decides what to do about incidents.
