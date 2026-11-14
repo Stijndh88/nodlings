@@ -1,24 +1,26 @@
 # Nodlings — Observations & Improvement Ideas
 
-Seed `20261114` · day 540.0 · Autumn
+Seed `20261114` · day 570.0 · Summer
 
 ## Current snapshot
 
 | metric | value |
 |---|---|
-| population | 95 (28 juvenile) |
-| max generation | 137 |
+| population | 94 (23 juvenile) |
+| max generation | 141 |
 | best fitness | 17901 |
-| avg brain (conns) | 90 |
-| lineage diversity | 2 colour-groups |
-| predators | 3, 12 kills, best 54821 |
-| stacks (2+) / walls (3+) / bridges | 132 / 37 / 237 |
-| plants / bad meals | 953 / 29% |
-| technique types seen | 54 |
+| avg brain (conns) | 91 |
+| lineage diversity | 4 colour-groups |
+| predators | 5, 11 kills, best 54821 |
+| stacks (2+) / walls (3+) / bridges | 111 / 35 / 236 |
+| plants / bad meals | 882 / 32% |
+| technique types seen | 0 |
 | active fires | 0 |
 
 ## Log (newest first)
 
+- **[day 566]** _(issue)_ Plants fell 61% in ~6 days (winter, fire or overgrazing).
+- **[day 544]** _(issue)_ Plants fell 61% in ~6 days (winter, fire or overgrazing).
 - **[day 538]** _(issue)_ Gene pool is a near-monoculture (only 2 lineage colours).
 - **[day 538]** _(trend)_ Lineages are deepening: max generation 133 to 137.
 - **[day 536]** _(issue)_ Plants fell 62% in ~6 days (winter, fire or overgrazing).

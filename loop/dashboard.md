@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is **skill**: how much better the evolved Nodlings score on a fixed exam than Nodlings with random brains (higher is better). **Learning gain**, **hands gain** and **memory gain** show whether they actually use learning, their hands and memory. The glossary at the bottom explains every number.
 
-Updated 2026-11-14T09:23Z. Now: day 540, skill **2251**, learning gain -139, memory gain 179, brain size 91, max generation 138. The plan is in [ROADMAP.md](../ROADMAP.md).
+Updated 2026-11-14T09:54Z. Now: day 570, skill **2300**, learning gain 34, memory gain 267, brain size 91.2, max generation 141. The plan is in [ROADMAP.md](../ROADMAP.md).
 
 ![progress](progress.svg)
 
@@ -10,6 +10,8 @@ Updated 2026-11-14T09:23Z. Now: day 540, skill **2251**, learning gain -139, mem
 
 | cycle | day | skill | learning gain | hands gain | memory gain | techniques | brain | max gen |
 |---|---|---|---|---|---|---|---|---|
+| 20 | 570 | 2300 | 34 | 49 | 267 | 0 | 91.2 | 141 |
+| 19 | 570 | 2300 | 34 | 49 | 267 | 13 | 91.2 | 141 |
 | 18 | 540 | 2251 | -139 | -172 | 179 | 13 | 91 | 138 |
 | 17 | 510 | 2293 | -16 | -17 | 407 | 13 | 88.3 | 132 |
 | 16 | 480 | 2352 | -296 | -90 | -62 | 13 | 86.4 | 123 |
@@ -23,8 +25,6 @@ Updated 2026-11-14T09:23Z. Now: day 540, skill **2251**, learning gain -139, mem
 | 8 | 240 | 2060 | -317 | -332 | 49 | 9 | 76.3 | 66 |
 | 7 | 210 | 2024 | -53 | -91 | 204 | 9 | 72.4 | 56 |
 | 6 | 180 | 1823 | 178 | -448 | -84 | 11 | 72.2 | 46 |
-| 5 | 150 | 1673 | -417 | -10 | -53 | 14 | 69.6 | 41 |
-| 4 | 120 | 1517 | -145 | -397 | -84 | 13 | 67.3 | 33 |
 
 ## Latest hypotheses
 
