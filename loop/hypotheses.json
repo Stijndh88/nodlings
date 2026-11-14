@@ -1793,8 +1793,8 @@
       "id": "era-thirst-1-5x",
       "signal": "probes.thirst",
       "change": "ENV.thirst 1 -> 1.5 (small step; canReachWater 0.96 so thirst block lifted). Newborn water lasts ~1480 ticks.",
-      "status": "running",
-      "note": "evolution experiment submitted at d452472"
+      "status": "reverted",
+      "note": "probes.evolved 1332 -> 1415 (6.2%, t=0.91, no-effect); probes.thirst 911 -> 989 (8.6%, t=1.78, no-effect); probes.learningGain 31 -> 60 (92.3%, t=0.53, no-effect); probes.memoryGain 403 -> 152 (-62.4%, t=-1.25, no-effect); 5 replicates x 60000 ticks"
     }
   ]
 }
