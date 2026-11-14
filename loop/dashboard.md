@@ -1,91 +1,69 @@
 # Nodlings progress
 
-This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is **skill**: how much better the evolved Nodlings score on a fixed exam than Nodlings with random brains (higher is better). **Learning gain** and **memory gain** show whether they actually use learning and memory. The glossary at the bottom explains every number.
+This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is **skill**: how much better the evolved Nodlings score on a fixed exam than Nodlings with random brains (higher is better). **Learning gain**, **hands gain** and **memory gain** show whether they actually use learning, their hands and memory. The glossary at the bottom explains every number.
 
-Updated 2026-11-14T04:31Z. Now: day 2082.16, skill **1043**, learning gain -170, memory gain 72, brain size 123.9, max generation 4399. The plan is in [ROADMAP.md](../ROADMAP.md).
+Updated 2026-11-14T09:23Z. Now: day 540, skill **2251**, learning gain -139, memory gain 179, brain size 91, max generation 138. The plan is in [ROADMAP.md](../ROADMAP.md).
 
 ![progress](progress.svg)
 
 ## Recent cycles (newest first)
 
-| cycle | day | skill | learning gain | memory gain | brain | median fitness | max gen |
-|---|---|---|---|---|---|---|---|
-| 230 | 2082.16 | 1043 | -170 | 72 | 123.9 | 887 | 4399 |
-| 229 | 2072.78 | 692 | 250 | -3 | 118.2 | 1003 | 4371 |
-| 228 | 2063.41 | 985 | -191 | 53 | 114 | 1023 | 4349 |
-| 227 | 2054.03 |  |  |  | 107 | 1245 | 4320 |
-| 226 | 2046.22 |  |  |  | 102.4 | 1071 | 4300 |
-| 225 | 2038.41 |  |  |  | 94.4 | 1213 | 4279 |
-| 224 | 2022.78 |  |  |  | 100.8 | 1040 | 4264 |
-| 223 | 2014.97 |  |  |  | 113.6 | 1064 | 4245 |
-| 222 | 2007.16 |  |  |  | 120 | 1257 | 4223 |
-| 221 | 1999.34 |  |  |  | 121.9 | 1339 | 4207 |
-| 220 | 1991.53 |  |  |  | 119.8 | 1346 | 4185 |
-| 219 | 1983.72 |  |  |  | 119.9 | 1131 | 4170 |
-| 218 | 1975.91 |  |  |  | 119.9 | 1228 | 4148 |
-| 217 | 1968.09 |  |  |  | 122.7 | 1138 | 4135 |
-| 216 | 1960.28 |  |  |  | 122.3 | 1172 | 4125 |
+| cycle | day | skill | learning gain | hands gain | memory gain | techniques | brain | max gen |
+|---|---|---|---|---|---|---|---|---|
+| 18 | 540 | 2251 | -139 | -172 | 179 | 13 | 91 | 138 |
+| 17 | 510 | 2293 | -16 | -17 | 407 | 13 | 88.3 | 132 |
+| 16 | 480 | 2352 | -296 | -90 | -62 | 13 | 86.4 | 123 |
+| 15 | 450 | 2097 | -308 | -880 | -348 | 13 | 83.8 | 117 |
+| 14 | 420 | 1913 | -687 | -1027 | -315 | 10 | 83.5 | 107 |
+| 13 | 390 | 2082 | -426 | 2 | 442 | 10 | 83.7 | 101 |
+| 12 | 360 | 2193 | 369 | -138 | 201 | 9 | 83.2 | 91 |
+| 11 | 330 | 2245 | -108 | 493 | 330 | 10 | 81.8 | 85 |
+| 10 | 300 | 2153 | -232 | -220 | 498 | 13 | 79.7 | 78 |
+| 9 | 270 | 2275 | -521 | -405 | 284 | 9 | 79.2 | 73 |
+| 8 | 240 | 2060 | -317 | -332 | 49 | 9 | 76.3 | 66 |
+| 7 | 210 | 2024 | -53 | -91 | 204 | 9 | 72.4 | 56 |
+| 6 | 180 | 1823 | 178 | -448 | -84 | 11 | 72.2 | 46 |
+| 5 | 150 | 1673 | -417 | -10 | -53 | 14 | 69.6 | 41 |
+| 4 | 120 | 1517 | -145 | -397 | -84 | 13 | 67.3 | 33 |
 
 ## Latest hypotheses
 
-- **running**: ENV.thirst 1 -> 1.5 (small step; canReachWater 0.96 so thirst block lifted). Newborn water lasts ~1480 ticks. (evolution experiment submitted at d452472)
-- **kept**: Learn from reward minus its running average (prediction error) instead of raw reward, which is almost always positive (ROADMAP phase 2.1). Instant screen: no immediate effect (learningGain -73 -> -81, t=-0.05), no guardrail (probes.evolved 1652 -> 1654 (0.1%, t=0.01, no-effect); probes.learningGain -230 -> -17 (92.8%, t=2.18, better); probes.memoryGain 699 -> 1242 (77.5%, t=1.46, no-effect); 5 replicates x 60000 ticks)
-- **reverted**: ENV.thirst 1 -> 3: a newborn's water lasts ~740 ticks instead of ~2200, so never drinking is fatal inside the breeding life (ROADMAP phase 1.1). Screen: population 499 after 6000 ticks, thirst deaths 3709 (probes.evolved 1652 -> 1037 (-37.2%, t=-9.26, worse); probes.thirst 1133 -> 793 (-30%, t=-9.53, worse); probes.learningGain -230 -> -54 (76.7%, t=1.52, no-effect); probes.memoryGain 699 -> 288 (-58.8%, t=-1.96, no-effect); 5 replicates x 60000 ticks)
-- **kept**: brain.js LEARN_RATE 0.028 -> 0.031 (bench gap 1212->1709, medianFitness 1225->987 (within guardrail); single 8k sample, likely partly noise)
-- **kept**: brain.js LEARN_RATE 0.025 -> 0.028 (bench gap 2013->2061, medianFitness 903->1462; single 8k sample, likely partly noise)
-- **reverted**: world.js per-year deterministic flora regrowth multiplier 0.8..1.15 (unpredictable good/lean years reward plasticity) (bench gap 1933 -> 1402 (-27.5%, guardrail fail))
-- **reverted**: brain.js: 3% of connection weights resampled uniformly per mutation (heavy-tail jumps) (bench gap 1723 -> 1273 (guardrail fail), median 1126 -> 1053)
-- **reverted**: STRUCTURAL: world.js a vertical 1/5-width band blocks flora regrowth, shifting every 8 days (stale food memory) (bench gap 1815->1758, medianFitness 1102->1076; target worse)
-- **kept**: world.js: empty inland land cells beside a brick-topped cell slowly yield clay (15% per tidal-clay roll) (cluster 1087->1138, brickCells 3960->4014, bench gap 1980->1953 (noise); single 8k sample)
-- **kept**: world.js tidal clay deposit fires straight to brick when beside a brick-topped cell (brickCells 3958->3959, cluster 1107->1107, bench gap 1933->1980; within noise)
-- **reverted**: STRUCTURAL: nodling.js newborn +30 energy when parent inVillage (cluster 1107->1083, builtCells 4383->4307; target worse)
-- **reverted**: STRUCTURAL: nodling.js breeding chance x1.3 while inVillage (largestCluster 1113 -> 1088, builtCells 4643 -> 4525 (worse); medianFitness 1190 -> 1253, gap 1933 unchanged)
-- **kept**: STRUCTURAL: nodling.js CALL_BRICK_BONUS x2 while inVillage (metrics bit-identical to control; null result in this window)
-- **kept**: STRUCTURAL: nodling.js BRICK_GRAB_BONUS x2 while inVillage (metrics bit-identical to control; null result in this window)
-- **kept**: nodling.js CALL_BUILD_BONUS x2 while inVillage (metrics bit-identical to control; null result)
-- **kept**: STRUCTURAL: nodling.js TEAM_BUILD_BONUS x2 while inVillage (metrics bit-identical to control; null result)
-- **kept**: STRUCTURAL: nodling.js SHARED_MEAL_BONUS x2 while inVillage (commSeparation 0.0592 -> 0.0594, within noise; medianFitness 1143 -> 1506, gap 1933 unchanged)
-- **reverted**: nodling.js CALL_FOLLOW_BONUS x2 while inVillage (commSeparation 0.0473->0.0400 (worse); cluster 1934->1955, bench gap 1933->1933)
-- **kept**: STRUCTURAL: nodling.js KILN_BONUS x2 while inVillage (bit-identical to control; null result in 8k window)
-- **kept**: STRUCTURAL: nodling.js HUNT_BONUS x2 while inVillage (largestCluster 1971 -> 1981, within noise but not worse; medianFitness 1427 -> 1103 (guardrail passes))
-- **reverted**: STRUCTURAL: nodling.js fire death roll x0.5 while inVillage (largestCluster 1030 -> 1021, medianFitness 1227 -> 1182; not better)
-- **kept**: STRUCTURAL: nodling.js ENCLOSE_BONUS x2 while inVillage (bit-identical to control (null result, no measurable effect in 8k window))
-- **kept**: STRUCTURAL: nodling.js movement energy cost x0.5 while inVillage (largestCluster 1029 -> 1037, builtCells 4405 -> 4429; small, within noise but not worse)
-- **kept**: nodling.js BRICK_TOWER_BONUS x2 while inVillage (bit-identical to control (null result, no measurable effect in 8k window))
-- **reverted**: nodling.js: body temperature drift x0.5 while inVillage (largestCluster 1007 -> 999, within noise but not better)
+
 
 See [CHANGELOG.md](CHANGELOG.md) for what each cycle changed.
 
 ## What do these numbers mean?
 
-**Nodling.** One of the little creatures in the simulation. Each has a small evolving "brain"; nobody scripts what it does.
+**Nodling.** One of the little creatures in the simulation. Each has a small evolving "brain"; nobody scripts what it does and nothing rewards it except its own body feeling better or worse.
 
-**What is the loop?.** An unattended routine that keeps the world running. Each "cycle" it simulates a long stretch of time, measures how the Nodlings are doing, tries one small change to the rules, tests it, and keeps or reverts it.
+**World 2.** The world since November 2026. Materials are rows of properties (mass, hardness, fuel, food...) and a handful of rules act on those properties, so things can be combined in ways nobody listed. The first world paid Nodlings bonuses for behaviours; this one pays nothing.
 
-**Cycle.** One run of that routine. The cycle number counts up over time.
+**What is the loop?.** An unattended routine that keeps the world running. Each "cycle" it simulates a stretch of time, measures how the Nodlings are doing, and tests one small change to the world.
 
-**Day.** In-world days since the world started (one day is 1,600 simulation ticks). It only measures how long the world has been running, not how well it is going.
+**Day and year.** A day is 400 ticks and a year is 8 days. A Nodling can live about 3 years, so it sees several winters.
 
-**Skill (the headline number).** An exam for the species. A sample of 40 living Nodlings is copied into fresh, identical test worlds and scored on how long each lives and how many offspring it has. There are three tasks: a normal world, a world with little food, and a world where thirst bites five times faster. The same exam is given to Nodlings with random brains. Skill is the evolved score minus the random score, averaged over the tasks. The exam never changes when the live world is made harder, so a rising line means the Nodlings really got better.
+**Skill (the headline number).** An exam for the species. A sample of living adult Nodlings is copied into fresh, identical test worlds and scored on how long each lives and how many offspring it has over a year and a half (one winter, and one swap of the good and the poisonous plant). Three tasks: a normal world, a world with little food, a world where thirst bites three times faster. Random brains sit the same exam. Skill is the evolved score minus the random score.
 
-**Learning gain.** The exam score with learning switched on, minus the score of the same Nodlings with learning switched off. It answers "does learning during a lifetime actually help them?". Positive means it helps. At or below zero means the brains do not use learning yet, which is where the project started in November 2026.
+**Learning gain.** The exam score minus the score of the same Nodlings with learning switched off. Positive means that learning during a lifetime helps them.
 
-**Memory gain.** The same idea for memory: the normal exam score minus the score when the memory senses (remembered food, water and shelter, plus the two memory cells) are blanked. A large positive number means the Nodlings rely on memory.
+**Hands gain.** The exam score minus the score with grab, drop and strike switched off. Positive means that handling things (tools, fire, walls) helps them survive. In the first world this was exactly zero.
 
-**Brain size.** Average number of connections in a living Nodling brain. Not a goal by itself, but a collapse suggests that thinking no longer pays.
+**Memory gain, social gain.** The same idea for memory and for the senses about other Nodlings.
 
-**Median fitness.** The middle score of the Nodlings alive right now, where score = age in ticks + 250 per offspring. It swings as old Nodlings die, so read the trend, not one value.
+**Techniques.** The technique ledger counts every kind of thing a Nodling does with an object: the action, what is in its hand, what it acts on, and what happens (for example "strike / hard / animal / kill"). "In common use" means at least 20% of the Nodlings active during the batch did it at least once. Random brains grab, drop and strike by accident, so watch whether the shares rise, not whether a type exists. Nothing is ever rewarded for appearing here.
 
-**Max generation.** The longest family line alive: how many parent-to-child steps separate it from the first Nodlings.
+**Tool techniques.** Techniques that need something in the hand, or something placed to an effect (feeding a fire, bridging water).
 
-**Old benchmark gap.** The headline until cycle 228. It let the test colony breed until it filled the map, so it mostly measured how fast a colony grows and it barely moved for a month. Replaced by Skill.
+**Bad meals.** Each year one of the two plant kinds is nourishing and the other mildly poisonous, and they swap. 50% bad meals means Nodlings eat both alike; a lower number means they learned which is which.
 
-**Population.** How many Nodlings are alive right now. It is capped (currently 500), so it normally sits near the cap; a sudden drop would mean trouble.
+**World health.** wallShare (how much land is wall), openShore and canReachWater (can Nodlings still walk to water). The first world silted up until nobody could reach water; these numbers guard against that.
 
-**Instant test.** A quick check of a rule change: the same living Nodlings sit the exam under the old and the new rules, on several sets of test worlds. It shows the immediate effect of the change.
+**Brain size.** Average number of connections in a living Nodling brain.
 
-**Evolution experiment.** The real test of a change. Several copies of the world evolve for about 40 days with the change and several without it, on GitHub Actions. A change is kept only if the Nodlings that evolved with it score measurably higher on the exam. One run per side proves nothing: identical rules can differ by 5 to 55 percent between two runs.
+**Max generation.** The longest family line alive.
+
+**Instant test.** A quick check of a change: the same living Nodlings sit the exam under the old and the new code, on several sets of test worlds.
+
+**Evolution experiment.** The real test of a change. Several copies of the world evolve with the change and several without it, on GitHub Actions. A change is kept only if the Nodlings that evolved with it score measurably higher on the exam.
 
 **INCIDENT.** A guardrail tripped on a plain run, so the loop stopped changing things and left a note in the changelog for a human to look at.
-
-**STRUCTURAL.** A changelog tag for a change that adds a new rule or reward, as opposed to just nudging an existing number.

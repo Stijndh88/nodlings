@@ -4,8 +4,9 @@
 // their own hall of fame so hunting skill persists across die-offs.
 'use strict';
 
-const PRED_CAP = 6;      // a viable predator layer, but capped so it can't crash the prey
 const PRED_MIN = 2;
+const BITE_DAMAGE = 50, BITE_COOLDOWN = 20;   // a bite hurts and can be survived: there is something to learn from it
+const predCap = w => Math.max(PRED_MIN, (w.pop*ENV.predators/100)|0);   // predators the world sustains
 const PRED_SIGHT = 12;
 const PRED_SPEED = 0.20; // slower than a sprinting Nodling — evasion still works
 const predFame = [];   // best predator genomes ever (by kills + age)
@@ -21,6 +22,7 @@ class Predator {
     this.kills = 0;
     this.dead = false;
     this.prevPreyD = 0;
+    this.biteWait = 0;
     this.buf = new Array(PRED_SCHEMA.nIn).fill(0);
   }
 
@@ -60,32 +62,20 @@ class Predator {
     if (prey && this.prevPreyD) reward += Math.max(-1, Math.min(1, (this.prevPreyD - preyD)*0.6));
     this.prevPreyD = preyD;
 
-    // shelter: prey walled in by >=2 durable neighbours cannot be caught
-    let sheltered = false;
-    if (prey && pd < 0.8*0.8){
-      let walls = 0;
-      for (const [ax, ay] of [[1,0],[-1,0],[0,1],[0,-1]]){
-        const nb = w.at((prey.x|0)+ax, (prey.y|0)+ay);
-        if (nb && nb.stack.some(m => m === 'wood' || m === 'plank' || m === 'stone' || m === 'brick')) walls++;
-      }
-      let diag = 0;   // corner shelter: one wall plus a durable diagonal also blocks the strike
-      for (const [ax, ay] of [[1,1],[-1,1],[1,-1],[-1,-1]]){
-        const nb = w.at((prey.x|0)+ax, (prey.y|0)+ay);
-        if (nb && nb.stack.some(m => m === 'wood' || m === 'plank' || m === 'stone' || m === 'brick')) diag++;
-      }
-      sheltered = walls >= 2 || (walls >= 1 && diag >= 1);
-    }
-    if (prey && pd < 0.8*0.8 && !sheltered){   // caught it
-      prey.die(w.at(prey.x|0, prey.y|0));
-      this.energy = Math.min(130, this.energy + 45);
-      this.kills++;
+    // a bite: damage and pain. Walls keep predators out because they cannot walk through them.
+    if (this.biteWait > 0) this.biteWait--;
+    if (prey && pd < 0.8*0.8 && !this.biteWait){
+      prey.energy -= BITE_DAMAGE; prey.pain = 1;
+      this.biteWait = BITE_COOLDOWN;
+      this.energy = Math.min(130, this.energy + 20);
       reward = 1;
+      if (prey.energy <= 0){ prey.die('predator'); this.energy = Math.min(130, this.energy + 30); this.kills++; }
     }
     const out = this.brain.step(s, reward);
 
     const nx = this.x + out.moveX*PRED_SPEED, ny = this.y + out.moveY*PRED_SPEED;
     const dest = w.at(nx|0, ny|0);
-    if (dest && !dest.water && dest.stack.length < 3){
+    if (dest && !dest.water && dest.stack.length < WALL_HEIGHT){
       this.x = Math.max(0, Math.min(GRID_W-0.01, nx));
       this.y = Math.max(0, Math.min(GRID_H-0.01, ny));
     }
@@ -95,7 +85,7 @@ class Predator {
     if (amb < -3) this.energy -= (-3 - amb)*0.015;
 
     if (this.energy <= 0){ this.dead = true; return null; }
-    if (this.age > 250 && this.energy > 80 && w.predCount < PRED_CAP && w.rng() < 0.003){
+    if (this.age > 250 && this.energy > 80 && w.predCount < predCap(w) && w.rng() < 0.003){
       this.energy -= 40;
       return new Predator(w, this.x, this.y, mutateGenome(this.genome, w.rng, PRED_SCHEMA));
     }
@@ -129,7 +119,7 @@ function updatePredators(world, list){
     predFame.length = Math.min(predFame.length, 10);
   }
   let alive = list.filter(p => !p.dead).concat(born);
-  if (alive.length < PRED_MIN && world.pop > 45 && world.rng() < 0.05)
+  if (alive.length < Math.min(PRED_MIN, predCap(world)) && world.pop > 45 && world.rng() < 0.05)
     spawnPredators(world, alive, 1);
   return alive;
 }

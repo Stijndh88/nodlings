@@ -5,50 +5,55 @@ loop that tries to make them smarter.** Nobody scripts what a Nodling does. Its 
 that evolves over generations and can learn during a lifetime. The project asks one question: can real
 intelligence grow here, and can we prove it?
 
-[![The live world at day 2054](docs/world.jpg)](https://stijndh88.github.io/nodlings/)
+[![The live world](docs/world.jpg)](https://stijndh88.github.io/nodlings/)
 
-**[Watch the live world](https://stijndh88.github.io/nodlings/)** · **[Progress dashboard](loop/dashboard.md)** · **[Roadmap](ROADMAP.md)** · **[Changelog](loop/CHANGELOG.md)** · **[Foundations audit](docs/AUDIT-2026-11.md)**
+**[Watch the live world](https://stijndh88.github.io/nodlings/)** · **[Progress dashboard](loop/dashboard.md)** · **[Roadmap](ROADMAP.md)** · **[Changelog](loop/CHANGELOG.md)** · **[Why the world was rebuilt](docs/AUDIT-2026-11.md)**
 
 ## Where it stands
 
 ![Nodlings progress](loop/progress.svg)
 
-| | November 2026 | What it means |
-|---|---|---|
-| World age | day 2054, generation 4320 | One continuous world, running since October 2026 |
-| **Skill** | 1000 to 1800 | Evolved Nodlings outscore random brains 4x to 7x on a fixed exam. It swings from cycle to cycle, so read the trend |
-| **Memory gain** | +50 to +1400 | Blanking memory usually costs them a lot, but not in every reading |
-| **Learning gain** | below zero | Learning during a lifetime does not help them yet. The first proven fix lands in mid November |
+**World 2 started on 14 November 2026.** The first world ran for 2,063 days and stalled: an audit showed its
+Nodlings were paid by 45 hand-written bonuses for things that were worth nothing, were blind to most materials,
+lived too briefly to learn, and had walled themselves off from water. It is kept in [`archive/v1/`](archive/v1/README.md).
+World 2 was rebuilt around one idea: **never pay for a behaviour; make things useful and let them find out.**
 
-The honest summary: evolution taught the Nodlings to forage, breed and remember where things are, and then
-it stalled, because the world became too easy to select for anything more. The [roadmap](ROADMAP.md) explains
-why (with measurements) and what happens next: switch selection back on, make learning pay, then memory,
-planning and cooperation.
+| | After the first 67 in-world years | What it means |
+|---|---|---|
+| **Skill** | 2,840 against 659 for random brains | Evolved Nodlings do 4.3x better than random ones on a fixed exam, up from 1.7x at the start |
+| **Learning gain** | about -290 | Learning during a lifetime does not help them yet. A test proves the learning rule can tell the good plant from the poisonous one; evolution has not found that wiring yet |
+| **Hands gain** | about -440 | Handling things costs them more than it brings so far |
+| **Bad meals** | 37% | A little better than eating both plant kinds alike (50%) |
+| **World health** | 0.1% wall, 100% can reach water | The world stays open |
+| **Seen in the ledger** | 36% of Nodlings lay floating wood on water | Nobody pays them for it. Whether it is useful or just play is the next thing to find out |
+
+The honest summary: the new world works and evolution is climbing in it, but nothing that looks like invention
+has been shown yet. The [roadmap](ROADMAP.md) says how that will be measured and what comes next.
 
 ## How it works
 
-**The creature.** A Nodling has energy, water and body temperature to manage. Its brain maps 49 senses
-(what is near, how it feels, what it remembers, what it hears, what its neighbour is doing) to 9 outputs
-(move, grab, drop, eat or drink, strike, call, and two memory cells). Brains grow new neurons and
-connections by mutation (NEAT style), and some connections change during life according to reward.
+**The world.** A 200 x 150 continent ringed by ocean, with lakes, seasons, day and night. Materials are rows of
+properties (weight, hardness, fuel, food, sharpness, how fast it rots). Five rules act on properties and never
+on names: carrying costs energy by weight, a dropped thing sinks, floats, feeds a fire or stacks, a blow breaks
+what is softer than the thing in the hand, fire burns, cooks and bakes, and everything rots. Two plant kinds
+look different; each year one nourishes and the other is mildly poisonous, and at new year they swap.
 
-**The world.** A 200 x 150 continent ringed by ocean, with lakes, seasons, day and night, plants that
-regrow, wildlife to hunt, predators with their own evolving brains, fire that cooks meat and fires clay
-into brick, and water that can only be crossed by laying a bridge. Everything works through physical
-properties of materials, never through a crafting menu.
+**The creature.** A Nodling has energy, water, body temperature and pain. Its brain maps 74 senses (properties
+of what it holds, what is ahead and underfoot, what is near, what its neighbour does and how it fares, sound,
+memory, season) to 12 outputs (move, grab, drop, eat or drink, strike, call, four memory cells, and how strongly
+to learn right now). Brains grow by mutation over generations, and some connections change during life. The
+only learning signal is the body: did what I just did leave me better or worse off than I expected?
 
-**The research loop.** Every 4 hours an autonomous Claude routine advances the world, measures the
-Nodlings and tests one idea for making them smarter:
+**The research loop.** An autonomous Claude routine advances the world, measures the Nodlings and tests one
+idea at a time:
 
-1. **The exam.** A sample of living Nodlings is copied into fresh test worlds and scored on survival and
-   offspring in three tasks: a normal world, a world with little food, and a world where thirst bites. The
-   exam never changes, so the score is comparable over months. Switching one faculty off (learning, memory)
-   and re-running the exam shows what that faculty is actually worth.
-2. **Experiments.** A candidate change is stored as a patch. GitHub Actions evolves five copies of the world
-   with the change and five without for about 40 generations, then compares exam scores with a t-test.
-3. **Only proven changes land.** A change reaches the live world only when the Nodlings that evolved with it
-   score measurably higher. Two runs of identical rules can differ by 5 to 55%, so a single before/after
-   comparison is never trusted.
+1. **The exam.** Living adults are copied into fixed test worlds and scored on how long they live and how many
+   children they have, in a normal world, a world with little food and a world where thirst bites. Switching one
+   faculty off (learning, memory, hands, seeing others) and re-running the exam shows what it is worth.
+2. **The technique ledger.** Everything a Nodling does with a thing is counted by kind (for example "strike,
+   hard thing in hand, animal, kill") with the share of Nodlings doing it. Counted, never rewarded.
+3. **Experiments.** A candidate change is stored as a patch. GitHub Actions evolves five copies of the world
+   with the change and five without, then compares exam scores with a t-test. Only proven changes land.
 
 ## Run it yourself
 
@@ -67,7 +72,8 @@ node loop/ab.js --aa --ticks=6000 --replicates=3
 # test an uncommitted change against HEAD on the current gene pool (about 4 minutes)
 node loop/ab.js --instant --target=probes.evolved
 
-# CI gate: self-test, resume, determinism
+# tests and CI gate
+for t in test/*.test.js; do node "$t"; done
 node loop/ci-check.js
 ```
 
@@ -79,15 +85,18 @@ log of an automated observer that records milestones and problems once per in-wo
 
 | Path | What it is |
 |---|---|
+| `materials.js` | The materials, one row of properties each |
+| `physics.js`, `world.js` | The rules (carry, place, strike, heat, decay), terrain, climate, plants, fire |
+| `senses.js`, `actions.js`, `nodling.js` | The creature: what it senses, what it can do, its body and breeding |
 | `brain.js` | Evolving neural network, learning rule, and `ENV`, the world's difficulty settings |
-| `nodling.js` | The creature: needs, senses, actions, reproduction |
-| `world.js` | Terrain, materials, climate, plants, fire |
 | `critters.js`, `predators.js` | Wildlife, and predators with their own evolving brains |
 | `sim.js` | The tick loop and saving or resuming a whole world |
-| `metrics.js` | Progress metrics and the skill probes (the exam) |
+| `metrics.js` | World health, the technique ledger and the exam |
+| `test/` | Tests of the rules, of "no material names, body-only reward", and of the learning rule |
 | `index.html`, `main.js`, `render.js`, `sprites.js`, `observer.js` | The browser view |
-| `docs/world-notes.md` | Longer notes on the world's mechanics |
-| `ROADMAP.md` | The plan: findings, principles, phases with gates, hypothesis queues |
+| `docs/world-notes.md` | How the world works, in plain words |
+| `docs/AUDIT-2026-11.md` | The audit that ended the first world, and the design of this one |
+| `ROADMAP.md` | The plan: principles, phases with gates, hypothesis queues |
 | `loop/RULES.md`, `loop/ROUTINE_PROMPT.md` | What the autonomous loop must do each cycle |
 | `loop/PLAYBOOK.md` | Why the plan is what it is, how to design and read experiments, pitfalls, what to do when stuck |
 | `loop/run-headless.js` | Advance the saved world and measure it |
@@ -95,11 +104,12 @@ log of an automated observer that records milestones and problems once per in-wo
 | `loop/experiments.js`, `loop/experiments/` | Long evolution experiments that run on GitHub Actions |
 | `loop/world.json.gz`, `loop/history.jsonl` | The saved world and its measured history |
 | `loop/dashboard.md`, `loop/dashboard.html`, `loop/progress.svg` | Progress pages, rebuilt every cycle |
+| `archive/v1/` | The first world: its state, history, roadmap and playbook |
 
 ## Design rules
 
-- **No scripted behaviour.** New abilities must come from physics the brain can discover, not from recipes.
-  The older reward bonuses that nudge building are being removed (roadmap phase 4).
-- **Pressure before machinery.** A smarter brain only spreads when it means more offspring.
-- **The exam is fixed; the world is not.** The world gets harder through `ENV`; the exam keeps its own settings.
+- **No scripted behaviour and no paid behaviour.** The only reward is the body. A test fails if that changes.
+- **Properties, not names.** No rule mentions a material. A test fails if one does.
+- **Everything rots.** Nothing can pile up until the world is sealed.
+- **The exam is fixed; the world is not.**
 - **No verdict without replicates.** No measurable effect means the change is not kept.

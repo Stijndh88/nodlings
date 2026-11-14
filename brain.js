@@ -1,22 +1,26 @@
 // Brain = an evolving neural network (NEAT-style topology + weight evolution)
-// with reward-modulated Hebbian plasticity, gated memory neurons (for
-// longer-horizon state), and a per-life plasticity boost (fed by 'data').
+// with gated memory neurons and within-lifetime learning.
 //
-// The same machinery serves two species via *schemas*: Nodlings (43+ senses,
-// 9 actions, cosmetic genes) and Predators (few senses, 2 actions). Genomes of
-// different schemas never cross over, so their shared innovation ids are just
-// labels and can't corrupt each other.
+// Learning rule (World 2): every plastic connection keeps a fading trace of its
+// recent activity (pre x post). A reward that is better or worse than expected
+// strengthens or weakens the connections whose trace is still warm, so a reward
+// that arrives a few ticks after the action still reaches the right synapses.
+// The brain's own `learn` output scales the update: it decides when to rewire itself.
+//
+// The same machinery serves two species via *schemas*: Nodlings (senses.js,
+// 12 outputs, body and drive genes) and Predators (few senses, 2 outputs).
+// Genomes of different schemas never cross over.
 'use strict';
 
-const N_SENSES = 49;   // Nodling input neurons (map documented in Nodling.sense())
 const N_BODY   = 8;    // Nodling morphology genes (visual, inherited)
-const OUTPUTS  = ['moveX','moveY','grab','drop','interact','strike','sound','mem0','mem1'];
+const N_DRIVES = 4;    // how much energy, water, comfort and pain count in what feels good (see Nodling.wellbeing)
+const OUTPUTS  = ['moveX','moveY','grab','drop','use','strike','sound','mem0','mem1','mem2','mem3','learn'];
 
 const NODLING_SCHEMA = { nIn:N_SENSES, outputs:OUTPUTS, cosmetic:true };
 const PRED_SCHEMA    = { nIn:11, outputs:['moveX','moveY'], cosmetic:false };
 
 const HIDDEN_BASE = 100; // hidden node ids start here (above every schema's fixed ids)
-const MAX_CONNS = 300, MAX_HIDDEN = 80, W_CLAMP = 4, LEARN_RATE = 0.031;
+const MAX_CONNS = 300, MAX_HIDDEN = 80, W_CLAMP = 4, LEARN_RATE = 0.2, TRACE_DECAY = 0.9;
 
 // World parameters. ENV holds the settings of the LIVE world (the current "era");
 // make the world harder or easier by changing these, not by editing constants.
@@ -25,13 +29,17 @@ const MAX_CONNS = 300, MAX_HIDDEN = 80, W_CLAMP = 4, LEARN_RATE = 0.031;
 // faculties off (learning, memory senses) to measure what they are worth.
 const ENV = {
   plasticity: 1,     // multiplier on within-lifetime learning (0 = off)
-  thirst: 1,         // multiplier on hydration drain (1 = a drink lasts ~2200 ticks)
-  flora: 1,          // multiplier on flora regrowth (lower = scarcer food)
-  senseMask: null,   // sense indices to blank (ablation probes only)
+  thirst: 1,         // multiplier on hydration drain (1 = a drink lasts ~1650 ticks, about 4 days)
+  flora: 1,          // multiplier on plant regrowth (lower = scarcer food)
+  cold: 1,           // multiplier on the energy cost of being too cold or too hot
+  flip: true,        // each year the nourishing and the poisonous plant kind swap
+  predators: 2.5,    // predators the world sustains per 100 Nodlings
+  senseMask: null,   // sense indices to blank (switched-off tests only)
+  outMask: null,     // output names forced to 0 (switched-off tests only)
   noBirths: false,   // probes score a fixed cohort (births counted, children not added)
 };
 const ENV_LIVE = Object.assign({}, ENV);   // restored after every probe
-const EXAM = Object.freeze({ plasticity:1, senseMask:null, thirst:1, flora:1, noBirths:true });
+const EXAM = Object.freeze({ plasticity:1, thirst:1, flora:1, cold:1, flip:true, predators:2.5, senseMask:null, outMask:null, noBirths:true });
 
 const biasId   = sc => sc.nIn;
 const outStart = sc => sc.nIn + 1;
@@ -123,7 +131,7 @@ function randomGenome(rng, sc = NODLING_SCHEMA){
       addConn(conns, (rng()*sc.nIn)|0, out, randW(rng), randPl(rng));
   }
   const g = {conns, mem:{}};
-  if (sc.cosmetic){ g.hue = rng()*360; g.body = randBody(rng); g.diet = rng(); } // 0 herbivore .. 1 carnivore
+  if (sc.cosmetic){ g.hue = rng()*360; g.body = randBody(rng); g.drive = [1, 1, 1, 1]; }
   return g;
 }
 
@@ -131,8 +139,8 @@ function mutateGenome(g, rng, sc = NODLING_SCHEMA){
   const conns = g.conns.map(c => ({...c}));
   const mem = {...(g.mem || {})};
   for (const c of conns){
-    if (rng() < 0.5) c.w = clampW(c.w + (rng()*2-1)*0.3);
-    if (rng() < 0.3) c.pl = Math.max(-1, Math.min(1, c.pl + (rng()*2-1)*0.2));
+    if (rng() < 0.3) c.w = clampW(c.w + (rng()*2-1)*0.3);
+    if (rng() < 0.2) c.pl = Math.max(-1, Math.min(1, c.pl + (rng()*2-1)*0.2));
   }
   const hid = hiddenIds(conns);
   const bId = biasId(sc), oStart = outStart(sc), nOut = sc.outputs.length;
@@ -163,7 +171,7 @@ function mutateGenome(g, rng, sc = NODLING_SCHEMA){
   if (sc.cosmetic){
     out.hue = (g.hue + rng()*20-10 + 360) % 360;
     out.body = mutateBody(g.body, rng);
-    out.diet = Math.max(0, Math.min(1, (g.diet ?? 0.5) + (rng()*2-1)*0.08));
+    out.drive = (g.drive || [1,1,1,1]).map(v => rng() < 0.2 ? Math.max(0, Math.min(2, v + (rng()*2-1)*0.15)) : v);
   }
   return prune(out);
 }
@@ -181,7 +189,8 @@ function crossoverGenome(a, b, rng, sc = NODLING_SCHEMA){
     const dh = ((b.hue - a.hue + 540) % 360) - 180;
     out.hue = (a.hue + dh*rng() + 360) % 360;
     out.body = crossBody(a.body, b.body, rng);
-    out.diet = rng() < 0.5 ? (a.diet ?? 0.5) : (b.diet ?? 0.5);
+    const da = a.drive || [1,1,1,1], db = b.drive || [1,1,1,1];
+    out.drive = da.map((v, i) => rng() < 0.5 ? v : db[i]);
   }
   return out;
 }
@@ -192,7 +201,7 @@ function genomeSize(g){ return g.conns.length; }
 class Brain {
   constructor(genome, sc = NODLING_SCHEMA){
     this.sc = sc;
-    this.boost = 1;                 // plasticity multiplier (data → temporary surge)
+    this.gate = 0.5;                // learning gate, set from the `learn` output of the previous step
     const conns = genome.conns, mem = genome.mem || {};
     const nIn = sc.nIn, bId = biasId(sc), oStart = outStart(sc), nOut = sc.outputs.length;
 
@@ -227,7 +236,14 @@ class Brain {
     const compSet = new Set(this.outLocal);
     for (const id of order) if (isHidden(id)) compSet.add(local.get(id));
     this.comp = [...compSet];
-    this.incoming = this.comp.map(t => incoming.get(t) || []);
+    // incoming connections, flattened: for computed neuron j, entries inStart[j]..inStart[j+1]
+    this.inStart = new Int32Array(this.comp.length + 1);
+    const srcs = [], idxs = [];
+    this.comp.forEach((t, j) => {
+      for (const [from, i] of (incoming.get(t) || [])){ srcs.push(from); idxs.push(i); }
+      this.inStart[j+1] = srcs.length;
+    });
+    this.inFrom = Int32Array.from(srcs); this.inConn = Int32Array.from(idxs);
     // per-comp memory retain (0 = plain tanh neuron)
     this.retain = new Float64Array(this.comp.length);
     const localToId = order;                       // local idx -> global id
@@ -235,34 +251,39 @@ class Brain {
       const gid = localToId[this.comp[j]];
       this.retain[j] = mem[gid] || 0;
     }
+    this.trace = new Float64Array(conns.length);   // eligibility trace per connection
+    this.learnIdx = sc.outputs.indexOf('learn');
     this.act = new Float64Array(this.n);
     this.tmp = new Float64Array(this.comp.length);
   }
 
   step(senses, reward){
-    const a = this.act, comp = this.comp, inc = this.incoming, tmp = this.tmp, w = this.w;
+    const a = this.act, comp = this.comp, tmp = this.tmp, w = this.w;
+    const st = this.inStart, src = this.inFrom, ci = this.inConn;
     const nIn = this.sc.nIn;
     for (let i = 0; i < nIn; i++) a[this.inLocal[i]] = senses[i];
     a[this.biasLocal] = 1;
 
     for (let j = 0; j < comp.length; j++){
-      const list = inc[j]; let s = 0;
-      for (let k = 0; k < list.length; k++) s += w[list[k][1]] * a[list[k][0]];
+      let s = 0;
+      for (let k = st[j], e = st[j+1]; k < e; k++) s += w[ci[k]] * a[src[k]];
       const r = this.retain[j];
       tmp[j] = r ? r*a[comp[j]] + (1-r)*Math.tanh(s) : Math.tanh(s); // gated memory
     }
-    if (reward){
-      const lr = LEARN_RATE * this.boost * ENV.plasticity;
-      for (let j = 0; j < comp.length; j++){
-        const list = inc[j], post = tmp[j];
-        for (let k = 0; k < list.length; k++){
-          const wi = list[k][1], pl = this.pl[wi];
-          if (pl) w[wi] = clampW(w[wi] + lr*pl*reward*a[list[k][0]]*post);
-        }
+    // learning: update each plastic connection's trace, then apply the reward to the traces
+    const lr = LEARN_RATE * this.gate * ENV.plasticity * reward, tr = this.trace, plv = this.pl;
+    for (let j = 0; j < comp.length; j++){
+      const post = tmp[j];
+      for (let k = st[j], e = st[j+1]; k < e; k++){
+        const wi = ci[k], pl = plv[wi];
+        if (!pl) continue;
+        const el = tr[wi] = tr[wi]*TRACE_DECAY + a[src[k]]*post;
+        if (lr) w[wi] = clampW(w[wi] + lr*pl*el);
       }
     }
-    if (this.boost > 1) this.boost = Math.max(1, this.boost*0.99); // surge decays
     for (let j = 0; j < comp.length; j++) a[comp[j]] = tmp[j];
+    if (this.learnIdx >= 0){ const g = a[this.outLocal[this.learnIdx]]; this.gate = Number.isFinite(g) ? (g + 1)/2 : 0.5; }
+    else this.gate = 1;
 
     const out = {glitch:false};
     for (let k = 0; k < this.outNames.length; k++){

@@ -106,7 +106,7 @@ function draw(nodlings){
     if (n.x < vp.x0-1 || n.x > vp.x1+1 || n.y < vp.y0-1 || n.y > vp.y1+1) continue;
     const bob = Math.sin(n.age*0.25 + n.x*3) * z*0.05;
     const [sx, sy] = worldToScreen(n.x, n.y, vp);
-    const size = z * (n.age < 160 ? 0.7 : 1.1);   // juveniles are smaller
+    const size = z * (n.age < MATURITY ? 0.7 : 1.1);   // children are smaller
     if (n === selected){
       ctx.strokeStyle = '#ffe86a'; ctx.lineWidth = Math.max(1.5, z*0.08);
       ctx.beginPath(); ctx.arc(sx, sy - size*0.05, size*0.7, 0, Math.PI*2); ctx.stroke();
@@ -270,9 +270,10 @@ function updateHover(mx, my, nodlings){
   if (best){
     hover.active = true; hover.sx = mx; hover.sy = my;
     hover.text = `<b>Nodling</b> gen ${best.gen}<br>`
-      + `energy ${best.energy|0} · hydration ${best.hydration|0}<br>`
-      + `temp ${best.bodyTemp.toFixed(1)}° · age ${best.age}<br>`
-      + `offspring ${best.offspring} · brain ${best.brainSize} nodes`
+      + `energy ${best.energy|0} · water ${best.hydration|0}<br>`
+      + `temp ${best.bodyTemp.toFixed(1)}° · age ${(best.age/YEAR_LEN).toFixed(1)} years<br>`
+      + `offspring ${best.offspring} · brain ${best.brainSize} connections<br>`
+      + `meals ${best.meals} (${best.badMeals} bad) · drinks ${best.drinks}`
       + (best.carrying ? `<br>carrying ${best.carrying}` : '');
     return;
   }
@@ -281,7 +282,7 @@ function updateHover(mx, my, nodlings){
   let label;
   if (c.stack.length){
     const top = c.stack[c.stack.length-1];
-    label = `<b>${top}</b>` + (c.stack.length >= 2 ? ` structure (${c.stack.length} high)` : '');
+    label = `<b>${top}</b>` + (c.stack.length >= WALL_HEIGHT ? ` wall (${c.stack.length} high)` : c.stack.length >= 2 ? ` stack (${c.stack.length} high)` : '') + (c.fire ? ' burning' : '');
   } else if (c.water) label = '<b>water</b>';
   else if (c.sand) label = '<b>sand</b>';
   else label = '<b>grass</b>';

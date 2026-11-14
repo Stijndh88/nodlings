@@ -134,20 +134,24 @@ function buildTiles(){
     ctx.fillStyle = '#63c766';
     for (const [x,y] of [[7,9],[9,10],[10,8]]){ ctx.fillRect(x,y,1,1); }
   });
-  // plank (worked wood — stacked boards)
-  TILES.plank = item(ctx => {
-    ctx.fillStyle = '#c98f4e';
-    for (let y = 5; y <= 12; y += 3){ ctx.fillRect(3, y, 10, 2); }
-    ctx.fillStyle = '#a06e35';
-    for (let y = 5; y <= 12; y += 3){ ctx.fillRect(3, y+1, 10, 1); }
-    ctx.fillStyle = '#7a5323'; ctx.fillRect(7, 4, 1, 10); // nail seam
+  // berry bush (the second plant kind: purple, so the two kinds look different)
+  TILES.berry = item(ctx => {
+    ctx.fillStyle = '#4b3f8a';
+    for (const [x,y,r] of [[8,10,4],[5,11,2.6],[11,11,2.6]]){ ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill(); }
+    ctx.fillStyle = '#b79cf2';
+    for (const [x,y] of [[7,9],[9,10],[10,8],[6,11]]){ ctx.fillRect(x,y,1,1); }
   });
-  // crystal (data)
-  TILES.data = item(ctx => {
-    ctx.fillStyle = '#c94fd9'; ctx.beginPath();
-    ctx.moveTo(8,3); ctx.lineTo(11,8); ctx.lineTo(8,14); ctx.lineTo(5,8); ctx.fill();
-    ctx.fillStyle = '#eaa6f2'; ctx.beginPath();
-    ctx.moveTo(8,3); ctx.lineTo(8,14); ctx.lineTo(5,8); ctx.fill();
+  // stick (broken wood)
+  TILES.stick = item(ctx => {
+    ctx.strokeStyle = '#b08a52'; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(4,12); ctx.lineTo(12,6); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(6,6); ctx.lineTo(11,12); ctx.stroke();
+  });
+  // flake (a sharp piece of broken stone)
+  TILES.flake = item(ctx => {
+    ctx.fillStyle = '#c9cbd6'; ctx.beginPath();
+    ctx.moveTo(5,12); ctx.lineTo(8,5); ctx.lineTo(11,12); ctx.fill();
+    ctx.fillStyle = '#8f8f97'; ctx.beginPath(); ctx.moveTo(8,5); ctx.lineTo(11,12); ctx.lineTo(8,11); ctx.fill();
   });
   // seed (scattered kernels)
   TILES.seed = item(ctx => {
@@ -178,11 +182,8 @@ function buildTiles(){
     for (let y = 6; y <= 12; y += 3) ctx.fillRect(3, y, 10, 2);
     ctx.fillStyle = '#8a4a30'; ctx.fillRect(8,6,1,8); ctx.fillRect(5,9,1,3);
   });
-  // fiber (strands)
-  TILES.fiber = item(ctx => {
-    ctx.strokeStyle = '#9ab04a'; ctx.lineWidth = 1;
-    for (const x of [5,8,11]){ ctx.beginPath(); ctx.moveTo(x,5); ctx.lineTo(x+ (x%2?1:-1),13); ctx.stroke(); }
-  });
+  // any material without its own picture: a plain square in its colour
+  for (const m of MATERIAL_LIST) if (!TILES[m.name]) TILES[m.name] = item(ctx => { ctx.fillStyle = m.color; ctx.fillRect(4, 6, 8, 8); });
 }
 
 // --- critters (neutral wildlife): small, muted, not gene-colored ---

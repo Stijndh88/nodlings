@@ -22,7 +22,7 @@ const { renderProgress, renderDashboard, renderMarkdown } = require('./report');
 
 const ROOT = path.join(__dirname, '..');
 const LOOP = __dirname;
-const SIM_FILES = ['brain.js', 'world.js', 'selftest.js', 'nodling.js', 'critters.js', 'predators.js', 'observer.js', 'sim.js', 'metrics.js'];
+const { SIM_FILES } = require('./sim-files');
 
 function arg(name, fallback){
   const m = process.argv.find(a => a.startsWith(`--${name}=`));
@@ -111,34 +111,41 @@ if (wantBench){
   if (shift) p.seeds = p.seeds.map(s => s + shift * 1000);
   if (arg('probe-cohort', null)) p.cohort = +arg('probe-cohort');
   const RANDOM_COHORT = Math.min(40, p.cohort);   // random brains die fast and vary little: a small reference cohort is enough
-  const genomes = JSON.stringify(vm.runInContext(`(function(){ const L = nodlings.slice().sort((a,b)=>(a.age+250*a.offspring)-(b.age+250*b.offspring)); const K = Math.min(${p.cohort}, L.length), out = []; for (let i = 0; i < K; i++) out.push(L[Math.floor((i+0.5)*L.length/K)].genome); return out; })()`, context) || []);
+  const genomes = JSON.stringify(vm.runInContext(`(function(){ const L = nodlings.filter(n => n.age >= MATURITY).sort((a,b)=>fitnessOf(a)-fitnessOf(b)); const K = Math.min(${p.cohort}, L.length), out = []; for (let i = 0; i < K; i++) out.push(L[Math.floor((i+0.5)*L.length/K)].genome); return out; })()`, context) || []);
   const cohortOf = useGenomes => (useGenomes ? p.cohort : RANDOM_COHORT);
+  const detail = {};                              // survival, bad meals and drinks on the base task
   const score = (useGenomes, wseed, task) => {
     const c = makeContext({});
-    return vm.runInContext(`(function(){
+    const r = vm.runInContext(`(function(){
       ${useGenomes ? `const G = ${genomes}; reindexFromGenomes(G);` : 'const G = null;'}
-      return probeCohort(G, ${wseed}, ${p.ticks}, ${cohortOf(useGenomes)}, '${task}');
+      const s = probeCohort(G, ${wseed}, ${p.ticks}, ${cohortOf(useGenomes)}, '${task}');
+      return { s, d: lastProbe };
     })()`, c);
+    if (useGenomes && task === 'base') for (const k in r.d) if (r.d[k] != null) (detail[k] = detail[k] || []).push(r.d[k]);
+    return r.s;
   };
   const avg = (useGenomes, task) => Math.round(p.seeds.reduce((s, seed) => s + score(useGenomes, seed, task), 0) / p.seeds.length);
   const TASKS = ['base', 'scarce', 'thirst'], withRandom = !flag('no-random');
+  const ABLATIONS = { noLearning: 'learningGain', noMemory: 'memoryGain', noHands: 'handsGain', noSocial: 'socialGain' };
   const pr = {};
-  for (const t of TASKS) pr[t] = avg(true, t);
-  pr.noLearning = avg(true, 'noLearning');
-  pr.noMemory = avg(true, 'noMemory');
-  pr.evolved = Math.round(TASKS.reduce((s, t) => s + pr[t], 0) / TASKS.length);
-  if (withRandom){
-    pr.random = Math.round(TASKS.reduce((s, t) => s + avg(false, t), 0) / TASKS.length);
-    pr.skill = pr.evolved - pr.random;
+  if (JSON.parse(genomes).length){
+    for (const t of TASKS) pr[t] = avg(true, t);
+    pr.evolved = Math.round(TASKS.reduce((s, t) => s + pr[t], 0) / TASKS.length);
+    for (const [task, gain] of Object.entries(ABLATIONS)){ pr[task] = avg(true, task); pr[gain] = pr.base - pr[task]; }
+    for (const k in detail) pr[k] = +(detail[k].reduce((s, x) => s + x, 0) / detail[k].length).toFixed(3);
+    if (withRandom){
+      pr.random = Math.round(TASKS.reduce((s, t) => s + avg(false, t), 0) / TASKS.length);
+      pr.skill = pr.evolved - pr.random;
+    }
+    metrics.probes = pr;
   }
-  pr.learningGain = pr.base - pr.noLearning;
-  pr.memoryGain = pr.base - pr.noMemory;
-  metrics.probes = pr;
 }
 
 // ---- guardrails ----
 const g = rules.guardrails, reasons = [];
 const finite = Object.values(metrics).every(v => v === null || typeof v === 'object' || Number.isFinite(v));
+if (metrics.canReachWater < g.min_reach_water) reasons.push(`only ${Math.round(metrics.canReachWater*100)}% of Nodlings can reach water (min ${g.min_reach_water*100}%)`);
+if (metrics.wallShare > g.max_wall_share) reasons.push(`walls cover ${Math.round(metrics.wallShare*100)}% of the land (max ${g.max_wall_share*100}%)`);
 if (!finite) reasons.push('non-finite metric (NaN)');
 if (metrics.population < g.min_population) reasons.push(`population ${metrics.population} < min ${g.min_population}`);
 const dropPct = (before, after) => before > 0 ? 100 * (before - after) / before : 0;

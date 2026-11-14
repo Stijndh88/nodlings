@@ -67,9 +67,9 @@
           <option value="16" selected>16x</option><option value="40">40x</option></select>
       </label>
       <label>drop
-        <select id="drop"><option>flora</option><option>wood</option>
-          <option>stone</option><option>data</option><option>seed</option><option>plank</option>
-          <option>clay</option><option>fiber</option></select>
+        <select id="drop"><option>flora</option><option>berry</option><option>wood</option>
+          <option>stick</option><option>stone</option><option>flake</option><option>clay</option>
+          <option>seed</option><option>meat</option></select>
       </label>
       <button id="reset">↻ New world</button>
       <button id="save">💾 Save</button>
@@ -96,11 +96,11 @@
     <div class="sec">
       <div class="sec-title">Climate</div>
       <div class="grid">
-        <span class="k">Day <span class="help" data-tip="Elapsed in-world days. A year is 32 days = 4 seasons of 8 days.">?</span></span>
+        <span class="k">Day <span class="help" data-tip="Elapsed in-world days. A year is 8 days = 4 seasons of 2 days, and a Nodling can live about 3 years.">?</span></span>
           <span class="v" id="s-day">0</span>
         <span class="k">Time <span class="help" data-tip="In-world clock. Nights are colder; ☀️/🌙 shows day or night.">?</span></span>
           <span class="v" id="s-clock">—</span>
-        <span class="k">Season <span class="help" data-tip="Winter drops below freezing and starves the map; summer peaks near 28°. Seasons drive the whole boom/crash cycle.">?</span></span>
+        <span class="k">Season <span class="help" data-tip="Winter is cold and plants grow slowly; summer peaks near 30°. Each spring the nourishing and the poisonous plant kind swap.">?</span></span>
           <span class="v" id="s-season">—</span>
         <span class="k">Temp <span class="help" data-tip="Current ambient air temperature. A Nodling's body drifts toward its local cell temp, which shelter can warm.">?</span></span>
           <span class="v" id="s-temp">—</span>
@@ -110,17 +110,17 @@
     <div class="sec">
       <div class="sec-title">Nodlings</div>
       <div class="grid">
-        <span class="k">Alive <span class="help" data-tip="Living Nodlings now (j = juveniles, which can't breed yet). Fresh seeds are only added below 8 (near-extinction), drawn from the saved hall of fame.">?</span></span>
+        <span class="k">Alive <span class="help" data-tip="Living Nodlings now (j = children, which cannot breed yet). Food and crowding limit the number; below 40 the gene bank tops it up.">?</span></span>
           <span class="v" id="s-pop">0</span>
         <span class="k">Max gen <span class="help" data-tip="Highest generation number alive — how many times the longest surviving lineage has reproduced.">?</span></span>
           <span class="v" id="s-gen">0</span>
         <span class="k">Avg brain <span class="help" data-tip="Average connections in the evolving neural networks (NEAT). Grows as mutation adds structure the world rewards, shrinks when simple wiring suffices.">?</span></span>
           <span class="v" id="s-brain">0</span>
-        <span class="k">Best fitness <span class="help" data-tip="Top hall-of-fame score: age + 250×offspring of the best Nodling ever. In a stable population this saturates — watch Max gen for real progress instead.">?</span></span>
+        <span class="k">Best fitness <span class="help" data-tip="Top score ever: age in ticks + 500 per offspring.">?</span></span>
           <span class="v" id="s-fit">0</span>
-        <span class="k">Diversity <span class="help" data-tip="Distinct lineage colour-groups alive. Speciation (you compete mainly with your own kind) keeps this from collapsing to a monoculture. More = healthier evolution.">?</span></span>
+        <span class="k">Diversity <span class="help" data-tip="Distinct lineage colour-groups alive.">?</span></span>
           <span class="v" id="s-div">0</span>
-        <span class="k">Diet <span class="help" data-tip="Herbivore/carnivore split. An evolved gene: herbivores get more from plants, carnivores from meat. A persistent split means a real food web has formed.">?</span></span>
+        <span class="k">Bad meals <span class="help" data-tip="Share of meals that were the poisonous plant kind. 50% means they eat both kinds alike; lower means they have learned which is which this year.">?</span></span>
           <span class="v" id="s-diet">—</span>
         <span class="k">Births <span class="help" data-tip="Total Nodlings born this world (reproduction events, not reseeds).">?</span></span>
           <span class="v" id="s-births">0</span>
@@ -133,9 +133,9 @@
     <div class="sec">
       <div class="sec-title">Fauna</div>
       <div class="grid">
-        <span class="k">Critters <span class="help" data-tip="Neutral wildlife. They graze flora and flee Nodlings; struck by a facing Nodling they die and drop meat.">?</span></span>
+        <span class="k">Critters <span class="help" data-tip="Neutral wildlife. They graze plants and flee Nodlings. A strike kills one only with something heavy or sharp in the hand, and leaves meat.">?</span></span>
           <span class="v" id="s-crit">0</span>
-        <span class="k">Predators <span class="help" data-tip="They hunt Nodlings with their own evolving brains. Grouping/fleeing is the Nodlings' defence — a driver of flocking/tribes. They can't cross water.">?</span></span>
+        <span class="k">Predators <span class="help" data-tip="They hunt Nodlings with their own evolving brains. A bite hurts and can be survived. Walls keep them out; they cannot cross water.">?</span></span>
           <span class="v" id="s-pred">0</span>
         <span class="k">Pred. kills <span class="help" data-tip="Total kills by living predators. Rising over time = predators are learning to hunt (the arms race working).">?</span></span>
           <span class="v" id="s-kills">0</span>
@@ -149,15 +149,15 @@
     <div class="sec">
       <div class="sec-title">World</div>
       <div class="grid">
-        <span class="k">Structures <span class="help" data-tip="Cells stacked 2+ high. They insulate neighbours toward 18° — the emergent 'shelter' Nodlings may learn to build and huddle in.">?</span></span>
+        <span class="k">Structures <span class="help" data-tip="Cells stacked 2+ high. Stacks insulate the cells around them toward 18°. A stack of 3 is a wall.">?</span></span>
           <span class="v" id="s-struct">0</span>
-        <span class="k">Building <span class="help" data-tip="Planks (p) and bricks (b) on the map — worked materials. Planks come from striking wood; bricks from firing clay. Both make far warmer shelter and bridges.">?</span></span>
+        <span class="k">Techniques <span class="help" data-tip="Kinds of things done with objects so far (action / in hand / target / result), and how many of them need a tool or a placed item. Counted, never rewarded.">?</span></span>
           <span class="v" id="s-build">0</span>
-        <span class="k">Bridges <span class="help" data-tip="Water cells that have had buoyant material dropped on them, making them walkable. Nodlings can't swim, so bridges are how they cross water and expand.">?</span></span>
+        <span class="k">Bridges <span class="help" data-tip="Water cells with something floating on them, which makes them walkable.">?</span></span>
           <span class="v" id="s-bridge">0</span>
-        <span class="k">Fires <span class="help" data-tip="Cells currently burning. Fire spreads through flammable materials, cooks meat, fires clay to brick, and warms — water and stone are firebreaks.">?</span></span>
+        <span class="k">Fires <span class="help" data-tip="Cells currently burning. Fire comes from lightning or from striking stone on stone, burns as long as it has fuel, can be fed, cooks meat, hardens clay and warms.">?</span></span>
           <span class="v" id="s-fire">0</span>
-        <span class="k">Food cells <span class="help" data-tip="Cells topped with flora or seeds. Eating flora can drop a seed; seeds germinate into new flora — the loop that lets farming emerge.">?</span></span>
+        <span class="k">Food cells <span class="help" data-tip="Cells topped with a living plant of either kind.">?</span></span>
           <span class="v" id="s-flora">0</span>
       </div>
     </div>
@@ -165,12 +165,12 @@
     <div id="saveline"><span>autosaves every 8s + on close</span><span id="s-saved"></span></div>
 
     <div class="sec hint">
-      <b>Brains</b> — each Nodling runs an evolving neural net (topology + weights
-      mutate and cross over) with reward-modulated plasticity, so it inherits
-      instincts <i>and</i> learns within its own life. <b>Threats</b> — predators
-      hunt them; grouping is safer. <b>Crafting</b> — striking wood can work it
-      into a plank (better insulation) for warmer shelter. <b>Vitals</b> — ideal
-      body temp 18°; below 0° or above 38° risks death; energy/hydration at 0 is fatal.
+      <b>Brains</b> — each Nodling runs an evolving neural net. It is born with
+      instincts and learns within its own life from one signal only: its body feeling
+      better or worse. <b>Physics</b> — every material is a row of properties (mass,
+      hardness, fuel, food...). What happens when something is carried, placed, struck
+      or heated follows from those numbers; nothing is scripted and nothing is rewarded.
+      <b>Vitals</b> — ideal body temp 18°; energy or water at 0 is fatal.
     </div>
   </div>
 
@@ -187,16 +187,21 @@
     </div>
   </div>
 
+  <script src="materials.js"></script>
+  <script src="senses.js"></script>
   <script src="brain.js"></script>
   <script src="world.js"></script>
+  <script src="physics.js"></script>
   <script src="selftest.js"></script>
   <script src="sprites.js"></script>
+  <script src="actions.js"></script>
   <script src="nodling.js"></script>
   <script src="critters.js"></script>
   <script src="predators.js"></script>
   <script src="render.js"></script>
   <script src="observer.js"></script>
   <script src="sim.js"></script>
+  <script src="metrics.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

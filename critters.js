@@ -1,6 +1,6 @@
 // Neutral wildlife. Critters are deliberately NOT brain-evolved — they're simple
-// scripted fauna (graze flora, flee Nodlings, breed, die). What they *mean* —
-// prey, pest, companion — is for the Nodlings' evolved behavior to decide.
+// scripted fauna (graze plants, flee Nodlings, breed, die). A strike with enough
+// force kills one (actions.js) and leaves a carcass.
 'use strict';
 
 const CRITTER_CAP = 90;   // ample prey so hunting/carnivory is a viable niche
@@ -40,14 +40,15 @@ class Critter {
 
     const nx = this.x + Math.cos(this.dir)*sp, ny = this.y + Math.sin(this.dir)*sp;
     const dest = w.at(nx|0, ny|0);
-    if (dest && !dest.water && dest.stack.length < 3){
+    if (dest && !dest.water && dest.stack.length < WALL_HEIGHT){
       this.x = Math.max(0, Math.min(GRID_W-0.01, nx));
       this.y = Math.max(0, Math.min(GRID_H-0.01, ny));
     } else this.dir += 1.7; // turn away from walls/water
 
     // graze flora (competes with Nodlings for the same food)
     const c = w.at(this.x|0, this.y|0);
-    if (c && c.stack[c.stack.length-1] === 'flora' && w.rng() < 0.1){
+    const top = c && c.stack[c.stack.length-1];
+    if (top && MATERIALS[top].spreads && w.rng() < 0.1){   // grazes any living plant
       c.stack.pop();
       this.energy = Math.min(90, this.energy + 16);
     }
@@ -58,7 +59,7 @@ class Critter {
 
     if (this.energy <= 0){
       this.dead = true;
-      if (c && c.stack.length < 3 && w.rng() < 0.3) c.stack.push('meat');
+      if (c && c.stack.length < NATURAL_HEIGHT && w.rng() < 0.3) c.stack.push(CARCASS);
       return null;
     }
     if (this.age > 180 && this.energy > 55 && w.critterCount < CRITTER_CAP && w.rng() < 0.004){

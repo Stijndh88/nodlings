@@ -15,14 +15,18 @@ function selfTest(){
   assert(OUTPUTS.every(k=>Number.isFinite(o[k]) && Math.abs(o[k]) <= 1.0001),
     'network outputs finite and bounded');
   const g2 = mutateGenome(g, rng), g3 = crossoverGenome(g, g2, rng);
-  assert(genomeSize(g2) > 0 && g3.body.length === N_BODY, 'variation produces valid genomes');
-  // plasticity actually changes a synapse under reward
+  assert(genomeSize(g2) > 0 && g3.body.length === N_BODY && g3.drive.length === N_DRIVES, 'variation produces valid genomes');
+  // learning actually changes a synapse when the reward differs from what was expected
   const gp = randomGenome(rng);
   gp.conns.forEach(c => { c.pl = 1; c.w = 0.5; });
   const bp = new Brain(gp), before = bp.w[0];
   for (let i = 0; i < 20; i++) bp.step(s.map(()=>1), 1);
-  assert(bp.w[0] !== before, 'reward-modulated plasticity updates weights');
+  assert(bp.w[0] !== before, 'reward-modulated learning updates weights');
+  // and does nothing when the reward is exactly as expected
+  const bq = new Brain(gp), b0 = bq.w[0];
+  for (let i = 0; i < 20; i++) bq.step(s.map(()=>1), 0);
+  assert(bq.w[0] === b0, 'no surprise, no learning');
 
-  if (ok) console.log('Nodlings self-test passed (NEAT + plasticity)');
+  if (ok) console.log('Nodlings self-test passed (NEAT + learning)');
   return ok;
 }
