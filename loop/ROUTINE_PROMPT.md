@@ -8,6 +8,11 @@ Everything below is then editable in git like any other file.
 
 ---
 
+**PAUSED since 14 November 2026: World 2 is being rebuilt (see ROADMAP.md, "World 2").**
+Do not run a cycle. Do not run any `node loop/...` command, do not commit and do not push. Reply with the
+single line "Loop paused for the World 2 rebuild" and stop. The pause ends when this paragraph is removed
+from this file on master. Everything below describes the old cycle and is not in force while this paragraph stands.
+
 CRITICAL: the container is ephemeral; only work pushed to origin master counts.
 Run every `node loop/...` command in the FOREGROUND with the Bash timeout set to 600000. NEVER use
 run_in_background, Monitor or sleep, and never end your turn while a command is running.
