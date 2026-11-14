@@ -2,7 +2,7 @@
 
 This page tracks a simulated world of small creatures (Nodlings) whose brains evolve. The headline is **skill**: how much better the evolved Nodlings score on a fixed exam than Nodlings with random brains (higher is better). **Learning gain** and **memory gain** show whether they actually use learning and memory. The glossary at the bottom explains every number.
 
-Updated 2026-11-13T20:30Z. Now: day 2063.41, skill **985**, learning gain -191, memory gain 53, brain size 114, max generation 4349. The plan is in [ROADMAP.md](../ROADMAP.md).
+Updated 2026-11-14T00:31Z. Now: day 2072.78, skill **692**, learning gain 250, memory gain -3, brain size 118.2, max generation 4371. The plan is in [ROADMAP.md](../ROADMAP.md).
 
 ![progress](progress.svg)
 
@@ -10,6 +10,7 @@ Updated 2026-11-13T20:30Z. Now: day 2063.41, skill **985**, learning gain -191, 
 
 | cycle | day | skill | learning gain | memory gain | brain | median fitness | max gen |
 |---|---|---|---|---|---|---|---|
+| 229 | 2072.78 | 692 | 250 | -3 | 118.2 | 1003 | 4371 |
 | 228 | 2063.41 | 985 | -191 | 53 | 114 | 1023 | 4349 |
 | 227 | 2054.03 |  |  |  | 107 | 1245 | 4320 |
 | 226 | 2046.22 |  |  |  | 102.4 | 1071 | 4300 |
@@ -24,7 +25,6 @@ Updated 2026-11-13T20:30Z. Now: day 2063.41, skill **985**, learning gain -191, 
 | 217 | 1968.09 |  |  |  | 122.7 | 1138 | 4135 |
 | 216 | 1960.28 |  |  |  | 122.3 | 1172 | 4125 |
 | 215 | 1952.47 |  |  |  | 126.1 | 1068 | 4105 |
-| 214 | 1944.66 |  |  |  | 124.8 | 1293 | 4086 |
 
 ## Latest hypotheses
 
